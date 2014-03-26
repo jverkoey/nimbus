@@ -1,5 +1,5 @@
 //
-// Copyright 2012 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@
  * This controller is instantiated and pushed onto the navigation stack when the user taps a radio
  * group cell.
  *
- *      @ingroup ModelTools
+ * @ingroup ModelTools
  */
 @interface NIRadioGroupController : UITableViewController
 
@@ -39,5 +39,5 @@
  *
  * The radio group and cell are strongly referenced for the lifetime of this controller.
  *
- *      @fn NIRadioGroupController::initWithRadioGroup:tappedCell:
+ * @fn NIRadioGroupController::initWithRadioGroup:tappedCell:
  */

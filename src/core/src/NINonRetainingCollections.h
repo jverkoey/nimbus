@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Forked from Three20 June 10, 2011 - Copyright 2009-2011 Facebook
 //
@@ -17,6 +17,10 @@
 //
 
 #import <Foundation/Foundation.h>
+
+#if defined __cplusplus
+extern "C" {
+#endif
 
 /**
  * For collections that don't retain their objects.
@@ -54,7 +58,8 @@ NSMutableDictionary* NICreateNonRetainingMutableDictionary(void);
  */
 NSMutableSet* NICreateNonRetainingMutableSet(void);
 
+#if defined __cplusplus
+};
+#endif
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 /**@}*/// End of Non-Retaining Collections ////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////

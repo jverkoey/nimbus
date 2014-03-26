@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "NIInMemoryCache.h"
+@class NIImageMemoryCache;
 
 /**
  * For modifying Nimbus state information.
@@ -45,7 +45,7 @@
  * If a cache hasn't been assigned via Nimbus::setGlobalImageMemoryCache: then one will be created
  * automatically.
  *
- *      @remarks The default image cache has no upper limit on its memory consumption. It is
+ * @remarks The default image cache has no upper limit on its memory consumption. It is
  *               up to you to specify an upper limit in your application.
  */
 + (NIImageMemoryCache *)imageMemoryCache;
@@ -62,7 +62,6 @@
  * one will be created automatically with the default iOS settings.
  */
 + (NSOperationQueue *)networkOperationQueue;
-
 
 #pragma mark Modifying Global State /** @name Modifying Global State */
 
@@ -82,7 +81,4 @@
 
 @end
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 /**@}*/// End of State ////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////

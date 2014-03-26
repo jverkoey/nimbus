@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,26 +20,25 @@
 #import "NICSSRuleset.h"
 #import "NimbusCore.h"
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 NI_FIX_CATEGORY_BUG(UINavigationBar_NIStyleable)
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation UINavigationBar (NIStyleable)
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyNavigationBarStyleWithRuleSet:(NICSSRuleset *)ruleSet {
+  [self applyNavigationBarStyleWithRuleSet:ruleSet inDOM:nil];
+}
+
+- (void)applyNavigationBarStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
   if ([ruleSet hasTintColor]) { self.tintColor = ruleSet.tintColor; }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet {
-  [self applyViewStyleWithRuleSet:ruleSet];
-  [self applyNavigationBarStyleWithRuleSet:ruleSet];
+- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
+  [self applyViewStyleWithRuleSet:ruleSet inDOM:dom];
+  [self applyNavigationBarStyleWithRuleSet:ruleSet inDOM:dom];
 }
-
 
 @end

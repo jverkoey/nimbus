@@ -1,29 +1,139 @@
-
-UINavigationBar {
-  -ios-tint-color: orange;
-}
-
 .background {
-  background-color: blue;
+  background-color: #aaaaaa;
 }
 
 .noticeBox {
   background-color: rgba(32, 32, 32, 0.5);
-  border-radius: 10px;
+  border-radius: 20px;
   border: none;
+  width: -300px;
+  height: -400px;
+  top: 10px;
+  -mobile-halign: center;
 }
 
-UIActivityIndicatorView {
-  -ios-activity-indicator-style: white-large;
-  -ios-autoresizing: left right bottom;
+/* This is used in an animation block to move the view down */
+.noticeBoxEndpoint {
+  bottom: 10px;
 }
 
-UILabel {
-  -ios-autoresizing: left right height width;
-  background-color: clear;
-  -ios-number-of-lines: 0;
+.titleLabel {
+  -mobile-text-key: "RootViewTitle";
+  width: 100%;
+  height: auto;
+  -mobile-relative: .prev;
+  margin-top: 100px;
+}
+
+.rightMiddleLabel
+{
+  width: auto;
+  height: auto;
+  -ios-autoresizing: none;
+  -mobile-valign: middle;
+  -mobile-halign: right;
+}
+
+.bottomLabel
+{
+  width: auto;
+  height: auto;
+  -ios-autoresizing: none;
+  bottom: 0px;
+}
+
+#TestButton {
+  left: 10px;
+  -mobile-valign: middle;
+  width: 200px;
+  border-radius: 20px;
+  -ios-button-adjust: none;
+}
+
+UIButton
+{
   color: white;
-  text-shadow: rgba(0, 0, 0, 0.5) 0 -1;
-  text-align: center;
-  font-size: 17;
+  text-shadow: rgba(0,0,0,.9) 2px 2px;
+  background-image: url("btn_blue_active");
+  -mobile-background-stretch: 0 20px 0 20px;
+  border-radius: 5px;
+  height: 77px;
+}
+
+UIButton:disabled
+{
+  color: black;
+}
+
+UIButton:selected
+{
+  color: blue;
+}
+
+UIButton:highlighted
+{
+  color: green;
+}
+
+.textField {
+  height: 70px;
+  border: 1px black;
+  width: 200px;
+  bottom: 30px;
+  right: 30px;
+  -mobile-content-valign: middle;
+  -mobile-content-halign: center;
+  -mobile-title-insets: 20px;
+}
+
+.textField:empty {
+  -mobile-text-key: "This is blue";
+  color: blue;
+}
+
+#box1 {
+  background-color: white;
+  bottom: 180px;
+  -mobile-halign: center;
+}
+
+#box2 {
+  background-color: green;
+  -mobile-relative: #box1;
+  margin-top: 0;
+  margin-right: 0;
+}
+
+#box3 {
+  background-color: orange;
+  -mobile-relative: #box1;
+  margin-top: 0;
+  margin-left: 0;
+}
+
+#box4 {
+  background-color: purple;
+  -mobile-relative: #box1;
+  margin-left: auto;
+  margin-top: 20px;
+}
+
+#box5 {
+  background-color: black;
+  -mobile-relative: #box4;
+  margin-left: -50%;
+  margin-top: -50%;
+}
+
+#box6 {
+  background-color: brown;
+  -mobile-relative: #box4;
+  margin-right: -50%;
+  margin-top: -50%;
+}
+#box7 {
+  background-color: blue;
+  -mobile-relative: #box1;
+  margin-top: 0;
+  margin-left: auto;
 }

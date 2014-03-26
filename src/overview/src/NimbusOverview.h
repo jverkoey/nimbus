@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@
 /**
  * @defgroup NimbusOverview Nimbus Overview
  * @{
+ *
+ * <div id="github" feature="overview"></div>
  *
  * The Overview is a debugging tool for quickly understanding the current state of your
  * application. When added to an application, it will insert a paged
@@ -113,25 +115,25 @@
 /**
  * The sensors used to power the Overview.
  *
- *      @defgroup Overview-Sensors Sensors
+ * @defgroup Overview-Sensors Sensors
  */
 
 /**
  * The primary classes you'll use when dealing with the Overview.
  *
- *      @defgroup Overview Overview
+ * @defgroup Overview Overview
  */
 
 /**
  * The Overview logger.
  *
- *      @defgroup Overview-Logger Logger
+ * @defgroup Overview-Logger Logger
  */
 
 /**
  * The pages that are shown in the Overview.
  *
- *      @defgroup Overview-Pages Pages
+ * @defgroup Overview-Pages Pages
  */
 
 /**@}*/

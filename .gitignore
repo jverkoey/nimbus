@@ -7,3 +7,17 @@ xcuserdata
 *.xcworkspace
 node_modules
 coverage/
+
+NimbusAttributedLabel+Namespace.h
+NimbusCore+Namespace.h
+NimbusCss+Namespace.h
+NimbusInterapp+Namespace.h
+NimbusLauncher+Namespace.h
+NimbusModels+Namespace.h
+NimbusNetworkControllers+Namespace.h
+NimbusNetworkImage+Namespace.h
+NimbusOverview+Namespace.h
+NimbusPagingScrollView+Namespace.h
+NimbusPhotos+Namespace.h
+NimbusWebController+Namespace.h
+NimbusTextField+Namespace.h

@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,14 +15,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @protocol NICSSParserDelegate;
 @class NICSSRuleset;
+@class NIDOM;
 
 /**
  * The notification key for when a stylesheet has changed.
  *
- *      @ingroup CSS-Stylesheets
+ * @ingroup NimbusCSS
  *
  * This notification will be sent with the stylesheet as the object. Listeners should add
  * themselves using the stylesheet object that they are interested in.
@@ -34,7 +36,7 @@ extern NSString* const NIStylesheetDidChangeNotification;
 /**
  * Loads and caches information regarding a specific stylesheet.
  *
- *      @ingroup CSS-Stylesheets
+ * @ingroup NimbusCSS
  *
  * Use this object to load and parse a CSS stylesheet from disk and then apply the stylesheet
  * to views. Rulesets are cached on demand and cleared when a memory warning is received.
@@ -60,9 +62,20 @@ extern NSString* const NIStylesheetDidChangeNotification;
 
 - (void)addStylesheet:(NIStylesheet *)stylesheet;
 
-- (void)applyStyleToView:(UIView *)view withClassName:(NSString *)className;
+- (void)applyStyleToView:(UIView *)view withClassName:(NSString *)className inDOM: (NIDOM*)dom;
+
+- (NSString*)descriptionForView:(UIView *)view withClassName:(NSString *)className inDOM: (NIDOM*)dom andViewName: (NSString*) viewName;
 
 - (NICSSRuleset *)rulesetForClassName:(NSString *)className;
+
+/**
+ * The class to create for rule sets. Default is NICSSRuleset
+ */
++(Class)rulesetClass;
+/**
+ * Set the class created to hold rule sets. Default is NICSSRuleset
+ */
++(void)setRulesetClass: (Class) rulesetClass;
 
 @end
 
@@ -70,9 +83,9 @@ extern NSString* const NIStylesheetDidChangeNotification;
 /** @name Properties */
 
 /**
- * A set of NSString filenames for the @imports in this stylesheet.
+ * A set of NSString filenames for the @htmlonly@imports@endhtmlonly in this stylesheet.
  *
- *      @fn NIStylesheet::dependencies
+ * @fn NIStylesheet::dependencies
  */
 
 
@@ -81,22 +94,22 @@ extern NSString* const NIStylesheetDidChangeNotification;
 /**
  * Loads and parses a CSS file from disk.
  *
- *      @fn NIStylesheet::loadFromPath:pathPrefix:delegate:
- *      @param path         The path of the file to be read.
- *      @param pathPrefix   [optional] A prefix path that will be prepended to the given path
+ * @fn NIStylesheet::loadFromPath:pathPrefix:delegate:
+ * @param path         The path of the file to be read.
+ * @param pathPrefix   [optional] A prefix path that will be prepended to the given path
  *                          as well as any imported files.
- *      @param delegate     [optional] A delegate that can reprocess paths.
- *      @returns YES if the CSS file was successfully loaded and parsed, NO otherwise.
+ * @param delegate     [optional] A delegate that can reprocess paths.
+ * @returns YES if the CSS file was successfully loaded and parsed, NO otherwise.
  */
 
 /**
- *      @fn NIStylesheet::loadFromPath:pathPrefix:
- *      @sa NIStylesheet::loadFromPath:pathPrefix:delegate:
+ * @fn NIStylesheet::loadFromPath:pathPrefix:
+ * @sa NIStylesheet::loadFromPath:pathPrefix:delegate:
  */
 
 /**
- *      @fn NIStylesheet::loadFromPath:
- *      @sa NIStylesheet::loadFromPath:pathPrefix:delegate:
+ * @fn NIStylesheet::loadFromPath:
+ * @sa NIStylesheet::loadFromPath:pathPrefix:delegate:
  */
 
 /** @name Compositing Stylesheets */
@@ -107,7 +120,7 @@ extern NSString* const NIStylesheetDidChangeNotification;
  * All property values in the given stylesheet will overwrite values in this stylesheet.
  * Non-overlapping values will not be modified.
  *
- *      @fn NIStylesheet::addStylesheet:
+ * @fn NIStylesheet::addStylesheet:
  */
 
 
@@ -116,16 +129,26 @@ extern NSString* const NIStylesheetDidChangeNotification;
 /**
  * Apply any rulesets that match the className to the given view.
  *
- *      @fn NIStylesheet::applyStyleToView:withClassName:
- *      @param view       The view for which styles should be applied.
- *      @param className  Either the view's class as a string using NSStringFromClass([view class]);
+ * @fn NIStylesheet::applyStyleToView:withClassName:
+ * @param view       The view for which styles should be applied.
+ * @param className  Either the view's class as a string using NSStringFromClass([view class]);
  *                        or a CSS class selector such as ".myClassSelector".
+ * @param dom        The DOM responsible for applying this style
  */
 
 /**
  * Returns an autoreleased ruleset for the given class name.
  *
- *      @fn NIStylesheet::rulesetForClassName:
- *      @param className  Either the view's class as a string using NSStringFromClass([view class]);
+ * @fn NIStylesheet::rulesetForClassName:
+ * @param className  Either the view's class as a string using NSStringFromClass([view class]);
  *                        or a CSS class selector such as ".myClassSelector".
+ */
+
+/** @name Debugging */
+
+/**
+ * Build a string describing the rules that would be applied to the view given a css class name in a DOM.
+ * Current implementations output Objective-C code that use viewName as the target.
+ *
+ * @fn NIStylesheet::descriptionForView:withClassName:inDOM:andViewName:
  */

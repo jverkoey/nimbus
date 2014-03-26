@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@
 #import <UIKit/UIKit.h>
 
 @class NICSSRuleset;
+@class NIDOM;
 
 @interface UILabel (NIStyleable)
 
@@ -26,6 +27,24 @@
  * This method is exposed primarily for subclasses to use when implementing the
  * applyStyleWithRuleSet: method from NIStyleable.
  */
-- (void)applyLabelStyleWithRuleSet:(NICSSRuleset *)ruleSet;
+- (void)applyLabelStyleWithRuleSet:(NICSSRuleset *)ruleSet DEPRECATED_ATTRIBUTE;
+
+/**
+ * Applies the given rule set to this label.
+ *
+ * This method is exposed primarily for subclasses to use when implementing the
+ * applyStyleWithRuleSet: method from NIStyleable.
+ */
+- (void)applyLabelStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM: (NIDOM*) dom;
+
+/**
+ * Applies the given rule set to this label.
+ *
+ * This method is exposed primarily for subclasses to use when implementing the
+ * applyStyleWithRuleSet: method from NIStyleable. Since some of the view
+ * styles (e.g. positioning) may rely on some label elements (like text), this is called
+ * before the view styling is done.
+ */
+- (void)applyLabelStyleBeforeViewWithRuleSet:(NICSSRuleset *)ruleSet inDOM: (NIDOM*) dom;
 
 @end

@@ -17,13 +17,20 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "NIPreprocessorMacros.h"
+
 @class NINavigationAppearanceSnapshot;
 
-
 /**
- * Class for saving and restoring the navigation appearance state.
+ * The NINavigationAppearance provides support for saving and restoring the navigation appearance
+ * state.
  *
- * You use this when you are about to mutate the navigation bar style and/or status
+ * This class is now deprecated due to the ease with which it may cause more problems than it
+ * solves. It is recommended that instead of obfuscating navigation appearance by using this class
+ * that you define and follow a standard practice of modifying navigation appearance throughout your
+ * app that is more explicit.
+ *
+ * Use this when you are about to mutate the navigation bar style and/or status
  * bar style, and you want to be able to restore these bar styles sometime in the
  * future.
  *
@@ -52,35 +59,43 @@
  * which pops the last snapshot of the stack and applies it, restoring the original
  * navigation appearance state.
  *
- *      @ingroup NimbusCore
+ * @ingroup NimbusCore
  */
+__NI_DEPRECATED_METHOD
 @interface NINavigationAppearance : NSObject
+
++ (void)pushAppearanceForNavigationController:(UINavigationController *)navigationController;
++ (void)popAppearanceForNavigationController:(UINavigationController *)navigationController animated:(BOOL)animated;
+
++ (NSInteger)count;
++ (void)clear;
+
+@end
 
 /**
  * Take a snapshot of the current navigation appearance.
  *
  * Call this method before mutating the nav bar style or status bar style.
+ *
+ *    @fn NINavigationAppearance::pushAppearanceForNavigationController:
  */
-+ (void)pushAppearanceForNavigationController:(UINavigationController *)navigationController;
-
 
 /**
  * Restore the last navigation appearance snapshot.
  *
  * Pops the last appearance values off the stack and applies them.
+ *
+ *    @fn NINavigationAppearance::popAppearanceForNavigationController:animated:
  */
-+ (void)popAppearanceForNavigationController:(UINavigationController *)navigationController animated:(BOOL)animated;
-
 
 /**
- * Number of items in the appearance stack.
+ * Returns the number of items in the appearance stack.
+ *
+ *    @fn NINavigationAppearance::count
  */
-+ (NSInteger)count;
-
 
 /**
  * Remove all navigation appearance snapshots from the stack.
+ *
+ *    @fn NINavigationAppearance::clear
  */
-+ (void)clear;
-
-@end

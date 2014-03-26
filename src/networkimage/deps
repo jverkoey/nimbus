@@ -1,2 +1,6 @@
 core
-ASIHTTPRequest
+
+[Frameworks]
+Foundation.framework
+UIKit.framework
+AFNetworking

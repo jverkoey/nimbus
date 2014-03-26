@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,36 +14,17 @@
 // limitations under the License.
 //
 
-#import "NIPagingScrollViewPage.h"
-
 #import <UIKit/UIKit.h>
 
+#import "NIPagingScrollViewPage.h"
+
 /**
- * A skeleton implementation of a page view.
+ * Use NIPagingScrollViewPage instead.
  *
- * This view simply implements the required properties of NIPagingScrollViewPage.
+ * This class will be deleted after February 28, 2014.
  *
- *      @ingroup NimbusPagingScrollView
+ * @ingroup NimbusPagingScrollView
  */
-@interface NIPageView : UIView <NIPagingScrollViewPage> {
-@private
-  NSInteger _pageIndex;
-  NSString* _reuseIdentifier;
-}
-
-@property (nonatomic, readwrite, assign) NSInteger pageIndex;
-@property (nonatomic, readwrite, copy) NSString* reuseIdentifier;
-
+__NI_DEPRECATED_METHOD
+@interface NIPageView : NIPagingScrollViewPage
 @end
-
-/**
- * The page index.
- *
- *      @fn NIPageView::pageIndex
- */
-
-/**
- * The reuse identifier.
- *
- *      @fn NIPageView::reuseIdentifier
- */

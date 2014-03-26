@@ -1,5 +1,5 @@
 //
-// Copyright 2012 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,112 +19,107 @@
 #import "NIRadioGroupController.h"
 #import "NITableViewModel.h"
 #import "NimbusCore.h"
+#import <objc/runtime.h>
+
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
 
 static const NSInteger kInvalidSelection = NSIntegerMin;
 
 @interface NIRadioGroup()
-@property (nonatomic, readonly, assign) UIViewController* controller;
-@property (nonatomic, readonly, retain) NSMutableDictionary* objectMap;
-@property (nonatomic, readonly, retain) NSMutableSet* objectSet;
-@property (nonatomic, readonly, retain) NSMutableArray* objectOrder;
-@property (nonatomic, readwrite, assign) BOOL hasSelection;
-@property (nonatomic, readonly, retain) NSMutableArray* forwardDelegates;
+@property (nonatomic, readonly, weak) UIViewController* controller;
+@property (nonatomic, readonly, strong) NSMutableDictionary* objectMap;
+@property (nonatomic, readonly, strong) NSMutableSet* objectSet;
+@property (nonatomic, readonly, strong) NSMutableArray* objectOrder;
+@property (nonatomic, assign) BOOL hasSelection;
+@property (nonatomic, readonly, strong) NSMutableSet* forwardDelegates;
 @end
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIRadioGroup
 
-@synthesize controller = _controller;
-@synthesize delegate = _delegate;
-@synthesize objectMap = _objectMap;
-@synthesize objectSet = _objectSet;
-@synthesize objectOrder = _objectOrder;
-@synthesize hasSelection = _hasSelection;
 @synthesize selectedIdentifier = _selectedIdentifier;
-@synthesize tableViewCellSelectionStyle = _tableViewCellSelectionStyle;
-@synthesize forwardDelegates = _forwardDelegates;
-@synthesize cellTitle = _cellTitle;
-@synthesize controllerTitle = _controllerTitle;
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  [_objectMap release];
-  [_objectSet release];
-  [_objectOrder release];
-  [_cellTitle release];
-  [_controllerTitle release];
-  [_forwardDelegates release];
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithController:(UIViewController *)controller {
   if ((self = [super init])) {
     _controller = controller;
     _objectMap = [[NSMutableDictionary alloc] init];
     _objectSet = [[NSMutableSet alloc] init];
     _objectOrder = [[NSMutableArray alloc] init];
-    _forwardDelegates = NICreateNonRetainingMutableArray();
+    _forwardDelegates = NICreateNonRetainingMutableSet();
 
     _tableViewCellSelectionStyle = UITableViewCellSelectionStyleBlue;
   }
   return self;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
   return [self initWithController:nil];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Private Methods
+#pragma mark - Private
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)keyForIdentifier:(NSInteger)identifier {
-  return [NSNumber numberWithInt:identifier];
+  return [NSNumber numberWithInteger:identifier];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NICellObject
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (Class)cellClass {
   return [NIRadioGroupCell class];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UITableViewCellStyle)cellStyle {
   return UITableViewCellStyleValue1;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Forward Invocations
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)shouldForwardSelector:(SEL)selector {
+  struct objc_method_description description;
+  description = protocol_getMethodDescription(@protocol(UITableViewDelegate), selector, NO, YES);
+  return (description.name != NULL && description.types != NULL);
+}
+
+- (BOOL)respondsToSelector:(SEL)selector {
+  if ([super respondsToSelector:selector]) {
+    return YES;
+    
+  } else if ([self shouldForwardSelector:selector]) {
+    for (id delegate in self.forwardDelegates) {
+      if ([delegate respondsToSelector:selector]) {
+        return YES;
+      }
+    }
+  }
+  return NO;
+}
+
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)selector {
+  NSMethodSignature *signature = [super methodSignatureForSelector:selector];
+  if (signature == nil) {
+    for (id delegate in self.forwardDelegates) {
+      if ([delegate respondsToSelector:selector]) {
+        signature = [delegate methodSignatureForSelector:selector];
+      }
+    }
+  }
+  return signature;
+}
+
 - (void)forwardInvocation:(NSInvocation *)invocation {
   BOOL didForward = NO;
 
-  for (id delegate in self.forwardDelegates) {
-    if ([delegate respondsToSelector:invocation.selector]) {
-      [invocation invokeWithTarget:delegate];
-      didForward = YES;
-      break;
+  if ([self shouldForwardSelector:invocation.selector]) {
+    for (id delegate in self.forwardDelegates) {
+      if ([delegate respondsToSelector:invocation.selector]) {
+        [invocation invokeWithTarget:delegate];
+        didForward = YES;
+        break;
+      }
     }
   }
 
@@ -133,61 +128,37 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)respondsToSelector:(SEL)selector {
-  BOOL doesRespond = [super respondsToSelector:selector];
-  if (!doesRespond) {
-    for (id delegate in self.forwardDelegates) {
-      doesRespond = [delegate respondsToSelector:selector];
-      if (doesRespond) {
-        break;
-      }
-    }
-  }
-  return doesRespond;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id<UITableViewDelegate>)forwardingTo:(id<UITableViewDelegate>)forwardDelegate {
   [self.forwardDelegates addObject:forwardDelegate];
   return self;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)removeForwarding:(id<UITableViewDelegate>)forwardDelegate; {
+- (void)removeForwarding:(id<UITableViewDelegate>)forwardDelegate {
   [self.forwardDelegates removeObject:forwardDelegate];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Public Methods
+#pragma mark - Public
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)mapObject:(id)object toIdentifier:(NSInteger)identifier {
+- (id)mapObject:(id)object toIdentifier:(NSInteger)identifier {
   NIDASSERT(nil != object);
   NIDASSERT(identifier != kInvalidSelection);
   NIDASSERT(![self isObjectInRadioGroup:object]);
   if (nil == object) {
-    return;
+    return nil;
   }
   if (kInvalidSelection == identifier) {
-    return;
+    return nil;
   }
   if ([self isObjectInRadioGroup:object]) {
-    return;
+    return nil;
   }
   [self.objectMap setObject:object forKey:[self keyForIdentifier:identifier]];
   [self.objectSet addObject:object];
   [self.objectOrder addObject:object];
+  return object;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setSelectedIdentifier:(NSInteger)selectedIdentifier {
   id key = [self keyForIdentifier:selectedIdentifier];
   NIDASSERT(nil != [self.objectMap objectForKey:key]);
@@ -200,20 +171,14 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSInteger)selectedIdentifier {
   return self.hasSelection ? _selectedIdentifier : kInvalidSelection;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)clearSelection {
   self.hasSelection = NO;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)isObjectInRadioGroup:(id)object {
   if (nil == object) {
     return NO;
@@ -221,8 +186,6 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
   return [self.objectSet containsObject:object];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)isObjectSelected:(id)object {
   if (nil == object) {
     return NO;
@@ -239,8 +202,6 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
   return NO;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSInteger)identifierForObject:(id)object {
   if (nil == object) {
     return NO;
@@ -251,19 +212,13 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
   return keys.count > 0 ? [[keys objectAtIndex:0] intValue] : kInvalidSelection;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSArray *)allObjects {
-  return [[self.objectOrder copy] autorelease];
+  return [self.objectOrder copy];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UITableViewDelegate
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
   NIDASSERT([tableView.dataSource isKindOfClass:[NITableViewModel class]]);
   if ([tableView.dataSource isKindOfClass:[NITableViewModel class]]) {
@@ -285,8 +240,6 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   NIDASSERT([tableView.dataSource isKindOfClass:[NITableViewModel class]]);
   if ([tableView.dataSource isKindOfClass:[NITableViewModel class]]) {
@@ -297,9 +250,18 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
       // You must provide a controller in the initWithController: initializer.
       NIDASSERT(nil != self.controller);
 
-      NIRadioGroupController* controller = [[[NIRadioGroupController alloc] initWithRadioGroup:self tappedCell:(id<NICell>)[tableView cellForRowAtIndexPath:indexPath]] autorelease];
+      NIRadioGroupController* controller = [[NIRadioGroupController alloc] initWithRadioGroup:self tappedCell:(id<NICell>)[tableView cellForRowAtIndexPath:indexPath]];
       controller.title = self.controllerTitle;
-      [self.controller.navigationController pushViewController:controller animated:YES];
+
+      BOOL shouldPush = YES;
+      // Notify the delegate that the controller is about to appear.
+      if ([self.delegate respondsToSelector:@selector(radioGroup:radioGroupController:willAppear:)]) {
+        shouldPush = [self.delegate radioGroup:self radioGroupController:controller willAppear:YES];
+      }
+
+      if (shouldPush) {
+        [self.controller.navigationController pushViewController:controller animated:YES];
+      }
 
     } else if ([self isObjectInRadioGroup:object]) {
       NSInteger newSelection = [self identifierForObject:object];
@@ -335,17 +297,12 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
   }
 }
 
-
 @end
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIRadioGroupCell
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
   if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -353,8 +310,6 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
   return self;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)prepareForReuse {
   [super prepareForReuse];
 
@@ -362,8 +317,6 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
   self.detailTextLabel.text = nil;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)shouldUpdateCellWithObject:(NIRadioGroup *)radioGroup {
   self.selectionStyle = radioGroup.tableViewCellSelectionStyle;
 

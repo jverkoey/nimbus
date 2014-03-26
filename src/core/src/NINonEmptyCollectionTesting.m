@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Forked from Three20 June 10, 2011 - Copyright 2009-2011 Facebook
 //
@@ -18,20 +18,18 @@
 
 #import "NINonEmptyCollectionTesting.h"
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL NIIsArrayWithObjects(id object) {
   return [object isKindOfClass:[NSArray class]] && [(NSArray*)object count] > 0;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL NIIsSetWithObjects(id object) {
   return [object isKindOfClass:[NSSet class]] && [(NSSet*)object count] > 0;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL NIIsStringWithAnyText(id object) {
   return [object isKindOfClass:[NSString class]] && [(NSString*)object length] > 0;
 }

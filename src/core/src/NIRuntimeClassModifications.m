@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Forked from Three20 June 10, 2011 - Copyright 2009-2011 Facebook
 //
@@ -20,16 +20,16 @@
 
 #import <objc/runtime.h>
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 void NISwapInstanceMethods(Class cls, SEL originalSel, SEL newSel) {
   Method originalMethod = class_getInstanceMethod(cls, originalSel);
   Method newMethod = class_getInstanceMethod(cls, newSel);
   method_exchangeImplementations(originalMethod, newMethod);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 void NISwapClassMethods(Class cls, SEL originalSel, SEL newSel) {
   Method originalMethod = class_getClassMethod(cls, originalSel);
   Method newMethod = class_getClassMethod(cls, newSel);

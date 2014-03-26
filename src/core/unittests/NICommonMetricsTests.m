@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -24,13 +24,9 @@
 @end
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NICommonMetricsTests
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testAutoresizingMasks {
   STAssertTrue((UIViewAutoresizingFlexibleMargins & UIViewAutoresizingFlexibleLeftMargin),
                @"Should have a flexible left margin.");
@@ -47,8 +43,6 @@
                @"Should have a flexible height.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testMetrics {
   // TODO (Jan 25, 2012): Test iPad logic as well.
   //STAssertEquals(NIToolbarHeightForOrientation(UIInterfaceOrientationPortrait), 44.f, @"Should match.");
@@ -66,6 +60,5 @@
   STAssertTrue(UIEdgeInsetsEqualToEdgeInsets(NICellContentPadding(), UIEdgeInsetsMake(10, 10, 10, 10)),
                @"Should match.");
 }
-
 
 @end

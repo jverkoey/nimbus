@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,6 +21,10 @@
 
 #import <pthread.h>
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 static pthread_mutex_t gMutex = PTHREAD_MUTEX_INITIALIZER;
 NSString* const kPropertyOrderKey = @"__kRuleSetOrder__";
 NSString* const kDependenciesSelectorKey = @"__kDependencies__";
@@ -40,36 +44,20 @@ int cssConsume(char* text, int token) {
   return 0;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NICSSParser
 
-@synthesize didFailToParse = _didFailToParse;
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)shutdown {
-  NI_RELEASE_SAFELY(_rulesets);
-  NI_RELEASE_SAFELY(_scopesForActiveRuleset);
-  NI_RELEASE_SAFELY(_mutatingScope);
-  NI_RELEASE_SAFELY(_mutatingRuleset);
-  NI_RELEASE_SAFELY(_currentPropertyName);
-  NI_RELEASE_SAFELY(_importedFilenames);
-  NI_RELEASE_SAFELY(_lastTokenText);
+  _rulesets = nil;
+  _scopesForActiveRuleset = nil;
+  _mutatingScope = nil;
+  _mutatingRuleset = nil;
+  _currentPropertyName = nil;
+  _importedFilenames = nil;
+  _lastTokenText = nil;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  [self shutdown];
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setFailFlag {
   if (!self.didFailToParse) {
     _didFailToParse = YES;
@@ -78,15 +66,11 @@ int cssConsume(char* text, int token) {
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)commitCurrentSelector {
   [_scopesForActiveRuleset addObject:[_mutatingScope componentsJoinedByString:@" "]];
   [_mutatingScope removeAllObjects];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)consumeToken:(int)token text:(char*)text {
   if (_didFailToParse) {
     return;
@@ -96,10 +80,47 @@ int cssConsume(char* text, int token) {
   NSString* lowercaseTextAsString = [textAsString lowercaseString];
 
   switch (token) {
+    case CSSMEDIA: // @media { }
+      if (_state.Flags.InsideMedia || _state.Flags.ReadingMedia) {
+        [self setFailFlag];
+      }
+      _state.Flags.ReadingMedia = YES;
+      droppingCurrentRules = YES; // at least one must match to undo this
+      break;
     case CSSHASH: // #{name}
     case CSSIDENT: { // {ident}(:{ident})?
 
-      if (_state.Flags.InsideRuleset) {
+      if (_state.Flags.ReadingMedia) {
+        if (!droppingCurrentRules) {
+          // No point in running these checks if we've already decided
+          break;
+        } else if ([textAsString caseInsensitiveCompare:@"ipad"] == NSOrderedSame) {
+          if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) { droppingCurrentRules = NO; }
+          break;
+        } else if ([textAsString caseInsensitiveCompare:@"iphone"] == NSOrderedSame) {
+          if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) { droppingCurrentRules = NO; }
+          break;
+        } else if ([textAsString caseInsensitiveCompare:@"retina"] == NSOrderedSame) {
+          if ([UIScreen mainScreen].scale != 1.0) { droppingCurrentRules = NO; }
+          break;
+        } else if ([textAsString caseInsensitiveCompare:@"nonretina"] == NSOrderedSame) {
+          if ([UIScreen mainScreen].scale == 1.0) { droppingCurrentRules = NO; }
+          break;
+        } else if ([textAsString caseInsensitiveCompare:@"ipad-retina"] == NSOrderedSame) {
+          if ([UIScreen mainScreen].scale != 1.0 && [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) { droppingCurrentRules = NO; }
+          break;
+        } else if ([textAsString caseInsensitiveCompare:@"ipad-nonretina"] == NSOrderedSame) {
+          if ([UIScreen mainScreen].scale == 1.0 && [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) { droppingCurrentRules = NO; }
+          break;
+        } else if ([textAsString caseInsensitiveCompare:@"iphone-retina"] == NSOrderedSame) {
+          if ([UIScreen mainScreen].scale != 1.0 && [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) { droppingCurrentRules = NO; }
+          break;
+        } else if ([textAsString caseInsensitiveCompare:@"iphone-nonretina"] == NSOrderedSame) {
+          if ([UIScreen mainScreen].scale == 1.0 && [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) { droppingCurrentRules = NO; }
+          break;
+        }
+      }
+      else if (_state.Flags.InsideRuleset) {
         NIDASSERT(nil != _mutatingRuleset);
         if (nil == _mutatingRuleset) {
           [self setFailFlag];
@@ -107,10 +128,8 @@ int cssConsume(char* text, int token) {
 
         // Treat CSSIDENT as a new property if we're not already defining one.
         if (CSSIDENT == token && !_state.Flags.InsideProperty) {
-          NI_RELEASE_SAFELY(_currentPropertyName);
-
           // Properties are case insensitive.
-          _currentPropertyName = [lowercaseTextAsString retain];
+          _currentPropertyName = lowercaseTextAsString;
           
           NSMutableArray* ruleSetOrder = [_mutatingRuleset objectForKey:kPropertyOrderKey];
           [ruleSetOrder addObject:_currentPropertyName];
@@ -118,7 +137,6 @@ int cssConsume(char* text, int token) {
           // Clear any existing values for the given property.
           NSMutableArray* values = [[NSMutableArray alloc] init];
           [_mutatingRuleset setObject:values forKey:_currentPropertyName];
-          NI_RELEASE_SAFELY(values);
 
         } else {
           // This is a value for the active property; add it.
@@ -137,7 +155,7 @@ int cssConsume(char* text, int token) {
         [_mutatingScope addObject:textAsString];
 
         // Ensure that we're not modifying a property.
-        NI_RELEASE_SAFELY(_currentPropertyName);
+        _currentPropertyName = nil;
       }
       break;
     }
@@ -197,7 +215,9 @@ int cssConsume(char* text, int token) {
 
         // Commit the current selector and start a new one.
         case ',': {
-          if (!_state.Flags.InsideRuleset) {
+          if (_state.Flags.ReadingMedia) {
+            // Ignore, more media coming
+          } else if (!_state.Flags.InsideRuleset) {
             [self commitCurrentSelector];
           }
           break;
@@ -205,6 +225,11 @@ int cssConsume(char* text, int token) {
 
         // Start a new rule set.
         case '{': {
+          if (_state.Flags.ReadingMedia) {
+            _state.Flags.InsideMedia = YES;
+            _state.Flags.ReadingMedia = NO;
+            break;
+          }
           NIDASSERT(nil != _mutatingScope);
           if ([_mutatingScope count] > 0
               && !_state.Flags.InsideRuleset && !_state.Flags.InsideFunction) {
@@ -213,7 +238,6 @@ int cssConsume(char* text, int token) {
             _state.Flags.InsideRuleset = YES;
             _state.Flags.InsideFunction = NO;
 
-            NI_RELEASE_SAFELY(_mutatingRuleset);
             _mutatingRuleset = [[NSMutableDictionary alloc] init];
             [_mutatingRuleset setObject:[NSMutableArray array] forKey:kPropertyOrderKey];
 
@@ -225,37 +249,45 @@ int cssConsume(char* text, int token) {
 
         // Commit an existing rule set.
         case '}': {
-          for (NSString* name in _scopesForActiveRuleset) {
-            NSMutableDictionary* existingProperties = [_rulesets objectForKey:name];
-
-            if (nil == existingProperties) {
-              NSMutableDictionary* ruleSet = [_mutatingRuleset mutableCopy];
-              [_rulesets setObject:ruleSet forKey:name];
-              NI_RELEASE_SAFELY(ruleSet);
-
-            } else {
-              // Properties already exist, so overwrite them.
-              // Merge the orders.
-              {
-                NSMutableArray* order = [existingProperties objectForKey:kPropertyOrderKey];
-                [order addObjectsFromArray:[_mutatingRuleset objectForKey:kPropertyOrderKey]];
-                [_mutatingRuleset setObject:order forKey:kPropertyOrderKey];
+          
+          if (_state.Flags.InsideMedia && !_mutatingRuleset) {
+            // End of a media tag
+            _state.Flags.InsideMedia = NO;
+            droppingCurrentRules = NO;
+          } else {
+            if (!droppingCurrentRules) {
+              for (NSString* name in _scopesForActiveRuleset) {
+                NSMutableDictionary* existingProperties = [_rulesets objectForKey:name];
+                
+                if (nil == existingProperties) {
+                  NSMutableDictionary* ruleSet = [_mutatingRuleset mutableCopy];
+                  [_rulesets setObject:ruleSet forKey:name];
+                  
+                } else {
+                  // Properties already exist, so overwrite them.
+                  // Merge the orders.
+                  {
+                    NSMutableArray* order = [existingProperties objectForKey:kPropertyOrderKey];
+                    [order addObjectsFromArray:[_mutatingRuleset objectForKey:kPropertyOrderKey]];
+                    [_mutatingRuleset setObject:order forKey:kPropertyOrderKey];
+                  }
+                  
+                  for (NSString* key in _mutatingRuleset) {
+                    [existingProperties setObject:[_mutatingRuleset objectForKey:key] forKey:key];
+                  }
+                  // Add the order of the new properties.
+                  NSMutableArray* order = [existingProperties objectForKey:kPropertyOrderKey];
+                  [order addObjectsFromArray:[_mutatingRuleset objectForKey:kPropertyOrderKey]];
+                }
               }
-
-              for (NSString* key in _mutatingRuleset) {
-                [existingProperties setObject:[_mutatingRuleset objectForKey:key] forKey:key];
-              }
-              // Add the order of the new properties.
-              [[existingProperties objectForKey:kPropertyOrderKey] addObjectsFromArray:
-               [_mutatingRuleset objectForKey:kPropertyOrderKey]];
             }
-          }
-
-          NI_RELEASE_SAFELY(_mutatingRuleset);
+            
+          _mutatingRuleset = nil;
           [_scopesForActiveRuleset removeAllObjects];
           _state.Flags.InsideRuleset = NO;
           _state.Flags.InsideProperty = NO;
           _state.Flags.InsideFunction = NO;
+          }
           break;
         }
 
@@ -288,15 +320,10 @@ int cssConsume(char* text, int token) {
     }
   }
 
-  NI_RELEASE_SAFELY(textAsString);
-
-  [_lastTokenText release];
-  _lastTokenText = [textAsString retain];
+  _lastTokenText = textAsString;
   _lastToken = token;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setup {
   [self shutdown];
 
@@ -306,8 +333,6 @@ int cssConsume(char* text, int token) {
   _importedFilenames = [[NSMutableArray alloc] init];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)parseFileAtPath:(NSString *)path {
   // flex is not thread-safe so we force it to be by creating a single-access lock here.
   pthread_mutex_lock(&gMutex); {
@@ -319,8 +344,6 @@ int cssConsume(char* text, int token) {
   pthread_mutex_unlock(&gMutex);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSDictionary *)mergeCompositeRulesets:(NSMutableArray *)compositeRulesets dependencyFilenames:(NSSet *)dependencyFilenames {
   NIDASSERT([compositeRulesets count] > 0);
   if ([compositeRulesets count] == 0) {
@@ -334,10 +357,10 @@ int cssConsume(char* text, int token) {
       [[compositeRulesets objectAtIndex:0] setObject:dependencyFilenames
                                               forKey:kDependenciesSelectorKey];
     }
-    result = [[[compositeRulesets objectAtIndex:0] copy] autorelease];
+    result = [[compositeRulesets objectAtIndex:0] copy];
 
   } else {
-    NSMutableDictionary* mergedResult = [[[compositeRulesets lastObject] retain] autorelease];
+    NSMutableDictionary* mergedResult = [compositeRulesets lastObject];
     [compositeRulesets removeLastObject];
 
     // Merge all of the rulesets into one.
@@ -362,8 +385,8 @@ int cssConsume(char* text, int token) {
 
             } else {
               // Append the property order.
-              [[mergedScopeProperties objectForKey:kPropertyOrderKey] addObjectsFromArray:
-               [properties objectForKey:kPropertyOrderKey]];
+              NSMutableArray *order = [mergedScopeProperties objectForKey:kPropertyOrderKey];
+              [order addObjectsFromArray:[properties objectForKey:kPropertyOrderKey]];
             }
           }
         }
@@ -373,32 +396,23 @@ int cssConsume(char* text, int token) {
     if ([dependencyFilenames count] > 0) {
       [mergedResult setObject:dependencyFilenames forKey:kDependenciesSelectorKey];
     }
-    result = [[mergedResult copy] autorelease];
+    result = [mergedResult copy];
   }
 
   return result;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Public
+#pragma mark - Public
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSDictionary *)dictionaryForPath:(NSString *)path {
   return [self dictionaryForPath:path pathPrefix:nil delegate:nil];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSDictionary *)dictionaryForPath:(NSString *)path pathPrefix:(NSString *)pathPrefix {
   return [self dictionaryForPath:path pathPrefix:pathPrefix delegate:nil];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSDictionary *)dictionaryForPath:(NSString *)aPath
                          pathPrefix:(NSString *)pathPrefix
                            delegate:(id<NICSSParserDelegate>)delegate {
@@ -410,21 +424,21 @@ int cssConsume(char* text, int token) {
 
   _didFailToParse = NO;
 
-  NSMutableArray* compositeRulesets = [[[NSMutableArray alloc] init] autorelease];
+  NSMutableArray* compositeRulesets = [[NSMutableArray alloc] init];
 
   // Maintain a set of filenames that we've looked at for two reasons:
   // 1) To avoid visiting the same CSS file twice.
   // 2) To collect a list of dependencies for this stylesheet.
-  NSMutableSet* processedFilenames = [[[NSMutableSet alloc] init] autorelease];
+  NSMutableSet* processedFilenames = [[NSMutableSet alloc] init];
 
   // Imported CSS files will be added to the queue.
-  NILinkedList* filenameQueue = [NILinkedList linkedList];
+  NSMutableOrderedSet* filenameQueue = [NSMutableOrderedSet orderedSet];
   [filenameQueue addObject:aPath];
 
   while ([filenameQueue count] > 0) {
     // Om nom nom
     NSString* path = [filenameQueue firstObject];
-    [filenameQueue removeFirstObject];
+    [filenameQueue removeObjectAtIndex:0];
 
     // Skip files that we've already processed in order to avoid infinite loops.
     if ([processedFilenames containsObject:path]) {

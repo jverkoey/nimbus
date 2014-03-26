@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -25,12 +25,12 @@
 /**
  * The photo album scroll data source.
  *
- *      @ingroup Photos-Protocols
+ * @ingroup NimbusPhotos
  *
  * This data source emphasizes speed and memory efficiency by requesting images only when
  * they're needed and encouraging immediate responses from the data source implementation.
  *
- *      @see NIPhotoAlbumScrollView
+ * @see NIPhotoAlbumScrollView
  */
 @protocol NIPhotoAlbumScrollViewDataSource <NIPagingScrollViewDataSource>
 
@@ -60,7 +60,7 @@
  * This method will be called to prefetch the next and previous photos in the scroll view.
  * The currently displayed photo will always be requested first.
  *
- *      @attention The photo scroll view does not hold onto the UIImages for very long at all.
+ * @attention The photo scroll view does not hold onto the UIImages for very long at all.
  *                 It is up to the controller to decide on an adequate caching policy to ensure
  *                 that images are kept in memory through the life of the photo album.
  *                 In your implementation of the data source you should prioritize thumbnails

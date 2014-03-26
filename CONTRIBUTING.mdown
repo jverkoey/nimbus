@@ -1,0 +1,73 @@
+So you wanna hack on Nimbus?
+============================
+
+Nimbus follows one principle above all others:
+
+            Nimbus may only grow if its documentation grows at the same rate, or faster.
+
+By this principle, any new feature added to Nimbus must be documented. Where possible, examples
+should be provided. When necessary, architectural explanations must be referred to.
+
+
+Taking on Tasks
+===============
+
+If you would like to help out with the development of Nimbus, the easiest way to start is to
+check out the Grab Bag tasks on Github:
+
+https://github.com/jverkoey/nimbus/issues?milestone=5&sort=created&direction=desc&state=open
+
+
+Adding New Features to Nimbus
+=============================
+
+If you would like to add a new feature to Nimbus take a moment to consider the following questions:
+
+- Has the feature already been built and open-sourced by someone else?
+  - Does it have all of the features you'd like to see?
+  - Is it well documented?
+  - If the answers to the above are YES, then it's probably not a good feature to build for
+    Nimbus. Consider either writing a guide for integrating it with Nimbus or seeing whether it
+    makes sense to add the feature as a third-party feature.
+- Are you ok with open sourcing your code?
+  - If you work for a company, consult with your manager and/or legal team to ensure that it's ok
+    for you to contribute code to an open source project. Nimbus uses the Apache 2.0 license.
+
+
+### Creating the Feature
+
+All Nimbus features are contained within the src directory in separate directories with the
+following structure:
+
+    src       - all of the feature's source code
+    unittests - all unit test code
+    resources - any resources the feature might require (in bundles for simplicity, usually)
+
+Once you've set up the directory structure for your feature, add a new static library
+target to the Nimbus root project and add the necessary files to the target.
+
+
+Documentation
+=============
+
+Nimbus documentation is generated using a tool called Doxygen. It's a powerful piece of software
+that allows Nimbus to generate Xcode docsets and documentation that is accessible from the web.
+
+Out of the box, Doxygen does not provide as much support for generating Apple-esque documentation
+as would be desired, so Jeff has been hacking on Doxygen to get it to generate documentation
+that resembles Apple's docs.
+
+You can download the custom build here:
+https://github.com/downloads/jverkoey/nimbus/Nimbus%20Doxygen.dmg.zip
+
+And the source is accessible here:
+https://github.com/nimbusios/Doxygen
+
+
+Generating the Documentation
+----------------------------
+
+After you've installed Doxygen on your system, open Doxygen.
+
+Open the Doxyfile found in Nimbus' `docs` directory. Run Doxygen and the
+documentation will be output in `docs/output/html`.

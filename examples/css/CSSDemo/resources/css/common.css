@@ -1,0 +1,28 @@
+
+UINavigationBar {
+  -ios-tint-color: orange;
+}
+
+UIActivityIndicatorView {
+  -ios-activity-indicator-style: white-large;
+  -ios-autoresizing: left right bottom;
+  width: auto;
+  height: auto;
+  -mobile-halign: center;
+  top: 50px;
+}
+
+UILabel {
+  -ios-autoresizing: left right height width;
+  background-color: clear;
+  -ios-number-of-lines: 0;
+  color: white;
+  text-shadow: rgba(0, 0, 0, 0.5) 0 -1;
+  text-align: center;
+  font-size: 17;
+}
+
+.colorBox {
+  width: 20px;
+  height: 20px;
+}

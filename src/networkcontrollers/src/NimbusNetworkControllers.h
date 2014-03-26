@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,11 +15,13 @@
 //
 
 /**
- * View controllers that display loading states while they load information from the network or
- * disk.
- *
  * @defgroup NimbusNetworkControllers Nimbus Network Controllers
  * @{
+ *
+ * <div id="github" feature="networkcontrollers"></div>
+ *
+ * View controllers that display loading states while they load information from the network or
+ * disk.
  *
  * Whether you are loading data from the disk or from the network, it is important to present
  * the fact that information is loading to your user. This ensures that your application feels

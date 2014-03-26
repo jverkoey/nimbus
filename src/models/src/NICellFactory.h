@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@
  * an object outweighs the benefit of using the factory, i.e. when you want to map
  * simple types such as NSString to cells.
  *
- *      @ingroup TableCellFactory
+ * @ingroup TableCellFactory
  */
 @interface NICellFactory : NSObject <NITableViewModelDelegate>
 
@@ -59,14 +59,14 @@ _model.delegate = (id)[NICellFactory class];
  * the object to a cell it will return nil.
  *
  * @code
-- (UITableViewCell *)tableViewModel: (NITableViewModel *)tableViewModel
-                   cellForTableView: (UITableView *)tableView
-                        atIndexPath: (NSIndexPath *)indexPath
-                         withObject: (id)object {
-  UITableViewCell* cell = [NICellFactory tableViewModel: tableViewModel
-                                       cellForTableView: tableView
-                                            atIndexPath: indexPath
-                                             withObject: object];
+- (UITableViewCell *)tableViewModel:(NITableViewModel *)tableViewModel
+                   cellForTableView:(UITableView *)tableView
+                        atIndexPath:(NSIndexPath *)indexPath
+                         withObject:(id)object {
+  UITableViewCell* cell = [NICellFactory tableViewModel:tableViewModel
+                                       cellForTableView:tableView
+                                            atIndexPath:indexPath
+                                             withObject:object];
   if (nil == cell) {
     // Custom cell creation here.
   }
@@ -74,10 +74,7 @@ _model.delegate = (id)[NICellFactory class];
 }
  * @endcode
  */
-+ (UITableViewCell *)tableViewModel: (NITableViewModel *)tableViewModel
-                   cellForTableView: (UITableView *)tableView
-                        atIndexPath: (NSIndexPath *)indexPath
-                         withObject: (id)object;
++ (UITableViewCell *)tableViewModel:(NITableViewModel *)tableViewModel cellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath withObject:(id)object;
 
 /**
  * Map an object's class to a cell's class.
@@ -88,12 +85,64 @@ _model.delegate = (id)[NICellFactory class];
  */
 - (void)mapObjectClass:(Class)objectClass toCellClass:(Class)cellClass;
 
+/**
+ * Returns the height for a row at a given index path.
+ *
+ * Uses the heightForObject:atIndexPath:tableView: selector from the NICell protocol to ask the
+ * object at indexPath in the model what its height should be. If a class mapping has been made for
+ * the given object in this factory then that class mapping will be used over the result of
+ * cellClass from the NICellObject protocol.
+ *
+ * If the cell returns a height of zero then tableView.rowHeight will be used.
+ *
+ * Example implementation:
+ *
+@code
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+  return [self.cellFactory tableView:tableView heightForRowAtIndexPath:indexPath model:self.model];
+}
+@endcode
+ *
+ * @param tableView The table view within which the cell exists.
+ * @param indexPath The location of the cell in the table view.
+ * @param model The backing model being used by the table view.
+ * @returns The height of the cell mapped to the object at indexPath, if it implements
+ *               heightForObject:atIndexPath:tableView:; otherwise, returns tableView.rowHeight.
+ */
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath model:(NITableViewModel *)model;
+
+/**
+ * Returns the height for a row at a given index path.
+ *
+ * Uses the heightForObject:atIndexPath:tableView: selector from the NICell protocol to ask the
+ * object at indexPath in the model what its height should be. Only implicit mappings will be
+ * checked with this static implementation. If you would like to provide explicit mappings you must
+ * create an instance of NICellFactory.
+ *
+ * If the cell returns a height of zero then tableView.rowHeight will be used.
+ *
+ * Example implementation:
+ *
+@code
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+  return [NICellFactory tableView:tableView heightForRowAtIndexPath:indexPath model:self.model];
+}
+@endcode
+ *
+ * @param tableView The table view within which the cell exists.
+ * @param indexPath The location of the cell in the table view.
+ * @param model The backing model being used by the table view.
+ * @returns The height of the cell mapped to the object at indexPath, if it implements
+ *               heightForObject:atIndexPath:tableView:; otherwise, returns tableView.rowHeight.
+ */
++ (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath model:(NITableViewModel *)model;
+
 @end
 
 /**
  * The protocol for an object that can be used in the NICellFactory.
  *
- *      @ingroup TableCellFactory
+ * @ingroup TableCellFactory
  */
 @protocol NICellObject <NSObject>
 @required
@@ -106,12 +155,25 @@ _model.delegate = (id)[NICellFactory class];
 @end
 
 /**
+ * The protocol for an object that can be used in the NICellFactory with Interface Builder nibs.
+ *
+ * @ingroup TableCellFactory
+ */
+@protocol NINibCellObject <NSObject>
+@required
+
+/** A nib that contains a table view cell to display this object's contents. */
+- (UINib *)cellNib;
+
+@end
+
+/**
  * The protocol for a cell created in the NICellFactory.
  *
  * Cells that implement this protocol are given the object that implemented the NICellObject
  * protocol and returned this cell's class name in @link NICellObject::cellClass cellClass@endlink.
  *
- *      @ingroup TableCellFactory
+ * @ingroup TableCellFactory
  */
 @protocol NICell <NSObject>
 @required
@@ -123,10 +185,21 @@ _model.delegate = (id)[NICellFactory class];
 - (BOOL)shouldUpdateCellWithObject:(id)object;
 
 @optional
+
 /**
- * Should be used in tableView:heightForRowAtIndexPath: to calculate dynamic cell heights.
+ * Asks the receiver whether the mapped object class should be appended to the reuse identifier
+ * in order to create a unique cell.object identifier key.
+ *
+ * This is useful when you have a cell that is intended to be used by a variety of different
+ * objects.
+ */
++ (BOOL)shouldAppendObjectClassToReuseIdentifier;
+
+/**
+ * Asks the receiver to calculate its height.
  *
  * The following is an appropiate implementation in your tableView's delegate:
+ *
 @code
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   CGFloat height = tableView.rowHeight;
@@ -138,8 +211,14 @@ _model.delegate = (id)[NICellFactory class];
   return height;
 }
 @endcode
+ *
+ * You may also use the
+ * @link NICellFactory::tableView:heightForRowAtIndexPath:model: tableView:heightForRowAtIndexPath:model:@endlink
+ * methods on NICellFactory to achieve the same result. Using the above example allows you to
+ * customize the logic according to your specific needs.
  */
 + (CGFloat)heightForObject:(id)object atIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView;
+
 @end
 
 /**
@@ -165,12 +244,12 @@ _model.delegate = (id)[NICellFactory class];
 + (id)objectWithCellClass:(Class)cellClass userInfo:(id)userInfo;
 + (id)objectWithCellClass:(Class)cellClass;
 
-@property (nonatomic, readonly, retain) id userInfo;
+@property (nonatomic, strong) id userInfo;
 
 @end
 
 /**
  * An object that can be used to populate information in the cell.
  *
- *      @fn NICellObject::userInfo
+ * @fn NICellObject::userInfo
  */

@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -28,28 +28,20 @@
 @end
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIStylesheetTests
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setUp {
-  _unitTestBundle = [[NSBundle bundleWithIdentifier:@"com.nimbus.css.unittests"] retain];
+  _unitTestBundle = [NSBundle bundleWithIdentifier:@"com.nimbus.css.unittests"];
   STAssertNotNil(_unitTestBundle, @"Unable to find the bundle %@", [NSBundle allBundles]);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)tearDown {
-  NI_RELEASE_SAFELY(_unitTestBundle);
+  _unitTestBundle = nil;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testFailures {
-  NIStylesheet* stylesheet = [[[NIStylesheet alloc] init] autorelease];
+  NIStylesheet* stylesheet = [[NIStylesheet alloc] init];
 
   STAssertFalse([stylesheet loadFromPath:nil], @"Parsing nil path should fail.");
   STAssertFalse([stylesheet loadFromPath:nil pathPrefix:nil], @"Parsing nil path should fail.");
@@ -58,8 +50,6 @@
   STAssertFalse([stylesheet loadFromPath:@"nonexistent_file"], @"Parsing invalid file should fail.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)assertColor:(UIColor *)color1 equalsColor:(UIColor *)color2 {
   size_t nColors1 = CGColorGetNumberOfComponents(color1.CGColor);
   size_t nColors2 = CGColorGetNumberOfComponents(color2.CGColor);
@@ -72,34 +62,31 @@
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testApplyStyleToUILabel {
   // Sadly nearly all of these tests don't work with SenTest. The error we get when we run these
   // tests is:
   // ERROR: System image table has not been initialized. Do not ask for images or set up UI before UIApplicationMain() has been called.
   return;
 
-  NIStylesheet* stylesheet = [[[NIStylesheet alloc] init] autorelease];
+  NIStylesheet* stylesheet = [[NIStylesheet alloc] init];
   NSString* pathToFile = NIPathForBundleResource(_unitTestBundle, @"UILabel.css");
 
   STAssertTrue([stylesheet loadFromPath:pathToFile], @"The stylesheet should have been parsed.");
 
-  UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-  [stylesheet applyStyleToView:label withClassName:NSStringFromClass([label class])];
+  UILabel* label = [[UILabel alloc] initWithFrame:CGRectZero];
+  [stylesheet applyStyleToView:label withClassName:NSStringFromClass([label class]) inDOM:nil];
 
   [self assertColor:label.textColor equalsColor:[UIColor redColor]];
   [self assertColor:label.shadowColor equalsColor:[UIColor greenColor]];
   STAssertEquals(label.textAlignment, UITextAlignmentRight, @"Alignment should match.");
   STAssertEquals(label.shadowOffset.width, 20.f, @"Shadow offset should match.");
   STAssertEquals(label.shadowOffset.height, -30.f, @"Shadow offset should match.");
-  STAssertEquals(label.lineBreakMode, UILineBreakModeTailTruncation, @"Should match.");
+  STAssertEquals(label.lineBreakMode, NSLineBreakByTruncatingTail, @"Should match.");
   STAssertEquals(label.numberOfLines, 5, @"Should match.");
   STAssertEquals(label.minimumFontSize, 5.f, @"Should match.");
   STAssertTrue(label.adjustsFontSizeToFitWidth, @"Should match.");
   STAssertEquals(label.baselineAdjustment, UIBaselineAdjustmentAlignCenters, @"Should match.");
   STAssertEquals(label.alpha, 0.5f, @"Should match.");
 }
-
 
 @end

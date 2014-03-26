@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,8 +18,14 @@
 
 #import "NISDKAvailability.h"
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+CGFloat NIMinimumTapDimension(void) {
+  return 44;
+}
+
 CGFloat NIToolbarHeightForOrientation(UIInterfaceOrientation orientation) {
   return (NIIsPad()
           ? 44
@@ -28,32 +34,22 @@ CGFloat NIToolbarHeightForOrientation(UIInterfaceOrientation orientation) {
              : 33));
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 UIViewAnimationCurve NIStatusBarAnimationCurve(void) {
   return UIViewAnimationCurveEaseIn;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 NSTimeInterval NIStatusBarAnimationDuration(void) {
   return 0.3;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 UIViewAnimationCurve NIStatusBarBoundsChangeAnimationCurve(void) {
   return UIViewAnimationCurveEaseInOut;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 NSTimeInterval NIStatusBarBoundsChangeAnimationDuration(void) {
   return 0.35;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 CGFloat NIStatusBarHeight(void) {
   CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
 
@@ -64,14 +60,10 @@ CGFloat NIStatusBarHeight(void) {
   return statusBarHeight;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 NSTimeInterval NIDeviceRotationDuration(BOOL isFlippingUpsideDown) {
   return isFlippingUpsideDown ? 0.8 : 0.4;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 UIEdgeInsets NICellContentPadding(void) {
   return UIEdgeInsetsMake(10, 10, 10, 10);
 }

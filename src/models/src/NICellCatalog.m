@@ -1,5 +1,5 @@
 //
-// Copyright 2012 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,117 +15,205 @@
 //
 
 #import "NICellCatalog.h"
+#import "NICellFactory+Private.h"
+
+#import "NimbusCore.h"
+
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
+@implementation NIDrawRectBlockCellObject
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NITitleCellObject
 
-@synthesize title = _title;
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  [_title release];
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithCellClass:(Class)cellClass userInfo:(id)userInfo {
-  return [super initWithCellClass:cellClass userInfo:userInfo];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithTitle:(NSString *)title {
-  if ((self = [self initWithCellClass:[NITextCell class] userInfo:nil])) {
-    _title = [title copy];
+- (id)initWithBlock:(NICellDrawRectBlock)block object:(id)object {
+  if ((self = [super initWithCellClass:[NIDrawRectBlockCell class]])) {
+    _block = block;
+    _object = object;
   }
   return self;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (id)cellWithTitle:(NSString *)title {
-  return [[[self alloc] initWithTitle:title] autorelease];
++ (id)objectWithBlock:(NICellDrawRectBlock)block object:(id)object {
+  return [[self alloc] initWithBlock:block object:object];
 }
 
 @end
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NISubtitleCellObject
+@implementation NITitleCellObject
 
-@synthesize subtitle = _subtitle;
-@synthesize cellStyle = _cellStyle;
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  [_subtitle release];
-
-  [super dealloc];
+- (id)initWithTitle:(NSString *)title image:(UIImage *)image cellClass:(Class)cellClass userInfo:(id)userInfo {
+  if ((self = [self initWithTitle:title image:image])) {
+    self.cellClass = cellClass;
+    self.userInfo = userInfo;
+  }
+  return self;
 }
 
+- (id)initWithCellClass:(Class)cellClass userInfo:(id)userInfo {
+  return [self initWithTitle:nil image:nil cellClass:cellClass userInfo:userInfo];
+}
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle {
-  if ((self = [super initWithTitle:title])) {
+- (id)initWithTitle:(NSString *)title image:(UIImage *)image {
+  if ((self = [super initWithCellClass:[NITextCell class] userInfo:nil])) {
+    _title = [title copy];
+    _image = image;
+  }
+  return self;
+}
+
+- (id)initWithTitle:(NSString *)title {
+  return [self initWithTitle:title image:nil];
+}
+
+- (id)init {
+  return [self initWithTitle:nil image:nil];
+}
+
++ (id)objectWithTitle:(NSString *)title image:(UIImage *)image {
+  return [[self alloc] initWithTitle:title image:image];
+}
+
++ (id)objectWithTitle:(NSString *)title {
+  return [[self alloc] initWithTitle:title image:nil];
+}
+
+@end
+
+
+@implementation NISubtitleCellObject
+
+- (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image cellClass:(Class)cellClass userInfo:(id)userInfo {
+  if ((self = [self initWithTitle:title subtitle:subtitle image:image])) {
+    self.cellClass = cellClass;
+    self.userInfo = userInfo;
+  }
+  return self;
+}
+
+- (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image {
+  if ((self = [super initWithTitle:title image:image])) {
     _subtitle = [subtitle copy];
     _cellStyle = UITableViewCellStyleSubtitle;
   }
   return self;
 }
 
+- (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle {
+  return [self initWithTitle:title subtitle:subtitle image:nil];
+}
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (id)cellWithTitle:(NSString *)title subtitle:(NSString *)subtitle {
-  return [[[self alloc] initWithTitle:title subtitle:subtitle] autorelease];
+- (id)initWithTitle:(NSString *)title image:(UIImage *)image {
+  return [self initWithTitle:title subtitle:nil image:image];
+}
+
+- (id)init {
+  return [self initWithTitle:nil subtitle:nil image:nil];
+}
+
++ (id)objectWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image {
+  return [[self alloc] initWithTitle:title subtitle:subtitle image:image];
+}
+
++ (id)objectWithTitle:(NSString *)title subtitle:(NSString *)subtitle {
+  return [[self alloc] initWithTitle:title subtitle:subtitle image:nil];
 }
 
 @end
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NITextCell
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-  if ((self = [super initWithStyle:style reuseIdentifier:[reuseIdentifier stringByAppendingFormat:@"%d", style]])) {
+  if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
   }
   return self;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)prepareForReuse {
   [super prepareForReuse];
 
+  self.imageView.image = nil;
   self.textLabel.text = nil;
   self.detailTextLabel.text = nil;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)shouldUpdateCellWithObject:(id)object {
   if ([object isKindOfClass:[NITitleCellObject class]]) {
     NITitleCellObject* titleObject = object;
     self.textLabel.text = titleObject.title;
+    self.imageView.image = titleObject.image;
   }
   if ([object isKindOfClass:[NISubtitleCellObject class]]) {
     NISubtitleCellObject* subtitleObject = object;
     self.detailTextLabel.text = subtitleObject.subtitle;
   }
   return YES;
+}
+
+@end
+
+
+@interface NIDrawRectBlockView : UIView
+@property (nonatomic, copy) NICellDrawRectBlock block;
+@property (nonatomic, strong) id object;
+@property (nonatomic, assign) UITableViewCell* cell;
+@end
+
+
+@implementation NIDrawRectBlockView
+
+
+
+- (id)initWithFrame:(CGRect)frame {
+  if ((self = [super initWithFrame:frame])) {
+    self.backgroundColor = [UIColor clearColor];
+  }
+  return self;
+}
+
+- (void)drawRect:(CGRect)rect {
+  if (nil != self.block) {
+    self.block(rect, self.object, self.cell);
+  }
+}
+
+@end
+
+
+@implementation NIDrawRectBlockCell
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+  if ((self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier])) {
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+
+    _blockView = [[NIDrawRectBlockView alloc] initWithFrame:self.contentView.bounds];
+    _blockView.autoresizingMask = UIViewAutoresizingFlexibleDimensions;
+    _blockView.contentMode = UIViewContentModeRedraw;
+    [self.contentView addSubview:_blockView];
+
+    [self.textLabel removeFromSuperview];
+    [self.imageView removeFromSuperview];
+    [self.detailTextLabel removeFromSuperview];
+  }
+  return self;
+}
+
+- (BOOL)shouldUpdateCellWithObject:(NIDrawRectBlockCellObject *)object {
+  NIDrawRectBlockView* blockView = (NIDrawRectBlockView *)self.blockView;
+  blockView.block = object.block;
+  blockView.object = object.object;
+  blockView.cell = self;
+  [blockView setNeedsDisplay];
+  return YES;
+}
+
++ (CGFloat)heightForObject:(NIDrawRectBlockCellObject *)object atIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView {
+  return object.block(tableView.bounds, object.object, nil);
 }
 
 @end

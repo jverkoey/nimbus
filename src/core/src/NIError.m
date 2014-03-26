@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,6 +16,9 @@
 
 #import "NIError.h"
 
-NSString* const NINimbusErrorDomain = @"com.nimbus.error";
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
 
+NSString* const NINimbusErrorDomain = @"com.nimbus.error";
 NSString* const NIImageErrorKey = @"image";

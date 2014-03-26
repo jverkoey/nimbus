@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 Jeff Verkoeyen
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -100,8 +100,5 @@
 - (void)requestImageFromSource: (NSString *)source
                      photoSize: (NIPhotoScrollViewPhotoSize)photoSize
                     photoIndex: (NSInteger)photoIndex;
-
-- (void)didCancelRequestWithPhotoSize:(NIPhotoScrollViewPhotoSize)photoSize
-                           photoIndex:(NSInteger)photoIndex;
 
 @end

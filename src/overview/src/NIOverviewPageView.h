@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,20 +16,18 @@
 
 #import <UIKit/UIKit.h>
 
-#ifdef DEBUG
+#if defined(DEBUG) || defined(NI_DEBUG)
 
 #import "NIOverviewGraphView.h"
+
+@class NIMemoryCache;
 
 /**
  * A page in the Overview.
  *
- *      @ingroup Overview-Pages
+ * @ingroup Overview-Pages
  */
-@interface NIOverviewPageView : UIView {
-@private
-  NSString* _pageTitle;
-  UILabel*  _titleLabel;
-}
+@interface NIOverviewPageView : UIView
 
 #pragma mark Creating a Page /** @name Creating a Page */
 
@@ -54,7 +52,7 @@
 /**
  * The title of the page.
  */
-@property (nonatomic, readwrite, copy) NSString* pageTitle;
+@property (nonatomic, copy) NSString* pageTitle;
 
 
 /**
@@ -68,7 +66,7 @@
  *
  * By default this label will be placed flush to the bottom middle of the page.
  */
-@property (nonatomic, readonly, retain) UILabel* titleLabel;
+@property (nonatomic, readonly, strong) UILabel* titleLabel;
 
 /**
  * Creates a generic label for use in the page.
@@ -81,7 +79,7 @@
 /**
  * A page that renders a graph and two labels.
  *
- *      @ingroup Overview-Pages
+ * @ingroup Overview-Pages
  */
 @interface NIOverviewGraphPageView : NIOverviewPageView <
   NIOverviewGraphViewDataSource
@@ -93,9 +91,9 @@
   NSEnumerator* _eventEnumerator;
 }
 
-@property (nonatomic, readonly, retain) UILabel* label1;
-@property (nonatomic, readonly, retain) UILabel* label2;
-@property (nonatomic, readonly, retain) NIOverviewGraphView* graphView;
+@property (nonatomic, readonly, strong) UILabel* label1;
+@property (nonatomic, readonly, strong) UILabel* label2;
+@property (nonatomic, readonly, strong) NIOverviewGraphView* graphView;
 
 @end
 
@@ -105,7 +103,7 @@
  *
  * @image html overview-memory1.png "The memory page."
  *
- *      @ingroup Overview-Pages
+ * @ingroup Overview-Pages
  */
 @interface NIOverviewMemoryPageView : NIOverviewGraphPageView {
 @private
@@ -121,7 +119,7 @@
  *
  * @image html overview-disk1.png "The disk page."
  *
- *      @ingroup Overview-Pages
+ * @ingroup Overview-Pages
  */
 @interface NIOverviewDiskPageView : NIOverviewGraphPageView {
 @private
@@ -137,7 +135,7 @@
  *
  * @image html overview-log1.png "The log page."
  *
- *      @ingroup Overview-Pages
+ * @ingroup Overview-Pages
  */
 @interface NIOverviewConsoleLogPageView : NIOverviewPageView {
 @private
@@ -153,7 +151,7 @@
  *
  * @image html overview-maxloglevel1.png "The max log level page."
  *
- *      @ingroup Overview-Pages
+ * @ingroup Overview-Pages
  */
 @interface NIOverviewMaxLogLevelPageView : NIOverviewPageView {
 @private
@@ -164,5 +162,31 @@
 }
 
 @end
+
+
+/**
+ * A page that shows information regarding an in-memory cache.
+ *
+ * @ingroup Overview-Pages
+ */
+@interface NIOverviewMemoryCachePageView : NIOverviewGraphPageView
+
+/**
+ * Returns an autoreleased instance of this page with the given cache.
+ */
++ (id)pageWithCache:(NIMemoryCache *)cache;
+
+@property (nonatomic, strong) NIMemoryCache* cache;
+@end
+
+
+/**
+ * A page that adds run-time inspection features.
+ *
+ * @ingroup Overview-Pages
+ */
+@interface NIInspectionOverviewPageView : NIOverviewPageView
+@end
+
 
 #endif

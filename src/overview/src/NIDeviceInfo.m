@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,6 +21,10 @@
 #import <mach/mach.h>
 #import <mach/mach_host.h>
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 // Static local state.
 static BOOL                 sIsCaching = NO;
 static BOOL                 sLastUpdateResult = NO;
@@ -29,7 +33,6 @@ static vm_statistics_data_t sVMStats;
 static NSDictionary*        sFileSystem = nil;
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 NSString* NIStringFromBytes(unsigned long long bytes) {
   static const void* sOrdersOfMagnitude[] = {
     @"bytes", @"KB", @"MB", @"GB"
@@ -37,7 +40,7 @@ NSString* NIStringFromBytes(unsigned long long bytes) {
 
   // Determine what magnitude the number of bytes is by shifting off 10 bits at a time
   // (equivalent to dividing by 1024).
-  NSInteger magnitude = 0;
+  unsigned long magnitude = 0;
   unsigned long long highbits = bytes;
   unsigned long long inverseBits = ~((unsigned long long)0x3FF);
   while ((highbits & inverseBits)
@@ -60,21 +63,14 @@ NSString* NIStringFromBytes(unsigned long long bytes) {
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIDeviceInfo
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)initialize {
   [[UIDevice currentDevice] setBatteryMonitoringEnabled:YES];
   memset(&sVMStats, 0, sizeof(sVMStats));
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)updateHostStatistics {
   mach_port_t host_port = mach_host_self();
   mach_msg_type_number_t host_size = sizeof(vm_statistics_data_t) / sizeof(integer_t);
@@ -83,30 +79,21 @@ NSString* NIStringFromBytes(unsigned long long bytes) {
           == KERN_SUCCESS);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)updateFileSystemAttributes {
-  NI_RELEASE_SAFELY(sFileSystem);
-
 	NSError* error = nil;
   // This path could be any path that is on the device's local disk.
 	NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 
   // Fetch the file system information based on the path given (the user's documents directory).
 	sFileSystem =
-  [[[NSFileManager defaultManager] attributesOfFileSystemForPath: [paths lastObject]
-                                                           error: &error] retain];
+  [[NSFileManager defaultManager] attributesOfFileSystemForPath: [paths lastObject]
+                                                           error: &error];
   return (nil == error);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Public Methods
+#pragma mark - Public
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (unsigned long long)bytesOfFreeMemory {
   if (!sIsCaching && ![self updateHostStatistics]) {
     return 0;
@@ -116,8 +103,6 @@ NSString* NIStringFromBytes(unsigned long long bytes) {
   return mem_free;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (unsigned long long)bytesOfTotalMemory {
   if (!sIsCaching && ![self updateHostStatistics]) {
     return 0;
@@ -130,8 +115,22 @@ NSString* NIStringFromBytes(unsigned long long bytes) {
   return mem_free;
 }
 
++ (void)simulateLowMemoryWarning
+{
+  SEL memoryWarningSel =  NSSelectorFromString(@"_performMemoryWarning");
+  if ([[UIApplication sharedApplication] respondsToSelector:memoryWarningSel]) {
+    NIDINFO(@"Simulate low memory warning");
+    // Supress the warning. -Wundeclared-selector was used while ARC is enabled.
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    [[UIApplication sharedApplication] performSelector:memoryWarningSel];
+#pragma clang diagnostic pop
+  } else {
+    // UIApplication no loger responds to _performMemoryWarning
+    exit(1);
+  }
+}
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (unsigned long long)bytesOfFreeDiskSpace {
   if (!sIsCaching && ![self updateFileSystemAttributes]) {
     return 0;
@@ -144,8 +143,6 @@ NSString* NIStringFromBytes(unsigned long long bytes) {
   return bytes;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (unsigned long long)bytesOfTotalDiskSpace {
   if (!sIsCaching && ![self updateFileSystemAttributes]) {
     return 0;
@@ -158,26 +155,17 @@ NSString* NIStringFromBytes(unsigned long long bytes) {
   return bytes;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (CGFloat)batteryLevel {
   return [[UIDevice currentDevice] batteryLevel];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (UIDeviceBatteryState)batteryState {
   return [[UIDevice currentDevice] batteryState];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Caching
+#pragma mark - Caching
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)beginCachedDeviceInfo {
   if (!sIsCaching) {
     sIsCaching = YES;
@@ -189,11 +177,8 @@ NSString* NIStringFromBytes(unsigned long long bytes) {
   return sLastUpdateResult;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)endCachedDeviceInfo {
   sIsCaching = NO;
 }
-
 
 @end

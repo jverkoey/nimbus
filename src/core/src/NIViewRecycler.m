@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,61 +18,45 @@
 
 #import "NimbusCore.h"
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
+@interface NIViewRecycler()
+@property (nonatomic, strong) NSMutableDictionary* reuseIdentifiersToRecycledViews;
+@end
+
 @implementation NIViewRecycler
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
-
-  NI_RELEASE_SAFELY(_reuseIdentifiersToRecycledViews);
-
-  [super dealloc];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
   if ((self = [super init])) {
     _reuseIdentifiersToRecycledViews = [[NSMutableDictionary alloc] init];
 
     NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
-    [nc addObserver: self
-           selector: @selector(reduceMemoryUsage)
-               name: UIApplicationDidReceiveMemoryWarningNotification
-             object: nil];
+    [nc addObserver:self
+           selector:@selector(reduceMemoryUsage)
+               name:UIApplicationDidReceiveMemoryWarningNotification
+             object:nil];
   }
   return self;
 }
 
+#pragma mark - Memory Warnings
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Memory Warnings
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)reduceMemoryUsage {
   [self removeAllViews];
 }
 
+#pragma mark - Public
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Public Methods
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIView<NIRecyclableView> *)dequeueReusableViewWithIdentifier:(NSString *)reuseIdentifier {
   NSMutableArray* views = [_reuseIdentifiersToRecycledViews objectForKey:reuseIdentifier];
   UIView<NIRecyclableView>* view = [views lastObject];
   if (nil != view) {
-    [[view retain] autorelease]; // Ensure that this object lives for the rest of the call stack.
     [views removeLastObject];
     if ([view respondsToSelector:@selector(prepareForReuse)]) {
       [view prepareForReuse];
@@ -81,8 +65,6 @@
   return view;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)recycleView:(UIView<NIRecyclableView> *)view {
   NIDASSERT([view isKindOfClass:[UIView class]]);
 
@@ -101,17 +83,29 @@
 
   NSMutableArray* views = [_reuseIdentifiersToRecycledViews objectForKey:reuseIdentifier];
   if (nil == views) {
-    views = [[[NSMutableArray alloc] init] autorelease];
+    views = [[NSMutableArray alloc] init];
     [_reuseIdentifiersToRecycledViews setObject:views forKey:reuseIdentifier];
   }
   [views addObject:view];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)removeAllViews {
   [_reuseIdentifiersToRecycledViews removeAllObjects];
 }
 
+@end
+
+@implementation NIRecyclableView
+
+- (id)initWithReuseIdentifier:(NSString *)reuseIdentifier {
+  if ((self = [super initWithFrame:CGRectZero])) {
+    _reuseIdentifier = reuseIdentifier;
+  }
+  return self;
+}
+
+- (id)initWithFrame:(CGRect)frame {
+  return [self initWithReuseIdentifier:nil];
+}
 
 @end

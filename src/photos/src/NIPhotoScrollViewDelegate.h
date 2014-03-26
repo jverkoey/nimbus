@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@
 /**
  * The photo scroll view delegate.
  *
- *      @ingroup Photos-Protocols
+ * @ingroup NimbusPhotos
  */
 @protocol NIPhotoScrollViewDelegate <NSObject>
 
@@ -32,8 +32,8 @@
 /**
  * The user has double-tapped the photo to zoom either in or out.
  *
- *      @param photoScrollView  The photo scroll view that was tapped.
- *      @param didZoomIn        YES if the photo was zoomed in. NO if the photo was zoomed out.
+ * @param photoScrollView  The photo scroll view that was tapped.
+ * @param didZoomIn        YES if the photo was zoomed in. NO if the photo was zoomed out.
  */
 - (void)photoScrollViewDidDoubleTapToZoom: (NIPhotoScrollView *)photoScrollView
                                 didZoomIn: (BOOL)didZoomIn;

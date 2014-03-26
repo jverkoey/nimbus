@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Forked from Three20 June 10, 2011 - Copyright 2009-2011 Facebook
 //
@@ -17,6 +17,10 @@
 //
 
 #import <Foundation/Foundation.h>
+
+#if defined __cplusplus
+extern "C" {
+#endif
 
 /**
  * For testing whether a collection is of a certain type and is non-empty.
@@ -47,7 +51,8 @@ BOOL NIIsSetWithObjects(id object);
  */
 BOOL NIIsStringWithAnyText(id object);
 
+#if defined __cplusplus
+};
+#endif
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 /**@}*/// End of Non-Empty Collection Testing /////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////

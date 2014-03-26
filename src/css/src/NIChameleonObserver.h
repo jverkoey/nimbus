@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,10 +22,14 @@
 @class NIStylesheet;
 @class NIStylesheetCache;
 
+extern NSString* const NIJSONDidChangeNotification;
+extern NSString* const NIJSONDidChangeFilePathKey;
+extern NSString* const NIJSONDidChangeNameKey;
+
 /**
  * An observer for the Chameleon server.
  *
- *      @ingroup CSS-Stylesheets
+ * @ingroup NimbusCSS
  *
  * This observer connects to a Chameleon server and waits for changes in stylesheets. Once
  * a stylesheet change has been detected, the new stylesheet is retrieved from the server
@@ -40,7 +44,7 @@
 @private
   NIStylesheetCache* _stylesheetCache;
   NSMutableArray* _stylesheetPaths;
-  NSOperationQueue* _operations;
+  NSOperationQueue* _queue;
   NSString* _host;
   NSInteger _retryCount;
 }
@@ -52,18 +56,20 @@
 
 - (void)watchSkinChanges;
 
+- (void)enableBonjourDiscovery: (NSString*) serviceName;
+
 @end
 
 /**
  * Initializes a newly allocated Chameleon observer with a given stylesheet cache and host.
  *
- *      @fn NIChameleonObserver::initWithStylesheetCache:host:
+ * @fn NIChameleonObserver::initWithStylesheetCache:host:
  */
 
 /**
  * Returns a loaded stylesheet from the given path.
  *
- *      @fn NIChameleonObserver::stylesheetForPath:
+ * @fn NIChameleonObserver::stylesheetForPath:
  */
 
 /**
@@ -72,5 +78,12 @@
  * When changes are detected the Chameleon observer downloads the new CSS files, reloads them,
  * and then fires the appropriate notifications.
  *
- *      @fn NIChameleonObserver::watchSkinChanges
+ * @fn NIChameleonObserver::watchSkinChanges
+ */
+
+/**
+ * Browses Bonjour for services with the given name (e.g. your username) and sets the host
+ * automatically.
+ *
+ * @fn NIChameleonObserver::enableBonjourDiscovery:
  */

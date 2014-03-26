@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Forked from Three20 June 9, 2011 - Copyright 2009-2011 Facebook
 //
@@ -27,22 +27,18 @@
   NSString* _reuseIdentifier;
   BOOL _didReuse;
 }
-@property (nonatomic, readwrite, copy) NSString* reuseIdentifier;
-@property (nonatomic, readwrite, assign) BOOL didReuse;
+@property (nonatomic, copy) NSString* reuseIdentifier;
+@property (nonatomic, assign) BOOL didReuse;
 @end
 
 @interface NIViewRecyclerTests : SenTestCase
 @end
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIViewRecyclerTests
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testNils {
-  NIViewRecycler* recycler = [[[NIViewRecycler alloc] init] autorelease];
+  NIViewRecycler* recycler = [[NIViewRecycler alloc] init];
   STAssertNil([recycler dequeueReusableViewWithIdentifier:nil], @"Should be nil.");
   NIDebugAssertionsShouldBreak = NO;
   [recycler recycleView:nil];
@@ -51,13 +47,11 @@
   STAssertNil([recycler dequeueReusableViewWithIdentifier:nil], @"Should be nil.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testNoReuseIdentifierRecycling {
-  NIViewRecycler* recycler = [[[NIViewRecycler alloc] init] autorelease];
+  NIViewRecycler* recycler = [[NIViewRecycler alloc] init];
   NSString* reuseIdentifier = NSStringFromClass([RecyclableView class]);
   {
-    RecyclableView* view = [[[RecyclableView alloc] init] autorelease];
+    RecyclableView* view = [[RecyclableView alloc] init];
     [recycler recycleView:view];
     STAssertFalse(view.didReuse, @"Should not have reused this view yet.");
   }
@@ -69,13 +63,11 @@
   STAssertNil([recycler dequeueReusableViewWithIdentifier:reuseIdentifier], @"Should be no views left.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testRecycling {
-  NIViewRecycler* recycler = [[[NIViewRecycler alloc] init] autorelease];
+  NIViewRecycler* recycler = [[NIViewRecycler alloc] init];
   NSString* reuseIdentifier = NSStringFromClass([RecyclableView class]);
   {
-    RecyclableView* view = [[[RecyclableView alloc] init] autorelease];
+    RecyclableView* view = [[RecyclableView alloc] init];
     view.reuseIdentifier = reuseIdentifier;
     [recycler recycleView:view];
     STAssertFalse(view.didReuse, @"Should not have reused this view yet.");
@@ -88,17 +80,15 @@
   STAssertNil([recycler dequeueReusableViewWithIdentifier:reuseIdentifier], @"Should be no views left.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testComplexRecycling {
-  NIViewRecycler* recycler = [[[NIViewRecycler alloc] init] autorelease];
+  NIViewRecycler* recycler = [[NIViewRecycler alloc] init];
   {
-    RecyclableView* view = [[[RecyclableView alloc] init] autorelease];
+    RecyclableView* view = [[RecyclableView alloc] init];
     view.reuseIdentifier = @"1";
     [recycler recycleView:view];
   }
   {
-    RecyclableView* view = [[[RecyclableView alloc] init] autorelease];
+    RecyclableView* view = [[RecyclableView alloc] init];
     view.reuseIdentifier = @"2";
     [recycler recycleView:view];
   }
@@ -120,13 +110,11 @@
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testMemoryWarning {
-  NIViewRecycler* recycler = [[[NIViewRecycler alloc] init] autorelease];
+  NIViewRecycler* recycler = [[NIViewRecycler alloc] init];
   NSString* reuseIdentifier = NSStringFromClass([RecyclableView class]);
   {
-    RecyclableView* view = [[[RecyclableView alloc] init] autorelease];
+    RecyclableView* view = [[RecyclableView alloc] init];
     view.reuseIdentifier = reuseIdentifier;
     [recycler recycleView:view];
   }
@@ -136,13 +124,11 @@
   STAssertNil([recycler dequeueReusableViewWithIdentifier:reuseIdentifier], @"Should be no views left.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testRemoveAllViews {
-  NIViewRecycler* recycler = [[[NIViewRecycler alloc] init] autorelease];
+  NIViewRecycler* recycler = [[NIViewRecycler alloc] init];
   NSString* reuseIdentifier = NSStringFromClass([RecyclableView class]);
   {
-    RecyclableView* view = [[[RecyclableView alloc] init] autorelease];
+    RecyclableView* view = [[RecyclableView alloc] init];
     view.reuseIdentifier = reuseIdentifier;
     [recycler recycleView:view];
   }
@@ -150,28 +136,13 @@
   STAssertNil([recycler dequeueReusableViewWithIdentifier:reuseIdentifier], @"Should be no views left.");
 }
 
-
 @end
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation RecyclableView
 
-@synthesize reuseIdentifier = _reuseIdentifier;
-@synthesize didReuse = _didReuse;
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_reuseIdentifier);
-  
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)prepareForReuse {
   _didReuse = YES;
 }

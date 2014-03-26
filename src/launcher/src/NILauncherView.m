@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Forked from Three20 June 10, 2011 - Copyright 2009-2011 Facebook
 //
@@ -18,66 +18,56 @@
 
 #import "NILauncherView.h"
 
+#import "NILauncherPageView.h"
+#import "NimbusPagingScrollView.h"
+#import "NIPagingScrollView+Subclassing.h"
 #import "NimbusCore.h"
 
-const NSInteger NILauncherViewDynamic = -1;
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
+static NSString* const kPageReuseIdentifier = @"page";
+const NSInteger NILauncherViewGridBasedOnButtonSize = -1;
 
 static const CGFloat kDefaultButtonDimensions = 80;
-static const CGFloat kDefaultPadding          = 10;
-static const NSTimeInterval kAnimateToPageDuration = 0.2;
+static const CGFloat kDefaultPadding = 10;
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-@interface NILauncherView()
-
-- (void)layoutPages;
-
+@interface NILauncherView() <NIPagingScrollViewDataSource, NIPagingScrollViewDelegate>
+@property (nonatomic, strong) NIPagingScrollView* pagingScrollView;
+@property (nonatomic, strong) UIPageControl* pager;
+@property (nonatomic, assign) NSInteger numberOfPages;
+@property (nonatomic, strong) NIViewRecycler* viewRecycler;
+- (void)updateLayoutForPage:(NILauncherPageView *)page;
 @end
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NILauncherView
 
-@synthesize maxNumberOfButtonsPerPage = _maxNumberOfButtonsPerPage;
-
-@synthesize padding = _padding;
-
-@synthesize delegate    = _delegate;
-@synthesize dataSource  = _dataSource;
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_pager);
-  NI_RELEASE_SAFELY(_scrollView);
-  NI_RELEASE_SAFELY(_pagesOfButtons);
-  NI_RELEASE_SAFELY(_pagesOfScrollViews);
+- (void)_configureDefaults {
+  // We handle autoresizing ourselves.
+  [self setAutoresizesSubviews:NO];
 
-  [super dealloc];
-}
+  _viewRecycler = [[NIViewRecycler alloc] init];
 
+  _buttonSize = CGSizeMake(kDefaultButtonDimensions, kDefaultButtonDimensions);
+  _numberOfColumns = NILauncherViewGridBasedOnButtonSize;
+  _numberOfRows = NILauncherViewGridBasedOnButtonSize;
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)_initialize {
   _maxNumberOfButtonsPerPage = NSIntegerMax;
-  _padding = UIEdgeInsetsMake(kDefaultPadding, kDefaultPadding,
-                              kDefaultPadding, kDefaultPadding);
+  _contentInsetForPages = UIEdgeInsetsMake(kDefaultPadding, kDefaultPadding, kDefaultPadding, kDefaultPadding);
 
   // The paging scroll view.
-  _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
-  _scrollView.delegate = self;
-  _scrollView.pagingEnabled = YES;
+  _pagingScrollView = [[NIPagingScrollView alloc] initWithFrame:self.bounds];
+  _pagingScrollView.dataSource = self;
+  _pagingScrollView.delegate = self;
 
-  // We don't need scroll indicators because we have a pager. Vertical scrolling is handled
-  // by each page's scroll view.
-  _scrollView.showsVerticalScrollIndicator = NO;
-  _scrollView.showsHorizontalScrollIndicator = NO;
+  [self addSubview:_pagingScrollView];
 
-  [self addSubview:_scrollView];
-
-  // The pager displayed at the bottom of the scroll view.
+  // The pager displayed below the paging scroll view.
   _pager = [[UIPageControl alloc] init];
   _pager.hidesForSinglePage = YES;
 
@@ -86,158 +76,89 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
   // color, however, then taps outside of the dot area DO change the selected page.
   //                                  \(o.o)/
   _pager.backgroundColor = [UIColor blackColor];
-  // Similarly for the scroll view anywhere there isn't a subview.
-  _scrollView.backgroundColor = [UIColor blackColor];
-  // We update these background colors when the launcher view's own background color is set.
 
-  // Don't update the pager when the user taps until we've handled the tap ourselves.
+  // Similarly for the scroll view anywhere there isn't a subview.
+  // We update these background colors when the launcher view's own background color is set.
+  _pagingScrollView.backgroundColor = [UIColor blackColor];
+
+  // Don't update the pager when the user taps until we've animated to the new page.
   // This allows us to reset the page index forcefully if necessary without flickering the
   // pager's current selection.
   _pager.defersCurrentPageDisplay = YES;
 
   // When the user taps the pager control it fires a UIControlEventValueChanged notification.
-  [_pager addTarget: self
-             action: @selector(pageChanged:)
-   forControlEvents: UIControlEventValueChanged];
+  [_pager addTarget:self action:@selector(pagerDidChangePage:) forControlEvents:UIControlEventValueChanged];
 
   [self addSubview:_pager];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
-    [self _initialize];
+    [self _configureDefaults];
   }
   return self;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithCoder:(NSCoder *)aDecoder {
   if ((self = [super initWithCoder:aDecoder])) {
-    [self _initialize];
+    [self _configureDefaults];
   }
   return self;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)layoutSubviews {
+  [super layoutSubviews];
+
+  [_pager sizeToFit];
+  _pagingScrollView.frame = NIRectContract(self.bounds, 0, _pager.frame.size.height);
+  _pager.frame = NIRectShift(self.bounds, 0, _pagingScrollView.frame.size.height);
+
+  for (NILauncherPageView* pageView in self.pagingScrollView.visiblePages) {
+    [self updateLayoutForPage:pageView];
+  }
+}
+
 - (void)setBackgroundColor:(UIColor *)backgroundColor {
   [super setBackgroundColor:backgroundColor];
 
-  _scrollView.backgroundColor = backgroundColor;
-  _pager.backgroundColor = backgroundColor;
+  self.pagingScrollView.backgroundColor = backgroundColor;
+  self.pager.backgroundColor = backgroundColor;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGFloat)pageWidthForLauncherFrame:(CGRect)frame {
-  return frame.size.width;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setFrame:(CGRect)frame {
-  [super setFrame:frame];
-
-  // Lay out the pager first. The remaining space is used for the launcher scroll view.
-  [_pager sizeToFit];
-  _pager.frame = CGRectMake(0, self.frame.size.height - _pager.frame.size.height,
-                            self.frame.size.width,
-                            _pager.frame.size.height);
-
-  CGFloat pageWidth = [self pageWidthForLauncherFrame:self.frame];
-
-  // The scroll view frame takes up the entire launcher view, minus the pager.
-  _scrollView.frame = CGRectMake(0, 0,
-                                 pageWidth,
-                                 self.frame.size.height - _pager.frame.size.height);
-
-  // We never want the paging scroll view to scroll vertically, so make sure the content size
-  // is always exactly the scroll view height.
-  _scrollView.contentSize = CGSizeMake(pageWidth * _numberOfPages,
-                                       _scrollView.frame.size.height);
-
-  // We update the content offset so that the scroll view sits on an integral page boundary.
-  // This is most useful when switching device orientations.
-  _scrollView.contentOffset = CGPointMake([self pageWidthForLauncherFrame:frame]
-                                          * _pager.currentPage,
-                                          0);
-
-  // The dimensions of the scroll view may have changed, so lay out all of the pages.
-  [self layoutPages];
-
-  // Example: When switching from a 3x4 grid of 12 items to a 5x2 grid of 10, there will be
-  // leftover items and the page will be too tall to fit everything as a result. We flash
-  // the scroll indicators when this happens to indicate to the user that some buttons have been
-  // hidden.
-  [[_pagesOfScrollViews objectAtIndex:_pager.currentPage] flashScrollIndicators];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * Update the pager's current page based on the scroll view's content offset.
- *
- * Flashes the scroll indicators if the page index changes.
- */
-- (void)updatePageIndex {
-  CGFloat pageWidth = _scrollView.frame.size.width;
-  NSInteger pageIndex = roundf(_scrollView.contentOffset.x / pageWidth);
-  if (_pager.currentPage != pageIndex) {
-    _pager.currentPage = pageIndex;
-
-    [[_pagesOfScrollViews objectAtIndex:pageIndex] flashScrollIndicators];
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)calculateLayoutForFrame: (CGRect)frame
-               buttonDimensions: (CGSize *)pButtonDimensions
-                   numberOfRows: (NSInteger *)pNumberOfRows
-                numberOfColumns: (NSInteger *)pNumberOfColumns
-        buttonHorizontalSpacing: (CGFloat *)pButtonHorizontalSpacing
-          buttonVerticalSpacing: (CGFloat *)pButtonVerticalSpacing {
+- (void)calculateLayoutForFrame:(CGRect)frame
+               buttonDimensions:(CGSize *)pButtonDimensions
+                   numberOfRows:(NSInteger *)pNumberOfRows
+                numberOfColumns:(NSInteger *)pNumberOfColumns
+                  buttonMargins:(CGSize *)pButtonMargins {
   NIDASSERT(nil != pButtonDimensions);
   NIDASSERT(nil != pNumberOfRows);
   NIDASSERT(nil != pNumberOfColumns);
-  NIDASSERT(nil != pButtonHorizontalSpacing);
-  NIDASSERT(nil != pButtonVerticalSpacing);
+  NIDASSERT(nil != pButtonMargins);
   if (nil == pButtonDimensions
       || nil == pNumberOfRows
       || nil == pNumberOfColumns
-      || nil == pButtonHorizontalSpacing
-      || nil == pButtonVerticalSpacing) {
+      || nil == pButtonMargins) {
     return;
   }
-  CGFloat pageWidth = frame.size.width - _padding.left - _padding.right;
-  CGFloat pageHeight = frame.size.height - _padding.top - _padding.bottom;
+  CGFloat pageWidth = frame.size.width - self.contentInsetForPages.left - self.contentInsetForPages.right;
+  CGFloat pageHeight = frame.size.height - self.contentInsetForPages.top - self.contentInsetForPages.bottom;
 
-  CGSize buttonDimensions = CGSizeMake(kDefaultButtonDimensions, kDefaultButtonDimensions);
-  if ([self.dataSource respondsToSelector:@selector(buttonDimensionsInLauncherView:)]) {
-    CGSize dataSourceButtonDimensions = [self.dataSource buttonDimensionsInLauncherView:self];
+  CGSize buttonDimensions = self.buttonSize;
+  NSInteger numberOfColumns = self.numberOfColumns;
+  NSInteger numberOfRows = self.numberOfRows;
 
-    NIDASSERT(dataSourceButtonDimensions.width > 0 && dataSourceButtonDimensions.height > 0);
-    if (dataSourceButtonDimensions.width > 0 && dataSourceButtonDimensions.height > 0) {
-      buttonDimensions = dataSourceButtonDimensions;
-    }
-  }
-
-  NSInteger numberOfColumns = NILauncherViewDynamic;
-  NSInteger numberOfRows = NILauncherViewDynamic;
-
-  if ([self.dataSource respondsToSelector:@selector(numberOfColumnsPerPageInLauncherView:)]) {
-    numberOfColumns = [self.dataSource numberOfColumnsPerPageInLauncherView:self];
-  }
+  // Override point
   if ([self.dataSource respondsToSelector:@selector(numberOfRowsPerPageInLauncherView:)]) {
     numberOfRows = [self.dataSource numberOfRowsPerPageInLauncherView:self];
   }
+  if ([self.dataSource respondsToSelector:@selector(numberOfColumnsPerPageInLauncherView:)]) {
+    numberOfColumns = [self.dataSource numberOfColumnsPerPageInLauncherView:self];
+  }
 
-  if (NILauncherViewDynamic == numberOfColumns) {
+  if (NILauncherViewGridBasedOnButtonSize == numberOfColumns) {
     numberOfColumns = floorf(pageWidth / buttonDimensions.width);
   }
-  if (NILauncherViewDynamic == numberOfRows) {
+  if (NILauncherViewGridBasedOnButtonSize == numberOfRows) {
     numberOfRows = floorf(pageHeight / buttonDimensions.height);
   }
   NIDASSERT(numberOfRows > 0);
@@ -259,123 +180,40 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
   *pButtonDimensions = buttonDimensions;
   *pNumberOfRows = numberOfRows;
   *pNumberOfColumns = numberOfColumns;
-  *pButtonHorizontalSpacing = buttonHorizontalSpacing;
-  *pButtonVerticalSpacing = buttonVerticalSpacing;
+  pButtonMargins->width = buttonHorizontalSpacing;
+  pButtonMargins->height = buttonVerticalSpacing;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)layoutPages {
-  if (nil == _scrollView || CGRectIsEmpty(_scrollView.frame)) {
-    // Bail out early; the scroll view hasn't been laid out yet.
-    return;
-  }
-
+- (void)updateLayoutForPage:(NILauncherPageView *)page {
   CGSize buttonDimensions = CGSizeZero;
   NSInteger numberOfRows = 0;
   NSInteger numberOfColumns = 0;
-  CGFloat buttonHorizontalSpacing = 0;
-  CGFloat buttonVerticalSpacing = 0;
-  [self calculateLayoutForFrame: _scrollView.frame
-               buttonDimensions: &buttonDimensions
-                   numberOfRows: &numberOfRows
-                numberOfColumns: &numberOfColumns
-        buttonHorizontalSpacing: &buttonHorizontalSpacing
-          buttonVerticalSpacing: &buttonVerticalSpacing];
+  CGSize buttonMargins = CGSizeZero;
+  [self calculateLayoutForFrame:self.pagingScrollView.frame
+               buttonDimensions:&buttonDimensions
+                   numberOfRows:&numberOfRows
+                numberOfColumns:&numberOfColumns
+                  buttonMargins:&buttonMargins];
+  
+  page.contentInset = self.contentInsetForPages;
+  page.viewSize = buttonDimensions;
+  page.viewMargins = buttonMargins;
+}
 
-  NIDASSERT(numberOfRows > 0);
-  NIDASSERT(numberOfColumns > 0);
+#pragma mark - UIPageControl Change Notifications
 
-  CGFloat pageWidth = _scrollView.frame.size.width;
 
-  for (NSInteger ixPage = 0; ixPage < [_pagesOfButtons count]; ++ixPage) {
-    CGFloat pageOffset = ixPage * pageWidth;
-
-    NSArray* page = [_pagesOfButtons objectAtIndex:ixPage];
-
-    CGFloat pageBottom = 0;
-
-    for (NSInteger ixItem = 0; ixItem < [page count]; ++ixItem) {
-      NSInteger col = ixItem % numberOfColumns;
-      NSInteger row = ixItem / numberOfColumns;
-
-      UIButton* button = [page objectAtIndex:ixItem];
-      button.frame = CGRectMake(_padding.left + col * buttonDimensions.width
-                                + (col * buttonHorizontalSpacing),
-                                _padding.top + row * buttonDimensions.height
-                                + (row * buttonVerticalSpacing),
-                                buttonDimensions.width, buttonDimensions.height);
-
-      pageBottom = MAX(pageBottom, CGRectGetMaxY(button.frame));
-    }
-
-    UIScrollView* pageScrollView = [_pagesOfScrollViews objectAtIndex:ixPage];
-    pageScrollView.frame = CGRectMake(pageOffset, 0, pageWidth, _scrollView.frame.size.height);
-    pageScrollView.contentSize = CGSizeMake(pageWidth, pageBottom + _padding.bottom);
+- (void)pagerDidChangePage:(UIPageControl*)pager {
+  if ([self.pagingScrollView moveToPageAtIndex:pager.currentPage animated:YES]) {
+    // Once we've handled the page change notification, notify the pager that it's ok to update
+    // the page display.
+    [self.pager updateCurrentPageDisplay];
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark UIScrollViewDelegate
+#pragma mark - Actions
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-  if (!decelerate) {
-    [self updatePageIndex];
-  } // otherwise we update the page index when the scroll finishes decelerating.
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-  [self updatePageIndex];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark UIPageControl Change Notifications
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)flashCurrentPageScrollIndicators {
-  [[_pagesOfScrollViews objectAtIndex:_pager.currentPage] flashScrollIndicators];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)pageChanged:(UIPageControl*)pager {
-  [UIView beginAnimations:nil context:nil];
-  [UIView setAnimationDuration:kAnimateToPageDuration];
-  [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-  [UIView setAnimationBeginsFromCurrentState:YES];
-  [UIView setAnimationDelegate:self];
-  [UIView setAnimationDidStopSelector:@selector(flashCurrentPageScrollIndicators)];
-
-  _scrollView.contentOffset = CGPointMake([self pageWidthForLauncherFrame:self.frame]
-                                          * _pager.currentPage,
-                                          _scrollView.contentOffset.y);
-
-  [UIView commitAnimations];
-
-  // Once we've handled the page change notification, notify the pager that it's ok to update
-  // the page display.
-  [_pager updateCurrentPageDisplay];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Actions
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * Find a button in the pages and retrieve its page and index.
  *
@@ -384,9 +222,7 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
  * @param[out] pIndex       The resulting index, if found.
  * @returns YES if the button was found. NO otherwise.
  */
-- (BOOL)pageAndIndexOfButton: (UIButton *)searchButton
-                        page: (NSInteger *)pPage
-                       index: (NSInteger *)pIndex {
+- (BOOL)pageAndIndexOfButton:(UIButton *)searchButton page:(NSInteger *)pPage index:(NSInteger *)pIndex {
   NIDASSERT(nil != pPage);
   NIDASSERT(nil != pIndex);
   if (nil == pPage
@@ -394,13 +230,12 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
     return NO;
   }
 
-  for (NSInteger ixPage = 0; ixPage < [_pagesOfButtons count]; ++ixPage) {
-    NSArray* page = [_pagesOfButtons objectAtIndex:ixPage];
-    for (NSInteger ixButton = 0; ixButton < [page count]; ++ixButton) {
-      UIButton* button = [page objectAtIndex:ixButton];
-      if (button == searchButton) {
-        *pPage = ixPage;
-        *pIndex = ixButton;
+  for (NILauncherPageView* pageView in self.pagingScrollView.visiblePages) {
+    for (NSInteger buttonIndex = 0; buttonIndex < pageView.recyclableViews.count; ++buttonIndex) {
+      UIView<NILauncherButtonView>* buttonView = [pageView.recyclableViews objectAtIndex:buttonIndex];
+      if (buttonView.button == searchButton) {
+        *pPage = pageView.pageIndex;
+        *pIndex = buttonIndex;
         return YES;
       }
     }
@@ -409,8 +244,6 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
   return NO;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didTapButton:(UIButton *)tappedButton {
   NSInteger page = -1;
   NSInteger buttonIndex = 0;
@@ -418,12 +251,8 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
                             page:&page
                            index:&buttonIndex]) {
 
-    if ([self.delegate respondsToSelector:
-         @selector(launcherView:didSelectButton:onPage:atIndex:)]) {
-      [self.delegate launcherView: self
-                  didSelectButton: tappedButton
-                           onPage: page
-                          atIndex: buttonIndex];
+    if ([self.delegate respondsToSelector:@selector(launcherView:didSelectItemOnPage:atIndex:)]) {
+      [self.delegate launcherView:self didSelectItemOnPage:page atIndex:buttonIndex];
     }
 
   } else {
@@ -432,72 +261,89 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Public Methods
+#pragma mark - NIPagingScrollViewDataSource
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)reloadData {
-  _numberOfPages = [self.dataSource numberOfPagesInLauncherView:self];
-
-  _pager.numberOfPages = _numberOfPages;
-
-  // FEATURE: Remember the current page?
-
-  _scrollView.contentSize = CGSizeMake(_scrollView.frame.size.width * _numberOfPages,
-                                       _scrollView.frame.size.height);
-
-  // Remove the views from the view hierarchy before we clobber the collections.
-  for (NSArray* page in _pagesOfButtons) {
-    for (UIButton* button in page) {
-      [button removeFromSuperview];
-    }
-  }
-  for (UIScrollView* scrollView in _pagesOfScrollViews) {
-    [scrollView removeFromSuperview];
-  }
-
-  NI_RELEASE_SAFELY(_pagesOfButtons);
-  NI_RELEASE_SAFELY(_pagesOfScrollViews);
-
-  // We query the data source for all of the button views. Each page of buttons lives within
-  // a scroll view that will scroll vertically if there are too many buttons for the page.
-
-  _pagesOfButtons = [[NSMutableArray alloc] initWithCapacity:_numberOfPages];
-  _pagesOfScrollViews = [[NSMutableArray alloc] initWithCapacity:_numberOfPages];
-  for (NSInteger ixPage = 0; ixPage < _numberOfPages; ++ixPage) {
-    NSInteger numberOfItems = MIN(_maxNumberOfButtonsPerPage,
-                                  [self.dataSource launcherView: self
-                                          numberOfButtonsInPage: ixPage]);
-
-    NSMutableArray* page = [[[NSMutableArray alloc] initWithCapacity:numberOfItems]
-                            autorelease];
-
-    UIScrollView* pageScrollView = [[[UIScrollView alloc] init] autorelease];
-    pageScrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
-
-    for (NSInteger ixItem = 0 ; ixItem < numberOfItems; ++ixItem) {
-      UIButton* item = [self.dataSource launcherView: self
-                                       buttonForPage: ixPage
-                                             atIndex: ixItem];
-      [item       addTarget: self
-                     action: @selector(didTapButton:)
-           forControlEvents: UIControlEventTouchUpInside];
-      [page addObject:item];
-      [pageScrollView addSubview:item];
-    }
-
-    [_scrollView addSubview:pageScrollView];
-
-    [_pagesOfScrollViews addObject:pageScrollView];
-    [_pagesOfButtons addObject:page];
-  }
-
-  [self layoutPages];
+- (NSInteger)numberOfPagesInPagingScrollView:(NIPagingScrollView *)pagingScrollView {
+  return self.numberOfPages;
 }
 
+- (UIView<NIPagingScrollViewPage> *)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageViewForIndex:(NSInteger)pageIndex {
+  NILauncherPageView* page = (NILauncherPageView *)[self.pagingScrollView dequeueReusablePageWithIdentifier:kPageReuseIdentifier];
+  if (nil == page) {
+    page = [[NILauncherPageView alloc] initWithReuseIdentifier:kPageReuseIdentifier];
+    page.viewRecycler = self.viewRecycler;
+  }
+
+  [self updateLayoutForPage:page];
+
+  NSInteger numberOfButtons = [self.dataSource launcherView:self numberOfButtonsInPage:pageIndex];
+  numberOfButtons = MIN(numberOfButtons, self.maxNumberOfButtonsPerPage);
+
+  for (NSInteger buttonIndex = 0 ; buttonIndex < numberOfButtons; ++buttonIndex) {
+    UIView<NILauncherButtonView>* buttonView = [self.dataSource launcherView:self buttonViewForPage:pageIndex atIndex:buttonIndex];
+    NSAssert(nil != buttonView, @"A non-nil UIView must be returned.");
+    [buttonView.button addTarget:self action:@selector(didTapButton:) forControlEvents:UIControlEventTouchUpInside];
+    [page addRecyclableView:(UIView<NIRecyclableView> *)buttonView];
+  }
+
+  return page;
+}
+
+#pragma mark - NIPagingScrollViewDelegate
+
+
+- (void)pagingScrollViewDidChangePages:(NIPagingScrollView *)pagingScrollView {
+  self.pager.currentPage = pagingScrollView.centerPageIndex;
+}
+
+#pragma mark - Public
+
+
+- (void)reloadData {
+  if ([self.dataSource respondsToSelector:@selector(numberOfPagesInLauncherView:)]) {
+    _numberOfPages = [self.dataSource numberOfPagesInLauncherView:self];
+
+  } else {
+    _numberOfPages = 1;
+  }
+
+  self.pager.numberOfPages = _numberOfPages;
+  [self.pagingScrollView reloadData];
+  [self setNeedsLayout];
+}
+
+- (UIView<NILauncherButtonView> *)dequeueReusableViewWithIdentifier:(NSString *)identifier {
+  NIDASSERT(nil != identifier);
+  if (nil == identifier) {
+    return nil;
+  }
+  
+  return (UIView<NILauncherButtonView> *)[self.viewRecycler dequeueReusableViewWithIdentifier:identifier];
+}
+
+- (void)setcontentInsetForPages:(UIEdgeInsets)contentInsetForPages {
+  _contentInsetForPages = contentInsetForPages;
+
+  for (NILauncherPageView* pageView in self.pagingScrollView.visiblePages) {
+    pageView.contentInset = contentInsetForPages;
+  }
+}
+
+- (void)setButtonSize:(CGSize)buttonSize {
+  _buttonSize = buttonSize;
+
+  for (NILauncherPageView* pageView in self.pagingScrollView.visiblePages) {
+    pageView.viewSize = buttonSize;
+  }
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+  [self.pagingScrollView willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+  [self.pagingScrollView willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+}
 
 @end

@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,7 +17,12 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "NIBlocks.h"
+#import "NIPreprocessorMacros.h" /* for weak */
+
+@class NIOperation;
+
+typedef void (^NIOperationBlock)(NIOperation* operation);
+typedef void (^NIOperationDidFailBlock)(NIOperation* operation, NSError* error);
 
 /**
  * For writing code that runs concurrently.
@@ -41,40 +46,18 @@
  * of changes in the operation's state. Calling these methods will notify the delegate and the
  * blocks if provided.
  *
- *      @ingroup Operations
+ * @ingroup Operations
  */
-@interface NIOperation : NSOperation {
-@private
-  id<NIOperationDelegate> _delegate;
+@interface NIOperation : NSOperation
 
-  NSInteger _tag;
+@property (weak) id<NIOperationDelegate> delegate;
+@property (readonly, strong) NSError* lastError;
+@property (assign) NSInteger tag;
 
-  NSError* _lastError;
-
-#if NS_BLOCKS_AVAILABLE
-  // Performed on the main thread.
-  NIBasicBlock _didStartBlock;
-  NIBasicBlock _didFinishBlock;
-  NIErrorBlock _didFailWithErrorBlock;
-
-  // Performed in the operation's thread.
-  NIBasicBlock _willFinishBlock;
-#endif // #if NS_BLOCKS_AVAILABLE
-}
-
-@property (readwrite, assign) id<NIOperationDelegate> delegate;
-@property (readonly, retain) NSError* lastError;
-@property (readwrite, assign) NSInteger tag;
-
-
-#if NS_BLOCKS_AVAILABLE
-
-@property (readwrite, copy) NIBasicBlock didStartBlock;
-@property (readwrite, copy) NIBasicBlock didFinishBlock;
-@property (readwrite, copy) NIErrorBlock didFailWithErrorBlock;
-@property (readwrite, copy) NIBasicBlock willFinishBlock;
-
-#endif // #if NS_BLOCKS_AVAILABLE
+@property (copy) NIOperationBlock didStartBlock;
+@property (copy) NIOperationBlock didFinishBlock;
+@property (copy) NIOperationDidFailBlock didFailWithErrorBlock;
+@property (copy) NIOperationBlock willFinishBlock;
 
 - (void)didStart;
 - (void)didFinish;
@@ -84,40 +67,9 @@
 @end
 
 /**
- * An operation that makes a network request.
- *
- * Provides asynchronous network request support when added to an NSOperationQueue.
- *
- * If the url provided is a file url, then the file will be loaded from disk instead.
- *
- *      @ingroup Operations
- */
-@interface NINetworkRequestOperation : NIOperation {
-@private
-  // [in]
-  NSURL* _url;
-  NSTimeInterval _timeout;
-
-  // [out]
-  NSData* _data;
-  id _processedObject;
-}
-
-// Designated initializer.
-- (id)initWithURL:(NSURL *)url;
-
-@property (readwrite, copy) NSURL* url;
-@property (readwrite, assign) NSTimeInterval timeout; // Default: 60
-@property (readwrite, assign) NSURLRequestCachePolicy cachePolicy; // Default: NSURLRequestUseProtocolCachePolicy
-@property (readonly, retain) NSData* data;
-@property (readwrite, retain) id processedObject;
-
-@end
-
-/**
  * The delegate protocol for an NIOperation.
  *
- *      @ingroup Operations
+ * @ingroup Operations
  */
 @protocol NIOperationDelegate <NSObject>
 @optional
@@ -153,7 +105,6 @@
 @end
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // NIOperation
 
 /** @name Delegation */
@@ -163,7 +114,7 @@
  *
  * All delegate methods are performed on the main thread.
  *
- *      @fn NIOperation::delegate
+ * @fn NIOperation::delegate
  */
 
 
@@ -172,7 +123,7 @@
 /**
  * The error last passed to the didFailWithError notification.
  *
- *      @fn NIOperation::lastError
+ * @fn NIOperation::lastError
  */
 
 
@@ -181,11 +132,10 @@
 /**
  * A simple tagging mechanism for identifying operations.
  *
- *      @fn NIOperation::tag
+ * @fn NIOperation::tag
  */
 
 
-#if NS_BLOCKS_AVAILABLE
 /** @name Blocks */
 
 /**
@@ -193,7 +143,7 @@
  *
  * Performed on the main thread.
  *
- *      @fn NIOperation::didStartBlock
+ * @fn NIOperation::didStartBlock
  */
 
 /**
@@ -203,7 +153,7 @@
  *
  * Performed on the main thread.
  *
- *      @fn NIOperation::didFinishBlock
+ * @fn NIOperation::didFinishBlock
  */
 
 /**
@@ -213,7 +163,7 @@
  *
  * Performed on the main thread.
  *
- *      @fn NIOperation::didFailWithErrorBlock
+ * @fn NIOperation::didFailWithErrorBlock
  */
 
 /**
@@ -223,9 +173,8 @@
  *
  * Performed in the operation's thread.
  *
- *      @fn NIOperation::willFinishBlock
+ * @fn NIOperation::willFinishBlock
  */
-#endif // #if NS_BLOCKS_AVAILABLE
 
 
 /**
@@ -238,76 +187,23 @@
 /**
  * On the main thread, notify the delegate that the operation has begun.
  *
- *      @fn NIOperation::didStart
+ * @fn NIOperation::didStart
  */
 
 /**
  * On the main thread, notify the delegate that the operation has finished.
  *
- *      @fn NIOperation::didFinish
+ * @fn NIOperation::didFinish
  */
 
 /**
  * On the main thread, notify the delegate that the operation has failed.
  *
- *      @fn NIOperation::didFailWithError:
+ * @fn NIOperation::didFailWithError:
  */
 
 /**
  * In the operation's thread, notify the delegate that the operation will finish successfully.
  *
- *      @fn NIOperation::willFinish
- */
-
-
-// NINetworkRequestOperation
-
-/** @name Creating an Operation */
-
-/**
- * Initializes a newly allocated network operation with a given url.
- *
- *      @fn NINetworkRequestOperation::initWithURL:
- */
-
-
-/** @name Configuring the Operation */
-
-/**
- * The url that will be loaded in the network operation.
- *
- *      @fn NINetworkRequestOperation::url
- */
-
-/**
- * The number of seconds that may pass before a request gives up and fails.
- *
- *      @fn NINetworkRequestOperation::timeout
- */
-
-/**
- * The request cache policy to use.
- *
- *      @fn NINetworkRequestOperation::cachePolicy
- */
-
-
-/** @name Operation Results */
-
-/**
- * The data received from the request.
- *
- * Will be nil if the request failed.
- *
- *      @sa NIOperation::lastError
- *      @fn NINetworkRequestOperation::data
- */
-
-/**
- * An object created from the data that was fetched.
- *
- * Will be nil if the request failed.
- *
- *      @sa NIOperation::lastError
- *      @fn NINetworkRequestOperation::processedObject
+ * @fn NIOperation::willFinish
  */

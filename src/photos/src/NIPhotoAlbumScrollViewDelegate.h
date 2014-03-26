@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,15 +16,15 @@
 
 #import <Foundation/Foundation.h>
 
-#import "NIPagingScrollViewDelegate.h"
+#import "NimbusPagingScrollView.h"
 
 @class NIPhotoAlbumScrollView;
 
 /**
  * The photo album scroll view delegate.
  *
- *      @ingroup Photos-Protocols
- *      @see NIPhotoAlbumScrollView
+ * @ingroup Photos-Protocols
+ * @see NIPhotoAlbumScrollView
  */
 @protocol NIPhotoAlbumScrollViewDelegate <NIPagingScrollViewDelegate>
 

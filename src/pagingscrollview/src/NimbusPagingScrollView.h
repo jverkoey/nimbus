@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@
 /**
  * @defgroup NimbusPagingScrollView Nimbus Paging Scroll View
  * @{
+ *
+ * <div id="github" feature="pagingscrollview"></div>
  *
  * A paging scroll view is a UIScrollView that scrolls horizontally and shows a series of
  * pages that are efficiently recycled.
@@ -46,9 +48,6 @@
 /**@}*/
 
 #import "NIPagingScrollView.h"
-#import "NIPagingScrollViewDataSource.h"
-#import "NIPagingScrollViewDelegate.h"
 #import "NIPagingScrollViewPage.h"
-#import "NIPageView.h"
 
 #import "NimbusCore.h"

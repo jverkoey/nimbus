@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 Jeff Verkoeyen
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@
   UIViewController* _rootViewController;
 }
 
-@property (nonatomic, readwrite, retain) UIWindow* window;
+@property (nonatomic, retain) UIWindow* window;
 
 @end
 

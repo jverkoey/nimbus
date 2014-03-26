@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,13 +20,20 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @interface NIPhotoScrubberView()
+
+/**
+ * @internal
+ *
+ * A method to encapsulate initilization logic that can be shared by different init methods.
+ */
+- (void)initializeScrubber;
 
 /**
  * @internal
@@ -52,34 +59,43 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
 @end
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NIPhotoScrubberView
+@implementation NIPhotoScrubberView {
+  NSMutableArray* _visiblePhotoViews;
+  NSMutableSet* _recycledPhotoViews;
 
-@synthesize dataSource = _dataSource;
-@synthesize delegate = _delegate;
-@synthesize selectedPhotoIndex = _selectedPhotoIndex;
+  UIView* _containerView;
+  UIImageView* _selectionView;
 
+  // State
+  NSInteger _selectedPhotoIndex;
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_visiblePhotoViews);
-  NI_RELEASE_SAFELY(_recycledPhotoViews);
-  
-  NI_RELEASE_SAFELY(_containerView);
-  NI_RELEASE_SAFELY(_selectionView);
+  // Cached data source values
+  NSInteger _numberOfPhotos;
 
-  [super dealloc];
+  // Cached display values
+  NSInteger _numberOfVisiblePhotos;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
+      [self initializeScrubber];
+  }
+
+  return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    if ((self = [super initWithCoder:aDecoder])) {
+        [self initializeScrubber];
+    }
+    
+    return self;
+}
+
+- (void)initializeScrubber {
     // Only one finger should be allowed to interact with the scrubber at a time.
     self.multipleTouchEnabled = NO;
-
+    
     _containerView = [[UIView alloc] init];
     _containerView.layer.borderColor = [UIColor colorWithWhite:1 alpha:0.1f].CGColor;
     _containerView.layer.borderWidth = 1;
@@ -87,25 +103,17 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
     _containerView.userInteractionEnabled = NO;
     [self addSubview:_containerView];
     
-    _selectionView = [[self photoView] retain];
+    _selectionView = [self photoView];
     [self addSubview:_selectionView];
-
+    
     _selectedPhotoIndex = -1;
-  }
-
-  return self;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark View Creation
+#pragma mark - View Creation
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIImageView *)photoView {
-  UIImageView* imageView = [[[UIImageView alloc] init] autorelease];
+  UIImageView* imageView = [[UIImageView alloc] init];
   
   imageView.layer.borderColor = [UIColor whiteColor].CGColor;
   imageView.layer.borderWidth = 1;
@@ -121,14 +129,9 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   return imageView;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Layout
+#pragma mark - Layout
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGSize)photoSize {
   CGSize boundsSize = self.bounds.size;
 
@@ -139,8 +142,6 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   return CGSizeMake(photoWidth, photoHeight);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGSize)selectionSize {
   CGSize boundsSize = self.bounds.size;
   
@@ -151,22 +152,16 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   return CGSizeMake(selectionWidth, selectionHeight);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // The amount of space on either side of the scrubber's left and right edges.
 - (CGFloat)horizontalMargins {
   CGSize photoSize = [self photoSize];
   return floorf(photoSize.width / 2);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)spaceBetweenPhotos {
   return 1;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // The maximum number of pixels that the scrubber can utilize. The scrubber layer's border
 // is contained within this width and must be considered when laying out the thumbnails.
 - (CGFloat)maxContentWidth {
@@ -178,8 +173,6 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   return maxContentWidth;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSInteger)numberOfVisiblePhotos {
   CGSize photoSize = [self photoSize];
   CGFloat spaceBetweenPhotos = [self spaceBetweenPhotos];
@@ -194,8 +187,6 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   return MIN(_numberOfPhotos, numberOfPhotosThatFit);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGRect)frameForSelectionAtIndex:(NSInteger)photoIndex {
   CGSize photoSize = [self photoSize];
   CGSize selectionSize = [self selectionSize];
@@ -221,8 +212,6 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
                     selectionSize.width, selectionSize.height);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGRect)frameForThumbAtIndex:(NSInteger)thumbIndex {
   CGSize photoSize = [self photoSize];
   CGFloat spaceBetweenPhotos = [self spaceBetweenPhotos];
@@ -232,8 +221,6 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
                     photoSize.width, photoSize.height);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)layoutSubviews {
   [super layoutSubviews];
   
@@ -278,8 +265,6 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   [self updateVisiblePhotos];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // Transforms an index into the number of visible photos into an index into the total
 // number of photos.
 - (NSInteger)photoIndexAtScrubberIndex:(NSInteger)scrubberIndex {
@@ -288,8 +273,6 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
                      + 0.5f);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)updateVisiblePhotos {
   if (nil == self.dataSource) {
     return;
@@ -299,7 +282,7 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   [self layoutIfNeeded];
 
   // Recycle any views that we no longer need.
-  while ([_visiblePhotoViews count] > _numberOfVisiblePhotos) {
+  while ([_visiblePhotoViews count] > (NSUInteger)_numberOfVisiblePhotos) {
     UIView* photoView = [_visiblePhotoViews lastObject];
     [photoView removeFromSuperview];
 
@@ -309,14 +292,14 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   }
 
   // Lay out the visible photos.
-  for (NSInteger ix = 0; ix < _numberOfVisiblePhotos; ++ix) {
+  for (NSUInteger ix = 0; ix < (NSUInteger)_numberOfVisiblePhotos; ++ix) {
     UIImageView* photoView = nil;
 
     // We must first get the photo view at this index.
 
     // If there aren't enough visible photo views then try to recycle another view.
     if (ix >= [_visiblePhotoViews count]) {
-      photoView = [[[_recycledPhotoViews anyObject] retain] autorelease];
+      photoView = [_recycledPhotoViews anyObject];
       if (nil == photoView) {
         // Couldn't recycle the view, so create a new one.
         photoView = [self photoView];
@@ -350,14 +333,9 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Changing Selection
+#pragma mark - Changing Selection
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSInteger)photoIndexAtPoint:(CGPoint)point {
   NSInteger photoIndex;
   
@@ -378,8 +356,6 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   return photoIndex;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)updateSelectionWithPoint:(CGPoint)point {
   NSInteger photoIndex = [self photoIndexAtPoint:point];
   
@@ -392,14 +368,9 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark UIResponder
+#pragma mark - UIResponder
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
   [super touchesBegan:touches withEvent:event];
   
@@ -409,8 +380,6 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   [self updateSelectionWithPoint:touchPoint];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
   [super touchesMoved:touches withEvent:event];
   
@@ -420,14 +389,9 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   [self updateSelectionWithPoint:touchPoint];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Public Methods
+#pragma mark - Public
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didLoadThumbnail: (UIImage *)image
                  atIndex: (NSInteger)photoIndex {
   for (UIImageView* thumbView in _visiblePhotoViews) {
@@ -443,8 +407,6 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)reloadData {
   NIDASSERT(nil != _dataSource);
 
@@ -452,9 +414,6 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   for (UIView* photoView in _visiblePhotoViews) {
     [photoView removeFromSuperview];
   }
-
-  NI_RELEASE_SAFELY(_visiblePhotoViews);
-  NI_RELEASE_SAFELY(_recycledPhotoViews);
 
   // If there is no data source then we can't do anything particularly interesting.
   if (nil == _dataSource) {
@@ -474,8 +433,6 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   [self updateVisiblePhotos];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setSelectedPhotoIndex:(NSInteger)photoIndex animated:(BOOL)animated {
   if (_selectedPhotoIndex != photoIndex) {
     // Don't animate the selection if it was previously invalid.
@@ -501,11 +458,8 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setSelectedPhotoIndex:(NSInteger)photoIndex {
   [self setSelectedPhotoIndex:photoIndex animated:NO];
 }
-
 
 @end

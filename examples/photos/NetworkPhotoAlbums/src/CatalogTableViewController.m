@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 Jeff Verkoeyen
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,23 +18,12 @@
 
 #import "FacebookPhotoAlbumViewController.h"
 #import "DribbblePhotoAlbumViewController.h"
+#import "AFNetworking.h"
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation CatalogTableViewController
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_model);
-  
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewStyle)style {
   if ((self = [super initWithStyle:style])) {
     self.title = NSLocalizedString(@"Photo Album Catalog", @"");
@@ -91,16 +80,12 @@
   return self;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidLoad {
   [super viewDidLoad];
 
   self.tableView.dataSource = _model;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
 
@@ -112,20 +97,13 @@
   navBar.translucent = NO;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
   return NIIsSupportedOrientation(toInterfaceOrientation);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark NITableViewModelDelegate
+#pragma mark - NITableViewModelDelegate
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UITableViewCell *)tableViewModel: (NITableViewModel *)tableViewModel
                    cellForTableView: (UITableView *)tableView
                         atIndexPath: (NSIndexPath *)indexPath
@@ -133,9 +111,8 @@
   UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"row"];
 
   if (nil == cell) {
-    cell = [[[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault
-                                   reuseIdentifier: @"row"]
-            autorelease];
+    cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault
+                                   reuseIdentifier: @"row"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   }
 
@@ -144,25 +121,19 @@
   return cell;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark UITableViewDelegate
+#pragma mark - UITableViewDelegate
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   id object = [_model objectAtIndexPath:indexPath];
 
   Class vcClass = [object objectForKey:@"class"];
   id initWith = [object objectForKey:@"initWith"];
   NSString* title = [object objectForKey:@"title"];
-  UIViewController* vc = [[[vcClass alloc] initWith:initWith] autorelease];
+  UIViewController* vc = [[vcClass alloc] initWith:initWith];
   vc.title = title;
 
   [self.navigationController pushViewController:vc animated:YES];
 }
-
 
 @end

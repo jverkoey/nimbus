@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,26 +18,22 @@
 
 #import "NIInMemoryCache.h"
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 static NIImageMemoryCache* sNimbusGlobalMemoryCache = nil;
 static NSOperationQueue* sNimbusGlobalOperationQueue = nil;
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation Nimbus
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)setImageMemoryCache:(NIImageMemoryCache *)imageMemoryCache {
   if (sNimbusGlobalMemoryCache != imageMemoryCache) {
-    [sNimbusGlobalMemoryCache release];
-    sNimbusGlobalMemoryCache = [imageMemoryCache retain];
+    sNimbusGlobalMemoryCache = nil;
+    sNimbusGlobalMemoryCache = imageMemoryCache;
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NIImageMemoryCache *)imageMemoryCache {
   if (nil == sNimbusGlobalMemoryCache) {
     sNimbusGlobalMemoryCache = [[NIImageMemoryCache alloc] init];
@@ -45,23 +41,18 @@ static NSOperationQueue* sNimbusGlobalOperationQueue = nil;
   return sNimbusGlobalMemoryCache;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)setNetworkOperationQueue:(NSOperationQueue *)queue {
   if (sNimbusGlobalOperationQueue != queue) {
-    [sNimbusGlobalOperationQueue release];
-    sNimbusGlobalOperationQueue = [queue retain];
+    sNimbusGlobalOperationQueue = nil;
+    sNimbusGlobalOperationQueue = queue;
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NSOperationQueue *)networkOperationQueue {
   if (nil == sNimbusGlobalOperationQueue) {
     sNimbusGlobalOperationQueue = [[NSOperationQueue alloc] init];
   }
   return sNimbusGlobalOperationQueue;
 }
-
 
 @end

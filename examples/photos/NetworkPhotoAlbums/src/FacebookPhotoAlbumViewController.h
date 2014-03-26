@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 Jeff Verkoeyen
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -58,6 +58,6 @@
  * - 10150185938728418 Stanford 40th Annual Powwow
  * - 10150160584103418 Spring blossoms at Stanford
  */
-@property (nonatomic, readwrite, copy) NSString* facebookAlbumId;
+@property (nonatomic, copy) NSString* facebookAlbumId;
 
 @end

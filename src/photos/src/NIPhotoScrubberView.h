@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,13 +17,15 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "NIPreprocessorMacros.h" /* for weak */
+
 @protocol NIPhotoScrubberViewDataSource;
 @protocol NIPhotoScrubberViewDelegate;
 
 /**
  * A control built for quickly skimming through a collection of images.
  *
- *      @ingroup Photos-Views
+ * @ingroup NimbusPhotos
  *
  * The user interacts with the scrubber by "scrubbing" their finger along the control,
  * or more simply, touching the control and moving their finger along a single axis.
@@ -41,36 +43,17 @@
  *
  * @image html scrubber1.png "Screenshot of NIPhotoScrubberView on the iPad."
  *
- *      @see NIPhotoScrubberViewDataSource
- *      @see NIPhotoScrubberViewDelegate
+ * @see NIPhotoScrubberViewDataSource
+ * @see NIPhotoScrubberViewDelegate
  */
-@interface NIPhotoScrubberView : UIView {
-@private
-  NSMutableArray* _visiblePhotoViews;
-  NSMutableSet* _recycledPhotoViews;
-  
-  UIView* _containerView;
-  UIImageView* _selectionView;
-  
-  // State
-  NSInteger _selectedPhotoIndex;
-
-  // Cached data source values
-  NSInteger _numberOfPhotos;
-
-  // Cached display values
-  CGFloat _numberOfVisiblePhotos;
-  
-  id<NIPhotoScrubberViewDataSource> _dataSource;
-  id<NIPhotoScrubberViewDelegate> _delegate;
-}
+@interface NIPhotoScrubberView : UIView
 
 #pragma mark Data Source /** @name Data Source */
 
 /**
  * The data source for this scrubber view.
  */
-@property (nonatomic, readwrite, assign) id<NIPhotoScrubberViewDataSource> dataSource;
+@property (nonatomic, weak) id<NIPhotoScrubberViewDataSource> dataSource;
 
 /**
  * Forces the scrubber view to reload all of its data.
@@ -92,21 +75,19 @@
 - (void)didLoadThumbnail: (UIImage *)image
                  atIndex: (NSInteger)photoIndex;
 
-
 #pragma mark Delegate /** @name Delegate */
 
 /**
  * The delegate for this scrubber view.
  */
-@property (nonatomic, readwrite, assign) id<NIPhotoScrubberViewDelegate> delegate;
-
+@property (nonatomic, weak) id<NIPhotoScrubberViewDelegate> delegate;
 
 #pragma mark Accessing Selection /** @name Accessing Selection */
 
 /**
  * The selected photo index.
  */
-@property (nonatomic, readwrite, assign) NSInteger selectedPhotoIndex;
+@property (nonatomic, assign) NSInteger selectedPhotoIndex;
 
 /**
  * Set the selected photo with animation.
@@ -118,7 +99,7 @@
 /**
  * The data source for the photo scrubber.
  *
- *      @ingroup Photos-Protocols
+ * @ingroup NimbusPhotos
  *
  * <h2>Performance Considerations</h2>
  *
@@ -136,7 +117,7 @@
  * If you don't have access to thumbnails from whatever API you're using then you should consider
  * not using a scrubber.
  *
- *      @see NIPhotoScrubberView
+ * @see NIPhotoScrubberView
  */
 @protocol NIPhotoScrubberViewDataSource <NSObject>
 
@@ -165,11 +146,11 @@
 /**
  * The delegate for the photo scrubber.
  *
- *      @ingroup Photos-Protocols
+ * @ingroup NimbusPhotos
  *
  * Sends notifications of state changes.
  *
- *      @see NIPhotoScrubberView
+ * @see NIPhotoScrubberView
  */
 @protocol NIPhotoScrubberViewDelegate <NSObject>
 

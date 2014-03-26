@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,6 +20,8 @@
  * @defgroup NimbusCSS Nimbus CSS
  * @{
  *
+ * <div id="github" feature="css"></div>
+ *
  * Nimbus CSS allows you to use cascading stylesheets to theme your native iOS application.
  * Stylesheets provide a number of advantages over Interface Builder and native code.
  *
@@ -32,12 +34,6 @@
  *   the application's UI when the app state changes. A good example of this is the Rdio app
  *   when you go into offline mode and the app's online components gray out.
  * - Chameleon - modify CSS files and watch the changes affect your app in real time.
- */
-
-/**
- * NIStylesheet is the backbone of the Nimbus CSS feature.
- *
- *      @defgroup CSS-Stylesheets CSS Stylesheets
  *
  * <h2>How to Create a Stylesheet</h2>
  *
@@ -147,9 +143,31 @@ UIView {
   border: <dimension> <ignored> <color> {view.layer.borderWidth view.layer.borderColor}
   border-color: <color>       {view.layer.borderColor}
   border-width: <dimension>   {view.layer.borderWidth}
-  background-color: <color>   {view.backgroundColor}
+  background-color: <color|image_name>   {view.backgroundColor}
   border-radius: <dimension>  {view.layer.cornerRadius}
   opacity: xx.xx              {view.alpha}
+  -ios-autoresizing: [left|top|right|bottom|width|height|all|margins|dimensions]    {view.autoresizingMask}
+  visibility: [hidden|visible] {view.hidden}
+  width: [x%,xpx,auto]          {view.frameWidth}
+  height: [x%,xpx,auto]         {view.frameHeight}
+  padding: <vertical unit> <horizontal unit> {used in auto height and width calculations}
+  -mobile-hpadding: <horizontal unit>   {used in auto width}
+  -mobile-vpadding: <vertical unit>     {used in auto height}
+  max-width: [x%,xpx]           {view.frameWidth}
+  max-height: [x%,xps]          {view.frameHeight}
+  min-width: [x%,xpx]           {view.frameWidth}
+  min-height: [x%,xps]          {view.frameHeight}
+  top: [x%,xpx]                 {view.frameMinY}
+  left: [x%,xpx]                {view.frameMinX}
+  bottom: [x%,xpx]              {view.frameMaxY}
+  right: [x%,xpx]               {view.frameMaxX}
+  -mobile-halign: [left|right|center]   {view.frameX}
+  -mobile-valign: [top|bottom|middle]   {view.frameY}
+  -mobile-relative: [#id|.prev|.next|.first|.last]  {controls the position of the view relative to another view}
+  margin-top: [x%,xpx,auto]     {distance from view.frameMinY to relative.frameMaxY - % is relative to size of relative element, px is absolute, auto aligns the vertical centers}
+ margin-bottom: [x%,xpx,auto]     {distance from view.frameMaxY to relative.frameMinY - % is relative to size of relative element, px is absolute, auto aligns the vertical centers}
+ margin-left: [x%,xpx,auto]     {distance from view.frameMinX to relative.frameMaxX - % is relative to size of relative element, px is absolute, auto aligns the horizontal centers}
+ margin-right: [x%,xpx,auto]     {distance from view.frameMaxX to relative.frameMinX - % is relative to size of relative element, px is absolute, auto aligns the horizontal centers}
 }
 
 UILabel {
@@ -157,9 +175,9 @@ UILabel {
 
   font: <font-size> <font-name>   {label.font}
   font-size: <font-size>          {label.font}
-  font-name: <font-name>          {label.font}
+  font-family: <font-name>        {label.font}
 
-  Can not be used in conjunction with font/font-name properties. Use the italic/bold font
+  Can not be used in conjunction with font/font-family properties. Use the italic/bold font
   name instead.
   font-style: [italic|normal]     {label.font}
   font-weight: [bold|normal]      {label.font}
@@ -168,16 +186,29 @@ UILabel {
 
   text-shadow: <color> <x-offset> <y-offset> {label.shadowColor label.shadowOffset}
 
+  -ios-highlighted-color: <color>      {label.highlightedTextColor}
   -ios-line-break-mode: [wrap|character-wrap|clip|head-truncate|tail-truncate|middle-truncate] [label.lineBreakMode]
   -ios-number-of-lines: xx             {label.numberOfLines}
   -ios-minimum-font-size: <font-size>  {label.minimumFontSize}
   -ios-adjusts-font-size: [true|false] {label.adjustsFontSizeToFitWidth}
   -ios-baseline-adjustment: [align-baselines|align-centers|none] {label.baselineAdjustment}
+  -mobile-text-key: "Key Name"          {attaches a localized string (or the key name if not found) to this label}
 }
 
 UIButton {
+  -mobile-title-insets
+  -mobile-content-insets
+  -mobile-image-insets
+  font: <font-size> <font-name>   {button.font}
+ 
+  Buttons also support pseudo selectors: :selected,:highlighted,:disabled with the following rules:
   color: <color>        {[button titleColorForState:]}
   text-shadow: <color>  {[button titleShadowColorForState:]}
+  -mobile-image: url(image_name)
+  -mobile-text-key: "Key Name"          {attaches a localized string (or the key name if not found) to this button}
+  background-image: url(image_name)
+  -mobile-background-stretch: top left bottom right
+  -ios-button-adjust
 }
 
 UINavigationBar {

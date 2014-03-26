@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,9 +15,5 @@
 //
 
 @interface NIOperation()
-@property (readwrite, retain) NSError* lastError;
-@end
-
-@interface NINetworkRequestOperation()
-@property (readwrite, retain) NSData* data;
+@property (strong) NSError* lastError;
 @end

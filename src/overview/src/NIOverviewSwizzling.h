@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@
 /**
  * Returns the true status bar height when the Overview is active.
  *
- *      @ingroup Overview-Tools
+ * @ingroup Overview-Tools
  *
  * The Overview swizzles the methods used by NIStatusBarHeight.
  */
@@ -29,6 +29,6 @@ CGFloat NIOverviewStatusBarHeight();
 /**
  * Swizzles all the necessary methods to get the Overview working.
  *
- *      @ingroup Overview-Tools
+ * @ingroup Overview-Tools
  */
 void NIOverviewSwizzleMethods();

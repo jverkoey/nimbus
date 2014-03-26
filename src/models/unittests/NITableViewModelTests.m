@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@
 
 #import "NimbusCore.h"
 #import "NimbusModels.h"
+#import "NITableViewModel+Private.h"
 
 @interface NITableViewModelTests : SenTestCase {
 }
@@ -27,44 +28,39 @@
 @end
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NITableViewModelTests
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testEmptyTableViewModel {
-  NITableViewModel* model = [[[NITableViewModel alloc] init] autorelease];
+  NITableViewModel* model = [[NITableViewModel alloc] init];
 
   STAssertEquals([model tableView:nil numberOfRowsInSection:0], 0, @"The model should be empty.");
-  STAssertEquals([model numberOfSectionsInTableView:nil], 1, @"There should always be at least 1 section.");
+  STAssertEquals([model numberOfSectionsInTableView:nil], 0, @"There should not be any sections.");
+  STAssertEquals(model.sections.count, 0U, @"Should have zero sections.");
   
-  model = [[[NITableViewModel alloc] initWithListArray:nil delegate:nil] autorelease];
-  
-  STAssertEquals([model tableView:nil numberOfRowsInSection:0], 0, @"The model should be empty.");
-  STAssertEquals([model numberOfSectionsInTableView:nil], 1, @"There should always be at least 1 section.");
-  
-  model = [[[NITableViewModel alloc] initWithSectionedArray:nil delegate:nil] autorelease];
+  model = [[NITableViewModel alloc] initWithListArray:nil delegate:nil];
   
   STAssertEquals([model tableView:nil numberOfRowsInSection:0], 0, @"The model should be empty.");
-  STAssertEquals([model numberOfSectionsInTableView:nil], 1, @"There should always be at least 1 section.");
+  STAssertEquals([model numberOfSectionsInTableView:nil], 0, @"There should not be any sections.");
   
-  model = [[[NITableViewModel alloc] initWithListArray:[NSArray array] delegate:nil] autorelease];
-  
-  STAssertEquals([model tableView:nil numberOfRowsInSection:0], 0, @"The model should be empty.");
-  STAssertEquals([model numberOfSectionsInTableView:nil], 1, @"There should always be at least 1 section.");
-  
-  model = [[[NITableViewModel alloc] initWithSectionedArray:[NSArray array] delegate:nil] autorelease];
+  model = [[NITableViewModel alloc] initWithSectionedArray:nil delegate:nil];
   
   STAssertEquals([model tableView:nil numberOfRowsInSection:0], 0, @"The model should be empty.");
-  STAssertEquals([model numberOfSectionsInTableView:nil], 1, @"There should always be at least 1 section.");
+  STAssertEquals([model numberOfSectionsInTableView:nil], 0, @"There should not be any sections.");
+  
+  model = [[NITableViewModel alloc] initWithListArray:[NSArray array] delegate:nil];
+  
+  STAssertEquals([model tableView:nil numberOfRowsInSection:0], 0, @"The model should be empty.");
+  STAssertEquals([model numberOfSectionsInTableView:nil], 1, @"There should be one empty section.");
+  
+  model = [[NITableViewModel alloc] initWithSectionedArray:[NSArray array] delegate:nil];
+  
+  STAssertEquals([model tableView:nil numberOfRowsInSection:0], 0, @"The model should be empty.");
+  STAssertEquals([model numberOfSectionsInTableView:nil], 0, @"There should not be any sections.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testInvalidAccess {
-  NITableViewModel* model = [[[NITableViewModel alloc] init] autorelease];
+  NITableViewModel* model = [[NITableViewModel alloc] init];
 
   STAssertNil([model tableView:nil titleForHeaderInSection:0], @"There should not be a header title.");
   STAssertNil([model tableView:nil titleForFooterInSection:0], @"There should not be a footer title.");
@@ -76,10 +72,8 @@
   STAssertNil([model tableView:nil titleForFooterInSection:-1], @"There should not be a footer title.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testEditing {
-  NITableViewModel* model = [[[NITableViewModel alloc] init] autorelease];
+  NITableViewModel* model = [[NITableViewModel alloc] init];
 
   STAssertFalse([model tableView:nil canEditRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]],
                 @"Should not be able to edit anything.");
@@ -87,8 +81,6 @@
                 @"Should not be able to edit anything.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testListTableViewModel {
   NSArray* contents = [NSArray arrayWithObjects:
                        @"This is a string",
@@ -96,15 +88,13 @@
                        [NSDictionary dictionaryWithObject:@"Row 2" forKey:@"title"],
                        [NSDictionary dictionaryWithObject:@"Row 3" forKey:@"title"],
                        nil];
-  NITableViewModel* model = [[[NITableViewModel alloc] initWithListArray:contents delegate:nil] autorelease];
+  NITableViewModel* model = [[NITableViewModel alloc] initWithListArray:contents delegate:nil];
 
   STAssertEquals([model tableView:nil numberOfRowsInSection:0], 4, @"The model should have 4 rows.");
   STAssertEquals([model numberOfSectionsInTableView:nil], 1, @"There should be 1 section.");
   STAssertNil([model tableView:nil titleForHeaderInSection:0], @"There should be no section title.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testListTableViewModel_objectAtIndexPath {
   id object1 = [NSDictionary dictionaryWithObject:@"Row 1" forKey:@"title"];
   id object2 = [NSArray array];
@@ -115,7 +105,7 @@
                        object2,
                        object3,
                        nil];
-  NITableViewModel* model = [[[NITableViewModel alloc] initWithListArray:contents delegate:nil] autorelease];
+  NITableViewModel* model = [[NITableViewModel alloc] initWithListArray:contents delegate:nil];
   
   STAssertEquals([model objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]], @"This is a string", @"The first object should be the string.");
   STAssertEquals([model objectAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]], object1, @"Object mismatch.");
@@ -130,8 +120,28 @@
   NIDebugAssertionsShouldBreak = YES;
 }
 
+- (void)testListTableViewModel_indexPathOfObject {
+  id object1 = [NSDictionary dictionaryWithObject:@"Row 1" forKey:@"title"];
+  id object2 = [NSArray array];
+  id object3 = [NSSet set];
+  NSArray* contents = [NSArray arrayWithObjects:
+                       object1,
+                       object2,
+                       object3,
+                       nil];
+  NITableViewModel* model = [[NITableViewModel alloc] initWithListArray:contents delegate:nil];
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+  STAssertEqualObjects([model indexPathForObject:object1], [NSIndexPath indexPathForRow:0 inSection:0], @"Object not found at expected index path.");
+  STAssertEqualObjects([model indexPathForObject:object2], [NSIndexPath indexPathForRow:1 inSection:0], @"Object not found at expected index path.");
+  STAssertEqualObjects([model indexPathForObject:object3], [NSIndexPath indexPathForRow:2 inSection:0], @"Object not found at expected index path.");
+
+  STAssertNil([model indexPathForObject:nil], @"Should be nil.");
+
+  NIDebugAssertionsShouldBreak = NO;
+  STAssertNil([model indexPathForObject:@"Random string"], @"Should be nil.");
+  NIDebugAssertionsShouldBreak = YES;
+}
+
 - (void)testSectionedTableViewModel {
   NSArray* contents = [NSArray arrayWithObjects:
                        @"Section 1",
@@ -145,7 +155,7 @@
                        @"Section 4",
                        @"Section 5",
                        nil];
-  NITableViewModel* model = [[[NITableViewModel alloc] initWithSectionedArray:contents delegate:nil] autorelease];
+  NITableViewModel* model = [[NITableViewModel alloc] initWithSectionedArray:contents delegate:nil];
   
   STAssertEquals([model tableView:nil numberOfRowsInSection:0], 3, @"The first section should have 3 rows.");
   STAssertEquals([model tableView:nil numberOfRowsInSection:1], 2, @"The second section should have 2 rows.");
@@ -153,8 +163,6 @@
   STAssertEquals([model numberOfSectionsInTableView:nil], 5, @"There should be 5 sections.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testSectionedTableViewModelWithFooters {
   NSArray* contents = [NSArray arrayWithObjects:
                        @"Section 1",
@@ -175,7 +183,7 @@
                        @"Section 6",
                        @"Section 7",
                        nil];
-  NITableViewModel* model = [[[NITableViewModel alloc] initWithSectionedArray:contents delegate:nil] autorelease];
+  NITableViewModel* model = [[NITableViewModel alloc] initWithSectionedArray:contents delegate:nil];
   
   STAssertEquals([model tableView:nil numberOfRowsInSection:0], 3, @"The first section should have 3 rows.");
   STAssertEquals([model tableView:nil numberOfRowsInSection:1], 2, @"The second section should have 2 rows.");
@@ -189,8 +197,6 @@
   STAssertNil([model tableView:nil titleForFooterInSection:6], @"There should not be a title.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testDynamicSectionedIndex {
   NSArray* contents = [NSArray arrayWithObjects:
                        @"A",
@@ -209,7 +215,7 @@
                        [NSDictionary dictionaryWithObject:@"Row 3" forKey:@"title"],
                        [NITableViewModelFooter footerWithTitle:@"Footer 5"],
                        nil];
-  NITableViewModel* model = [[[NITableViewModel alloc] initWithSectionedArray:contents delegate:nil] autorelease];
+  NITableViewModel* model = [[NITableViewModel alloc] initWithSectionedArray:contents delegate:nil];
   [model setSectionIndexType:NITableViewModelSectionIndexDynamic showsSearch:YES showsSummary:YES];
 
   STAssertEquals(model.sectionIndexType, NITableViewModelSectionIndexDynamic, @"Section index type should have been set.");

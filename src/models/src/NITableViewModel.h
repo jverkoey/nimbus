@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,6 +16,8 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+
+#import "NIPreprocessorMacros.h" /* for weak */
 
 #if NS_BLOCKS_AVAILABLE
 typedef UITableViewCell* (^NITableViewModelCellForIndexPathBlock)(UITableView* tableView, NSIndexPath* indexPath, id object);
@@ -44,7 +46,7 @@ typedef enum {
  * This base class is non-mutable, much like an NSArray. You must initialize this model with
  * the contents when you create it.
  *
- *      @ingroup TableViewModels
+ * @ingroup TableViewModels
  */
 @interface NITableViewModel : NSObject <UITableViewDataSource>
 
@@ -60,6 +62,9 @@ typedef enum {
 
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath;
 
+// This method is not appropriate for performance critical codepaths.
+- (NSIndexPath *)indexPathForObject:(id)object;
+
 #pragma mark Configuration
 
 // Immediately compiles the section index.
@@ -71,18 +76,20 @@ typedef enum {
 
 #pragma mark Creating Table View Cells
 
-@property (nonatomic, readwrite, assign) id<NITableViewModelDelegate> delegate;
+@property (nonatomic, weak) id<NITableViewModelDelegate> delegate;
 
 #if NS_BLOCKS_AVAILABLE
 // If both the delegate and this block are provided, cells returned by this block will be used
 // and the delegate will not be called.
-@property (nonatomic, readwrite, copy) NITableViewModelCellForIndexPathBlock createCellBlock;
+@property (nonatomic, copy) NITableViewModelCellForIndexPathBlock createCellBlock;
 #endif // #if NS_BLOCKS_AVAILABLE
 
 @end
 
 /**
  * A protocol for NITableViewModel to fetch rows to be displayed for the table view.
+ *
+ * @ingroup TableViewModels
  */
 @protocol NITableViewModelDelegate <NSObject>
 
@@ -116,7 +123,7 @@ typedef enum {
 + (id)footerWithTitle:(NSString *)title;
 - (id)initWithTitle:(NSString *)title;
 
-@property (nonatomic, readwrite, copy) NSString* title;
+@property (nonatomic, copy) NSString* title;
 
 @end
 
@@ -127,7 +134,7 @@ typedef enum {
  *
  * This method can be used to create an empty model.
  *
- *      @fn NITableViewModel::initWithDelegate:
+ * @fn NITableViewModel::initWithDelegate:
  */
 
 /**
@@ -148,7 +155,7 @@ typedef enum {
  * [[NIStaticTableViewModel alloc] initWithListArray:contents delegate:self];
  * @endcode
  *
- *      @fn NITableViewModel::initWithListArray:delegate:
+ * @fn NITableViewModel::initWithListArray:delegate:
  */
 
 /**
@@ -175,7 +182,7 @@ typedef enum {
  * [[NIStaticTableViewModel alloc] initWithSectionedArray:contents delegate:self];
  * @endcode
  *
- *      @fn NITableViewModel::initWithSectionedArray:delegate:
+ * @fn NITableViewModel::initWithSectionedArray:delegate:
  */
 
 
@@ -187,9 +194,16 @@ typedef enum {
  * If no object exists at the given index path (an invalid index path, for example) then nil
  * will be returned.
  *
- *      @fn NITableViewModel::objectAtIndexPath:
+ * @fn NITableViewModel::objectAtIndexPath:
  */
 
+/**
+ * Returns the index path of the given object within the model.
+ *
+ * If the model does not contain the object then nil will be returned.
+ *
+ * @fn NITableViewModel::indexPathForObject:
+ */
 
 /** @name Configuration */
 
@@ -198,10 +212,10 @@ typedef enum {
  *
  * Calling this method will compile the section index depending on the index type chosen.
  *
- *      @param sectionIndexType The type of section index to display.
- *      @param showsSearch      Whether or not to show the search icon at the top of the index.
- *      @param showsSummary     Whether or not to show the summary icon at the bottom of the index.
- *      @fn NITableViewModel::setSectionIndexType:showsSearch:showsSummary:
+ * @param sectionIndexType The type of section index to display.
+ * @param showsSearch      Whether or not to show the search icon at the top of the index.
+ * @param showsSummary     Whether or not to show the summary icon at the bottom of the index.
+ * @fn NITableViewModel::setSectionIndexType:showsSearch:showsSummary:
  */
 
 /**
@@ -211,7 +225,7 @@ typedef enum {
  *
  * NITableViewModelSectionIndexNone by default.
  *
- *      @fn NITableViewModel::sectionIndexType
+ * @fn NITableViewModel::sectionIndexType
  */
 
 /**
@@ -219,7 +233,7 @@ typedef enum {
  *
  * NO by default.
  *
- *      @fn NITableViewModel::sectionIndexShowsSearch
+ * @fn NITableViewModel::sectionIndexShowsSearch
  */
 
 /**
@@ -227,7 +241,7 @@ typedef enum {
  *
  * NO by default.
  *
- *      @fn NITableViewModel::sectionIndexShowsSummary
+ * @fn NITableViewModel::sectionIndexShowsSummary
  */
 
 
@@ -236,7 +250,7 @@ typedef enum {
 /**
  * A delegate used to fetch table view cells for the data source.
  *
- *      @fn NITableViewModel::delegate
+ * @fn NITableViewModel::delegate
  */
 
 #if NS_BLOCKS_AVAILABLE
@@ -244,7 +258,7 @@ typedef enum {
 /**
  * A block used to create a UITableViewCell for a given object.
  *
- *      @fn NITableViewModel::createCellBlock
+ * @fn NITableViewModel::createCellBlock
  */
 
 #endif // #if NS_BLOCKS_AVAILABLE

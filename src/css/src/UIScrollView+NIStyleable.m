@@ -1,5 +1,5 @@
 //
-// Copyright 2012 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,26 +20,26 @@
 #import "NICSSRuleset.h"
 #import "NimbusCore.h"
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 NI_FIX_CATEGORY_BUG(UIScrollView_NIStyleable)
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation UIScrollView (NIStyleable)
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applyScrollViewStyleWithRuleSet:(NICSSRuleset *)ruleSet {
+- (void)applyScrollViewStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM*) dom {
   if ([ruleSet hasScrollViewIndicatorStyle]) { self.indicatorStyle = ruleSet.scrollViewIndicatorStyle; }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet {
-  [self applyViewStyleWithRuleSet:ruleSet];
-  [self applyScrollViewStyleWithRuleSet:ruleSet];
+    [self applyViewStyleWithRuleSet:ruleSet inDOM:nil];
 }
 
+- (void)applyViewStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
+  [self applyViewStyleWithRuleSet:ruleSet inDOM:dom];
+  [self applyScrollViewStyleWithRuleSet:ruleSet inDOM: dom];
+}
 
 @end

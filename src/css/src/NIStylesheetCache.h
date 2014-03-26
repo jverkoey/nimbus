@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@
 /**
  * A simple in-memory cache for stylesheets.
  *
- *      @ingroup CSS-Stylesheets
+ * @ingroup NimbusCSS
  *
  * It is recommended that you use this object to store stylesheets in a centralized location.
  * Ideally you would have one stylesheet cache throughout the lifetime of your application.
@@ -62,20 +62,20 @@ NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
 /**
  * The path prefix that will be used to load stylesheets.
  *
- *      @fn NIStylesheetCache::pathPrefix
+ * @fn NIStylesheetCache::pathPrefix
  */
 
 /**
  * Initializes a newly allocated stylesheet cache with a given path prefix.
  *
- *      @fn NIStylesheetCache::initWithPathPrefix:
+ * @fn NIStylesheetCache::initWithPathPrefix:
  */
 
 /**
  * Fetches a stylesheet from the in-memory cache if it exists or loads the stylesheet from disk if
  * loadFromDisk is YES.
  *
- *      @fn NIStylesheetCache::stylesheetWithPath:loadFromDisk:
+ * @fn NIStylesheetCache::stylesheetWithPath:loadFromDisk:
  */
 
 /**
@@ -83,5 +83,5 @@ NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
  *
  * Short form for calling [cache stylesheetWithPath:path loadFromDisk:YES]
  *
- *      @fn NIStylesheetCache::stylesheetWithPath:
+ * @fn NIStylesheetCache::stylesheetWithPath:
  */

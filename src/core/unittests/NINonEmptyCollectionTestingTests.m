@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Forked from Three20 June 9, 2011 - Copyright 2009-2011 Facebook
 //
@@ -23,8 +23,7 @@
 #import "NINonEmptyCollectionTesting.h"
 
 
-#pragma mark -
-#pragma mark Unit Test Documentation
+#pragma mark - Unit Test Documentation
 
 /**
  * @fn NIIsArrayWithObjects(id)
@@ -60,19 +59,12 @@
 @end
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NINonEmptyCollectionTestingTests
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Non-Empty Collection Testing
+#pragma mark - Non-Empty Collection Testing
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testIsArrayWithObjects {
   STAssertTrue(!NIIsArrayWithObjects(nil), @"nil should not be an array with items.");
 
@@ -85,13 +77,8 @@
 
   [array addObject:dictionary];
   STAssertTrue(NIIsArrayWithObjects(array), @"This array should have items.");
-
-  [array release];
-  [dictionary release];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testIsSetWithObjects {
   STAssertTrue(!NIIsSetWithObjects(nil), @"nil should not be a set with items.");
 
@@ -104,13 +91,8 @@
 
   [set addObject:dictionary];
   STAssertTrue(NIIsSetWithObjects(set), @"This set should have items.");
-
-  [set release];
-  [dictionary release];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testIsStringWithAnyText {
   STAssertTrue(!NIIsStringWithAnyText(nil), @"nil should not be a string with any text.");
 
@@ -123,10 +105,6 @@
 
   STAssertTrue(!NIIsStringWithAnyText(@""), @"This should be an empty string.");
   STAssertTrue(NIIsStringWithAnyText(@"three20"), @"This should be a string with text.");
-
-  [string release];
-  [dictionary release];
 }
-
 
 @end

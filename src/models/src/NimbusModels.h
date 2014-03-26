@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@
 /**
  * @defgroup NimbusModels Nimbus Models
  * @{
+ *
+ * <div id="github" feature="models"></div>
  *
  * A model is an implementation of a data source protocol.
  *
@@ -63,9 +65,9 @@
  * @code
 NSArray* tableContents =
  [NSArray arrayWithObjects:
-  [NSDictionary dictionaryWithObject:@"Row 1" forKey:@"title"],
-  [NSDictionary dictionaryWithObject:@"Row 2" forKey:@"title"],
-  [NSDictionary dictionaryWithObject:@"Row 3" forKey:@"title"],
+  [NITitleCellObject objectWithTitle:@"Row 1"],
+  [NITitleCellObject objectWithTitle:@"Row 2"],
+  [NITitleCellObject objectWithTitle:@"Row 3"],
   nil];
 
 _model = [[NITableViewModel alloc] initWithListArray:tableContents
@@ -77,12 +79,12 @@ _model = [[NITableViewModel alloc] initWithListArray:tableContents
  * @code
 NSArray* tableContents =
  [NSArray arrayWithObjects:
-  @"Section Title"
-  [NSDictionary dictionaryWithObject:@"Row 1" forKey:@"title"],
-  [NSDictionary dictionaryWithObject:@"Row 2" forKey:@"title"],
+  @"Section Title",
+  [NITitleCellObject objectWithTitle:@"Row 1"],
+  [NITitleCellObject objectWithTitle:@"Row 2"],
 
-  @"Section Title"
-  [NSDictionary dictionaryWithObject:@"Row 3" forKey:@"title"],
+  @"Section Title",
+  [NITitleCellObject objectWithTitle:@"Row 3"],
   nil];
 
 _model = [[NITableViewModel alloc] initWithSectionedArray:tableContents
@@ -346,6 +348,15 @@ _model.delegate = (id)[NICellFactory class];
  *
  */
 
+#pragma mark * Table Cell Backgrounds
+
+/**
+ * @defgroup TableCellBackgrounds Table Cell Backgrounds
+ *
+ * NICellBackground is a tool for creating backgrounds that can be used to customize cells in
+ * UITableViews.
+ */
+
 #pragma mark * Model Tools
 
 /**
@@ -353,7 +364,7 @@ _model.delegate = (id)[NICellFactory class];
  *
  * Model tools are objects that abstract common functionality used in view controllers.
  *
- * <h1>Radio Groups</h1>
+ * <h2>Radio Groups</h2>
  *
  * One commonly-required feature for table views is radio button functionality. This is useful when
  * you need the user to make a choice from a set of options. Implementing this is trivial with the
@@ -374,7 +385,7 @@ typedef enum {
 } AppSort;
 
 // You will create and retain a radio group object for the lifecycle of your controller.
-@property (nonatomic, readwrite, retain) NIRadioGroup* radioGroup;
+@property (nonatomic, retain) NIRadioGroup* radioGroup;
 
 - (void)refreshModel {
   id manual = [NITitleCellObject cellWithTitle:@"Manually"];
@@ -413,7 +424,7 @@ typedef enum {
 }
 @endcode
  *
- * <h1>Table View Actions</h1>
+ * <h2>Table View Actions</h2>
  *
  * Separating actions from presentation is an important aspect in simplifying table view cell
  * design. It can be tempting to add delegate and selector properties to cells, but this ends up
@@ -429,7 +440,7 @@ typedef enum {
  *
 @code
 // You will create and retain an actions object for the lifecycle of your controller.
-@property (nonatomic, readwrite, retain) NITableViewActions* actions;
+@property (nonatomic, retain) NITableViewActions* actions;
 
 - (void)refreshModel {
   id about = [NITitleCellObject cellWithTitle:@"About"];
@@ -465,11 +476,13 @@ typedef enum {
 #import <UIKit/UIKit.h>
 
 #import "NITableViewModel.h"
+#import "NIMutableTableViewModel.h"
+#import "NICellBackgrounds.h"
 #import "NICellCatalog.h"
 #import "NICellFactory.h"
 #import "NIFormCellCatalog.h"
 #import "NIRadioGroup.h"
-#import "NITableViewActions.h"
 #import "NIRadioGroupController.h"
+#import "NITableViewActions.h"
 
 /**@}*/

@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,29 +16,28 @@
 
 #import <UIKit/UIKit.h>
 
+#import "NIPreprocessorMacros.h" /* for weak */
+
 @protocol NIOverviewGraphViewDataSource;
 
 /**
  * A graph view.
  *
- *      @ingroup Overview-Pages
+ * @ingroup Overview-Pages
  */
-@interface NIOverviewGraphView : UIView {
-@private
-  id<NIOverviewGraphViewDataSource> _dataSource;
-}
+@interface NIOverviewGraphView : UIView
 
 /**
  * The data source for this graph view.
  */
-@property (nonatomic, readwrite, assign) id<NIOverviewGraphViewDataSource> dataSource;
+@property (nonatomic, weak) id<NIOverviewGraphViewDataSource> dataSource;
 
 @end
 
 /**
  * The data source for NIOverviewGraphView.
  *
- *      @ingroup Overview-Pages
+ * @ingroup Overview-Pages
  */
 @protocol NIOverviewGraphViewDataSource <NSObject>
 

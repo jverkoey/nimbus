@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -38,9 +38,7 @@ typedef enum {
 } NINimbusErrorDomainCode;
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 /**@}*/// End of Errors ///////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
  * <h3>Example</h3>
@@ -52,5 +50,5 @@ typedef enum {
  *                                                               forKey: NIImageErrorKey]];
  * @endcode
  *
- *      @enum NINimbusErrorDomainCode
+ * @enum NINimbusErrorDomainCode
  */

@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,22 +17,24 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#if defined __cplusplus
+extern "C" {
+#endif
+
 /**
  * For common system metrics.
  *
- * If you ever need to work with system metrics in any way it can be a pain in the ass to try
- * to figure out what the exact metrics are. Figuring out how long it takes the status bar
- * to animate is not something you should be spending your time on. The metrics in this file
- * are provided as a means of unifying a number of system metrics for use in your applications.
- *
+ * If you work with system metrics in any way it can be a pain in the ass to figure out what the
+ * exact metrics are. Figuring out how long it takes the status bar to animate is not something you
+ * should be spending your time on. The metrics in this file are provided as a means of unifying a
+ * number of system metrics for use in your applications.
  *
  * <h2>What Qualifies as a Common Metric</h2>
  *
- * Common metrics are related to system components, such as the dimensions of a toolbar in
+ * Common metrics are system components, such as the dimensions of a toolbar in
  * a particular orientation or the duration of a standard animation. This is
  * not the place to put feature-specific metrics, such as the height of a photo scrubber
  * view.
- *
  *
  * <h2>Examples</h2>
  *
@@ -43,10 +45,9 @@
  * is slightly shorter to accomodate the smaller height of the screen.
  *
  * @code
- * - (void)willAnimateRotationToInterfaceOrientation: (UIInterfaceOrientation)toInterfaceOrientation
- *                                          duration: (NSTimeInterval)duration {
- *   [super willAnimateRotationToInterfaceOrientation: toInterfaceOrientation
- *                                           duration: duration];
+ * - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+ *                                          duration:(NSTimeInterval)duration {
+ *   [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
  * 
  *   CGRect toolbarFrame = self.toolbar.frame;
  *   toolbarFrame.size.height = NIToolbarHeightForOrientation(toInterfaceOrientation);
@@ -55,9 +56,9 @@
  * }
  * @endcode
  *
- *      @ingroup NimbusCore
- *      @defgroup Common-Metrics Common Metrics
- *      @{
+ * @ingroup NimbusCore
+ * @defgroup Common-Metrics Common Metrics
+ * @{
  */
 
 #ifndef UIViewAutoresizingFlexibleMargins
@@ -71,6 +72,23 @@
 #define UIViewAutoresizingFlexibleDimensions (UIViewAutoresizingFlexibleWidth \
                                               | UIViewAutoresizingFlexibleHeight)
 #endif
+
+#ifndef UIViewAutoresizingNavigationBar
+#define UIViewAutoresizingNavigationBar (UIViewAutoresizingFlexibleWidth \
+                                         | UIViewAutoresizingFlexibleBottomMargin)
+#endif
+
+#ifndef UIViewAutoresizingToolbar
+#define UIViewAutoresizingToolbar (UIViewAutoresizingFlexibleWidth \
+                                   | UIViewAutoresizingFlexibleTopMargin)
+#endif
+
+/**
+ * The recommended number of points for a minimum tappable area.
+ *
+ * Value: 44
+ */
+CGFloat NIMinimumTapDimension(void);
 
 /**
  * Fetch the height of a toolbar in a given orientation.
@@ -134,7 +152,7 @@ CGFloat NIStatusBarHeight(void);
  * Value: 0.4 seconds if the device is being rotated 90 degrees.
  *        0.8 seconds if the device is being rotated 180 degrees.
  *
- *      @param isFlippingUpsideDown YES if the device is being flipped upside down.
+ * @param isFlippingUpsideDown YES if the device is being flipped upside down.
  */
 NSTimeInterval NIDeviceRotationDuration(BOOL isFlippingUpsideDown);
 
@@ -145,6 +163,8 @@ NSTimeInterval NIDeviceRotationDuration(BOOL isFlippingUpsideDown);
  */
 UIEdgeInsets NICellContentPadding(void);
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+#if defined __cplusplus
+};
+#endif
+
 /**@}*/// End of Common Metrics ///////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////

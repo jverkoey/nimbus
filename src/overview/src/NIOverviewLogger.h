@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,10 +15,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-#import "NimbusCore.h"
-
+extern NSString* const NIOverviewLoggerDidAddDeviceLog;
 extern NSString* const NIOverviewLoggerDidAddConsoleLog;
+extern NSString* const NIOverviewLoggerDidAddEventLog;
 
 @class NIOverviewDeviceLogEntry;
 @class NIOverviewConsoleLogEntry;
@@ -27,20 +28,14 @@ extern NSString* const NIOverviewLoggerDidAddConsoleLog;
 /**
  * The Overview logger.
  *
- *      @ingroup Overview-Logger
+ * @ingroup Overview-Logger
  *
  * This object stores all of the historical information used to draw the graphs in the
  * Overview memory and disk pages, as well as the console log page.
  *
  * The primary log should be accessed by calling [NIOverview @link NIOverview::logger logger@endlink].
  */
-@interface NIOverviewLogger : NSObject {
-@private
-  NILinkedList* _deviceLogs;
-  NILinkedList* _consoleLogs;
-  NILinkedList* _eventLogs;
-  NSTimeInterval _oldestLogAge;
-}
+@interface NIOverviewLogger : NSObject
 
 #pragma mark Configuration Settings /** @name Configuration Settings */
 
@@ -51,7 +46,10 @@ extern NSString* const NIOverviewLoggerDidAddConsoleLog;
  *
  * By default this is 1 minute.
  */
-@property (nonatomic, readwrite, assign) NSTimeInterval oldestLogAge;
+@property (nonatomic, assign) NSTimeInterval oldestLogAge;
+
+
++ (NIOverviewLogger*)sharedLogger;
 
 
 #pragma mark Adding Log Entries /** @name Adding Log Entries */
@@ -85,21 +83,21 @@ extern NSString* const NIOverviewLoggerDidAddConsoleLog;
  *
  * Log entries are in increasing chronological order.
  */
-@property (nonatomic, readonly, retain) NILinkedList* deviceLogs;
+@property (nonatomic, readonly, strong) NSMutableOrderedSet* deviceLogs;
 
 /**
  * The linked list of console logs.
  *
  * Log entries are in increasing chronological order.
  */
-@property (nonatomic, readonly, retain) NILinkedList* consoleLogs;
+@property (nonatomic, readonly, strong) NSMutableOrderedSet* consoleLogs;
 
 /**
  * The linked list of events.
  *
  * Log entries are in increasing chronological order.
  */
-@property (nonatomic, readonly, retain) NILinkedList* eventLogs;
+@property (nonatomic, readonly, strong) NSMutableOrderedSet* eventLogs;
 
 @end
 
@@ -107,14 +105,11 @@ extern NSString* const NIOverviewLoggerDidAddConsoleLog;
 /**
  * The basic requirements for a log entry.
  *
- *      @ingroup Overview-Logger-Entries
+ * @ingroup Overview-Logger-Entries
  *
  * A basic log entry need only define a timestamp in order to be particularly useful.
  */
-@interface NIOverviewLogEntry : NSObject {
-@private
-  NSDate* _timestamp;
-}
+@interface NIOverviewLogEntry : NSObject
 
 #pragma mark Creating an Entry /** @name Creating an Entry */
 
@@ -129,7 +124,7 @@ extern NSString* const NIOverviewLoggerDidAddConsoleLog;
 /**
  * The timestamp for this log entry.
  */
-@property (nonatomic, readwrite, retain) NSDate* timestamp;
+@property (nonatomic, retain) NSDate* timestamp;
 
 @end
 
@@ -137,50 +132,41 @@ extern NSString* const NIOverviewLoggerDidAddConsoleLog;
 /**
  * A device log entry.
  *
- *      @ingroup Overview-Logger-Entries
+ * @ingroup Overview-Logger-Entries
  */
-@interface NIOverviewDeviceLogEntry : NIOverviewLogEntry {
-@private
-  unsigned long long _bytesOfFreeMemory;
-  unsigned long long _bytesOfTotalMemory;
-  unsigned long long _bytesOfTotalDiskSpace;
-  unsigned long long _bytesOfFreeDiskSpace;
-
-  CGFloat _batteryLevel;
-  UIDeviceBatteryState _batteryState;
-}
+@interface NIOverviewDeviceLogEntry : NIOverviewLogEntry
 
 #pragma mark Entry Information /** @name Entry Information */
 
 /**
  * The number of bytes of free memory.
  */
-@property (nonatomic, readwrite, assign) unsigned long long bytesOfFreeMemory;
+@property (nonatomic, assign) unsigned long long bytesOfFreeMemory;
 
 /**
  * The number of bytes of total memory.
  */
-@property (nonatomic, readwrite, assign) unsigned long long bytesOfTotalMemory;
+@property (nonatomic, assign) unsigned long long bytesOfTotalMemory;
 
 /**
  * The number of bytes of free disk space.
  */
-@property (nonatomic, readwrite, assign) unsigned long long bytesOfFreeDiskSpace;
+@property (nonatomic, assign) unsigned long long bytesOfFreeDiskSpace;
 
 /**
  * The number of bytes of total disk space.
  */
-@property (nonatomic, readwrite, assign) unsigned long long bytesOfTotalDiskSpace;
+@property (nonatomic, assign) unsigned long long bytesOfTotalDiskSpace;
 
 /**
  * The battery level.
  */
-@property (nonatomic, readwrite, assign) CGFloat batteryLevel;
+@property (nonatomic, assign) CGFloat batteryLevel;
 
 /**
  * The state of the battery.
  */
-@property (nonatomic, readwrite, assign) UIDeviceBatteryState batteryState;
+@property (nonatomic, assign) UIDeviceBatteryState batteryState;
 
 @end
 
@@ -188,12 +174,9 @@ extern NSString* const NIOverviewLoggerDidAddConsoleLog;
 /**
  * A console log entry.
  *
- *      @ingroup Overview-Logger-Entries
+ * @ingroup Overview-Logger-Entries
  */
-@interface NIOverviewConsoleLogEntry : NIOverviewLogEntry {
-@private
-  NSString* _log;
-}
+@interface NIOverviewConsoleLogEntry : NIOverviewLogEntry
 
 #pragma mark Creating an Entry /** @name Creating an Entry */
 
@@ -208,7 +191,7 @@ extern NSString* const NIOverviewLoggerDidAddConsoleLog;
 /**
  * The text that was written to the console log.
  */
-@property (nonatomic, readwrite, copy) NSString* log;
+@property (nonatomic, copy) NSString* log;
 
 @end
 
@@ -220,12 +203,9 @@ typedef enum {
 /**
  * An event log entry.
  *
- *      @ingroup Overview-Logger-Entries
+ * @ingroup Overview-Logger-Entries
  */
-@interface NIOverviewEventLogEntry : NIOverviewLogEntry {
-@private
-  NSInteger _eventType;
-}
+@interface NIOverviewEventLogEntry : NIOverviewLogEntry
 
 #pragma mark Creating an Entry /** @name Creating an Entry */
 
@@ -240,6 +220,6 @@ typedef enum {
 /**
  * The type of event.
  */
-@property (nonatomic, readwrite, assign) NSInteger type;
+@property (nonatomic, assign) NSInteger type;
 
 @end
