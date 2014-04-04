@@ -103,8 +103,8 @@
   // If the display size ever changes, we want to ensure that we're fetching the correct image
   // from the cache.
   if (self.sizeForDisplay) {
-    cacheKey = [cacheKey stringByAppendingFormat:@"%@%@{%d,%d}",
-                NSStringFromCGSize(imageSize), NSStringFromCGRect(cropRect), contentMode, scaleOptions];
+    cacheKey = [cacheKey stringByAppendingFormat:@"%@%@{%@,%@}",
+                NSStringFromCGSize(imageSize), NSStringFromCGRect(cropRect), [@(contentMode) stringValue], [@(scaleOptions) stringValue]];
   }
 
   // The resulting cache key will look like:
