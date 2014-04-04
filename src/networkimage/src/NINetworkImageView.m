@@ -113,6 +113,10 @@
   return cacheKey;
 }
 
+- (NSDate *)expirationDate {
+  return (self.maxAge != 0) ? [NSDate dateWithTimeIntervalSinceNow:self.maxAge] : nil;
+}
+
 #pragma mark - Internal consistent implementation of state changes
 
 
@@ -189,7 +193,7 @@
                           cropRect:operation.imageCropRect
                        contentMode:operation.imageContentMode
                       scaleOptions:operation.scaleOptions
-                    expirationDate:nil];
+                    expirationDate:[self expirationDate]];
 }
 
 - (void)nimbusOperationDidFail:(NIOperation *)operation withError:(NSError *)error {
@@ -346,7 +350,7 @@
                                   cropRect:cropRect
                                contentMode:contentMode
                               scaleOptions:self.scaleOptions
-                            expirationDate:nil];
+                            expirationDate:[self expirationDate]];
         }
 
       } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
