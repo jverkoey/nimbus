@@ -45,11 +45,10 @@ extern "C" {
 NSInvocation* NIInvocationWithInstanceTarget(NSObject* target, SEL selector);
 
 /**
- * Construct an NSInvocation for a class method given a class object and a selector
- *
- *  @return an NSInvocation that will call the given class method/selector.
+ * This method is deprecated. Please use NIInvocationWithInstanceTarget([object class], selector)
+ * instead.
  */
-NSInvocation* NIInvocationWithClassTarget(Class targetClass, SEL selector);
+NSInvocation* NIInvocationWithClassTarget(Class targetClass, SEL selector) __NI_DEPRECATED_METHOD;
 
 #pragma mark - CGRect Methods
 
