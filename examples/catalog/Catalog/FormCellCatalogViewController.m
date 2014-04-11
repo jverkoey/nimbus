@@ -112,6 +112,7 @@ typedef enum {
      @"NISwitchFormElement",
      [NISwitchFormElement switchElementWithID:0 labelText:@"Switch" value:NO],
      [NISwitchFormElement switchElementWithID:0 labelText:@"Switch with a really long label that will be cut off" value:YES],
+     [NISwitchFormElement switchElementWithID:0 labelText:@"Switch with target/selector" value:NO didChangeTarget:self didChangeSelector:@selector(switchChanged:)],
 
      @"NISliderFormElement",
      [NISliderFormElement sliderElementWithID:0
@@ -245,6 +246,10 @@ typedef enum {
       return @"Option 3";
   }
   return nil;
+}
+
+- (void)switchChanged:(UISwitch *)uiSwitch {
+    NSLog(@"Switch changed to %@", uiSwitch.on ? @"YES" : @"NO");
 }
 
 #pragma mark - Gesture Recognizers
