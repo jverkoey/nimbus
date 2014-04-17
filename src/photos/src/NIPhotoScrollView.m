@@ -316,6 +316,7 @@
  */
 - (void)minAndMaxScaleForDimensions: (CGSize)dimensions
                          boundsSize: (CGSize)boundsSize
+                         photoScale: (CGFloat)photoScale
                           photoSize: (NIPhotoScrollViewPhotoSize)photoSize
                            minScale: (CGFloat *)pMinScale
                            maxScale: (CGFloat *)pMaxScale {
@@ -336,7 +337,7 @@
   // don't want to shrink it down with the zoom because it should be a scaled image.
   CGFloat maxScale = ((NIPhotoScrollViewPhotoSizeUnknown == photoSize)
                       ? 1
-                      : (1.0f / NIScreenScale()));
+                      : (photoScale / NIScreenScale()));
 
   if (NIPhotoScrollViewPhotoSizeThumbnail != photoSize) {
     // Don't let minScale exceed maxScale. (If the image is smaller than the screen, we
@@ -381,6 +382,7 @@
   // Calculate the min/max scale for the image to be presented.
   [self minAndMaxScaleForDimensions: imageSize
                          boundsSize: boundsSize
+                         photoScale: _imageView.image.scale
                           photoSize: self.photoSize
                            minScale: &minScale
                            maxScale: &maxScale];
@@ -395,6 +397,7 @@
     // Calculate the original-sized image's min/max scale.
     [self minAndMaxScaleForDimensions: self.photoDimensions
                            boundsSize: boundsSize
+                           photoScale: _imageView.image.scale
                             photoSize: NIPhotoScrollViewPhotoSizeOriginal
                              minScale: &scaleToFitOriginal
                              maxScale: &originalMaxScale];
