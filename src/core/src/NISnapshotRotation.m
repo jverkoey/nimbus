@@ -41,7 +41,15 @@ UIImage* NISnapshotOfViewWithTransparencyOption(UIView* view, BOOL transparency)
   // that is currently in the frame, so we offset by the bounds of the view accordingly.
   CGContextTranslateCTM(cx, -view.bounds.origin.x, -view.bounds.origin.y);
 
-  [view.layer renderInContext:cx];
+  BOOL didDraw = NO;
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= NIIOS_7_0
+  if ([view respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
+    didDraw = [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:YES];
+  }
+#endif
+  if (!didDraw) {
+    [view.layer renderInContext:cx];
+  }
 
   UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
