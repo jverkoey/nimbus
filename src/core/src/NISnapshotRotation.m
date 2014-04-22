@@ -124,7 +124,7 @@ UIImageView* NISnapshotViewOfViewWithTransparency(UIView* view) {
   }
 
   self.frameBeforeRotation = rotationView.frame;
-  self.snapshotViewBeforeRotation = NISnapshotViewOfView(rotationView);
+  self.snapshotViewBeforeRotation = NISnapshotViewOfViewWithTransparency(rotationView);
   [containerView insertSubview:self.snapshotViewBeforeRotation aboveSubview:rotationView];
 }
 
@@ -146,7 +146,7 @@ UIImageView* NISnapshotViewOfViewWithTransparency(UIView* view) {
   
   [UIView setAnimationsEnabled:NO];
   
-  self.snapshotViewAfterRotation = NISnapshotViewOfView(rotationView);
+  self.snapshotViewAfterRotation = NISnapshotViewOfViewWithTransparency(rotationView);
   // Set the new frame while maintaining the old frame's height.
   self.snapshotViewAfterRotation.frame = CGRectMake(self.frameBeforeRotation.origin.x,
                                                     self.frameBeforeRotation.origin.y,
