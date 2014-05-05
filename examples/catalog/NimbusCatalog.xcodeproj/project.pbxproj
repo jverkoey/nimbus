@@ -498,8 +498,8 @@
 				6658C36A18A910650080B319 /* AFURLSessionManager.m */,
 			);
 			name = AFNetworking;
-			path = /Users/featherless/workbench/ios/nimbus/src/../thirdparty/AFNetworking/AFNetworking;
-			sourceTree = "<absolute>";
+			path = ../../thirdparty/AFNetworking/AFNetworking;
+			sourceTree = "<group>";
 		};
 		661F28EA1592929E00D11FC3 /* Badge */ = {
 			isa = PBXGroup;
