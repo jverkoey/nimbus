@@ -86,10 +86,15 @@ CGSize NISizeOfStringWithLabelProperties(NSString *string, CGSize constrainedToS
   CGSize size = CGSizeZero;
 
   if (numberOfLines == 1) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     size = [string sizeWithFont:font forWidth:constrainedToSize.width lineBreakMode:lineBreakMode];
-
+#pragma clang diagnostic pop
   } else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     size = [string sizeWithFont:font constrainedToSize:constrainedToSize lineBreakMode:lineBreakMode];
+#pragma clang diagnostic pop
     if (numberOfLines > 0) {
       size.height = MIN(size.height, numberOfLines * lineHeight);
     }
