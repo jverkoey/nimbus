@@ -38,7 +38,7 @@ NI_FIX_CATEGORY_BUG(UIScrollView_NIStyleable)
 }
 
 - (void)applyViewStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
-  [self applyViewStyleWithRuleSet:ruleSet inDOM:dom];
+  [super applyViewStyleWithRuleSet:ruleSet inDOM:dom];
   [self applyScrollViewStyleWithRuleSet:ruleSet inDOM: dom];
 }
 
