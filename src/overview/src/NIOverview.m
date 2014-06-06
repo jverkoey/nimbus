@@ -313,6 +313,10 @@ void NIOverviewLogMethod(const char* message, unsigned length, BOOL withSyslogBa
         frame = CGRectOffset(frame, frame.size.width, 0);
         break;
       }
+#if defined(__IPHONE_8_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0
+        // Only defined in >= iOS8 SDK
+      case UIInterfaceOrientationUnknown:
+#endif  // defined(__IPHONE_8_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0
       case UIInterfaceOrientationPortrait: {
         frame = CGRectOffset(frame, 0, -frame.size.height);
         break;
