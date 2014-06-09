@@ -17,7 +17,8 @@
 #import "NIButtonUtilities.h"
 
 void NIApplyImageSelectorToButton(SEL selector, id target, UIButton* button) {
-  IMP method = [target methodForSelector:selector];
+  typedef UIImage* (*ImageMethod)(id, SEL, UIControlState);
+  ImageMethod method = (ImageMethod)[target methodForSelector:selector];
   UIImage* image = nil;
 
   image = method(target, selector, UIControlStateNormal);
@@ -38,7 +39,8 @@ void NIApplyImageSelectorToButton(SEL selector, id target, UIButton* button) {
 }
 
 void NIApplyBackgroundImageSelectorToButton(SEL selector, id target, UIButton* button) {
-  IMP method = [target methodForSelector:selector];
+  typedef UIImage* (*ImageMethod)(id, SEL, UIControlState);
+  ImageMethod method = (ImageMethod)[target methodForSelector:selector];
   UIImage* image = nil;
 
   image = method(target, selector, UIControlStateNormal);
@@ -59,7 +61,8 @@ void NIApplyBackgroundImageSelectorToButton(SEL selector, id target, UIButton* b
 }
 
 void NIApplyTitleColorSelectorToButton(SEL selector, id target, UIButton* button) {
-  IMP method = [target methodForSelector:selector];
+  typedef UIColor* (*ColorMethod)(id, SEL, UIControlState);
+  ColorMethod method = (ColorMethod)[target methodForSelector:selector];
   UIColor* color = nil;
 
   color = method(target, selector, UIControlStateNormal);
