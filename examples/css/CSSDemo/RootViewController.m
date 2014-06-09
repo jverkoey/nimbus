@@ -86,6 +86,7 @@
   _activityIndicator = nil;
   _backgroundView = nil;
   _testLabel = nil;
+  [super viewDidUnload];
 }
 
 -(void)buttonPress

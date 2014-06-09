@@ -3023,10 +3023,7 @@ static int yy_get_next_buffer (void)
 		YY_CURRENT_BUFFER_LVALUE->yy_n_chars = (yy_n_chars);
 		}
 
-  // This line looks to be a manual fix from flex output... Restore if you regenerate the file.
-  if (yy_buffer_stack) {
-    YY_CURRENT_BUFFER_LVALUE = new_buffer;
-  }
+	YY_CURRENT_BUFFER_LVALUE = new_buffer;
 	css_load_buffer_state( );
 
 	/* We don't actually know whether we did this switch during
@@ -3178,11 +3175,8 @@ void csspush_buffer_state (YY_BUFFER_STATE new_buffer )
 	/* Only push if top exists. Otherwise, replace top. */
 	if (YY_CURRENT_BUFFER)
 		(yy_buffer_stack_top)++;
-  // This line looks to be a manual fix from flex output... Restore if you regenerate the file.
-  if (yy_buffer_stack) {
-    YY_CURRENT_BUFFER_LVALUE = new_buffer;
-  }
-  
+	YY_CURRENT_BUFFER_LVALUE = new_buffer;
+
 	/* copied from css_switch_to_buffer. */
 	css_load_buffer_state( );
 	(yy_did_buffer_switch_on_eof) = 1;
@@ -3222,17 +3216,9 @@ static void cssensure_buffer_stack (void)
 		 * immediate realloc on the next call.
          */
 		num_to_alloc = 1;
-    const yy_size_t ptr_size = sizeof(struct yy_buffer_state*);
-    const yy_size_t size_to_alloc = ptr_size /* * num_to_alloc */;
-		(yy_buffer_stack) = (struct yy_buffer_state**)cssalloc(size_to_alloc);
-
-    /* flex generates this, but the above 4 lines were here before, so I'm keeping them as is.
-     * it would sure seem like num_to_alloc isn't getting set as it should in the above
 		(yy_buffer_stack) = (struct yy_buffer_state**)cssalloc
 								(num_to_alloc * sizeof(struct yy_buffer_state*)
 								);
-     */
-    
 		if ( ! (yy_buffer_stack) )
 			YY_FATAL_ERROR( "out of dynamic memory in cssensure_buffer_stack()" );
 								  
@@ -3557,4 +3543,5 @@ void cssfree (void * ptr )
 
 
 int csswrap(void){return 1;}
+
 

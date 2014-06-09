@@ -16,13 +16,13 @@
 
 // See: http://bit.ly/hS5nNh for unit test macros.
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 #import <UIKit/UIKit.h>
 
 #import "NIState.h"
 #import "NIInMemoryCache.h"
 
-@interface NIStateTests : SenTestCase
+@interface NIStateTests : XCTestCase
 @end
 
 
@@ -30,18 +30,18 @@
 
 
 - (void)testSingletonAccess {
-  STAssertNotNil([Nimbus imageMemoryCache], @"Singleton object should be created automatically.");
-  STAssertNotNil([Nimbus networkOperationQueue], @"Singleton object should be created automatically.");
+  XCTAssertNotNil([Nimbus imageMemoryCache], @"Singleton object should be created automatically.");
+  XCTAssertNotNil([Nimbus networkOperationQueue], @"Singleton object should be created automatically.");
 }
 
 - (void)testSingletonSetting {
   NIImageMemoryCache *cache = [[NIImageMemoryCache alloc] init];
   [Nimbus setImageMemoryCache:cache];
-  STAssertEquals([Nimbus imageMemoryCache], cache, @"Singleton object should have been set.");
+  XCTAssertEqual([Nimbus imageMemoryCache], cache, @"Singleton object should have been set.");
 
   NSOperationQueue *queue = [[NSOperationQueue alloc] init];
   [Nimbus setNetworkOperationQueue:queue];
-  STAssertEquals([Nimbus networkOperationQueue], queue, @"Singleton object should have been set.");
+  XCTAssertEqual([Nimbus networkOperationQueue], queue, @"Singleton object should have been set.");
 }
 
 @end

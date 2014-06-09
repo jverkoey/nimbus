@@ -82,12 +82,6 @@ static const CGFloat kImageSpacing = 5;
     }
   }
   
-  if (currentX == kFramePadding) {
-    // If layout ends on a new row then we remove the row from the height, otherwise the
-    // scroll view will be too tall by one row.
-    currentY -= kImageDimensions + kImageSpacing;
-  }
-  
   // Center the columns.
   CGFloat contentWidth = (maxRightEdge + kFramePadding);
   CGFloat contentPadding = floorf((frame.size.width - contentWidth) / 2);
