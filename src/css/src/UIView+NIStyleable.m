@@ -429,21 +429,21 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
   }
   if ([ruleSet hasFrameHorizontalAlign]) {
     switch (ruleSet.frameHorizontalAlign) {
-      case UITextAlignmentCenter:
+      case NSTextAlignmentCenter:
         if (apply) {
           self.frameMidX = self.superview.bounds.size.width / 2.0;
         } else {
           [desc appendFormat:@"%@.frameMidX = %f;\n", name, self.superview.bounds.size.width / 2.0];
         }
         break;
-      case UITextAlignmentLeft:
+      case NSTextAlignmentLeft:
         if (apply) {
           self.frameMinX = 0;
         } else {
           [desc appendFormat:@"%@.frameMinX = 0;\n", name];
         }
         break;
-      case UITextAlignmentRight:
+      case NSTextAlignmentRight:
         self.frameMaxX = self.superview.bounds.size.width;
         break;
       default:

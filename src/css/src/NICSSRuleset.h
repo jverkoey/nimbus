@@ -93,9 +93,6 @@ typedef enum {
   NICSSUnit _marginLeft;
   NICSSUnit _marginRight;
   NICSSUnit _marginBottom;
-  NICSSUnit _verticalPadding;
-  NICSSUnit _horizontalPadding;
-  
   NICSSUnit _width;
   NICSSUnit _height;
   NICSSUnit _top;
@@ -265,7 +262,7 @@ typedef enum {
 - (UIControlContentHorizontalAlignment)horizontalAlign; // -mobile-content-halign
 
 - (BOOL)hasFrameHorizontalAlign;
-- (UITextAlignment)frameHorizontalAlign; // -mobile-halign
+- (NSTextAlignment)frameHorizontalAlign; // -mobile-halign
 
 - (BOOL)hasFrameVerticalAlign;
 - (UIViewContentMode)frameVerticalAlign; // -mobile-valign
