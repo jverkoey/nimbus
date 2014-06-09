@@ -34,16 +34,9 @@ NSInvocation* NIInvocationWithInstanceTarget(NSObject *targetObject, SEL selecto
   return inv;
 }
 
+// Deprecated. Please delete on the next minor version upgrade.
 NSInvocation* NIInvocationWithClassTarget(Class targetClass, SEL selector) {
-  Method method = class_getInstanceMethod(targetClass, selector);
-  struct objc_method_description* desc = method_getDescription(method);
-  if (desc == NULL || desc->name == NULL)
-    return nil;
-
-  NSMethodSignature* sig = [NSMethodSignature signatureWithObjCTypes:desc->types];
-  NSInvocation* inv = [NSInvocation invocationWithMethodSignature:sig];
-  [inv setSelector:selector];
-  return inv;
+  return NIInvocationWithInstanceTarget((NSObject *)targetClass, selector);
 }
 
 #pragma mark - CGRect
@@ -93,10 +86,15 @@ CGSize NISizeOfStringWithLabelProperties(NSString *string, CGSize constrainedToS
   CGSize size = CGSizeZero;
 
   if (numberOfLines == 1) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     size = [string sizeWithFont:font forWidth:constrainedToSize.width lineBreakMode:lineBreakMode];
-
+#pragma clang diagnostic pop
   } else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     size = [string sizeWithFont:font constrainedToSize:constrainedToSize lineBreakMode:lineBreakMode];
+#pragma clang diagnostic pop
     if (numberOfLines > 0) {
       size.height = MIN(size.height, numberOfLines * lineHeight);
     }

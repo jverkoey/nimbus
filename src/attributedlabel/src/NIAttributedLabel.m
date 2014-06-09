@@ -57,6 +57,10 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 
   CFAttributedStringRef attributedStringRef = (__bridge CFAttributedStringRef)attributedString;
   CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString(attributedStringRef);
+  NIDASSERT(NULL != framesetter);
+  if (NULL == framesetter) {
+    return CGSizeZero;
+  }
   CFRange range = CFRangeMake(0, 0);
 
   // This logic adapted from @mattt's TTTAttributedLabel
@@ -85,10 +89,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 
   CGSize newSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, range, NULL, constraintSize, NULL);
 
-  if (nil != framesetter) {
-    CFRelease(framesetter);
-    framesetter = nil;
-  }
+  CFRelease(framesetter);
 
   return CGSizeMake(NICGFloatCeil(newSize.width), NICGFloatCeil(newSize.height));
 }
@@ -169,8 +170,18 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
     NSMutableAttributedString* attributedStringWithLinks = [self mutableAttributedStringWithAdditions];
     CFAttributedStringRef attributedString = (__bridge CFAttributedStringRef)attributedStringWithLinks;
     CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString(attributedString);
+    NIDASSERT(NULL != framesetter);
+    if (NULL == framesetter) {
+      return NULL;
+    }
 
     CGMutablePathRef path = CGPathCreateMutable();
+    NIDASSERT(NULL != path);
+    if (NULL == path) {
+      CFRelease(framesetter);
+      return NULL;
+    }
+
     CGPathAddRect(path, NULL, self.bounds);
     CTFrameRef textFrame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);
     self.textFrame = textFrame;
@@ -655,7 +666,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
     CGSize textSize = [self sizeThatFits:CGSizeMake(bounds.size.width, CGFLOAT_MAX)];
 
     if (NIVerticalTextAlignmentMiddle == self.verticalTextAlignment) {
-      verticalOffset = floorf((bounds.size.height - textSize.height) / 2.f);
+      verticalOffset = NICGFloatFloor((bounds.size.height - textSize.height) / 2.f);
 
     } else if (NIVerticalTextAlignmentBottom == self.verticalTextAlignment) {
       verticalOffset = bounds.size.height - textSize.height;
@@ -890,8 +901,8 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
     // If the user moves their finger within the link beyond a certain gutter amount, reset the
     // hold timer. The user must hold their finger still for the long press interval in order for
     // the long press action to fire.
-    if (fabsf(self.touchPoint.x - point.x) >= kLongPressGutter
-        || fabsf(self.touchPoint.y - point.y) >= kLongPressGutter) {
+    if (NICGFloatAbs(self.touchPoint.x - point.x) >= kLongPressGutter
+        || NICGFloatAbs(self.touchPoint.y - point.y) >= kLongPressGutter) {
       [self.longPressTimer invalidate];
       self.longPressTimer = nil;
       if (nil != self.touchedLink) {
@@ -1092,25 +1103,28 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 
       CTRunDelegateRef delegate = CTRunDelegateCreate(&callbacks, (__bridge void *)labelImage);
 
-      // Character to use as recommended by kCTRunDelegateAttributeName documentation.
-      unichar objectReplacementChar = 0xFFFC;
-      NSString *objectReplacementString = [NSString stringWithCharacters:&objectReplacementChar length:1];
-      NSMutableAttributedString* space = [[NSMutableAttributedString alloc] initWithString:objectReplacementString];
+      // If this asserts then we're not going to be able to attach the image to the label.
+      NIDASSERT(NULL != delegate);
+      if (NULL != delegate) {
+        // Character to use as recommended by kCTRunDelegateAttributeName documentation.
+        unichar objectReplacementChar = 0xFFFC;
+        NSString *objectReplacementString = [NSString stringWithCharacters:&objectReplacementChar length:1];
+        NSMutableAttributedString* space = [[NSMutableAttributedString alloc] initWithString:objectReplacementString];
 
-      CFRange range = CFRangeMake(0, 1);
-      CFMutableAttributedStringRef spaceString =
-          (__bridge_retained CFMutableAttributedStringRef)space;
-      CFAttributedStringSetAttribute(spaceString, range, kCTRunDelegateAttributeName, delegate);
-      // Explicitly set the writing direction of this string to LTR, because in 'drawImages' we draw
-      // for LTR by drawing at offset to offset + width vs to offset - width as you would for RTL.
-      CFAttributedStringSetAttribute(spaceString,
-                                     range,
-                                     kCTWritingDirectionAttributeName,
-                                     (__bridge CFArrayRef)@[@(kCTWritingDirectionLeftToRight)]);
-      CFRelease(delegate);
-      CFRelease(spaceString);
+        CFRange range = CFRangeMake(0, 1);
+        CFMutableAttributedStringRef spaceString = (__bridge_retained CFMutableAttributedStringRef)space;
+        CFAttributedStringSetAttribute(spaceString, range, kCTRunDelegateAttributeName, delegate);
+        // Explicitly set the writing direction of this string to LTR, because in 'drawImages' we draw
+        // for LTR by drawing at offset to offset + width vs to offset - width as you would for RTL.
+        CFAttributedStringSetAttribute(spaceString,
+                                       range,
+                                       kCTWritingDirectionAttributeName,
+                                       (__bridge CFArrayRef)@[@(kCTWritingDirectionLeftToRight)]);
+        CFRelease(delegate);
+        CFRelease(spaceString);
 
-      [attributedString insertAttributedString:space atIndex:labelImage.index];
+        [attributedString insertAttributedString:space atIndex:labelImage.index];
+      }
     }
   }
 

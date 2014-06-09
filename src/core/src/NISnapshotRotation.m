@@ -41,7 +41,15 @@ UIImage* NISnapshotOfViewWithTransparencyOption(UIView* view, BOOL transparency)
   // that is currently in the frame, so we offset by the bounds of the view accordingly.
   CGContextTranslateCTM(cx, -view.bounds.origin.x, -view.bounds.origin.y);
 
-  [view.layer renderInContext:cx];
+  BOOL didDraw = NO;
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= NIIOS_7_0
+  if ([view respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
+    didDraw = [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:YES];
+  }
+#endif
+  if (!didDraw) {
+    [view.layer renderInContext:cx];
+  }
 
   UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
@@ -116,7 +124,7 @@ UIImageView* NISnapshotViewOfViewWithTransparency(UIView* view) {
   }
 
   self.frameBeforeRotation = rotationView.frame;
-  self.snapshotViewBeforeRotation = NISnapshotViewOfView(rotationView);
+  self.snapshotViewBeforeRotation = NISnapshotViewOfViewWithTransparency(rotationView);
   [containerView insertSubview:self.snapshotViewBeforeRotation aboveSubview:rotationView];
 }
 
@@ -138,7 +146,7 @@ UIImageView* NISnapshotViewOfViewWithTransparency(UIView* view) {
   
   [UIView setAnimationsEnabled:NO];
   
-  self.snapshotViewAfterRotation = NISnapshotViewOfView(rotationView);
+  self.snapshotViewAfterRotation = NISnapshotViewOfViewWithTransparency(rotationView);
   // Set the new frame while maintaining the old frame's height.
   self.snapshotViewAfterRotation.frame = CGRectMake(self.frameBeforeRotation.origin.x,
                                                     self.frameBeforeRotation.origin.y,

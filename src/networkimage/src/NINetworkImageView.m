@@ -103,14 +103,18 @@
   // If the display size ever changes, we want to ensure that we're fetching the correct image
   // from the cache.
   if (self.sizeForDisplay) {
-    cacheKey = [cacheKey stringByAppendingFormat:@"%@%@{%d,%d}",
-                NSStringFromCGSize(imageSize), NSStringFromCGRect(cropRect), contentMode, scaleOptions];
+    cacheKey = [cacheKey stringByAppendingFormat:@"%@%@{%@,%@}",
+                NSStringFromCGSize(imageSize), NSStringFromCGRect(cropRect), [@(contentMode) stringValue], [@(scaleOptions) stringValue]];
   }
 
   // The resulting cache key will look like:
   // /path/to/image({width,height}{contentMode,cropImageForDisplay})
 
   return cacheKey;
+}
+
+- (NSDate *)expirationDate {
+  return (self.maxAge != 0) ? [NSDate dateWithTimeIntervalSinceNow:self.maxAge] : nil;
 }
 
 #pragma mark - Internal consistent implementation of state changes
@@ -189,7 +193,7 @@
                           cropRect:operation.imageCropRect
                        contentMode:operation.imageContentMode
                       scaleOptions:operation.scaleOptions
-                    expirationDate:nil];
+                    expirationDate:[self expirationDate]];
 }
 
 - (void)nimbusOperationDidFail:(NIOperation *)operation withError:(NSError *)error {
@@ -340,20 +344,20 @@
 
         // Only keep this result if it's for the most recent request.
         if ([blockCacheKey isEqualToString:operation.userInfo[@"cacheKey"]]) {
-            [self _didFinishLoadingWithImage:responseObject
-                             cacheIdentifier:pathToNetworkImage
-                                 displaySize:displaySize
-                                    cropRect:cropRect
-                                 contentMode:contentMode
-                                scaleOptions:self.scaleOptions
-                              expirationDate:nil];
+          [self _didFinishLoadingWithImage:responseObject
+                           cacheIdentifier:pathToNetworkImage
+                               displaySize:displaySize
+                                  cropRect:cropRect
+                               contentMode:contentMode
+                              scaleOptions:self.scaleOptions
+                            expirationDate:nil];
         }
 
       } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
          [self _didFailToLoadWithError:error];
       }];
 
-      [requestOperation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
+      [requestOperation setDownloadProgressBlock:^(NSUInteger bytesRead, NSInteger totalBytesRead, NSInteger totalBytesExpectedToRead) {
           if ([self.delegate respondsToSelector:@selector(networkImageView:readBytes:totalBytes:)]) {
               [self.delegate networkImageView:self readBytes:totalBytesRead totalBytes:totalBytesExpectedToRead];
           }

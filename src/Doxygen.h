@@ -67,6 +67,38 @@
  */
 
 /**
+ * @defgroup Version-1-2-1 Version 1.2.1 Release
+ * @ingroup Version-1-0-0
+ *
+ * Version 1.2.1 of Nimbus was released on February 21, 2014. This patch version closes some bugs
+ * introduced by changes in 1.1.0 and 1.2.0.
+ *
+ * git log 1.2.0...1.2.1
+ *
+ * <h2>Misc Notes</h2>
+ *
+ * - 9 commits went into this release (git log 1.2.0...1.2.1 --pretty=oneline | wc -l)
+ * - Commits grouped by feature: git log 1.2.0...1.2.1 --pretty=oneline | cut -d' ' -f 2- | sort
+ * - Fixed -Wundef warnings.
+ *
+ * <h2>Attributed Label</h2>
+ *
+ * - <span class="apiDiffBugfix">Bugfix</span> Fixed a linebreak bug introduced in 1.1.0.
+ *
+ * <h2>Models</h2>
+ *
+ * - <span class="apiDiffAdded">Bugfix</span> Restore preexisting designated initializer contracts
+ *   for cell objects. Details available on Github:
+ *   https://github.com/jverkoey/nimbus/commit/377393af109410f99e6b63e4613cfaa209df7f6f
+ *
+ * <h2>Paging Scroll View</h2>
+ *
+ * - Re-added deleted methods as deprecated so that.
+ * - Move NIPageView to a separate header and source so that projects can choose not to import a
+ *   deprecated class.
+ */
+
+/**
  * @defgroup Version-1-2-0 Version 1.2.0 Release
  * @ingroup Version-1-0-0
  *

@@ -345,14 +345,19 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
   if (nil != switchElement.didChangeSelector && nil != switchElement.didChangeTarget
       && [switchElement.didChangeTarget respondsToSelector:switchElement.didChangeSelector]) {
     
+      // this will lead to crash on ARMx64 devices
+      // The following is a workaround to supress the warning and requires <objc/message.h>
+      //    objc_msgSend(switchElement.didChangeTarget,
+      //                 switchElement.didChangeSelector, _switchControl);
+      
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     // This throws a warning a seclectors that the compiler do not know about cannot be
     // memory managed by ARC
-    //[switchElement.didChangeTarget performSelector: switchElement.didChangeSelector
-    //                                    withObject: _switchControl];
-    
-    // The following is a workaround to supress the warning and requires <objc/message.h>
-    objc_msgSend(switchElement.didChangeTarget, 
-                 switchElement.didChangeSelector, _switchControl);
+    [switchElement.didChangeTarget performSelector: switchElement.didChangeSelector
+                                        withObject: _switchControl];
+#pragma clang pop
+
   }
 }
 

@@ -464,12 +464,6 @@ typedef enum {
 /**
  * The maximum amount of time that an image will stay in memory after the request completes.
  *
- * If this value is non-zero then the respone header's expiration date information will be
- * ignored in favor of using this value.
- *
- * If this value is zero then the response header's max-age value will be used if it exists,
- * otherwise it will use the Expires value if it exists.
- *
  * A negative value will cause this image to NOT be stored in the memory cache.
  *
  * By default this is 0.

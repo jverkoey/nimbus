@@ -15,6 +15,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 extern NSString* const NIOverviewLoggerDidAddDeviceLog;
 extern NSString* const NIOverviewLoggerDidAddConsoleLog;
