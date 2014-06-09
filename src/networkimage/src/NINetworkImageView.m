@@ -336,14 +336,14 @@
       requestOperation.userInfo = @{@"cacheKey":originalCacheKey};
 
       [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSString* cacheKey = [self cacheKeyForCacheIdentifier:pathToNetworkImage
-                                                    imageSize:displaySize
-                                                     cropRect:cropRect
-                                                  contentMode:contentMode
-                                                 scaleOptions:self.scaleOptions];
+        NSString* blockCacheKey = [self cacheKeyForCacheIdentifier:pathToNetworkImage
+                                                         imageSize:displaySize
+                                                          cropRect:cropRect
+                                                       contentMode:contentMode
+                                                      scaleOptions:self.scaleOptions];
 
         // Only keep this result if it's for the most recent request.
-        if ([cacheKey isEqualToString:operation.userInfo[@"cacheKey"]]) {
+        if ([blockCacheKey isEqualToString:operation.userInfo[@"cacheKey"]]) {
           [self _didFinishLoadingWithImage:responseObject
                            cacheIdentifier:pathToNetworkImage
                                displaySize:displaySize
