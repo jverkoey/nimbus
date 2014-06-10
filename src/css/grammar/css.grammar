@@ -75,5 +75,3 @@ U\+{h}{1,6}-{h}{1,6}            {cssConsume(yytext, CSSUNICODERANGE);}
 %%
 
 int csswrap(void){return 1;}
-
-#endif  // __clang_analyzer__
