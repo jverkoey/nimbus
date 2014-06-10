@@ -16,6 +16,9 @@
 // limitations under the License.
 //
 
+// Turn off the clang analyzer for flex generated code as it reports several false positives.
+#ifndef __clang_analyzer__
+
 #include "CssTokens.h"
 
 #line 3 "lex.css.c"
@@ -2098,7 +2101,8 @@ int css_flex_debug = 0;
 #define YY_RESTORE_YY_MORE_OFFSET
 char *csstext;
 #line 1 "css.grammar"
-#line 2083 "lex.css.c"
+#define YY_NO_INPUT 1
+#line 2084 "lex.css.c"
 
 #define INITIAL 0
 
@@ -2278,10 +2282,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 21 "css.grammar"
+#line 22 "css.grammar"
 
 
-#line 2266 "lex.css.c"
+#line 2267 "lex.css.c"
 
 	if ( !(yy_init) )
 		{
@@ -2367,218 +2371,218 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 23 "css.grammar"
+#line 24 "css.grammar"
 
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 25 "css.grammar"
+#line 26 "css.grammar"
 /* ignore comments */
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 27 "css.grammar"
+#line 28 "css.grammar"
 
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 28 "css.grammar"
+#line 29 "css.grammar"
 
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 29 "css.grammar"
+#line 30 "css.grammar"
 
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 30 "css.grammar"
+#line 31 "css.grammar"
 
 	YY_BREAK
 case 7:
 /* rule 7 can match eol */
 YY_RULE_SETUP
-#line 32 "css.grammar"
+#line 33 "css.grammar"
 {cssConsume(csstext, CSSSTRING);}
 	YY_BREAK
 case 8:
 /* rule 8 can match eol */
 YY_RULE_SETUP
-#line 34 "css.grammar"
+#line 35 "css.grammar"
 {cssConsume(csstext, CSSIDENT);}
 	YY_BREAK
 case 9:
 /* rule 9 can match eol */
 YY_RULE_SETUP
-#line 36 "css.grammar"
+#line 37 "css.grammar"
 {cssConsume(csstext, CSSHASH);}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 38 "css.grammar"
+#line 39 "css.grammar"
 {cssConsume(csstext, CSSIMPORT);}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 39 "css.grammar"
+#line 40 "css.grammar"
 
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 40 "css.grammar"
+#line 41 "css.grammar"
 {cssConsume(csstext, CSSMEDIA);}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 41 "css.grammar"
+#line 42 "css.grammar"
 
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 42 "css.grammar"
+#line 43 "css.grammar"
 
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 43 "css.grammar"
+#line 44 "css.grammar"
 
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 45 "css.grammar"
+#line 46 "css.grammar"
 
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 47 "css.grammar"
+#line 48 "css.grammar"
 {cssConsume(csstext, CSSEMS);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 48 "css.grammar"
+#line 49 "css.grammar"
 {cssConsume(csstext, CSSEXS);}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 49 "css.grammar"
+#line 50 "css.grammar"
 {cssConsume(csstext, CSSLENGTH);}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 50 "css.grammar"
+#line 51 "css.grammar"
 {cssConsume(csstext, CSSLENGTH);}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 51 "css.grammar"
+#line 52 "css.grammar"
 {cssConsume(csstext, CSSLENGTH);}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 52 "css.grammar"
+#line 53 "css.grammar"
 {cssConsume(csstext, CSSLENGTH);}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 53 "css.grammar"
+#line 54 "css.grammar"
 {cssConsume(csstext, CSSLENGTH);}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 54 "css.grammar"
+#line 55 "css.grammar"
 {cssConsume(csstext, CSSLENGTH);}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 55 "css.grammar"
+#line 56 "css.grammar"
 {cssConsume(csstext, CSSANGLE);}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 56 "css.grammar"
+#line 57 "css.grammar"
 {cssConsume(csstext, CSSANGLE);}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 57 "css.grammar"
+#line 58 "css.grammar"
 {cssConsume(csstext, CSSANGLE);}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 58 "css.grammar"
+#line 59 "css.grammar"
 {cssConsume(csstext, CSSTIME);}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 59 "css.grammar"
+#line 60 "css.grammar"
 {cssConsume(csstext, CSSTIME);}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 60 "css.grammar"
+#line 61 "css.grammar"
 {cssConsume(csstext, CSSFREQ);}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 61 "css.grammar"
+#line 62 "css.grammar"
 {cssConsume(csstext, CSSFREQ);}
 	YY_BREAK
 case 32:
 /* rule 32 can match eol */
 YY_RULE_SETUP
-#line 62 "css.grammar"
+#line 63 "css.grammar"
 {cssConsume(csstext, CSSDIMEN);}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 63 "css.grammar"
+#line 64 "css.grammar"
 {cssConsume(csstext, CSSPERCENTAGE);}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 64 "css.grammar"
+#line 65 "css.grammar"
 {cssConsume(csstext, CSSNUMBER);}
 	YY_BREAK
 case 35:
 /* rule 35 can match eol */
 YY_RULE_SETUP
-#line 66 "css.grammar"
+#line 67 "css.grammar"
 {cssConsume(csstext, CSSURI);}
 	YY_BREAK
 case 36:
 /* rule 36 can match eol */
 YY_RULE_SETUP
-#line 67 "css.grammar"
+#line 68 "css.grammar"
 {cssConsume(csstext, CSSURI);}
 	YY_BREAK
 case 37:
 /* rule 37 can match eol */
 YY_RULE_SETUP
-#line 68 "css.grammar"
+#line 69 "css.grammar"
 {cssConsume(csstext, CSSFUNCTION);}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 70 "css.grammar"
+#line 71 "css.grammar"
 {cssConsume(csstext, CSSUNICODERANGE);}
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 71 "css.grammar"
+#line 72 "css.grammar"
 {cssConsume(csstext, CSSUNICODERANGE);}
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 73 "css.grammar"
+#line 74 "css.grammar"
 {cssConsume(csstext, CSSUNKNOWN);}
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 75 "css.grammar"
+#line 76 "css.grammar"
 ECHO;
 	YY_BREAK
-#line 2563 "lex.css.c"
+#line 2564 "lex.css.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -3023,10 +3027,7 @@ static int yy_get_next_buffer (void)
 		YY_CURRENT_BUFFER_LVALUE->yy_n_chars = (yy_n_chars);
 		}
 
-  // This line looks to be a manual fix from flex output... Restore if you regenerate the file.
-  if (yy_buffer_stack) {
-    YY_CURRENT_BUFFER_LVALUE = new_buffer;
-  }
+	YY_CURRENT_BUFFER_LVALUE = new_buffer;
 	css_load_buffer_state( );
 
 	/* We don't actually know whether we did this switch during
@@ -3178,11 +3179,8 @@ void csspush_buffer_state (YY_BUFFER_STATE new_buffer )
 	/* Only push if top exists. Otherwise, replace top. */
 	if (YY_CURRENT_BUFFER)
 		(yy_buffer_stack_top)++;
-  // This line looks to be a manual fix from flex output... Restore if you regenerate the file.
-  if (yy_buffer_stack) {
-    YY_CURRENT_BUFFER_LVALUE = new_buffer;
-  }
-  
+	YY_CURRENT_BUFFER_LVALUE = new_buffer;
+
 	/* copied from css_switch_to_buffer. */
 	css_load_buffer_state( );
 	(yy_did_buffer_switch_on_eof) = 1;
@@ -3222,17 +3220,9 @@ static void cssensure_buffer_stack (void)
 		 * immediate realloc on the next call.
          */
 		num_to_alloc = 1;
-    const yy_size_t ptr_size = sizeof(struct yy_buffer_state*);
-    const yy_size_t size_to_alloc = ptr_size /* * num_to_alloc */;
-		(yy_buffer_stack) = (struct yy_buffer_state**)cssalloc(size_to_alloc);
-
-    /* flex generates this, but the above 4 lines were here before, so I'm keeping them as is.
-     * it would sure seem like num_to_alloc isn't getting set as it should in the above
 		(yy_buffer_stack) = (struct yy_buffer_state**)cssalloc
 								(num_to_alloc * sizeof(struct yy_buffer_state*)
 								);
-     */
-    
 		if ( ! (yy_buffer_stack) )
 			YY_FATAL_ERROR( "out of dynamic memory in cssensure_buffer_stack()" );
 								  
@@ -3552,9 +3542,10 @@ void cssfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 75 "css.grammar"
+#line 76 "css.grammar"
 
 
 
 int csswrap(void){return 1;}
 
+#endif  // __clang_analyzer__

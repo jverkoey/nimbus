@@ -213,18 +213,17 @@
   }
 }
 
--(void)removeCssClass:(NSString *)cssClass fromView:(UIView *)view
-{
+-(void)removeCssClass:(NSString *)cssClass fromView:(UIView *)view {
   NSString* selector = [@"." stringByAppendingString:cssClass];
   NSString* pseudoBase = [selector stringByAppendingString:@":"];
   NSMutableArray *selectors = [_viewToSelectorsMap objectForKey:[self keyForView:view]];
   if (selectors) {
     // Iterate over the selectors finding the id selector (if any) so we can
     // also remove it from the id map
-    for (int i = selectors.count-1; i >= 0; i--) {
-      NSString *s = [selectors objectAtIndex:i];
+    for (NSUInteger i = selectors.count; i >= 1; i--) {
+      NSString *s = [selectors objectAtIndex:i - 1];
       if ([s isEqualToString:selector] && [s hasPrefix:pseudoBase]) {
-        [selectors removeObjectAtIndex:i];
+        [selectors removeObjectAtIndex:i - 1];
       }
     }
   }

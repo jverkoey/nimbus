@@ -88,7 +88,7 @@
     for (NSInteger ix = 0; ix < 1000; ++ix) {
       [tableContents addObject:
        [NIDrawRectBlockCellObject objectWithBlock:drawTextBlock object:
-        [NSString stringWithFormat:@"This is cell #%d", ix]]];
+        [NSString stringWithFormat:@"This is cell #%zd", ix]]];
     }
 
     _model = [[NITableViewModel alloc] initWithListArray:tableContents

@@ -16,11 +16,11 @@
 
 // See: http://bit.ly/hS5nNh for unit test macros.
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
 #import "NimbusWebController.h"
 
-@interface NIWebControllerTests : SenTestCase
+@interface NIWebControllerTests : XCTestCase
 @end
 
 

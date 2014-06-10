@@ -79,7 +79,7 @@
   NSInteger badgeNumber = NIBoundi(object.badgeNumber, 0, 100);
   if (object.badgeNumber > 0) {
     if (badgeNumber < 100) {
-      self.badgeView.text = [NSString stringWithFormat:@"%d", badgeNumber];
+      self.badgeView.text = [NSString stringWithFormat:@"%zd", badgeNumber];
     } else {
       self.badgeView.text = @"99+";
     }

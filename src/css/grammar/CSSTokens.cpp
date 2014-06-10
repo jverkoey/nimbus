@@ -14,6 +14,10 @@
 // limitations under the License.
 //
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 const char* cssnames[] = {
   "STRING",
   "IDENT",

@@ -76,6 +76,7 @@
 		66EAC64D13D28D9A00BDFF34 /* NICommonMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EAC64C13D28D9A00BDFF34 /* NICommonMetrics.m */; };
 		66EAC7DC13D2A77D00BDFF34 /* NimbusPhotos.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 66EAC7DB13D2A77D00BDFF34 /* NimbusPhotos.bundle */; };
 		66F27D5D145B7DF500AFCA08 /* NIViewRecycler.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F27D5C145B7DF500AFCA08 /* NIViewRecycler.m */; };
+		8BA77A4419468C3D005ED95A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA77A4319468C3D005ED95A /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -216,6 +217,7 @@
 		66EAC7DB13D2A77D00BDFF34 /* NimbusPhotos.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NimbusPhotos.bundle; path = ../../../src/photos/resources/NimbusPhotos.bundle; sourceTree = SOURCE_ROOT; };
 		66F27D5B145B7DF500AFCA08 /* NIViewRecycler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIViewRecycler.h; path = ../../../src/core/src/NIViewRecycler.h; sourceTree = "<group>"; };
 		66F27D5C145B7DF500AFCA08 /* NIViewRecycler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIViewRecycler.m; path = ../../../src/core/src/NIViewRecycler.m; sourceTree = "<group>"; };
+		8BA77A4319468C3D005ED95A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D526CF2818B6CC7E00991F7A /* NICellFactory+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NICellFactory+Private.h"; path = "../../../src/models/src/NICellFactory+Private.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -326,6 +328,7 @@
 			children = (
 				663BF5EA158732280066B814 /* Default.png */,
 				663BF5EB158732280066B814 /* Default@2x.png */,
+				8BA77A4319468C3D005ED95A /* Default-568h@2x.png */,
 				663BF5EC158732280066B814 /* Icon-72.png */,
 				663BF5ED158732280066B814 /* Icon-Small-50.png */,
 				663BF5EE158732280066B814 /* Icon-Small.png */,
@@ -533,7 +536,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0510;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "NetworkPhotoAlbum" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -560,6 +563,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66EAC7DC13D2A77D00BDFF34 /* NimbusPhotos.bundle in Resources */,
+				8BA77A4419468C3D005ED95A /* Default-568h@2x.png in Resources */,
 				66409FA813E25C5E00E9BA5A /* NimbusOverviewer.bundle in Resources */,
 				663BF5F3158732280066B814 /* Default.png in Resources */,
 				663BF5F4158732280066B814 /* Default@2x.png in Resources */,
@@ -673,12 +677,12 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -687,7 +691,6 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;

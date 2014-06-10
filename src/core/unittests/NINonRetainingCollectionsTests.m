@@ -18,12 +18,12 @@
 
 // See: http://bit.ly/hS5nNh for unit test macros.
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
 #import "NIPreprocessorMacros.h"
 #import "NINonRetainingCollections.h"
 
-@interface NINonRetainingCollectionsTests : SenTestCase {
+@interface NINonRetainingCollectionsTests : XCTestCase {
 }
 
 @end
