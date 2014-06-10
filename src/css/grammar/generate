@@ -10,6 +10,7 @@ flex --prefix=css --nounput css.grammar
 
 cat CSSTokenizerPrefix > CSSTokenizer.cpp
 cat lex.css.c >> CSSTokenizer.cpp
+cat CSSTokenizerSuffix >> CSSTokenizer.cpp
 
 rm lex.css.c
 
