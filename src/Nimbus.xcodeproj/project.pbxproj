@@ -302,6 +302,7 @@
 		8B94F87C194665DF00A63185 /* libNimbusCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0913E6E85E00B514F3 /* libNimbusCore.a */; };
 		8B94F87D1946662600A63185 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D02143E38F0003E413C /* CoreGraphics.framework */; };
 		8B94F87F1946676B00A63185 /* NIBadgeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B94F87E1946676B00A63185 /* NIBadgeTests.m */; };
+		8BB611A01946891500C851CC /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4E85AA19462A5C005FDD25 /* XCTest.framework */; };
 		9B22BD991725E75E000FDB01 /* NIMutableCollectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B22BD981725E75E000FDB01 /* NIMutableCollectionViewModel.m */; };
 		C743F6EA16D2652F00A933B7 /* NIUserInterfaceString.h in Headers */ = {isa = PBXBuildFile; fileRef = C743F6E816D2652F00A933B7 /* NIUserInterfaceString.h */; };
 		C743F6EB16D2652F00A933B7 /* NIUserInterfaceString.m in Sources */ = {isa = PBXBuildFile; fileRef = C743F6E916D2652F00A933B7 /* NIUserInterfaceString.m */; };
@@ -311,7 +312,6 @@
 		C7A8792316D7B96200A0C23F /* UITextField+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A8792116D7B96200A0C23F /* UITextField+NIStyleable.m */; };
 		C7BBC6BA16DDC0DB00833DC9 /* NITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BBC6B816DDC0DB00833DC9 /* NITextField.m */; };
 		C7BBC6FE16DDC0E700833DC9 /* NITextField.h in Headers */ = {isa = PBXBuildFile; fileRef = C7BBC6B716DDC0DB00833DC9 /* NITextField.h */; };
-		C7BBC70316DDC12800833DC9 /* NITextField.h in Sources */ = {isa = PBXBuildFile; fileRef = C7BBC6B716DDC0DB00833DC9 /* NITextField.h */; };
 		C7BBC70416DDC12800833DC9 /* NITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BBC6B816DDC0DB00833DC9 /* NITextField.m */; };
 		C7BBC71116DE66BD00833DC9 /* media-rulesets.css in Resources */ = {isa = PBXBuildFile; fileRef = C7BBC71016DE66BD00833DC9 /* media-rulesets.css */; };
 		D509DDDF18B53AE500895428 /* NIPageView.h in Headers */ = {isa = PBXBuildFile; fileRef = D509DDDD18B53AE500895428 /* NIPageView.h */; };
@@ -1116,6 +1116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BB611A01946891500C851CC /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3516,7 +3517,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7BBC70316DDC12800833DC9 /* NITextField.h in Sources */,
 				C7BBC70416DDC12800833DC9 /* NITextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3955,6 +3955,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Nimbus_Prefix.pch;
@@ -3995,6 +3999,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/Developer/Library/Frameworks",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Nimbus_Prefix.pch;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -4043,28 +4051,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "core/unittests/NimbusCoreTests-Info.plist";
 				NIMBUS_FEATURE_NAME = core;
 				NIMBUS_TARGET_NAME = NimbusCore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -4072,22 +4063,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "core/unittests/NimbusCoreTests-Info.plist";
 				NIMBUS_FEATURE_NAME = core;
 				NIMBUS_TARGET_NAME = NimbusCore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};

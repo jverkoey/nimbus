@@ -56,7 +56,7 @@ typedef enum {
   
   UIColor* _textColor;
   UIColor* _highlightedTextColor;
-  UITextAlignment _textAlignment;
+  NSTextAlignment _textAlignment;
   UIFont* _font;
   UIColor* _textShadowColor;
   CGSize _textShadowOffset;
@@ -78,7 +78,7 @@ typedef enum {
   UIViewAutoresizing _autoresizing;
   UITableViewCellSeparatorStyle _tableViewCellSeparatorStyle;
   UIScrollViewIndicatorStyle _scrollViewIndicatorStyle;
-  UITextAlignment _frameHorizontalAlign;
+  NSTextAlignment _frameHorizontalAlign;
   UIViewContentMode _frameVerticalAlign;
   UIControlContentVerticalAlignment _verticalAlign;
   UIControlContentHorizontalAlignment _horizontalAlign;
@@ -175,7 +175,7 @@ typedef enum {
 - (UIColor *)highlightedTextColor;
 
 - (BOOL)hasTextAlignment;
-- (UITextAlignment)textAlignment; // text-align
+- (NSTextAlignment)textAlignment; // text-align
 
 - (BOOL)hasFont;
 - (UIFont *)font; // font, font-family, font-size, font-style, font-weight
