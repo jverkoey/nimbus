@@ -43,7 +43,7 @@
 - (void)setPageIndex:(NSInteger)pageIndex {
   _pageIndex = pageIndex;
   
-  self.label.text = [NSString stringWithFormat:@"This is page %i", pageIndex];
+  self.label.text = [NSString stringWithFormat:@"This is page %td", pageIndex];
   
   UIColor* bgColor;
   UIColor* textColor;

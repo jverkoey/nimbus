@@ -89,7 +89,7 @@ typedef enum {
 #pragma mark - NIRadioGroupDelegate
 
 - (void)radioGroup:(NIRadioGroup *)radioGroup didSelectIdentifier:(NSInteger)identifier {
-  NSLog(@"Did select radio group option %d", identifier);
+  NSLog(@"Did select radio group option %td", identifier);
 
   // Dismiss the modal view controller that's showing the radio group options.
   [self dismissViewControllerAnimated:YES completion:nil];

@@ -1,4 +1,5 @@
 %option case-insensitive
+%option noinput
 
 h         [0-9a-f]
 nonascii  [\200-\377]

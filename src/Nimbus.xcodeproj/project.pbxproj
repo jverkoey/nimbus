@@ -499,13 +499,6 @@
 			remoteGlobalIDString = 66E1CDDE159161ED004DA4A2;
 			remoteInfo = NimbusBadge;
 		};
-		8B4E85BE194630B5005FDD25 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 66A03BFE13E6E84800B514F3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 66832C9D143D649D003E413C;
-			remoteInfo = "Nimbus CSS Grammar";
-		};
 		8B94F874194664D500A63185 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 66A03BFE13E6E84800B514F3 /* Project object */;
@@ -2318,23 +2311,6 @@
 		};
 /* End PBXHeadersBuildPhase section */
 
-/* Begin PBXLegacyTarget section */
-		66832C9D143D649D003E413C /* Nimbus CSS Grammar */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(ACTION)";
-			buildConfigurationList = 66832C9E143D649D003E413C /* Build configuration list for PBXLegacyTarget "Nimbus CSS Grammar" */;
-			buildPhases = (
-			);
-			buildToolPath = ./generate;
-			buildWorkingDirectory = css/grammar;
-			dependencies = (
-			);
-			name = "Nimbus CSS Grammar";
-			passBuildSettingsInEnvironment = 1;
-			productName = "Nimbus CSS Grammar";
-		};
-/* End PBXLegacyTarget section */
-
 /* Begin PBXNativeTarget section */
 		663B523E1445052700CC26DF /* NimbusPagingScrollView */ = {
 			isa = PBXNativeTarget;
@@ -2674,6 +2650,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 66C3A6BE143D61140048542F /* Build configuration list for PBXNativeTarget "NimbusCss" */;
 			buildPhases = (
+				8B3FAB821946BD1B00C16A59 /* Run Script Generate Grammar */,
 				66C3A69D143D61130048542F /* Sources */,
 				66C3A69E143D61130048542F /* Frameworks */,
 				666F739214BBFD3D00D1A32F /* Run Script Generate Namespace Header */,
@@ -2682,7 +2659,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				8B4E85BF194630B5005FDD25 /* PBXTargetDependency */,
 			);
 			name = NimbusCss;
 			productName = NimbusCss;
@@ -2896,7 +2872,6 @@
 				66A03C1813E6E85E00B514F3 /* NimbusCoreTests */,
 				66C3A6A0143D61130048542F /* NimbusCss */,
 				66C3A6AD143D61140048542F /* NimbusCssTests */,
-				66832C9D143D649D003E413C /* Nimbus CSS Grammar */,
 				6675731113E771380076F555 /* NimbusInterapp */,
 				6675731E13E771380076F555 /* NimbusInterappTests */,
 				66A03CBE13E6F0ED00B514F3 /* NimbusLauncher */,
@@ -3218,6 +3193,29 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh ../scripts/generate_namespace_header";
 			shellScript = "";
+		};
+		8B3FAB821946BD1B00C16A59 /* Run Script Generate Grammar */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/css/grammar/CSSTokenizerPrefix",
+				"$(SRCROOT)/css/grammar/CSSTokenizerSuffix",
+				"$(SRCROOT)/css/grammar/generate",
+				"$(SRCROOT)/css/grammar/CSSTokens.cpp",
+				"$(SRCROOT)/css/grammar/CSSTokens.h",
+				"$(SRCROOT)/css/grammar/css.grammar",
+			);
+			name = "Run Script Generate Grammar";
+			outputPaths = (
+				"$(SRCROOT)/css/src/CSSTokenizer.m",
+				"$(SRCROOT)/css/src/CSSTokens.h",
+				"$(SRCROOT)/css/src/CSSTokens.m",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd css/grammar\n./generate";
 		};
 		C7BBC6DC16DDC0E700833DC9 /* Run Script Generate Namespace Header */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3662,11 +3660,6 @@
 			target = 66E1CDDE159161ED004DA4A2 /* NimbusBadge */;
 			targetProxy = 66E1CDF1159161EE004DA4A2 /* PBXContainerItemProxy */;
 		};
-		8B4E85BF194630B5005FDD25 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 66832C9D143D649D003E413C /* Nimbus CSS Grammar */;
-			targetProxy = 8B4E85BE194630B5005FDD25 /* PBXContainerItemProxy */;
-		};
 		8B94F875194664D500A63185 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 66A03C0813E6E85E00B514F3 /* NimbusCore */;
@@ -3892,51 +3885,6 @@
 				NIMBUS_FEATURE_NAME = interapp;
 				NIMBUS_TARGET_NAME = NimbusInterapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		66832C9F143D649D003E413C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-			};
-			name = Debug;
-		};
-		66832CA0143D649D003E413C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -4473,15 +4421,6 @@
 			buildConfigurations = (
 				6675733513E771380076F555 /* Debug */,
 				6675733613E771380076F555 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		66832C9E143D649D003E413C /* Build configuration list for PBXLegacyTarget "Nimbus CSS Grammar" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				66832C9F143D649D003E413C /* Debug */,
-				66832CA0143D649D003E413C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
