@@ -20,29 +20,29 @@ range     \?{1,6}|{h}(\?{0,5}|{h}(\?{0,4}|{h}(\?{0,3}|{h}(\?{0,2}|{h}(\??|{h})))
 
 %%
 
-[ \t\r\n\f]+                    
+[ \t\r\n\f]+
 
 \/\*[^*]*\*+([^/][^*]*\*+)*\/   /* ignore comments */
 
-"<!--"                          
-"-->"                           
-"~="                            
-"|="                            
-                              
-{string}                              {cssConsume(yytext, CSSSTRING);}
-                              
-(\.|#)?{ident}(\.{ident})*(:{ident})? {cssConsume(yytext, CSSIDENT);}
-                              
-"#"{name}                             {cssConsume(yytext, CSSHASH);}
-                              
-"@import"                       {cssConsume(yytext, CSSIMPORT);}
-"@page"                         
-"@media"                        {cssConsume(yytext, CSSMEDIA);}
-"@font-face"                    
-"@charset"                      
-"@namespace"                    
+"<!--"
+"-->"
+"~="
+"|="
 
-"!{w}important"                 
+{string}                              {cssConsume(yytext, CSSSTRING);}
+
+(\.|#)?{ident}(\.{ident})*(:{ident})? {cssConsume(yytext, CSSIDENT);}
+
+"#"{name}                             {cssConsume(yytext, CSSHASH);}
+
+"@import"                       {cssConsume(yytext, CSSIMPORT);}
+"@page"
+"@media"                        {cssConsume(yytext, CSSMEDIA);}
+"@font-face"
+"@charset"
+"@namespace"
+
+"!{w}important"
 
 {num}em                         {cssConsume(yytext, CSSEMS);}
 {num}ex                         {cssConsume(yytext, CSSEXS);}
@@ -76,3 +76,4 @@ U\+{h}{1,6}-{h}{1,6}            {cssConsume(yytext, CSSUNICODERANGE);}
 
 int csswrap(void){return 1;}
 
+#endif  // __clang_analyzer__

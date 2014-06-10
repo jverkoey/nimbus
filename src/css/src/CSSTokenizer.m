@@ -16,6 +16,9 @@
 // limitations under the License.
 //
 
+// Turn off the clang analyzer for flex generated code as it reports several false positives.
+#ifndef __clang_analyzer__
+
 #include "CssTokens.h"
 
 #line 3 "lex.css.c"
@@ -3544,4 +3547,5 @@ void cssfree (void * ptr )
 
 int csswrap(void){return 1;}
 
+#endif  // __clang_analyzer__
 
