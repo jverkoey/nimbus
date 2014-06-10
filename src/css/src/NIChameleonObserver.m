@@ -257,7 +257,7 @@ NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
 
 -(void)netServiceDidResolveAddress:(NSNetService *)sender
 {
-    _host = [NSString stringWithFormat:@"http://%@:%td/", [sender hostName], [sender port]];
+    _host = [NSString stringWithFormat:@"http://%@:%zd/", [sender hostName], [sender port]];
     self.netService = nil;
     [self watchSkinChanges];
 }

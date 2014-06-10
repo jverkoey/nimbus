@@ -427,7 +427,7 @@
 }
 
 - (void)setChromeTitle {
-  self.title = [NSString stringWithFormat:@"%td of %td",
+  self.title = [NSString stringWithFormat:@"%zd of %zd",
                 (self.photoAlbumView.centerPageIndex + 1),
                 self.photoAlbumView.numberOfPages];
 }

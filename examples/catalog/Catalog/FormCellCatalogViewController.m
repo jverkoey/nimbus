@@ -230,9 +230,9 @@ typedef enum {
 
 - (void)radioGroup:(NIRadioGroup *)radioGroup didSelectIdentifier:(NSInteger)identifier {
   if (radioGroup == self.radioGroup) {
-    NSLog(@"Radio group selection: %td", identifier);
+    NSLog(@"Radio group selection: %zd", identifier);
   } else if (radioGroup == self.subRadioGroup) {
-    NSLog(@"Sub radio group selection: %td", identifier);
+    NSLog(@"Sub radio group selection: %zd", identifier);
   }
 }
 

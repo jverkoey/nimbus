@@ -108,7 +108,7 @@
 
   } else {
     // Not implemented
-    NIDERROR(@"The following content mode has not been implemented: %td", contentMode);
+    NIDERROR(@"The following content mode has not been implemented: %zd", contentMode);
     return CGRectMake(0, 0, imageSize.width, imageSize.height);
   }
 }
@@ -146,7 +146,7 @@
 
   } else {
     // Not implemented
-    NIDERROR(@"The following content mode has not been implemented: %td", contentMode);
+    NIDERROR(@"The following content mode has not been implemented: %zd", contentMode);
     return CGRectMake(0, 0, displaySize.width, displaySize.height);
   }
 }
