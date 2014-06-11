@@ -347,7 +347,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 
     // Add missing pages.
     for (NSUInteger pageIndex = rangeOfVisiblePages.location;
-         pageIndex < (NSInteger)NSMaxRange(rangeOfVisiblePages); ++pageIndex) {
+         pageIndex < NSMaxRange(rangeOfVisiblePages); ++pageIndex) {
       if (![self isDisplayingPageForIndex:pageIndex]) {
         [self displayPageAtIndex:pageIndex];
       }
