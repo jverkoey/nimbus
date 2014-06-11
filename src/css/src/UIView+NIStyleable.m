@@ -872,10 +872,11 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container)
         if ([directiveValue isKindOfClass:[NSInvocation class]]) {
           NSInvocation *n = (NSInvocation*) directiveValue;
           if ([active.view respondsToSelector:@selector(addTarget:action:forControlEvents:)]) {
-            [((id)active.view) addTarget: n.target action: n.selector forControlEvents: UIControlEventTouchUpInside];
+            [((id)active.view) addTarget:n.target action:n.selector forControlEvents:UIControlEventTouchUpInside];
           } else {
             NSString *error = [NSString stringWithFormat:@"Cannot apply NSInvocation to class %@", NSStringFromClass(active.class)];
             NSAssert(NO, error);
+            #pragma unused (error)
           }
         }
       }
@@ -939,6 +940,7 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container)
       } else {
         NSString *error = [NSString stringWithFormat:@"Cannot apply NSInvocation to class %@", NSStringFromClass(active.class)];
         NSAssert(NO, error);
+        #pragma unused (error)
       }
     } else {
       NSAssert(NO, @"Unknown directive in build specifier");

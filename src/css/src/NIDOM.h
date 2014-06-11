@@ -20,7 +20,7 @@
 @class NIStylesheet;
 
 /**
- * A leight-weight DOM-like object to which you attach views and stylesheets.
+ * A light-weight DOM-like object to which you attach views and stylesheets.
  *
  * @ingroup NimbusCSS
  *
@@ -89,8 +89,8 @@ _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
 
 -(UIView*)viewById: (NSString*) viewId;
 
--(NSString*) descriptionForView: (UIView*) view withName: (NSString*) viewName;
--(NSString*) descriptionForAllViews;
+-(NSString*)descriptionForView: (UIView*) view withName: (NSString*) viewName;
+-(NSString*)descriptionForAllViews;
 
 @property (nonatomic,unsafe_unretained) id target;
 @end
@@ -220,3 +220,17 @@ _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
  *
  * @fn NIDOM::descriptionForAllViews
  */
+
+
+@protocol NIDOMView <NSObject>
+- (NSArray *)pseudoClasses;
+@end
+
+/** @name Pseudo Classes */
+
+/**
+ * Documentation needed here.
+ *
+ * @fn NIDOMView::pseudoClasses:
+ */
+
