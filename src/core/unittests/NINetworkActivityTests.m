@@ -16,12 +16,12 @@
 
 // See: http://bit.ly/hS5nNh for unit test macros.
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 #import <UIKit/UIKit.h>
 
 #import "NINetworkActivity.h"
 
-@interface NINetworkActivityTests : SenTestCase
+@interface NINetworkActivityTests : XCTestCase
 @end
 
 
@@ -29,8 +29,8 @@
 
 
 - (void)testNetworkActivity {
-  STAssertFalse([UIApplication sharedApplication].networkActivityIndicatorVisible,
-                @"Activity indicator should be hidden.");
+  XCTAssertFalse([UIApplication sharedApplication].networkActivityIndicatorVisible,
+                 @"Activity indicator should be hidden.");
 
   // TODO (Jan 26, 2012): Swizzle out the networkActivityIndicatorVisible method so that we can
   // test when it gets changed.

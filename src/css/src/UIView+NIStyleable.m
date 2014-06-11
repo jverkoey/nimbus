@@ -122,7 +122,7 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
     if (apply) {
       self.autoresizingMask = ruleSet.autoresizing;
     } else {
-      [desc appendFormat:@"%@.autoresizingMask = (UIViewAutoresizing) %d;\n", name, ruleSet.autoresizing];
+      [desc appendFormat:@"%@.autoresizingMask = (UIViewAutoresizing) %zd;\n", name, ruleSet.autoresizing];
     }
   }
   if ([ruleSet hasVisible]) {
@@ -639,7 +639,7 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
   NSMutableArray *subviews = [[NSMutableArray alloc] init];
   [self _buildSubviews:viewSpecs inDOM:dom withViewArray:subviews];
   
-  for (int ix = 0, ct = subviews.count; ix < ct; ix++) {
+  for (NSUInteger ix = 0, ct = subviews.count; ix < ct; ix++) {
     NIPrivateViewInfo *viewInfo = [subviews objectAtIndex:ix];
     NSString *firstClass = [viewInfo.cssClasses count] ? [viewInfo.cssClasses objectAtIndex:0] : nil;
     [dom registerView:viewInfo.view withCSSClass:firstClass andId:viewInfo.viewId];
@@ -654,7 +654,7 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
       }
     }
     if (viewInfo.cssClasses.count > 1) {
-      for (int i = 1, cct = viewInfo.cssClasses.count; i < cct; i++) {
+      for (NSUInteger i = 1, cct = viewInfo.cssClasses.count; i < cct; i++) {
         [dom addCssClass:[viewInfo.cssClasses objectAtIndex:i] toView:viewInfo.view];
       }
     }
@@ -872,10 +872,11 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container)
         if ([directiveValue isKindOfClass:[NSInvocation class]]) {
           NSInvocation *n = (NSInvocation*) directiveValue;
           if ([active.view respondsToSelector:@selector(addTarget:action:forControlEvents:)]) {
-            [((id)active.view) addTarget: n.target action: n.selector forControlEvents: UIControlEventTouchUpInside];
+            [((id)active.view) addTarget:n.target action:n.selector forControlEvents:UIControlEventTouchUpInside];
           } else {
             NSString *error = [NSString stringWithFormat:@"Cannot apply NSInvocation to class %@", NSStringFromClass(active.class)];
             NSAssert(NO, error);
+            #pragma unused (error)
           }
         }
       }
@@ -939,6 +940,7 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container)
       } else {
         NSString *error = [NSString stringWithFormat:@"Cannot apply NSInvocation to class %@", NSStringFromClass(active.class)];
         NSAssert(NO, error);
+        #pragma unused (error)
       }
     } else {
       NSAssert(NO, @"Unknown directive in build specifier");

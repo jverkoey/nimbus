@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   LastUpgradeVersion = "0510"
+   version = "2.0">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "66832D1F14421450003E413C"
+               BuildableName = "CSSDemo.app"
+               BlueprintName = "CSSDemo"
+               ReferencedContainer = "container:../examples/css/CSSDemo.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
+               BuildableName = "NetworkPhotoAlbum.app"
+               BlueprintName = "NetworkPhotoAlbum"
+               ReferencedContainer = "container:../examples/photos/NetworkPhotoAlbums/NetworkPhotoAlbum.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DB3A230813FD4B8E00614220"
+               BuildableName = "libNimbusAttributedLabel.a"
+               BlueprintName = "NimbusAttributedLabel"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "66E1CDDE159161ED004DA4A2"
+               BuildableName = "libNimbusBadge.a"
+               BlueprintName = "NimbusBadge"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "66FC98491703F9D7004E8FB8"
+               BuildableName = "libNimbusCollections.a"
+               BlueprintName = "NimbusCollections"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "66A03C0813E6E85E00B514F3"
+               BuildableName = "libNimbusCore.a"
+               BlueprintName = "NimbusCore"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "66C3A6A0143D61130048542F"
+               BuildableName = "libNimbusCss.a"
+               BlueprintName = "NimbusCss"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6675731113E771380076F555"
+               BuildableName = "libNimbusInterapp.a"
+               BlueprintName = "NimbusInterapp"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "66A03CBE13E6F0ED00B514F3"
+               BuildableName = "libNimbusLauncher.a"
+               BlueprintName = "NimbusLauncher"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6661BBCB13F1A3BB00D14F92"
+               BuildableName = "libNimbusModels.a"
+               BlueprintName = "NimbusModels"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "66A0B09814BD1069003FA413"
+               BuildableName = "libNimbusNetworkControllers.a"
+               BlueprintName = "NimbusNetworkControllers"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "66A03D2613E6F97500B514F3"
+               BuildableName = "libNimbusNetworkImage.a"
+               BlueprintName = "NimbusNetworkImage"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6675722813E765BF0076F555"
+               BuildableName = "libNimbusOverview.a"
+               BlueprintName = "NimbusOverview"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "663B523E1445052700CC26DF"
+               BuildableName = "libNimbusPagingScrollView.a"
+               BlueprintName = "NimbusPagingScrollView"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6675727913E769150076F555"
+               BuildableName = "libNimbusPhotos.a"
+               BlueprintName = "NimbusPhotos"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C7BBC6BB16DDC0E700833DC9"
+               BuildableName = "libNimbusTextField.a"
+               BlueprintName = "NimbusTextField"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DB84BD7313EFDDC900DACCFE"
+               BuildableName = "libNimbusWebController.a"
+               BlueprintName = "NimbusWebController"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6693C0EA158A63E600950D42"
+               BuildableName = "Nimbus.app"
+               BlueprintName = "Nimbus"
+               ReferencedContainer = "container:../examples/Catalog/NimbusCatalog.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DB3A231513FD4B8E00614220"
+               BuildableName = "NimbusAttributedLabelTests.xctest"
+               BlueprintName = "NimbusAttributedLabelTests"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "66E1CDEC159161EE004DA4A2"
+               BuildableName = "NimbusBadgeTests.xctest"
+               BlueprintName = "NimbusBadgeTests"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "66A03C1813E6E85E00B514F3"
+               BuildableName = "NimbusCoreTests.xctest"
+               BlueprintName = "NimbusCoreTests"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "66C3A6AD143D61140048542F"
+               BuildableName = "NimbusCssTests.xctest"
+               BlueprintName = "NimbusCssTests"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6675731E13E771380076F555"
+               BuildableName = "NimbusInterappTests.xctest"
+               BlueprintName = "NimbusInterappTests"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "66A03CCB13E6F0EE00B514F3"
+               BuildableName = "NimbusLauncherTests.xctest"
+               BlueprintName = "NimbusLauncherTests"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6661BBD813F1A3BB00D14F92"
+               BuildableName = "NimbusModelsTests.xctest"
+               BlueprintName = "NimbusModelsTests"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "66A0B0A514BD1069003FA413"
+               BuildableName = "NimbusNetworkControllersTests.xctest"
+               BlueprintName = "NimbusNetworkControllersTests"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "66A03D3313E6F97500B514F3"
+               BuildableName = "NimbusNetworkImageTests.xctest"
+               BlueprintName = "NimbusNetworkImageTests"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6675723513E765BF0076F555"
+               BuildableName = "NimbusOverviewTests.xctest"
+               BlueprintName = "NimbusOverviewTests"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "663B524B1445052800CC26DF"
+               BuildableName = "NimbusPagingScrollViewTests.xctest"
+               BlueprintName = "NimbusPagingScrollViewTests"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6675728613E769150076F555"
+               BuildableName = "NimbusPhotosTests.xctest"
+               BlueprintName = "NimbusPhotosTests"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DB84BD8013EFDDCA00DACCFE"
+               BuildableName = "NimbusWebControllerTests.xctest"
+               BlueprintName = "NimbusWebControllerTests"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      buildConfiguration = "Debug">
+      <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DB3A231513FD4B8E00614220"
+               BuildableName = "NimbusAttributedLabelTests.xctest"
+               BlueprintName = "NimbusAttributedLabelTests"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "66E1CDEC159161EE004DA4A2"
+               BuildableName = "NimbusBadgeTests.xctest"
+               BlueprintName = "NimbusBadgeTests"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "66A03C1813E6E85E00B514F3"
+               BuildableName = "NimbusCoreTests.xctest"
+               BlueprintName = "NimbusCoreTests"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "66C3A6AD143D61140048542F"
+               BuildableName = "NimbusCssTests.xctest"
+               BlueprintName = "NimbusCssTests"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6675731E13E771380076F555"
+               BuildableName = "NimbusInterappTests.xctest"
+               BlueprintName = "NimbusInterappTests"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "66A03CCB13E6F0EE00B514F3"
+               BuildableName = "NimbusLauncherTests.xctest"
+               BlueprintName = "NimbusLauncherTests"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6661BBD813F1A3BB00D14F92"
+               BuildableName = "NimbusModelsTests.xctest"
+               BlueprintName = "NimbusModelsTests"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "66A0B0A514BD1069003FA413"
+               BuildableName = "NimbusNetworkControllersTests.xctest"
+               BlueprintName = "NimbusNetworkControllersTests"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "66A03D3313E6F97500B514F3"
+               BuildableName = "NimbusNetworkImageTests.xctest"
+               BlueprintName = "NimbusNetworkImageTests"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6675723513E765BF0076F555"
+               BuildableName = "NimbusOverviewTests.xctest"
+               BlueprintName = "NimbusOverviewTests"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "663B524B1445052800CC26DF"
+               BuildableName = "NimbusPagingScrollViewTests.xctest"
+               BlueprintName = "NimbusPagingScrollViewTests"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6675728613E769150076F555"
+               BuildableName = "NimbusPhotosTests.xctest"
+               BlueprintName = "NimbusPhotosTests"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DB84BD8013EFDDCA00DACCFE"
+               BuildableName = "NimbusWebControllerTests.xctest"
+               BlueprintName = "NimbusWebControllerTests"
+               ReferencedContainer = "container:Nimbus.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+      </Testables>
+   </TestAction>
+   <LaunchAction
+      selectedDebuggerIdentifier = ""
+      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      buildConfiguration = "Debug"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugXPCServices = "NO"
+      allowLocationSimulation = "YES">
+      <AdditionalOptions>
+      </AdditionalOptions>
+   </LaunchAction>
+   <ProfileAction
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      buildConfiguration = "Release"
+      debugDocumentVersioning = "YES">
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Release"
+      revealArchiveInOrganizer = "YES">
+   </ArchiveAction>
+</Scheme>

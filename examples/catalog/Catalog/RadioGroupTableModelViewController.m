@@ -145,7 +145,7 @@ typedef enum {
 
 - (void)radioGroup:(NIRadioGroup *)radioGroup didSelectIdentifier:(NSInteger)identifier {
   // When the radio group selection changes, this method will be called with the new identifier.
-  NSLog(@"Did select radio group option %d", identifier);
+  NSLog(@"Did select radio group option %zd", identifier);
 }
 
 @end
