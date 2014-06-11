@@ -49,7 +49,7 @@
 }
 
 - (NSString *)cacheKeyForPhotoIndex:(NSInteger)photoIndex {
-  return [NSString stringWithFormat:@"%d", photoIndex];
+  return [NSString stringWithFormat:@"%zd", photoIndex];
 }
 
 - (NSInteger)identifierWithPhotoSize:(NIPhotoScrollViewPhotoSize)photoSize
@@ -60,7 +60,7 @@
 }
 
 - (id)identifierKeyFromIdentifier:(NSInteger)identifier {
-  return [NSNumber numberWithInt:identifier];
+  return [NSNumber numberWithInteger:identifier];
 }
 
 - (void)requestImageFromSource:(NSString *)source
