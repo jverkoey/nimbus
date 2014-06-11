@@ -150,7 +150,7 @@ return _##name; \
   return nil != [_ruleset objectForKey:kTextAlignmentKey];
 }
 
-- (UITextAlignment)textAlignment {
+- (NSTextAlignment)textAlignment {
   NIDASSERT([self hasTextAlignment]);
   if (!_is.cached.TextAlignment) {
     _textAlignment = [[self class] textAlignmentFromCssValues:[_ruleset objectForKey:kTextAlignmentKey]];
