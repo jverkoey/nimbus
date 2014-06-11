@@ -261,7 +261,7 @@
     // See table "Supported Pixel Formats" in the following guide for support iOS bitmap formats:
     // http://developer.apple.com/library/mac/#documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/dq_context/dq_context.html
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGBitmapInfo bmi = kCGImageAlphaPremultipliedLast;
+    CGBitmapInfo bmi = (CGBitmapInfo)kCGImageAlphaPremultipliedLast;
 
     // For screen sizes with higher resolutions, we create a larger image with a scale value
     // so that it appears crisper on the screen.
