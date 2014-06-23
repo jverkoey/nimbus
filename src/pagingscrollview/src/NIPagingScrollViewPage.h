@@ -32,5 +32,5 @@
 /**
  * The page index.
  *
- * @fn NIPageView::pageIndex
+ * @fn NIPagingScrollViewPage::pageIndex
  */
