@@ -94,7 +94,7 @@ __NI_DEPRECATED_METHOD // Use NSMutableOrderedSet instead. MAINTENANCE: Remove b
  * This collection implements NSFastEnumeration which allows you to use foreach-style
  * iteration on the linked list. If you would like more control over the iteration of the
  * linked list you can use
- * <code>-[NILinkedList @link NILinkedList::objectEnumerator objectEnumerator@endlink]</code>
+ * @code-[NILinkedList @link NILinkedList::objectEnumerator objectEnumerator@endlink]@endcode
  *
  *
  * <h2>When You Should Use a Linked List</h2>
