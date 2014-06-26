@@ -62,6 +62,16 @@
   _tapGesture = nil;
 }
 
+- (void)dealloc {
+  [self shutdown_NIToolbarPhotoViewController];
+}
+
+- (void)viewDidUnload {
+  [self shutdown_NIToolbarPhotoViewController];
+
+  [super viewDidUnload];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
     // Default Configuration Settings
