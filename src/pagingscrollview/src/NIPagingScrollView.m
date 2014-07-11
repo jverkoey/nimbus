@@ -311,6 +311,16 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   }
 }
 
+- (void)preloadOffscreenPages {
+  NSRange rangeOfVisiblePages = [self rangeOfVisiblePages];
+  for (NSUInteger pageIndex = rangeOfVisiblePages.location;
+       pageIndex < NSMaxRange(rangeOfVisiblePages); ++pageIndex) {
+    if (![self isDisplayingPageForIndex:pageIndex]) {
+      [self displayPageAtIndex:pageIndex];
+    }
+  }
+}
+
 - (void)updateVisiblePagesShouldNotifyDelegate:(BOOL)shouldNotifyDelegate {
   // Before updating _centerPageIndex, notify delegate
   if (shouldNotifyDelegate && (self.numberOfPages > 0) &&
@@ -345,13 +355,10 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
       [self displayPageAtIndex:_centerPageIndex];
     }
 
-    // Add missing pages.
-    for (NSUInteger pageIndex = rangeOfVisiblePages.location;
-         pageIndex < NSMaxRange(rangeOfVisiblePages); ++pageIndex) {
-      if (![self isDisplayingPageForIndex:pageIndex]) {
-        [self displayPageAtIndex:pageIndex];
-      }
-    }
+    // Add missing pages after displaying the current page.
+    [self performSelector:@selector(preloadOffscreenPages)
+               withObject:nil
+               afterDelay:0];
   } else {
     _centerPageIndex = -1;
   }
