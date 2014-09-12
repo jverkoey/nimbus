@@ -60,7 +60,7 @@ CGFloat NIScreenScale(void) {
 }
 
 BOOL NIIsRetina(void) {
-  return NIScreenScale() == 2.f;
+  return NIScreenScale() > 1.f;
 }
 
 Class NIUIPopoverControllerClass(void) {
