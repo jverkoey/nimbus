@@ -314,8 +314,6 @@
 		C7BBC6FE16DDC0E700833DC9 /* NITextField.h in Headers */ = {isa = PBXBuildFile; fileRef = C7BBC6B716DDC0DB00833DC9 /* NITextField.h */; };
 		C7BBC70416DDC12800833DC9 /* NITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BBC6B816DDC0DB00833DC9 /* NITextField.m */; };
 		C7BBC71116DE66BD00833DC9 /* media-rulesets.css in Resources */ = {isa = PBXBuildFile; fileRef = C7BBC71016DE66BD00833DC9 /* media-rulesets.css */; };
-		D509DDDF18B53AE500895428 /* NIPageView.h in Headers */ = {isa = PBXBuildFile; fileRef = D509DDDD18B53AE500895428 /* NIPageView.h */; };
-		D509DDE018B53AE500895428 /* NIPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D509DDDE18B53AE500895428 /* NIPageView.m */; };
 		D526CF4B18B826A600991F7A /* NICellCatalogTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D526CF4A18B826A600991F7A /* NICellCatalogTests.m */; };
 		DB3A231913FD4B8E00614220 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		DB3A231D13FD4B8E00614220 /* libNimbusAttributedLabel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB3A230913FD4B8E00614220 /* libNimbusAttributedLabel.a */; };
@@ -901,8 +899,6 @@
 		C7BBC6B816DDC0DB00833DC9 /* NITextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NITextField.m; sourceTree = "<group>"; };
 		C7BBC70216DDC0E700833DC9 /* libNimbusTextField.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusTextField.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7BBC71016DE66BD00833DC9 /* media-rulesets.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = "media-rulesets.css"; path = "css/unittests/media-rulesets.css"; sourceTree = SOURCE_ROOT; };
-		D509DDDD18B53AE500895428 /* NIPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPageView.h; sourceTree = "<group>"; };
-		D509DDDE18B53AE500895428 /* NIPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIPageView.m; sourceTree = "<group>"; };
 		D526CF4A18B826A600991F7A /* NICellCatalogTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NICellCatalogTests.m; sourceTree = "<group>"; };
 		DB3A230913FD4B8E00614220 /* libNimbusAttributedLabel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusAttributedLabel.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB3A231613FD4B8E00614220 /* NimbusAttributedLabelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusAttributedLabelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1271,8 +1267,6 @@
 			isa = PBXGroup;
 			children = (
 				663B52661445061B00CC26DF /* NimbusPagingScrollView.h */,
-				D509DDDD18B53AE500895428 /* NIPageView.h */,
-				D509DDDE18B53AE500895428 /* NIPageView.m */,
 				663B52681445070100CC26DF /* NIPagingScrollView.h */,
 				663B52691445070100CC26DF /* NIPagingScrollView.m */,
 				66CB9A201654307A00FFB4BF /* NIPagingScrollView+Subclassing.h */,
@@ -2120,7 +2114,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				663B52671445061B00CC26DF /* NimbusPagingScrollView.h in Headers */,
-				D509DDDF18B53AE500895428 /* NIPageView.h in Headers */,
 				663B526A1445070100CC26DF /* NIPagingScrollView.h in Headers */,
 				66F27D55145B7A5F00AFCA08 /* NIPagingScrollViewPage.h in Headers */,
 				66CB9A211654307A00FFB4BF /* NIPagingScrollView+Subclassing.h in Headers */,
@@ -3238,7 +3231,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D509DDE018B53AE500895428 /* NIPageView.m in Sources */,
 				663B526B1445070100CC26DF /* NIPagingScrollView.m in Sources */,
 				66F27D56145B7A5F00AFCA08 /* NIPagingScrollViewPage.m in Sources */,
 			);
