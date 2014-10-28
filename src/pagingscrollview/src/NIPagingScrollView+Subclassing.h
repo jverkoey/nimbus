@@ -46,15 +46,6 @@
 
 @end
 
-// Deprecated methods formerly used by subclasses.
-// This category will be removed on February 28, 2014.
-@interface NIPagingScrollView (DeprecatedSubclassingMethods)
-
-// Use -[NIPagingScrollView scrollView] instead.
-- (UIScrollView *)pagingScrollView __NI_DEPRECATED_METHOD;
-
-@end
-
 /**
  * Called before the page is about to be shown and after its frame has been set.
  *

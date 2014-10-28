@@ -60,6 +60,9 @@
 		66832E1814442D17003E413C /* css in Resources */ = {isa = PBXBuildFile; fileRef = 66832E1714442D17003E413C /* css */; };
 		668ECDCB1456438C00455266 /* NIStylesheetCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 668ECDCA1456438C00455266 /* NIStylesheetCache.m */; };
 		668ECDCE145656F400455266 /* UIButton+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = 668ECDCD145656F400455266 /* UIButton+NIStyleable.m */; };
+		8BA77A4019468C32005ED95A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA77A3D19468C32005ED95A /* Default.png */; };
+		8BA77A4119468C32005ED95A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA77A3E19468C32005ED95A /* Default@2x.png */; };
+		8BA77A4219468C32005ED95A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA77A3F19468C32005ED95A /* Default-568h@2x.png */; };
 		C743F6E416D1F4EB00A933B7 /* btn_blue_active.png in Resources */ = {isa = PBXBuildFile; fileRef = C743F6E016D1F4EB00A933B7 /* btn_blue_active.png */; };
 		C743F6E516D1F4EB00A933B7 /* btn_blue_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C743F6E116D1F4EB00A933B7 /* btn_blue_active@2x.png */; };
 		C743F6E616D1F4EB00A933B7 /* btn_blue_inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = C743F6E216D1F4EB00A933B7 /* btn_blue_inactive.png */; };
@@ -178,6 +181,9 @@
 		668ECDCA1456438C00455266 /* NIStylesheetCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIStylesheetCache.m; path = ../../src/css/src/NIStylesheetCache.m; sourceTree = "<group>"; };
 		668ECDCC145656F300455266 /* UIButton+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+NIStyleable.h"; path = "../../src/css/src/UIButton+NIStyleable.h"; sourceTree = "<group>"; };
 		668ECDCD145656F400455266 /* UIButton+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+NIStyleable.m"; path = "../../src/css/src/UIButton+NIStyleable.m"; sourceTree = "<group>"; };
+		8BA77A3D19468C32005ED95A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		8BA77A3E19468C32005ED95A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		8BA77A3F19468C32005ED95A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		C743F6E016D1F4EB00A933B7 /* btn_blue_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_blue_active.png; path = resources/btn_blue_active.png; sourceTree = "<group>"; };
 		C743F6E116D1F4EB00A933B7 /* btn_blue_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_blue_active@2x.png"; path = "resources/btn_blue_active@2x.png"; sourceTree = "<group>"; };
 		C743F6E216D1F4EB00A933B7 /* btn_blue_inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_blue_inactive.png; path = resources/btn_blue_inactive.png; sourceTree = "<group>"; };
@@ -220,6 +226,9 @@
 		663BF6041587339A0066B814 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8BA77A3D19468C32005ED95A /* Default.png */,
+				8BA77A3E19468C32005ED95A /* Default@2x.png */,
+				8BA77A3F19468C32005ED95A /* Default-568h@2x.png */,
 				663BF5FE1587339A0066B814 /* Icon-72.png */,
 				663BF5FF1587339A0066B814 /* Icon-Small-50.png */,
 				663BF6001587339A0066B814 /* Icon-Small.png */,
@@ -470,7 +479,7 @@
 		66832D1714421450003E413C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0600;
 			};
 			buildConfigurationList = 66832D1A14421450003E413C /* Build configuration list for PBXProject "CSSDemo" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -505,6 +514,9 @@
 				C743F6E416D1F4EB00A933B7 /* btn_blue_active.png in Resources */,
 				C743F6E516D1F4EB00A933B7 /* btn_blue_active@2x.png in Resources */,
 				C743F6E616D1F4EB00A933B7 /* btn_blue_inactive.png in Resources */,
+				8BA77A4019468C32005ED95A /* Default.png in Resources */,
+				8BA77A4119468C32005ED95A /* Default@2x.png in Resources */,
+				8BA77A4219468C32005ED95A /* Default-568h@2x.png in Resources */,
 				C743F6E716D1F4EB00A933B7 /* btn_blue_inactive@2x.png in Resources */,
 				C7B9283F16D2B45A001BF61C /* Localizable.strings in Resources */,
 			);
@@ -594,10 +606,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -607,10 +626,15 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -620,14 +644,25 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";

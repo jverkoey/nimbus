@@ -61,7 +61,7 @@ static NSDictionary* sColorTable = nil;
 // Instantiates the color table if it does not already exist.
 + (NSDictionary *)colorTable;
 + (UIColor *)colorFromCssValues:(NSArray *)cssValues numberOfConsumedTokens:(NSInteger *)pNumberOfConsumedTokens;
-+ (UITextAlignment)textAlignmentFromCssValues:(NSArray *)cssValues;
++ (NSTextAlignment)textAlignmentFromCssValues:(NSArray *)cssValues;
 @end
 
 
@@ -150,7 +150,7 @@ return _##name; \
   return nil != [_ruleset objectForKey:kTextAlignmentKey];
 }
 
-- (UITextAlignment)textAlignment {
+- (NSTextAlignment)textAlignment {
   NIDASSERT([self hasTextAlignment]);
   if (!_is.cached.TextAlignment) {
     _textAlignment = [[self class] textAlignmentFromCssValues:[_ruleset objectForKey:kTextAlignmentKey]];
@@ -581,7 +581,7 @@ RULE_ELEMENT(minWidth, MinWidth, @"min-width", NICSSUnit, unitFromCssValues)
 RULE_ELEMENT(minHeight, MinHeight, @"min-height", NICSSUnit, unitFromCssValues)
 RULE_ELEMENT(maxWidth, MaxWidth, @"max-width", NICSSUnit, unitFromCssValues)
 RULE_ELEMENT(maxHeight, MaxHeight, @"max-height", NICSSUnit, unitFromCssValues)
-RULE_ELEMENT(frameHorizontalAlign,FrameHorizontalAlign,@"-mobile-halign",UITextAlignment,textAlignmentFromCssValues)
+RULE_ELEMENT(frameHorizontalAlign,FrameHorizontalAlign,@"-mobile-halign",NSTextAlignment,textAlignmentFromCssValues)
 RULE_ELEMENT(frameVerticalAlign,FrameVerticalAlign,@"-mobile-valign",UIViewContentMode,verticalAlignFromCssValues)
 RULE_ELEMENT(backgroundStretchInsets,BackgroundStretchInsets,@"-mobile-background-stretch",UIEdgeInsets,edgeInsetsFromCssValues)
 RULE_ELEMENT(backgroundImage,BackgroundImage,@"background-image", NSString*,imageStringFromCssValues)
@@ -1158,22 +1158,22 @@ RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UICont
   return a;
 }
 
-+ (UITextAlignment)textAlignmentFromCssValues:(NSArray *)cssValues {
++ (NSTextAlignment)textAlignmentFromCssValues:(NSArray *)cssValues {
   NIDASSERT([cssValues count] == 1);
   if ([cssValues count] < 1) {
-    return UITextAlignmentLeft;
+    return NSTextAlignmentLeft;
   }
 
   NSString* value = [cssValues objectAtIndex:0];
 
-  UITextAlignment textAlignment = UITextAlignmentLeft;
+  NSTextAlignment textAlignment = NSTextAlignmentLeft;
   
   if ([value isEqualToString:@"center"]) {
-    textAlignment = UITextAlignmentCenter;
+    textAlignment = NSTextAlignmentCenter;
   } else if ([value isEqualToString:@"right"]) {
-    textAlignment = UITextAlignmentRight;
+    textAlignment = NSTextAlignmentRight;
   } else if ([value isEqualToString:@"left"]) {
-    textAlignment = UITextAlignmentLeft;
+    textAlignment = NSTextAlignmentLeft;
   } else {
     NIDERROR(@"Unknown horizontal alignment %@", value);
   }

@@ -16,7 +16,7 @@
 
 // See: http://bit.ly/hS5nNh for unit test macros.
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
 #import "NIPreprocessorMacros.h"
 #import "NIRuntimeClassModifications.h"
@@ -37,7 +37,7 @@
 
 static NSInteger sClassValue = 0;
 
-@interface NIRuntimeClassModificationsTests : SenTestCase {
+@interface NIRuntimeClassModificationsTests : XCTestCase {
 @private
   NSInteger _value;
 }
@@ -58,38 +58,38 @@ static NSInteger sClassValue = 0;
   _value = 0;
 
   [self setValueToOne];
-  STAssertEquals(_value, (NSInteger)1, @"value should be 1");
+  XCTAssertEqual(_value, (NSInteger)1, @"value should be 1");
 
   [self setValueToTwo];
-  STAssertEquals(_value, (NSInteger)2, @"value should be 2");
+  XCTAssertEqual(_value, (NSInteger)2, @"value should be 2");
 
   NISwapInstanceMethods([NIRuntimeClassModificationsTests class],
                         @selector(setValueToOne), @selector(setValueToTwo));
 
   [self setValueToOne];
-  STAssertEquals(_value, (NSInteger)2, @"value should be 2");
+  XCTAssertEqual(_value, (NSInteger)2, @"value should be 2");
 
   [self setValueToTwo];
-  STAssertEquals(_value, (NSInteger)1, @"value should be 1");
+  XCTAssertEqual(_value, (NSInteger)1, @"value should be 1");
 }
 
 - (void)testSwapClassMethods {
   sClassValue = 0;
 
   [[self class] setValueToThree];
-  STAssertEquals(sClassValue, (NSInteger)3, @"value should be 3");
+  XCTAssertEqual(sClassValue, (NSInteger)3, @"value should be 3");
 
   [[self class] setValueToFour];
-  STAssertEquals(sClassValue, (NSInteger)4, @"value should be 4");
+  XCTAssertEqual(sClassValue, (NSInteger)4, @"value should be 4");
 
   NISwapClassMethods([NIRuntimeClassModificationsTests class],
                      @selector(setValueToThree), @selector(setValueToFour));
 
   [[self class] setValueToThree];
-  STAssertEquals(sClassValue, (NSInteger)4, @"value should be 4");
+  XCTAssertEqual(sClassValue, (NSInteger)4, @"value should be 4");
 
   [[self class] setValueToFour];
-  STAssertEquals(sClassValue, (NSInteger)3, @"value should be 3");
+  XCTAssertEqual(sClassValue, (NSInteger)3, @"value should be 3");
 }
 
 #pragma mark - Class Methods

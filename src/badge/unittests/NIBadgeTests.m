@@ -14,17 +14,20 @@
 // limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
+// See: http://bit.ly/hS5nNh for unit test macros.
 
-#import "NIPagingScrollViewPage.h"
+#import <XCTest/XCTest.h>
 
-/**
- * Use NIPagingScrollViewPage instead.
- *
- * This class will be deleted after February 28, 2014.
- *
- * @ingroup NimbusPagingScrollView
- */
-__NI_DEPRECATED_METHOD
-@interface NIPageView : NIPagingScrollViewPage
+#import "NimbusOverview.h"
+
+@interface NIOverviewTests : XCTestCase
+@end
+
+
+@implementation NIOverviewTests
+
+
+- (void)testNothing {
+}
+
 @end

@@ -16,11 +16,11 @@
 
 // See: http://bit.ly/hS5nNh for unit test macros.
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
 #import "NimbusCSS.h"
 
-@interface NIStylesheetTests : SenTestCase {
+@interface NIStylesheetTests : XCTestCase {
 @private
   NSBundle* _unitTestBundle;
 }
@@ -33,7 +33,7 @@
 
 - (void)setUp {
   _unitTestBundle = [NSBundle bundleWithIdentifier:@"com.nimbus.css.unittests"];
-  STAssertNotNil(_unitTestBundle, @"Unable to find the bundle %@", [NSBundle allBundles]);
+  XCTAssertNotNil(_unitTestBundle, @"Unable to find the bundle %@", [NSBundle allBundles]);
 }
 
 - (void)tearDown {
@@ -43,22 +43,22 @@
 - (void)testFailures {
   NIStylesheet* stylesheet = [[NIStylesheet alloc] init];
 
-  STAssertFalse([stylesheet loadFromPath:nil], @"Parsing nil path should fail.");
-  STAssertFalse([stylesheet loadFromPath:nil pathPrefix:nil], @"Parsing nil path should fail.");
-  STAssertFalse([stylesheet loadFromPath:nil pathPrefix:nil delegate:nil], @"Parsing nil path should fail.");
-  STAssertFalse([stylesheet loadFromPath:@""], @"Parsing empty path should fail.");
-  STAssertFalse([stylesheet loadFromPath:@"nonexistent_file"], @"Parsing invalid file should fail.");
+  XCTAssertFalse([stylesheet loadFromPath:nil], @"Parsing nil path should fail.");
+  XCTAssertFalse([stylesheet loadFromPath:nil pathPrefix:nil], @"Parsing nil path should fail.");
+  XCTAssertFalse([stylesheet loadFromPath:nil pathPrefix:nil delegate:nil], @"Parsing nil path should fail.");
+  XCTAssertFalse([stylesheet loadFromPath:@""], @"Parsing empty path should fail.");
+  XCTAssertFalse([stylesheet loadFromPath:@"nonexistent_file"], @"Parsing invalid file should fail.");
 }
 
 - (void)assertColor:(UIColor *)color1 equalsColor:(UIColor *)color2 {
   size_t nColors1 = CGColorGetNumberOfComponents(color1.CGColor);
   size_t nColors2 = CGColorGetNumberOfComponents(color2.CGColor);
-  STAssertEquals(nColors1, nColors2, @"Should have the same number of components.");
+  XCTAssertEqual(nColors1, nColors2, @"Should have the same number of components.");
 
-  const float* colors1 = CGColorGetComponents(color1.CGColor);
-  const float* colors2 = CGColorGetComponents(color2.CGColor);
+  const CGFloat* colors1 = CGColorGetComponents(color1.CGColor);
+  const CGFloat* colors2 = CGColorGetComponents(color2.CGColor);
   for (NSInteger ix = 0; ix < nColors1; ++ix) {
-    STAssertEqualsWithAccuracy(colors1[ix], colors2[ix], 0.0001, @"Colors should match.");
+    XCTAssertEqualWithAccuracy(colors1[ix], colors2[ix], 0.0001, @"Colors should match.");
   }
 }
 
@@ -71,22 +71,22 @@
   NIStylesheet* stylesheet = [[NIStylesheet alloc] init];
   NSString* pathToFile = NIPathForBundleResource(_unitTestBundle, @"UILabel.css");
 
-  STAssertTrue([stylesheet loadFromPath:pathToFile], @"The stylesheet should have been parsed.");
+  XCTAssertTrue([stylesheet loadFromPath:pathToFile], @"The stylesheet should have been parsed.");
 
   UILabel* label = [[UILabel alloc] initWithFrame:CGRectZero];
   [stylesheet applyStyleToView:label withClassName:NSStringFromClass([label class]) inDOM:nil];
 
   [self assertColor:label.textColor equalsColor:[UIColor redColor]];
   [self assertColor:label.shadowColor equalsColor:[UIColor greenColor]];
-  STAssertEquals(label.textAlignment, UITextAlignmentRight, @"Alignment should match.");
-  STAssertEquals(label.shadowOffset.width, 20.f, @"Shadow offset should match.");
-  STAssertEquals(label.shadowOffset.height, -30.f, @"Shadow offset should match.");
-  STAssertEquals(label.lineBreakMode, NSLineBreakByTruncatingTail, @"Should match.");
-  STAssertEquals(label.numberOfLines, 5, @"Should match.");
-  STAssertEquals(label.minimumFontSize, 5.f, @"Should match.");
-  STAssertTrue(label.adjustsFontSizeToFitWidth, @"Should match.");
-  STAssertEquals(label.baselineAdjustment, UIBaselineAdjustmentAlignCenters, @"Should match.");
-  STAssertEquals(label.alpha, 0.5f, @"Should match.");
+  XCTAssertEqual(label.textAlignment, NSTextAlignmentRight, @"Alignment should match.");
+  XCTAssertEqual(label.shadowOffset.width, 20.f, @"Shadow offset should match.");
+  XCTAssertEqual(label.shadowOffset.height, -30.f, @"Shadow offset should match.");
+  XCTAssertEqual(label.lineBreakMode, NSLineBreakByTruncatingTail, @"Should match.");
+  XCTAssertEqual(label.numberOfLines, 5, @"Should match.");
+  XCTAssertEqual(label.minimumFontSize, 5.f, @"Should match.");
+  XCTAssertTrue(label.adjustsFontSizeToFitWidth, @"Should match.");
+  XCTAssertEqual(label.baselineAdjustment, UIBaselineAdjustmentAlignCenters, @"Should match.");
+  XCTAssertEqual(label.alpha, 0.5f, @"Should match.");
 }
 
 @end

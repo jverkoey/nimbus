@@ -16,13 +16,13 @@
 
 // See: http://bit.ly/hS5nNh for unit test macros.
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
 #import "NimbusCore.h"
 #import "NimbusModels.h"
 #import "NITableViewModel+Private.h"
 
-@interface NITableViewModelTests : SenTestCase {
+@interface NITableViewModelTests : XCTestCase {
 }
 
 @end
@@ -34,50 +34,50 @@
 - (void)testEmptyTableViewModel {
   NITableViewModel* model = [[NITableViewModel alloc] init];
 
-  STAssertEquals([model tableView:nil numberOfRowsInSection:0], 0, @"The model should be empty.");
-  STAssertEquals([model numberOfSectionsInTableView:nil], 0, @"There should not be any sections.");
-  STAssertEquals(model.sections.count, 0U, @"Should have zero sections.");
+  XCTAssertEqual([model tableView:nil numberOfRowsInSection:0], 0, @"The model should be empty.");
+  XCTAssertEqual([model numberOfSectionsInTableView:nil], 0, @"There should not be any sections.");
+  XCTAssertEqual(model.sections.count, 0U, @"Should have zero sections.");
   
   model = [[NITableViewModel alloc] initWithListArray:nil delegate:nil];
   
-  STAssertEquals([model tableView:nil numberOfRowsInSection:0], 0, @"The model should be empty.");
-  STAssertEquals([model numberOfSectionsInTableView:nil], 0, @"There should not be any sections.");
+  XCTAssertEqual([model tableView:nil numberOfRowsInSection:0], 0, @"The model should be empty.");
+  XCTAssertEqual([model numberOfSectionsInTableView:nil], 0, @"There should not be any sections.");
   
   model = [[NITableViewModel alloc] initWithSectionedArray:nil delegate:nil];
   
-  STAssertEquals([model tableView:nil numberOfRowsInSection:0], 0, @"The model should be empty.");
-  STAssertEquals([model numberOfSectionsInTableView:nil], 0, @"There should not be any sections.");
+  XCTAssertEqual([model tableView:nil numberOfRowsInSection:0], 0, @"The model should be empty.");
+  XCTAssertEqual([model numberOfSectionsInTableView:nil], 0, @"There should not be any sections.");
   
   model = [[NITableViewModel alloc] initWithListArray:[NSArray array] delegate:nil];
   
-  STAssertEquals([model tableView:nil numberOfRowsInSection:0], 0, @"The model should be empty.");
-  STAssertEquals([model numberOfSectionsInTableView:nil], 1, @"There should be one empty section.");
+  XCTAssertEqual([model tableView:nil numberOfRowsInSection:0], 0, @"The model should be empty.");
+  XCTAssertEqual([model numberOfSectionsInTableView:nil], 1, @"There should be one empty section.");
   
   model = [[NITableViewModel alloc] initWithSectionedArray:[NSArray array] delegate:nil];
   
-  STAssertEquals([model tableView:nil numberOfRowsInSection:0], 0, @"The model should be empty.");
-  STAssertEquals([model numberOfSectionsInTableView:nil], 0, @"There should not be any sections.");
+  XCTAssertEqual([model tableView:nil numberOfRowsInSection:0], 0, @"The model should be empty.");
+  XCTAssertEqual([model numberOfSectionsInTableView:nil], 0, @"There should not be any sections.");
 }
 
 - (void)testInvalidAccess {
   NITableViewModel* model = [[NITableViewModel alloc] init];
 
-  STAssertNil([model tableView:nil titleForHeaderInSection:0], @"There should not be a header title.");
-  STAssertNil([model tableView:nil titleForFooterInSection:0], @"There should not be a footer title.");
+  XCTAssertNil([model tableView:nil titleForHeaderInSection:0], @"There should not be a header title.");
+  XCTAssertNil([model tableView:nil titleForFooterInSection:0], @"There should not be a footer title.");
 
-  STAssertNil([model tableView:nil titleForHeaderInSection:1], @"There should not be a header title.");
-  STAssertNil([model tableView:nil titleForFooterInSection:1], @"There should not be a footer title.");
+  XCTAssertNil([model tableView:nil titleForHeaderInSection:1], @"There should not be a header title.");
+  XCTAssertNil([model tableView:nil titleForFooterInSection:1], @"There should not be a footer title.");
   
-  STAssertNil([model tableView:nil titleForHeaderInSection:-1], @"There should not be a header title.");
-  STAssertNil([model tableView:nil titleForFooterInSection:-1], @"There should not be a footer title.");
+  XCTAssertNil([model tableView:nil titleForHeaderInSection:-1], @"There should not be a header title.");
+  XCTAssertNil([model tableView:nil titleForFooterInSection:-1], @"There should not be a footer title.");
 }
 
 - (void)testEditing {
   NITableViewModel* model = [[NITableViewModel alloc] init];
 
-  STAssertFalse([model tableView:nil canEditRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]],
+  XCTAssertFalse([model tableView:nil canEditRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]],
                 @"Should not be able to edit anything.");
-  STAssertFalse([model tableView:nil canEditRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]],
+  XCTAssertFalse([model tableView:nil canEditRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]],
                 @"Should not be able to edit anything.");
 }
 
@@ -90,9 +90,9 @@
                        nil];
   NITableViewModel* model = [[NITableViewModel alloc] initWithListArray:contents delegate:nil];
 
-  STAssertEquals([model tableView:nil numberOfRowsInSection:0], 4, @"The model should have 4 rows.");
-  STAssertEquals([model numberOfSectionsInTableView:nil], 1, @"There should be 1 section.");
-  STAssertNil([model tableView:nil titleForHeaderInSection:0], @"There should be no section title.");
+  XCTAssertEqual([model tableView:nil numberOfRowsInSection:0], 4, @"The model should have 4 rows.");
+  XCTAssertEqual([model numberOfSectionsInTableView:nil], 1, @"There should be 1 section.");
+  XCTAssertNil([model tableView:nil titleForHeaderInSection:0], @"There should be no section title.");
 }
 
 - (void)testListTableViewModel_objectAtIndexPath {
@@ -107,16 +107,16 @@
                        nil];
   NITableViewModel* model = [[NITableViewModel alloc] initWithListArray:contents delegate:nil];
   
-  STAssertEquals([model objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]], @"This is a string", @"The first object should be the string.");
-  STAssertEquals([model objectAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]], object1, @"Object mismatch.");
-  STAssertEquals([model objectAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]], object2, @"Object mismatch.");
-  STAssertEquals([model objectAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]], object3, @"Object mismatch.");
+  XCTAssertEqual([model objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]], @"This is a string", @"The first object should be the string.");
+  XCTAssertEqual([model objectAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]], object1, @"Object mismatch.");
+  XCTAssertEqual([model objectAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]], object2, @"Object mismatch.");
+  XCTAssertEqual([model objectAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]], object3, @"Object mismatch.");
 
-  STAssertNil([model objectAtIndexPath:nil], @"Should be nil.");
+  XCTAssertNil([model objectAtIndexPath:nil], @"Should be nil.");
 
   NIDebugAssertionsShouldBreak = NO;
-  STAssertNil([model objectAtIndexPath:[NSIndexPath indexPathForRow:5 inSection:0]], @"Should be nil.");
-  STAssertNil([model objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]], @"Should be nil.");
+  XCTAssertNil([model objectAtIndexPath:[NSIndexPath indexPathForRow:5 inSection:0]], @"Should be nil.");
+  XCTAssertNil([model objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]], @"Should be nil.");
   NIDebugAssertionsShouldBreak = YES;
 }
 
@@ -131,14 +131,14 @@
                        nil];
   NITableViewModel* model = [[NITableViewModel alloc] initWithListArray:contents delegate:nil];
 
-  STAssertEqualObjects([model indexPathForObject:object1], [NSIndexPath indexPathForRow:0 inSection:0], @"Object not found at expected index path.");
-  STAssertEqualObjects([model indexPathForObject:object2], [NSIndexPath indexPathForRow:1 inSection:0], @"Object not found at expected index path.");
-  STAssertEqualObjects([model indexPathForObject:object3], [NSIndexPath indexPathForRow:2 inSection:0], @"Object not found at expected index path.");
+  XCTAssertEqualObjects([model indexPathForObject:object1], [NSIndexPath indexPathForRow:0 inSection:0], @"Object not found at expected index path.");
+  XCTAssertEqualObjects([model indexPathForObject:object2], [NSIndexPath indexPathForRow:1 inSection:0], @"Object not found at expected index path.");
+  XCTAssertEqualObjects([model indexPathForObject:object3], [NSIndexPath indexPathForRow:2 inSection:0], @"Object not found at expected index path.");
 
-  STAssertNil([model indexPathForObject:nil], @"Should be nil.");
+  XCTAssertNil([model indexPathForObject:nil], @"Should be nil.");
 
   NIDebugAssertionsShouldBreak = NO;
-  STAssertNil([model indexPathForObject:@"Random string"], @"Should be nil.");
+  XCTAssertNil([model indexPathForObject:@"Random string"], @"Should be nil.");
   NIDebugAssertionsShouldBreak = YES;
 }
 
@@ -157,10 +157,10 @@
                        nil];
   NITableViewModel* model = [[NITableViewModel alloc] initWithSectionedArray:contents delegate:nil];
   
-  STAssertEquals([model tableView:nil numberOfRowsInSection:0], 3, @"The first section should have 3 rows.");
-  STAssertEquals([model tableView:nil numberOfRowsInSection:1], 2, @"The second section should have 2 rows.");
-  STAssertEquals([model tableView:nil numberOfRowsInSection:2], 0, @"The third section should have 0 rows.");
-  STAssertEquals([model numberOfSectionsInTableView:nil], 5, @"There should be 5 sections.");
+  XCTAssertEqual([model tableView:nil numberOfRowsInSection:0], 3, @"The first section should have 3 rows.");
+  XCTAssertEqual([model tableView:nil numberOfRowsInSection:1], 2, @"The second section should have 2 rows.");
+  XCTAssertEqual([model tableView:nil numberOfRowsInSection:2], 0, @"The third section should have 0 rows.");
+  XCTAssertEqual([model numberOfSectionsInTableView:nil], 5, @"There should be 5 sections.");
 }
 
 - (void)testSectionedTableViewModelWithFooters {
@@ -185,16 +185,16 @@
                        nil];
   NITableViewModel* model = [[NITableViewModel alloc] initWithSectionedArray:contents delegate:nil];
   
-  STAssertEquals([model tableView:nil numberOfRowsInSection:0], 3, @"The first section should have 3 rows.");
-  STAssertEquals([model tableView:nil numberOfRowsInSection:1], 2, @"The second section should have 2 rows.");
-  STAssertEquals([model tableView:nil numberOfRowsInSection:2], 0, @"The third section should have 0 rows.");
-  STAssertEquals([model tableView:nil numberOfRowsInSection:3], 0, @"The fourth section should have 0 rows.");
-  STAssertEquals([model numberOfSectionsInTableView:nil], 7, @"There should be 7 sections.");
-  STAssertEquals([model tableView:nil titleForHeaderInSection:0], @"Section 1", @"The titles should match.");
-  STAssertEquals([model tableView:nil titleForHeaderInSection:1], @"Section 2", @"The titles should match.");
-  STAssertEquals([model tableView:nil titleForFooterInSection:0], @"Footer 1", @"The titles should match.");
-  STAssertEquals([model tableView:nil titleForFooterInSection:1], @"Footer 2", @"The titles should match.");
-  STAssertNil([model tableView:nil titleForFooterInSection:6], @"There should not be a title.");
+  XCTAssertEqual([model tableView:nil numberOfRowsInSection:0], 3, @"The first section should have 3 rows.");
+  XCTAssertEqual([model tableView:nil numberOfRowsInSection:1], 2, @"The second section should have 2 rows.");
+  XCTAssertEqual([model tableView:nil numberOfRowsInSection:2], 0, @"The third section should have 0 rows.");
+  XCTAssertEqual([model tableView:nil numberOfRowsInSection:3], 0, @"The fourth section should have 0 rows.");
+  XCTAssertEqual([model numberOfSectionsInTableView:nil], 7, @"There should be 7 sections.");
+  XCTAssertEqual([model tableView:nil titleForHeaderInSection:0], @"Section 1", @"The titles should match.");
+  XCTAssertEqual([model tableView:nil titleForHeaderInSection:1], @"Section 2", @"The titles should match.");
+  XCTAssertEqual([model tableView:nil titleForFooterInSection:0], @"Footer 1", @"The titles should match.");
+  XCTAssertEqual([model tableView:nil titleForFooterInSection:1], @"Footer 2", @"The titles should match.");
+  XCTAssertNil([model tableView:nil titleForFooterInSection:6], @"There should not be a title.");
 }
 
 - (void)testDynamicSectionedIndex {
@@ -218,42 +218,42 @@
   NITableViewModel* model = [[NITableViewModel alloc] initWithSectionedArray:contents delegate:nil];
   [model setSectionIndexType:NITableViewModelSectionIndexDynamic showsSearch:YES showsSummary:YES];
 
-  STAssertEquals(model.sectionIndexType, NITableViewModelSectionIndexDynamic, @"Section index type should have been set.");
+  XCTAssertEqual(model.sectionIndexType, NITableViewModelSectionIndexDynamic, @"Section index type should have been set.");
   NSArray* sectionIndexTitles = [model sectionIndexTitlesForTableView:nil];
   NSArray* expectedTitle = [NSArray arrayWithObjects:UITableViewIndexSearch, @"A", @"C", @"D", @"#", nil];
-  STAssertEquals(sectionIndexTitles.count, expectedTitle.count, @"Arrays should be the same size.");
+  XCTAssertEqual(sectionIndexTitles.count, expectedTitle.count, @"Arrays should be the same size.");
   for (NSInteger ix = 0; ix < sectionIndexTitles.count; ++ix) {
-    STAssertEquals([sectionIndexTitles objectAtIndex:ix], [expectedTitle objectAtIndex:ix], @"Objects should match.");
+    XCTAssertEqual([sectionIndexTitles objectAtIndex:ix], [expectedTitle objectAtIndex:ix], @"Objects should match.");
   }
 
   [model setSectionIndexType:NITableViewModelSectionIndexDynamic showsSearch:NO showsSummary:YES];
 
-  STAssertEquals(model.sectionIndexType, NITableViewModelSectionIndexDynamic, @"Section index type should have been set.");
+  XCTAssertEqual(model.sectionIndexType, NITableViewModelSectionIndexDynamic, @"Section index type should have been set.");
   sectionIndexTitles = [model sectionIndexTitlesForTableView:nil];
   expectedTitle = [NSArray arrayWithObjects:@"A", @"C", @"D", @"#", nil];
-  STAssertEquals(sectionIndexTitles.count, expectedTitle.count, @"Arrays should be the same size.");
+  XCTAssertEqual(sectionIndexTitles.count, expectedTitle.count, @"Arrays should be the same size.");
   for (NSInteger ix = 0; ix < sectionIndexTitles.count; ++ix) {
-    STAssertEquals([sectionIndexTitles objectAtIndex:ix], [expectedTitle objectAtIndex:ix], @"Objects should match.");
+    XCTAssertEqual([sectionIndexTitles objectAtIndex:ix], [expectedTitle objectAtIndex:ix], @"Objects should match.");
   }
 
   [model setSectionIndexType:NITableViewModelSectionIndexDynamic showsSearch:YES showsSummary:NO];
 
-  STAssertEquals(model.sectionIndexType, NITableViewModelSectionIndexDynamic, @"Section index type should have been set.");
+  XCTAssertEqual(model.sectionIndexType, NITableViewModelSectionIndexDynamic, @"Section index type should have been set.");
   sectionIndexTitles = [model sectionIndexTitlesForTableView:nil];
   expectedTitle = [NSArray arrayWithObjects:UITableViewIndexSearch, @"A", @"C", @"D", nil];
-  STAssertEquals(sectionIndexTitles.count, expectedTitle.count, @"Arrays should be the same size.");
+  XCTAssertEqual(sectionIndexTitles.count, expectedTitle.count, @"Arrays should be the same size.");
   for (NSInteger ix = 0; ix < sectionIndexTitles.count; ++ix) {
-    STAssertEquals([sectionIndexTitles objectAtIndex:ix], [expectedTitle objectAtIndex:ix], @"Objects should match.");
+    XCTAssertEqual([sectionIndexTitles objectAtIndex:ix], [expectedTitle objectAtIndex:ix], @"Objects should match.");
   }
 
   [model setSectionIndexType:NITableViewModelSectionIndexDynamic showsSearch:NO showsSummary:NO];
 
-  STAssertEquals(model.sectionIndexType, NITableViewModelSectionIndexDynamic, @"Section index type should have been set.");
+  XCTAssertEqual(model.sectionIndexType, NITableViewModelSectionIndexDynamic, @"Section index type should have been set.");
   sectionIndexTitles = [model sectionIndexTitlesForTableView:nil];
   expectedTitle = [NSArray arrayWithObjects:@"A", @"C", @"D", nil];
-  STAssertEquals(sectionIndexTitles.count, expectedTitle.count, @"Arrays should be the same size.");
+  XCTAssertEqual(sectionIndexTitles.count, expectedTitle.count, @"Arrays should be the same size.");
   for (NSInteger ix = 0; ix < sectionIndexTitles.count; ++ix) {
-    STAssertEquals([sectionIndexTitles objectAtIndex:ix], [expectedTitle objectAtIndex:ix], @"Objects should match.");
+    XCTAssertEqual([sectionIndexTitles objectAtIndex:ix], [expectedTitle objectAtIndex:ix], @"Objects should match.");
   }
 }
 

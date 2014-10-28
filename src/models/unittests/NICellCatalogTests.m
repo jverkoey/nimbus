@@ -14,12 +14,12 @@
 // limitations under the License.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
 #import "NimbusCore.h"
 #import "NimbusModels.h"
 
-@interface NICellCatalogTests : SenTestCase
+@interface NICellCatalogTests : XCTestCase
 @end
 
 @interface TestTitleCellObject : NITitleCellObject
@@ -34,11 +34,11 @@
 
 - (void)testCellObjectSubclassInitialization {
   TestTitleCellObject *titleCellObject = [[TestTitleCellObject alloc] initWithTitle:@"Title"];
-  STAssertTrue(titleCellObject.designatedInitializerWasExecuted,
-               @"%@'s designated initializer override did not run.", [titleCellObject class]);
+  XCTAssertTrue(titleCellObject.designatedInitializerWasExecuted,
+                @"%@'s designated initializer override did not run.", [titleCellObject class]);
   TestSubtitleCellObject *subtitleCellObject = [[TestSubtitleCellObject alloc] initWithTitle:@"Title"];
-  STAssertTrue(subtitleCellObject.designatedInitializerWasExecuted,
-               @"%@'s designated initializer override did not run.", [subtitleCellObject class]);
+  XCTAssertTrue(subtitleCellObject.designatedInitializerWasExecuted,
+                @"%@'s designated initializer override did not run.", [subtitleCellObject class]);
 }
 
 @end

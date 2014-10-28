@@ -75,7 +75,7 @@
   if ([self.cache isKindOfClass:[NIImageMemoryCache class]]) {
     NIImageMemoryCache* imageCache = (NIImageMemoryCache *)self.cache;
     summary = [NSString stringWithFormat:
-               @"Number of images: %d\nNumber of pixels: %@/%@\nStress limit: %@",
+               @"Number of images: %zd\nNumber of pixels: %@/%@\nStress limit: %@",
                self.cache.count,
                NIStringFromBytes(imageCache.numberOfPixels),
                NIStringFromBytes(imageCache.maxNumberOfPixels),
@@ -83,7 +83,7 @@
 
   } else {
     summary = [NSString stringWithFormat:
-               @"Number of objects: %d",
+               @"Number of objects: %zd",
                self.cache.count];
   }
   [contents addObject:[NITableViewModelFooter footerWithTitle:summary]];

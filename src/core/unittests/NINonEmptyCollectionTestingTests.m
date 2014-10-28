@@ -18,7 +18,7 @@
 
 // See: http://bit.ly/hS5nNh for unit test macros.
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
 #import "NINonEmptyCollectionTesting.h"
 
@@ -53,7 +53,7 @@
  * - [test] String with any text.
  */
 
-@interface NINonEmptyCollectionTestingTests : SenTestCase {
+@interface NINonEmptyCollectionTestingTests : XCTestCase {
 }
 
 @end
@@ -66,45 +66,45 @@
 
 
 - (void)testIsArrayWithObjects {
-  STAssertTrue(!NIIsArrayWithObjects(nil), @"nil should not be an array with items.");
+  XCTAssertTrue(!NIIsArrayWithObjects(nil), @"nil should not be an array with items.");
 
   NSMutableArray* array = [[NSMutableArray alloc] init];
 
-  STAssertTrue(!NIIsArrayWithObjects(array), @"This array should not have any items.");
+  XCTAssertTrue(!NIIsArrayWithObjects(array), @"This array should not have any items.");
 
   NSDictionary* dictionary = [[NSDictionary alloc] init];
-  STAssertTrue(!NIIsArrayWithObjects(dictionary), @"This is not an array.");
+  XCTAssertTrue(!NIIsArrayWithObjects(dictionary), @"This is not an array.");
 
   [array addObject:dictionary];
-  STAssertTrue(NIIsArrayWithObjects(array), @"This array should have items.");
+  XCTAssertTrue(NIIsArrayWithObjects(array), @"This array should have items.");
 }
 
 - (void)testIsSetWithObjects {
-  STAssertTrue(!NIIsSetWithObjects(nil), @"nil should not be a set with items.");
+  XCTAssertTrue(!NIIsSetWithObjects(nil), @"nil should not be a set with items.");
 
   NSMutableSet* set = [[NSMutableSet alloc] init];
 
-  STAssertTrue(!NIIsSetWithObjects(set), @"This set should not have any items.");
+  XCTAssertTrue(!NIIsSetWithObjects(set), @"This set should not have any items.");
 
   NSDictionary* dictionary = [[NSDictionary alloc] init];
-  STAssertTrue(!NIIsSetWithObjects(dictionary), @"This is not an set.");
+  XCTAssertTrue(!NIIsSetWithObjects(dictionary), @"This is not an set.");
 
   [set addObject:dictionary];
-  STAssertTrue(NIIsSetWithObjects(set), @"This set should have items.");
+  XCTAssertTrue(NIIsSetWithObjects(set), @"This set should have items.");
 }
 
 - (void)testIsStringWithAnyText {
-  STAssertTrue(!NIIsStringWithAnyText(nil), @"nil should not be a string with any text.");
+  XCTAssertTrue(!NIIsStringWithAnyText(nil), @"nil should not be a string with any text.");
 
   NSString* string = [[NSString alloc] init];
 
-  STAssertTrue(!NIIsStringWithAnyText(string), @"This should be an empty string.");
+  XCTAssertTrue(!NIIsStringWithAnyText(string), @"This should be an empty string.");
 
   NSDictionary* dictionary = [[NSDictionary alloc] init];
-  STAssertTrue(!NIIsStringWithAnyText(dictionary), @"This is not a string.");
+  XCTAssertTrue(!NIIsStringWithAnyText(dictionary), @"This is not a string.");
 
-  STAssertTrue(!NIIsStringWithAnyText(@""), @"This should be an empty string.");
-  STAssertTrue(NIIsStringWithAnyText(@"three20"), @"This should be a string with text.");
+  XCTAssertTrue(!NIIsStringWithAnyText(@""), @"This should be an empty string.");
+  XCTAssertTrue(NIIsStringWithAnyText(@"three20"), @"This should be a string with text.");
 }
 
 @end

@@ -16,11 +16,11 @@
 
 // See: http://bit.ly/hS5nNh for unit test macros.
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
 #import "NimbusCore.h"
 
-@interface NICommonMetricsTests : SenTestCase
+@interface NICommonMetricsTests : XCTestCase
 @end
 
 
@@ -28,37 +28,37 @@
 
 
 - (void)testAutoresizingMasks {
-  STAssertTrue((UIViewAutoresizingFlexibleMargins & UIViewAutoresizingFlexibleLeftMargin),
-               @"Should have a flexible left margin.");
-  STAssertTrue((UIViewAutoresizingFlexibleMargins & UIViewAutoresizingFlexibleTopMargin),
-               @"Should have a flexible top margin.");
-  STAssertTrue((UIViewAutoresizingFlexibleMargins & UIViewAutoresizingFlexibleRightMargin),
-               @"Should have a flexible right margin.");
-  STAssertTrue((UIViewAutoresizingFlexibleMargins & UIViewAutoresizingFlexibleBottomMargin),
-               @"Should have a flexible bottom margin.");
+  XCTAssertTrue((UIViewAutoresizingFlexibleMargins & UIViewAutoresizingFlexibleLeftMargin),
+                @"Should have a flexible left margin.");
+  XCTAssertTrue((UIViewAutoresizingFlexibleMargins & UIViewAutoresizingFlexibleTopMargin),
+                @"Should have a flexible top margin.");
+  XCTAssertTrue((UIViewAutoresizingFlexibleMargins & UIViewAutoresizingFlexibleRightMargin),
+                @"Should have a flexible right margin.");
+  XCTAssertTrue((UIViewAutoresizingFlexibleMargins & UIViewAutoresizingFlexibleBottomMargin),
+                @"Should have a flexible bottom margin.");
 
-  STAssertTrue((UIViewAutoresizingFlexibleDimensions & UIViewAutoresizingFlexibleWidth),
-               @"Should have a flexible width.");
-  STAssertTrue((UIViewAutoresizingFlexibleDimensions & UIViewAutoresizingFlexibleHeight),
-               @"Should have a flexible height.");
+  XCTAssertTrue((UIViewAutoresizingFlexibleDimensions & UIViewAutoresizingFlexibleWidth),
+                @"Should have a flexible width.");
+  XCTAssertTrue((UIViewAutoresizingFlexibleDimensions & UIViewAutoresizingFlexibleHeight),
+                @"Should have a flexible height.");
 }
 
 - (void)testMetrics {
   // TODO (Jan 25, 2012): Test iPad logic as well.
   //STAssertEquals(NIToolbarHeightForOrientation(UIInterfaceOrientationPortrait), 44.f, @"Should match.");
-  STAssertEquals(NIToolbarHeightForOrientation(UIInterfaceOrientationLandscapeLeft), 33.f, @"Should match.");
-  STAssertEquals(NIStatusBarAnimationCurve(), UIViewAnimationCurveEaseIn, @"Should match.");
-  STAssertEquals(NIStatusBarAnimationDuration(), 0.3, @"Should match.");
-  STAssertEquals(NIStatusBarBoundsChangeAnimationCurve(), UIViewAnimationCurveEaseInOut, @"Should match.");
-  STAssertEquals(NIStatusBarBoundsChangeAnimationDuration(), 0.35, @"Should match.");
+  XCTAssertEqual(NIToolbarHeightForOrientation(UIInterfaceOrientationLandscapeLeft), 33.f, @"Should match.");
+  XCTAssertEqual(NIStatusBarAnimationCurve(), UIViewAnimationCurveEaseIn, @"Should match.");
+  XCTAssertEqual(NIStatusBarAnimationDuration(), 0.3, @"Should match.");
+  XCTAssertEqual(NIStatusBarBoundsChangeAnimationCurve(), UIViewAnimationCurveEaseInOut, @"Should match.");
+  XCTAssertEqual(NIStatusBarBoundsChangeAnimationDuration(), 0.35, @"Should match.");
 
   // TODO (Jan 25, 2012): Override the status bar functionality so that we can test the height code.
   //STAssertEquals(NIStatusBarHeight(), 0.f, @"Should match.");
 
-  STAssertEquals(NIDeviceRotationDuration(YES), 0.8, @"Should match.");
-  STAssertEquals(NIDeviceRotationDuration(NO), 0.4, @"Should match.");
-  STAssertTrue(UIEdgeInsetsEqualToEdgeInsets(NICellContentPadding(), UIEdgeInsetsMake(10, 10, 10, 10)),
-               @"Should match.");
+  XCTAssertEqual(NIDeviceRotationDuration(YES), 0.8, @"Should match.");
+  XCTAssertEqual(NIDeviceRotationDuration(NO), 0.4, @"Should match.");
+  XCTAssertTrue(UIEdgeInsetsEqualToEdgeInsets(NICellContentPadding(), UIEdgeInsetsMake(10, 10, 10, 10)),
+                @"Should match.");
 }
 
 @end

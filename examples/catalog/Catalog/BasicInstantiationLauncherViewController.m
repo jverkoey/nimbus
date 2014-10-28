@@ -130,7 +130,7 @@ static NSString* const kButtonReuseIdentifier = @"button";
 - (void)launcherView:(NILauncherView *)launcher didSelectItemOnPage:(NSInteger)page atIndex:(NSInteger)index {
   UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Notice"
                                                   message:
-                        [NSString stringWithFormat:@"Did tap button index %d on page %d",
+                        [NSString stringWithFormat:@"Did tap button index %zd on page %zd",
                          index, page]
                                           delegate:nil
                                         cancelButtonTitle:@"OK"

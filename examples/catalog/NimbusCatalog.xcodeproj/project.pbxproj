@@ -388,7 +388,7 @@
 		66B9415B1593866900AEA1D2 /* NIWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIWebController.h; path = ../../src/webcontroller/src/NIWebController.h; sourceTree = "<group>"; };
 		66B9415C1593866900AEA1D2 /* NIWebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIWebController.m; path = ../../src/webcontroller/src/NIWebController.m; sourceTree = "<group>"; };
 		66B9415E159386D300AEA1D2 /* NimbusWebController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NimbusWebController.bundle; path = ../../src/webcontroller/resources/NimbusWebController.bundle; sourceTree = "<group>"; };
-		66B9C3D4189B750100CCC971 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../../examples/catalog/Default-568h@2x.png"; sourceTree = "<group>"; };
+		66B9C3D4189B750100CCC971 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		66BB4F50159527E200020EE8 /* NILauncherPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NILauncherPageView.h; path = ../../src/launcher/src/NILauncherPageView.h; sourceTree = "<group>"; };
 		66BB4F51159527E200020EE8 /* NILauncherPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NILauncherPageView.m; path = ../../src/launcher/src/NILauncherPageView.m; sourceTree = "<group>"; };
 		66BB4F6815957E4300020EE8 /* NILauncherViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NILauncherViewModel.h; path = ../../src/launcher/src/NILauncherViewModel.h; sourceTree = "<group>"; };
@@ -498,8 +498,8 @@
 				6658C36A18A910650080B319 /* AFURLSessionManager.m */,
 			);
 			name = AFNetworking;
-			path = /Users/featherless/workbench/ios/nimbus/src/../thirdparty/AFNetworking/AFNetworking;
-			sourceTree = "<absolute>";
+			path = ../../thirdparty/AFNetworking/AFNetworking;
+			sourceTree = "<group>";
 		};
 		661F28EA1592929E00D11FC3 /* Badge */ = {
 			isa = PBXGroup;
