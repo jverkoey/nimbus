@@ -216,6 +216,18 @@
   return nil;
 }
 
+- (NSString *)description {
+  NSMutableString *result = [NSMutableString string];
+  [result appendString:@"sections: \n"];
+  for (NICollectionViewModelSection *section in _sections) {
+    [result appendFormat:@"section headerTitle: %@ footerTitle: %@\n", section.headerTitle, section.footerTitle];
+    [result appendFormat:@"section rows: %@\n", [section.rows description]];
+  }
+
+  [result appendFormat:@"sectionIndexTitles: %@", [_sectionIndexTitles description]];
+  return result;
+}
+
 @end
 
 
