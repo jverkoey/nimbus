@@ -221,10 +221,10 @@
   [result appendString:@"sections: \n"];
   for (NICollectionViewModelSection *section in _sections) {
     [result appendFormat:@"section headerTitle: %@ footerTitle: %@\n", section.headerTitle, section.footerTitle];
-    [result appendFormat:@"section rows: %@\n", [section.rows description]];
+    [result appendFormat:@"section rows: %@\n", section.rows];
   }
 
-  [result appendFormat:@"sectionIndexTitles: %@", [_sectionIndexTitles description]];
+  [result appendFormat:@"sectionIndexTitles: %@", _sectionIndexTitles];
   return result;
 }
 
