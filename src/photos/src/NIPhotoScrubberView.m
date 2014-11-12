@@ -136,8 +136,8 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   CGSize boundsSize = self.bounds.size;
 
   // These numbers are roughly estimated from the Photos.app's scrubber.
-  CGFloat photoWidth  = floorf(boundsSize.height / 2.4f);
-  CGFloat photoHeight = floorf(photoWidth * 0.75f);
+  CGFloat photoWidth  = NICGFloatFloor(boundsSize.height / 2.4f);
+  CGFloat photoHeight = NICGFloatFloor(photoWidth * 0.75f);
   
   return CGSizeMake(photoWidth, photoHeight);
 }
@@ -146,8 +146,8 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   CGSize boundsSize = self.bounds.size;
   
   // These numbers are roughly estimated from the Photos.app's scrubber.
-  CGFloat selectionWidth  = floorf(boundsSize.height / 1.2f);
-  CGFloat selectionHeight = floorf(selectionWidth * 0.75f);
+  CGFloat selectionWidth  = NICGFloatFloor(boundsSize.height / 1.2f);
+  CGFloat selectionHeight = NICGFloatFloor(selectionWidth * 0.75f);
   
   return CGSizeMake(selectionWidth, selectionHeight);
 }
@@ -155,7 +155,7 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
 // The amount of space on either side of the scrubber's left and right edges.
 - (CGFloat)horizontalMargins {
   CGSize photoSize = [self photoSize];
-  return floorf(photoSize.width / 2);
+  return NICGFloatFloor(photoSize.width / 2);
 }
 
 - (CGFloat)spaceBetweenPhotos {
@@ -202,13 +202,13 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   }
 
   // Calculate the offset into the container view based on index/numberOfPhotos.
-  CGFloat relativeOffset = floorf((((CGFloat)photoIndex * containerWidth)
-                                   / (CGFloat)MAX(1, _numberOfPhotos)));
+  CGFloat relativeOffset = NICGFloatFloor((((CGFloat)photoIndex * containerWidth)
+                                          / (CGFloat)MAX(1, _numberOfPhotos)));
   
-  return CGRectMake(floorf(_containerView.frame.origin.x
-                           + relativeOffset
-                           + photoSize.width / 2 - selectionSize.width / 2),
-                    floorf(_containerView.center.y - selectionSize.height / 2),
+  return CGRectMake(NICGFloatFloor(_containerView.frame.origin.x
+                                   + relativeOffset
+                                   + photoSize.width / 2 - selectionSize.width / 2),
+                    NICGFloatFloor(_containerView.center.y - selectionSize.height / 2),
                     selectionSize.width, selectionSize.height);
 }
 
@@ -243,12 +243,12 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
                             + _containerView.layer.borderWidth * 2);
 
   // Then we center the container in the content area.
-  CGFloat containerMargins = MAX(0, floorf((maxContentWidth - containerWidth) / 2));
+  CGFloat containerMargins = MAX(0, NICGFloatFloor((maxContentWidth - containerWidth) / 2));
   CGFloat horizontalMargins = [self horizontalMargins];
   CGFloat containerHeight = photoSize.height + _containerView.layer.borderWidth * 2;
 
   CGFloat containerLeftMargin = horizontalMargins + containerMargins;
-  CGFloat containerTopMargin = floorf((boundsSize.height - containerHeight) / 2);
+  CGFloat containerTopMargin = NICGFloatFloor((boundsSize.height - containerHeight) / 2);
 
   _containerView.frame = CGRectMake(containerLeftMargin,
                                     containerTopMargin,
@@ -268,8 +268,8 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
 // Transforms an index into the number of visible photos into an index into the total
 // number of photos.
 - (NSInteger)photoIndexAtScrubberIndex:(NSInteger)scrubberIndex {
-  return (NSInteger)(ceilf((CGFloat)(scrubberIndex * _numberOfPhotos)
-                           / (CGFloat)_numberOfVisiblePhotos)
+  return (NSInteger)(NICGFloatCeil((CGFloat)(scrubberIndex * _numberOfPhotos)
+                                   / (CGFloat)_numberOfVisiblePhotos)
                      + 0.5f);
 }
 
@@ -349,7 +349,7 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
     
   } else {
     // Somewhere in between
-    photoIndex = (NSInteger)(floorf((point.x / _containerView.bounds.size.width) * _numberOfPhotos)
+    photoIndex = (NSInteger)(NICGFloatFloor((point.x / _containerView.bounds.size.width) * _numberOfPhotos)
                              + 0.5f);
   }
   
