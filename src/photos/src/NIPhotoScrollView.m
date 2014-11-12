@@ -51,7 +51,7 @@
   
   // Center horizontally.
   if (frameToCenter.size.width < boundsSize.width) {
-    frameToCenter.origin.x = floorf((boundsSize.width - frameToCenter.size.width) / 2);
+    frameToCenter.origin.x = NICGFloatFloor((boundsSize.width - frameToCenter.size.width) / 2);
 
   } else {
     frameToCenter.origin.x = 0;
@@ -59,7 +59,7 @@
 
   // Center vertically.
   if (frameToCenter.size.height < boundsSize.height) {
-    frameToCenter.origin.y = floorf((boundsSize.height - frameToCenter.size.height) / 2);
+    frameToCenter.origin.y = NICGFloatFloor((boundsSize.height - frameToCenter.size.height) / 2);
 
   } else {
     frameToCenter.origin.y = 0;
