@@ -95,13 +95,15 @@
   UITableViewCell* cell = nil;
 
   // Only NICellObject-conformant objects may pass.
-  if ([object respondsToSelector:@selector(cellClass)]) {
+  if ([object respondsToSelector:@selector(cellNib)]) {
+    UINib* nib = [object cellNib];
+    if (nib) {
+      cell = [self cellWithNib:nib tableView:tableView indexPath:indexPath object:object];
+    }
+  }
+  if (!cell && [object respondsToSelector:@selector(cellClass)]) {
     Class cellClass = [object cellClass];
     cell = [self cellWithClass:cellClass tableView:tableView object:object];
-
-  } else if ([object respondsToSelector:@selector(cellNib)]) {
-    UINib* nib = [object cellNib];
-    cell = [self cellWithNib:nib tableView:tableView indexPath:indexPath object:object];
   }
 
   // If this assertion fires then your app is about to crash. You need to either add an explicit
@@ -139,12 +141,15 @@
   UITableViewCell* cell = nil;
 
   Class cellClass = [self cellClassFromObject:object];
-  if (nil != cellClass) {
+  // TODO: Maybe need to add cellNibFromObject
+  // if ([object respondsToSelector:@selector(cellNib)]) {
+  //   UINib* nib = [object cellNib];
+  //   if (nib) {
+  //     cell = [[self class] cellWithNib:nib tableView:tableView indexPath:indexPath object:object];
+  //   }
+  // }
+  if (!cell && nil != cellClass) {
     cell = [[self class] cellWithClass:cellClass tableView:tableView object:object];
-
-  } else if ([object respondsToSelector:@selector(cellNib)]) {
-    UINib* nib = [object cellNib];
-    cell = [[self class] cellWithNib:nib tableView:tableView indexPath:indexPath object:object];
   }
 
   // If this assertion fires then your app is about to crash. You need to either add an explicit

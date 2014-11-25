@@ -91,15 +91,17 @@
   UICollectionViewCell* cell = nil;
 
   // Only NICollectionViewCellObject-conformant objects may pass.
-  if ([object respondsToSelector:@selector(collectionViewCellClass)]) {
+  if ([object respondsToSelector:@selector(collectionViewCellNib)]) {
+    UINib* nib = [object collectionViewCellNib];
+    if (nib) {
+      cell = [self cellWithNib:nib collectionView:collectionView indexPath:indexPath object:object];
+    }
+  }
+  if (!cell && [object respondsToSelector:@selector(collectionViewCellClass)]) {
     Class collectionViewCellClass = [object collectionViewCellClass];
     cell = [self cellWithClass:collectionViewCellClass collectionView:collectionView indexPath:indexPath object:object];
-
-  } else if ([object respondsToSelector:@selector(collectionViewCellNib)]) {
-    UINib* nib = [object collectionViewCellNib];
-    cell = [self cellWithNib:nib collectionView:collectionView indexPath:indexPath object:object];
   }
-
+  
   // If this assertion fires then your app is about to crash. You need to either add an explicit
   // binding in a NICollectionViewCellFactory object or implement either
   // NICollectionViewCellObject or NICollectionViewNibCellObject on this object and return a cell
@@ -135,15 +137,21 @@
                          withObject:(id)object {
   UICollectionViewCell* cell = nil;
 
-  Class collectionViewCellClass = [self collectionViewCellClassFromObject:object];
-
-  if (nil != collectionViewCellClass) {
-    cell = [[self class] cellWithClass:collectionViewCellClass collectionView:collectionView indexPath:indexPath object:object];
-
-  } else if ([object respondsToSelector:@selector(collectionViewCellNib)]) {
+  if ([object respondsToSelector:@selector(collectionViewCellNib)]) {
     UINib* nib = [object collectionViewCellNib];
-    cell = [[self class] cellWithNib:nib collectionView:collectionView indexPath:indexPath object:object];
+    if (nib) {
+      cell = [[self class] cellWithNib:nib collectionView:collectionView indexPath:indexPath object:object];
+    }
   }
+  
+  if (!cell) {
+    Class collectionViewCellClass = [self collectionViewCellClassFromObject:object];
+    if (nil != collectionViewCellClass) {
+      cell = [[self class] cellWithClass:collectionViewCellClass collectionView:collectionView indexPath:indexPath object:object];
+      
+    }
+  }
+  
 
   // If this assertion fires then your app is about to crash. You need to either add an explicit
   // binding in a NICollectionViewCellFactory object or implement the NICollectionViewCellObject
