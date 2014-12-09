@@ -18,6 +18,8 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+#import "NIFoundationMethods.h"
+
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "Nimbus requires ARC support."
 #endif
@@ -51,10 +53,10 @@
   CGPoint point = CGPointZero;
   while ([self.dataSource nextPointInGraphView:self point:&point]) {
     CGPoint scaledPoint = CGPointMake(point.x / xRange, point.y / yRange);
-    CGPoint plotPoint = CGPointMake(floorf(scaledPoint.x * contentSize.width) - 0.5f,
+    CGPoint plotPoint = CGPointMake(NICGFloatFloor(scaledPoint.x * contentSize.width) - 0.5f,
                                     contentSize.height
-                                    - floorf((scaledPoint.y * 0.8f + 0.1f)
-                                             * contentSize.height) - 0.5f);
+                                    - NICGFloatFloor((scaledPoint.y * 0.8f + 0.1f)
+                                                     * contentSize.height) - 0.5f);
     if (!isFirstPoint) {
       CGContextAddLineToPoint(context, plotPoint.x, plotPoint.y);
     }
@@ -71,7 +73,7 @@
   UIColor* color = nil;
   while ([self.dataSource nextEventInGraphView:self xValue:&xValue color:&color]) {
     CGFloat scaledXValue = xValue / xRange;
-    CGFloat plotXValue = floorf(scaledXValue * contentSize.width) - 0.5f;
+    CGFloat plotXValue = NICGFloatFloor(scaledXValue * contentSize.width) - 0.5f;
     CGContextMoveToPoint(context, plotXValue, 0);
     CGContextAddLineToPoint(context, plotXValue, contentSize.height);
 
