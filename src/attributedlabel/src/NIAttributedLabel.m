@@ -127,7 +127,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 @property (assign)            BOOL detectingLinks; // Atomic.
 @property (nonatomic)         BOOL linksHaveBeenDetected;
 @property (nonatomic, copy)   NSArray*        detectedlinkLocations;
-@property (nonatomic, strong) NSMutableArray* explicitLinkLocations;
+@property (nonatomic, strong) NSMutableArray* explicitLinkLocations;  // Of NSTextCheckingResult.
 
 @property (nonatomic, strong) NSTextCheckingResult* originalLink;
 @property (nonatomic, strong) NSTextCheckingResult* touchedLink;
@@ -649,7 +649,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   [attributedString enumerateAttribute:NIAttributedLabelLinkAttributeName
                                inRange:NSMakeRange(0, attributedString.length)
                                options:0
-                            usingBlock:^(id value, NSRange range, BOOL *stop) {
+                            usingBlock:^(NSTextCheckingResult* value, NSRange range, BOOL *stop) {
                               if (value != nil) {
                                 [links addObject:value];
                               }
