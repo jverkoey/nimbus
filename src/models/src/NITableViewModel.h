@@ -54,7 +54,7 @@ typedef enum {
 
 // Designated initializer.
 - (id)initWithDelegate:(id<NITableViewModelDelegate>)delegate;
-- (id)initWithListArray:(NSArray *)sectionedArray delegate:(id<NITableViewModelDelegate>)delegate;
+- (id)initWithListArray:(NSArray *)listArray delegate:(id<NITableViewModelDelegate>)delegate;
 // Each NSString in the array starts a new section. Any other object is a new row (with exception of certain model-specific objects).
 - (id)initWithSectionedArray:(NSArray *)sectionedArray delegate:(id<NITableViewModelDelegate>)delegate;
 
