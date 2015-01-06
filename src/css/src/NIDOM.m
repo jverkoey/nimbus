@@ -222,7 +222,7 @@
     // also remove it from the id map
     for (NSUInteger i = selectors.count; i >= 1; i--) {
       NSString *s = [selectors objectAtIndex:i - 1];
-      if ([s isEqualToString:selector] && [s hasPrefix:pseudoBase]) {
+      if ([s isEqualToString:selector] || [s hasPrefix:pseudoBase]) {
         [selectors removeObjectAtIndex:i - 1];
       }
     }
