@@ -105,6 +105,19 @@ NI_FIX_CATEGORY_BUG(UIViewController_MyCustomCategory);
 #define __NI_DEPRECATED_METHOD __attribute__((deprecated))
 
 /**
+ * Mark APIs as unavailable in app extensions.
+ *
+ * Use of unavailable methods, classes, or functions produces a compile error when built as part
+ * of an app extension target. If the method, class or function using the unavailable API has also
+ * been marked as unavailable in app extensions, the error will be suppressed.
+ */
+#ifdef NS_EXTENSION_UNAVAILABLE_IOS
+#define NI_EXTENSION_UNAVAILABLE_IOS(msg) NS_EXTENSION_UNAVAILABLE_IOS(msg)
+#else
+#define NI_EXTENSION_UNAVAILABLE_IOS(msg)
+#endif
+
+/**
  * Force a category to be loaded when an app starts up.
  *
  * Add this macro before each category implementation, so we don't have to use

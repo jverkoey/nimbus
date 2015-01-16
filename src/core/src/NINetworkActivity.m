@@ -17,6 +17,7 @@
 #import "NINetworkActivity.h"
 
 #import "NIDebuggingTools.h"
+#import "NIPreprocessorMacros.h"
 
 #if defined(DEBUG) || defined(NI_DEBUG)
 #import "NIRuntimeClassModifications.h"
@@ -44,7 +45,7 @@ static NSTimer* gScheduledDelayTimer = nil;
 // Called after a certain amount of time has passed since all network activity has stopped.
 // By delaying the turnoff of the network activity we avoid "flickering" effects when network
 // activity is starting and stopping rapidly.
-+ (void)disableNetworkActivity {
++ (void)disableNetworkActivity NI_EXTENSION_UNAVAILABLE_IOS("") {
   pthread_mutex_lock(&gMutex);
   if (nil != gScheduledDelayTimer) {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
