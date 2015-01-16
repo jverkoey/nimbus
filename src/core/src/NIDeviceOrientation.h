@@ -19,6 +19,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "NIPreprocessorMacros.h"
+
 #if defined __cplusplus
 extern "C" {
 #endif
@@ -62,7 +64,7 @@ BOOL NIIsSupportedOrientation(UIInterfaceOrientation orientation);
  *
  * @returns The current interface orientation.
  */
-UIInterfaceOrientation NIInterfaceOrientation(void);
+UIInterfaceOrientation NIInterfaceOrientation(void) NI_EXTENSION_UNAVAILABLE_IOS("");
 
 /**
  * Returns YES if the device is a phone and the orientation is landscape.
