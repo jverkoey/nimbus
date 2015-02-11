@@ -161,15 +161,26 @@
 }
 
 - (BOOL)isObjectActionable:(id<NSObject>)object {
+  return NIActionTypeNone != [self attachedActionTypesForObject:object];
+}
+
+- (NIActionType)attachedActionTypesForObject:(id<NSObject>)object {
   if (nil == object) {
-    return NO;
+    return NIActionTypeNone;
   }
 
-  BOOL objectIsActionable = [self.objectSet containsObject:object];
-  if (!objectIsActionable) {
-    objectIsActionable = (nil != [self.class objectFromKeyClass:object.class map:self.classToAction]);
+  NIObjectActions* actions = [self actionForObjectOrClassOfObject:object];
+  NIActionType attachedActionTypes = 0;
+  if (actions.tapAction || actions.tapSelector) {
+    attachedActionTypes |= NIActionTypeTap;
   }
-  return objectIsActionable;
+  if (actions.detailAction || actions.detailSelector) {
+    attachedActionTypes |= NIActionTypeDetail;
+  }
+  if (actions.navigateAction || actions.navigateSelector) {
+    attachedActionTypes |= NIActionTypeNavigate;
+  }
+  return attachedActionTypes;
 }
 
 + (id)objectFromKeyClass:(Class)keyClass map:(NSMutableDictionary *)map {

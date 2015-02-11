@@ -649,7 +649,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   [attributedString enumerateAttribute:NIAttributedLabelLinkAttributeName
                                inRange:NSMakeRange(0, attributedString.length)
                                options:0
-                            usingBlock:^(NSTextCheckingResult* value, NSRange range, BOOL *stop) {
+                            usingBlock:^(NSTextCheckingResult *value, NSRange range, BOOL *stop) {
                               if (value != nil) {
                                 [links addObject:value];
                               }

@@ -32,6 +32,16 @@
 typedef BOOL (^NIActionBlock)(id object, id target, NSIndexPath* indexPath);
 
 /**
+ * The attachable types of actions for NIAction.
+ */
+typedef NS_OPTIONS(NSUInteger, NIActionType) {
+  NIActionTypeNone      = 0,
+  NIActionTypeTap       = 1 << 0,
+  NIActionTypeDetail    = 1 << 1,
+  NIActionTypeNavigate  = 1 << 2,
+};
+
+/**
  * The NIActions class provides a generic interface for attaching actions to objects.
  *
  * NIActions are used to implement user interaction in UITableViews and UICollectionViews via the
@@ -107,6 +117,7 @@ NSArray *objects = @[
 #pragma mark Object State
 
 - (BOOL)isObjectActionable:(id<NSObject>)object;
+- (NIActionType)attachedActionTypesForObject:(id<NSObject>)object;
 
 + (id)objectFromKeyClass:(Class)keyClass map:(NSMutableDictionary *)map;
 
@@ -374,6 +385,12 @@ NIActionBlock NIPushControllerAction(Class controllerClass);
  * Returns whether or not the object has any actions attached to it.
  *
  * @fn NIActions::isObjectActionable:
+ */
+
+/**
+ * Returns a bitmask of flags indicating the types of actions attached to the provided object.
+ *
+ * @fn NIActions::attachedActionTypesForObject:
  */
 
 /**

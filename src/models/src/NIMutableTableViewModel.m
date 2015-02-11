@@ -23,7 +23,7 @@
 
 @implementation NIMutableTableViewModel
 
-
+@dynamic delegate;
 
 #pragma mark - Public
 

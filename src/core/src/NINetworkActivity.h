@@ -18,6 +18,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "NIPreprocessorMacros.h"
+
 #if defined __cplusplus
 extern "C" {
 #endif
@@ -41,7 +43,7 @@ extern "C" {
  *
  * This method is threadsafe.
  */
-void NINetworkActivityTaskDidStart(void);
+void NINetworkActivityTaskDidStart(void) NI_EXTENSION_UNAVAILABLE_IOS("");
 
 /**
  * Decrement the number of active network tasks.
