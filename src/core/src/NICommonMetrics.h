@@ -17,6 +17,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "NIPreprocessorMacros.h"
+
 #if defined __cplusplus
 extern "C" {
 #endif
@@ -144,7 +146,7 @@ NSTimeInterval NIStatusBarBoundsChangeAnimationDuration(void);
  *
  * This is generally 20 when the status bar is its normal height.
  */
-CGFloat NIStatusBarHeight(void);
+CGFloat NIStatusBarHeight(void) NI_EXTENSION_UNAVAILABLE_IOS("");
 
 /**
  * The animation duration when the device is rotating to a new orientation.
