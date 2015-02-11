@@ -83,6 +83,10 @@ static const NSUInteger kNumberOfFingersForPanGestureRecognizer = 1;
     _panGestureRecognizer.maximumNumberOfTouches = kNumberOfFingersForPanGestureRecognizer;
     _panGestureRecognizer.minimumNumberOfTouches = kNumberOfFingersForPanGestureRecognizer;
     [self addGestureRecognizer:_panGestureRecognizer];
+
+#if __IPHONE_OS_VERSION_MIN_REQUIRED > NIIOS_6_0
+    self.translucent = YES;
+#endif
   }
   return self;
 }

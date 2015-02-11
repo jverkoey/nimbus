@@ -134,6 +134,7 @@ CGFloat NIOverviewStatusBarHeight(void) {
   }
 }
 
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_7_0
 /**
  * Swizzled implementation of - (void)setStatusBarStyle:animated:
  */
@@ -153,11 +154,11 @@ CGFloat NIOverviewStatusBarHeight(void) {
   } else if (UIStatusBarStyleBlackTranslucent == statusBarStyle) {
     [[NIOverview view] setTranslucent:YES];
   }
-
   if (animated) {
     [UIView commitAnimations];
   }
 }
+#endif  // __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_7_0
 
 @end
 
@@ -178,9 +179,11 @@ void NIOverviewSwizzleMethods(void) {
   NISwapInstanceMethods([UIApplication class],
                         @selector(setStatusBarHidden:withAnimation:),
                         @selector(_setStatusBarHidden:withAnimation:));
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_7_0
   NISwapInstanceMethods([UIApplication class],
                         @selector(setStatusBarStyle:animated:),
                         @selector(_setStatusBarStyle:animated:));
+#endif  // __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_7_0
 }
 
 #endif
