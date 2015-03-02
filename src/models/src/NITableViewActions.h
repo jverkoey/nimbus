@@ -20,13 +20,13 @@
 #import "NimbusCore.h"
 
 /**
- * The NITableViewActions class provides an interface for attaching actions to objects in a
- * NITableViewModel.
+ * The NITableViewActions class provides an interface for attaching actions to objects from a
+ * NIActionsDataSource.
  *
  * <h2>Basic Use</h2>
  *
- * NITableViewModel and NITableViewActions cooperate to solve two related tasks: data
- * representation and user actions, respectively. A NITableViewModel is composed of objects and
+ * NIActionsDataSource and NITableViewActions cooperate to solve two related tasks: data
+ * representation and user actions, respectively. A NIActionsDataSource provides objects and
  * NITableViewActions maintains a mapping of actions to these objects. The object's attached actions
  * are executed when the user interacts with the cell representing an object.
  *
@@ -42,7 +42,7 @@
 tableView.delegate = [self.actions forwardingTo:self];
 @endcode
  *
- * The dataSource property of the table view must be an instance of NITableViewModel.
+ * The dataSource property of the table view must conform to NIActionsDataSource.
  *
  * @ingroup ModelTools
  */
