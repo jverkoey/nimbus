@@ -17,6 +17,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "NIActions.h"  /* for NIActionsDataSource */
 #import "NIPreprocessorMacros.h" /* for weak */
 
 #if NS_BLOCKS_AVAILABLE
@@ -48,7 +49,7 @@ typedef enum {
  *
  * @ingroup TableViewModels
  */
-@interface NITableViewModel : NSObject <UITableViewDataSource>
+@interface NITableViewModel : NSObject <NIActionsDataSource, UITableViewDataSource>
 
 #pragma mark Creating Table View Models
 
@@ -59,8 +60,6 @@ typedef enum {
 - (id)initWithSectionedArray:(NSArray *)sectionedArray delegate:(id<NITableViewModelDelegate>)delegate;
 
 #pragma mark Accessing Objects
-
-- (id)objectAtIndexPath:(NSIndexPath *)indexPath;
 
 // This method is not appropriate for performance critical codepaths.
 - (NSIndexPath *)indexPathForObject:(id)object;

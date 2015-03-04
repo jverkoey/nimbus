@@ -17,6 +17,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "NIActions.h"  /* for NIActionsDataSource */
 #import "NIPreprocessorMacros.h" /* for weak */
 
 @protocol NICollectionViewModelDelegate;
@@ -41,7 +42,7 @@
  *
  * @ingroup CollectionViewModels
  */
-@interface NICollectionViewModel : NSObject <UICollectionViewDataSource>
+@interface NICollectionViewModel : NSObject <NIActionsDataSource, UICollectionViewDataSource>
 
 #pragma mark Creating Collection View Models
 
@@ -52,8 +53,6 @@
 - (id)initWithSectionedArray:(NSArray *)sectionedArray delegate:(id<NICollectionViewModelDelegate>)delegate;
 
 #pragma mark Accessing Objects
-
-- (id)objectAtIndexPath:(NSIndexPath *)indexPath;
 
 // This method is not appropriate for performance critical codepaths.
 - (NSIndexPath *)indexPathForObject:(id)object;
