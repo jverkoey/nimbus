@@ -17,7 +17,6 @@
 #import "NITableViewActions.h"
 
 #import "NICellFactory.h"
-#import "NITableViewModel.h"
 #import "NimbusCore.h"
 #import "NIActions+Subclassing.h"
 #import <objc/runtime.h>
@@ -137,10 +136,9 @@
 
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-  NIDASSERT([tableView.dataSource isKindOfClass:[NITableViewModel class]]);
-  if ([tableView.dataSource isKindOfClass:[NITableViewModel class]]) {
-    NITableViewModel* model = (NITableViewModel *)tableView.dataSource;
-    id object = [model objectAtIndexPath:indexPath];
+  NIDASSERT([tableView.dataSource conformsToProtocol:@protocol(NIActionsDataSource)]);
+  if ([tableView.dataSource conformsToProtocol:@protocol(NIActionsDataSource)]) {
+    id object = [(id<NIActionsDataSource>)tableView.dataSource objectAtIndexPath:indexPath];
     if ([self isObjectActionable:object]) {
       cell.accessoryType = [self accessoryTypeForObject:object];
       cell.selectionStyle = [self selectionStyleForObject:object];
@@ -159,10 +157,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  NIDASSERT([tableView.dataSource isKindOfClass:[NITableViewModel class]]);
-  if ([tableView.dataSource isKindOfClass:[NITableViewModel class]]) {
-    NITableViewModel* model = (NITableViewModel *)tableView.dataSource;
-    id object = [model objectAtIndexPath:indexPath];
+  NIDASSERT([tableView.dataSource conformsToProtocol:@protocol(NIActionsDataSource)]);
+  if ([tableView.dataSource conformsToProtocol:@protocol(NIActionsDataSource)]) {
+    id object = [(id<NIActionsDataSource>)tableView.dataSource objectAtIndexPath:indexPath];
 
     if ([self isObjectActionable:object]) {
       NIObjectActions* action = [self actionForObjectOrClassOfObject:object];
@@ -223,10 +220,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-  NIDASSERT([tableView.dataSource isKindOfClass:[NITableViewModel class]]);
-  if ([tableView.dataSource isKindOfClass:[NITableViewModel class]]) {
-    NITableViewModel* model = (NITableViewModel *)tableView.dataSource;
-    id object = [model objectAtIndexPath:indexPath];
+  NIDASSERT([tableView.dataSource conformsToProtocol:@protocol(NIActionsDataSource)]);
+  if ([tableView.dataSource conformsToProtocol:@protocol(NIActionsDataSource)]) {
+    id object = [(id<NIActionsDataSource>)tableView.dataSource objectAtIndexPath:indexPath];
 
     if ([self isObjectActionable:object]) {
       NIObjectActions* action = [self actionForObjectOrClassOfObject:object];

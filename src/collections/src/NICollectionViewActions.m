@@ -30,14 +30,12 @@
 
 #pragma mark - UICollectionViewDelegate
 
-
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
   BOOL shouldHighlight = NO;
 
-  NIDASSERT([collectionView.dataSource isKindOfClass:[NICollectionViewModel class]]);
-  if ([collectionView.dataSource isKindOfClass:[NICollectionViewModel class]]) {
-    NICollectionViewModel* model = (NICollectionViewModel *)collectionView.dataSource;
-    id object = [model objectAtIndexPath:indexPath];
+  NIDASSERT([collectionView.dataSource conformsToProtocol:@protocol(NIActionsDataSource)]);
+  if ([collectionView.dataSource conformsToProtocol:@protocol(NIActionsDataSource)]) {
+    id object = [(id<NIActionsDataSource>)collectionView.dataSource objectAtIndexPath:indexPath];
 
     if ([self isObjectActionable:object]) {
       NIObjectActions* action = [self actionForObjectOrClassOfObject:object];
@@ -55,10 +53,9 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-  NIDASSERT([collectionView.dataSource isKindOfClass:[NICollectionViewModel class]]);
-  if ([collectionView.dataSource isKindOfClass:[NICollectionViewModel class]]) {
-    NICollectionViewModel* model = (NICollectionViewModel *)collectionView.dataSource;
-    id object = [model objectAtIndexPath:indexPath];
+  NIDASSERT([collectionView.dataSource conformsToProtocol:@protocol(NIActionsDataSource)]);
+  if ([collectionView.dataSource conformsToProtocol:@protocol(NIActionsDataSource)]) {
+    id object = [(id<NIActionsDataSource>)collectionView.dataSource objectAtIndexPath:indexPath];
 
     if ([self isObjectActionable:object]) {
       NIObjectActions* action = [self actionForObjectOrClassOfObject:object];
