@@ -198,7 +198,7 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
 - (BOOL)isDisplayingPageForIndex:(NSInteger)pageIndex {
   BOOL foundPage = NO;
 
-  // There will never be more than 3 visible pages in this array, so this lookup is
+  // There will never be more than 3 (5 with insets) visible pages in this array, so this lookup is
   // effectively O(C) constant time.
   for (UIView <NIPagingScrollViewPage>* page in _visiblePages) {
     if (page.pageIndex == pageIndex) {
@@ -254,10 +254,11 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
     return NSMakeRange(0, 0);
   }
 
+  NSInteger visibleRange = _pageInset == 0 ? 1 : 2;
   NSInteger currentVisiblePageIndex = [self currentVisiblePageIndex];
 
-  NSInteger firstVisiblePageIndex = NIBoundi(currentVisiblePageIndex - 1, 0, self.numberOfPages - 1);
-  NSInteger lastVisiblePageIndex  = NIBoundi(currentVisiblePageIndex + 1, 0, self.numberOfPages - 1);
+  NSInteger firstVisiblePageIndex = NIBoundi(currentVisiblePageIndex - visibleRange, 0, self.numberOfPages - 1);
+  NSInteger lastVisiblePageIndex  = NIBoundi(currentVisiblePageIndex + visibleRange, 0, self.numberOfPages - 1);
 
   return NSMakeRange(firstVisiblePageIndex, lastVisiblePageIndex - firstVisiblePageIndex + 1);
 }
