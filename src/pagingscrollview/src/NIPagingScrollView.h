@@ -70,7 +70,7 @@ typedef enum {
 
 // Controls the border between images.
 @property (nonatomic) CGFloat pageMargin;
-// Used to make the view smaller than full screen, thus showing neighboring images
+// Used to make the view smaller than full screen, thus showing neighboring images, horizontally
 // in the view.
 @property (nonatomic) CGFloat pageInset;
 @property (nonatomic) NIPagingScrollViewType type; // Default: NIPagingScrollViewHorizontal
