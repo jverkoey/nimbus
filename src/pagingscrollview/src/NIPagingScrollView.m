@@ -732,6 +732,7 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
 
 - (void)setPageInset:(CGFloat)pageInset {
   _pageInset = pageInset;
+  _scrollView.frame = [self frameForPagingScrollView];
 
   // Retain the current position.
   CGPoint offset = [self frameForPageAtIndex:_centerPageIndex].origin;
