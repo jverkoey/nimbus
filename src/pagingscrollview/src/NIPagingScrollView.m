@@ -236,14 +236,12 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
   if (NIPagingScrollViewHorizontal == self.type) {
     // Whatever image is currently displayed in the center of the screen is the currently
     // visible image.
-    return NIBoundi((NSInteger)(NICGFloatFloor((offset + boundsSize.width / 2) /
-                                               boundsSize.width)
+    return NIBoundi((NSInteger)(NICGFloatFloor((offset + boundsSize.width / 2) / boundsSize.width)
                                 + 0.5f),
                     0, self.numberOfPages - 1);
 
   } else if (NIPagingScrollViewVertical == self.type) {
-    return NIBoundi((NSInteger)(NICGFloatFloor((offset + boundsSize.height / 2) /
-                                               boundsSize.height)
+    return NIBoundi((NSInteger)(NICGFloatFloor((offset + boundsSize.height / 2) / boundsSize.height)
                                 + 0.5f),
                     0, self.numberOfPages - 1);
   }
