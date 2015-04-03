@@ -68,10 +68,11 @@ typedef enum {
 
 #pragma mark Configuring Presentation
 
-// Controls the border between images.
+// Controls the border between pages.
 @property (nonatomic) CGFloat pageMargin;
-// Used to make the view smaller than full screen, thus showing neighboring images, horizontally
-// in the view.
+// Used to make the view smaller than the frame of the paging scroll view, thus showing
+// neighboring pages, either horizontally or vertically depending on the configuration
+// of the view.
 @property (nonatomic) CGFloat pageInset;
 @property (nonatomic) NIPagingScrollViewType type; // Default: NIPagingScrollViewHorizontal
 
