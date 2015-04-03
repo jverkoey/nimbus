@@ -421,12 +421,6 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
   [self layoutVisiblePages];
 }
 
-- (void)layoutSubviews {
-  [super layoutSubviews];
-  _scrollView.contentSize = [self contentSizeForPagingScrollView];
-  [self layoutVisiblePages];
-}
-
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
@@ -735,6 +729,9 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
   // Retain the current position.
   CGPoint offset = [self frameForPageAtIndex:_centerPageIndex].origin;
   _scrollView.contentOffset = [self contentOffsetFromPageOffset:offset];
+
+  _scrollView.contentSize = [self contentSizeForPagingScrollView];
+  [self layoutVisiblePages];
 
   [self setNeedsLayout];
 }
