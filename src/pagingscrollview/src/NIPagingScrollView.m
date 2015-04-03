@@ -28,7 +28,6 @@
 
 const NSInteger NIPagingScrollViewUnknownNumberOfPages = -1;
 const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
-const CGFloat NIPagingScrollViewDefaultPageInset = 0;
 
 @implementation NIPagingScrollView {
   NIViewRecycler* _viewRecycler;
@@ -50,7 +49,6 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
 - (void)commonInit {
   // Default state.
   self.pageMargin = NIPagingScrollViewDefaultPageMargin;
-  self.pageInset = NIPagingScrollViewDefaultPageInset;
   self.type = NIPagingScrollViewHorizontal;
 
   // Internal state
@@ -121,14 +119,14 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
   CGRect pageFrame = bounds;
 
   if (NIPagingScrollViewHorizontal == self.type) {
-    pageFrame.origin.x = ((bounds.size.width - self.pageInset * 2) * pageIndex);
+    pageFrame.origin.x = (bounds.size.width * pageIndex);
     // We need to counter the extra spacing added to the paging scroll view in
     // frameForPagingScrollView.
-    pageFrame = CGRectInset(pageFrame, self.pageMargin + self.pageInset, 0);
+    pageFrame = CGRectInset(pageFrame, self.pageMargin, 0);
 
   } else if (NIPagingScrollViewVertical == self.type) {
-    pageFrame.origin.y = ((bounds.size.height - self.pageInset * 2) * pageIndex);
-    pageFrame = CGRectInset(pageFrame, 0, self.pageMargin + self.pageInset);
+    pageFrame.origin.y = (bounds.size.height * pageIndex);
+    pageFrame = CGRectInset(pageFrame, 0, self.pageMargin);
   }
 
   return pageFrame;
@@ -139,10 +137,10 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
   // outlined above.
   CGRect bounds = _scrollView.bounds;
   if (NIPagingScrollViewHorizontal == self.type) {
-    return CGSizeMake((bounds.size.width - self.pageInset * 2) * self.numberOfPages, bounds.size.height);
+    return CGSizeMake(bounds.size.width * self.numberOfPages, bounds.size.height);
 
   } else if (NIPagingScrollViewVertical == self.type) {
-    return CGSizeMake(bounds.size.width, (bounds.size.height - self.pageInset * 2) * self.numberOfPages);
+    return CGSizeMake(bounds.size.width, bounds.size.height * self.numberOfPages);
   }
 
   return CGSizeZero;
@@ -150,10 +148,10 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
 
 - (CGPoint)contentOffsetFromPageOffset:(CGPoint)offset {
   if (NIPagingScrollViewHorizontal == self.type) {
-    offset.x -= self.pageMargin + self.pageInset;
+    offset.x -= self.pageMargin;
 
   } else if (NIPagingScrollViewVertical == self.type) {
-    offset.y -= self.pageMargin + self.pageInset;
+    offset.y -= self.pageMargin;
   }
 
   return offset;
@@ -161,10 +159,10 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
 
 - (CGFloat)pageScrollableDimension {
   if (NIPagingScrollViewHorizontal == self.type) {
-    return _scrollView.bounds.size.width - self.pageInset * 2;
+    return _scrollView.bounds.size.width;
 
   } else if (NIPagingScrollViewVertical == self.type) {
-    return _scrollView.bounds.size.height - self.pageInset * 2;
+    return _scrollView.bounds.size.height;
   }
 
   return 0;
@@ -216,39 +214,16 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
   if (NIPagingScrollViewHorizontal == self.type) {
     // Whatever image is currently displayed in the center of the screen is the currently
     // visible image.
-    return NIBoundi((NSInteger)(NICGFloatFloor((contentOffset.x + boundsSize.width / 2) /
-                                               (boundsSize.width - self.pageInset * 2))
+    return NIBoundi((NSInteger)(NICGFloatFloor((contentOffset.x + boundsSize.width / 2) / boundsSize.width)
                               + 0.5f),
                   0, self.numberOfPages - 1);
 
   } else if (NIPagingScrollViewVertical == self.type) {
-    return NIBoundi((NSInteger)(NICGFloatFloor((contentOffset.y + boundsSize.height / 2) /
-                                               (boundsSize.height - self.pageInset * 2))
+    return NIBoundi((NSInteger)(NICGFloatFloor((contentOffset.y + boundsSize.height / 2) / boundsSize.height)
                               + 0.5f),
                   0, self.numberOfPages - 1);
   }
 
-  return 0;
-}
-
-- (NSInteger)pageIndexForOffset:(CGFloat)offset {
-  CGSize boundsSize = _scrollView.bounds.size;
-
-  if (NIPagingScrollViewHorizontal == self.type) {
-    // Whatever image is currently displayed in the center of the screen is the currently
-    // visible image.
-    return NIBoundi((NSInteger)(NICGFloatFloor((offset + boundsSize.width / 2) /
-                                               (boundsSize.width - self.pageInset * 2))
-                                + 0.5f),
-                    0, self.numberOfPages - 1);
-
-  } else if (NIPagingScrollViewVertical == self.type) {
-    return NIBoundi((NSInteger)(NICGFloatFloor((offset + boundsSize.height / 2) /
-                                               (boundsSize.height - self.pageInset * 2))
-                                + 0.5f),
-                    0, self.numberOfPages - 1);
-  }
-  
   return 0;
 }
 
@@ -375,20 +350,15 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
 
     [self didChangeCenterPageIndexFrom:oldCenterPageIndex to:_centerPageIndex];
 
-    if (_pageInset != 0) {
-      // When multiple images are visible load them all.
-      [self preloadOffscreenPages];
-    } else {
-      // Prioritize displaying the currently visible page.
-      if (![self isDisplayingPageForIndex:_centerPageIndex]) {
-        [self displayPageAtIndex:_centerPageIndex];
-      }
-
-      // Add missing pages after displaying the current page.
-      [self performSelector:@selector(preloadOffscreenPages)
-                 withObject:nil
-                 afterDelay:0];
+    // Prioritize displaying the currently visible page.
+    if (![self isDisplayingPageForIndex:_centerPageIndex]) {
+      [self displayPageAtIndex:_centerPageIndex];
     }
+
+    // Add missing pages after displaying the current page.
+    [self performSelector:@selector(preloadOffscreenPages)
+               withObject:nil
+               afterDelay:0];
   } else {
     _centerPageIndex = -1;
   }
@@ -419,11 +389,6 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
   // during which we do not want to modify the visible pages because this is handled elsewhere.
   [super setFrame:frame];
 
-  _scrollView.contentSize = [self contentSizeForPagingScrollView];
-  [self layoutVisiblePages];
-}
-
-- (void)layoutSubviews {
   _scrollView.contentSize = [self contentSizeForPagingScrollView];
   [self layoutVisiblePages];
 }
@@ -473,21 +438,6 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
   if ([self.delegate respondsToSelector:_cmd]) {
     [self.delegate scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
   }
-}
-
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
-{
-  if (_pageInset == 0) {
-    // We handle the standard case for scrolling via pagingEnabled.
-    return;
-  }
-  CGFloat targetX = _scrollView.contentOffset.x + velocity.x * 60.0f;
-  NSInteger targetIndex = [self pageIndexForOffset:targetX];
-
-  CGPoint offset = [self frameForPageAtIndex:targetIndex].origin;
-  offset = [self contentOffsetFromPageOffset:offset];
-
-  *targetContentOffset = offset;
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
@@ -741,19 +691,6 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
 
 - (void)setPageMargin:(CGFloat)pageMargin {
   _pageMargin = pageMargin;
-  [self setNeedsLayout];
-}
-
-- (void)setPageInset:(CGFloat)pageInset {
-  _pageInset = pageInset;
-  // Do not auto-page inset views.  The paging is based on view bounds,
-  // which would not be correct.  We compute the snapping manually.
-  _scrollView.pagingEnabled = (_pageInset == 0);
-
-  // Retain the current position.
-  CGPoint offset = [self frameForPageAtIndex:_centerPageIndex].origin;
-  _scrollView.contentOffset = [self contentOffsetFromPageOffset:offset];
-
   [self setNeedsLayout];
 }
 
