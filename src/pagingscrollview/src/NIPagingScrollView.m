@@ -254,7 +254,7 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
     return NSMakeRange(0, 0);
   }
 
-  NSInteger visibleRange = _pageInset == 0 ? 1 : 2;
+  NSInteger visibleRange = (_pageInset == 0) ? 1 : 2;
   NSInteger currentVisiblePageIndex = [self currentVisiblePageIndex];
 
   NSInteger firstVisiblePageIndex = NIBoundi(currentVisiblePageIndex - visibleRange, 0, self.numberOfPages - 1);
@@ -422,6 +422,7 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
 }
 
 - (void)layoutSubviews {
+  [super layoutSubviews];
   _scrollView.contentSize = [self contentSizeForPagingScrollView];
   [self layoutVisiblePages];
 }
