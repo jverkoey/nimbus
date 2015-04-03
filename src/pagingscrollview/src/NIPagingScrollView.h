@@ -68,11 +68,7 @@ typedef enum {
 
 #pragma mark Configuring Presentation
 
-// Controls the border between images.
 @property (nonatomic) CGFloat pageMargin;
-// Used to make the view smaller than full screen, thus showing neighboring images
-// in the view.
-@property (nonatomic) CGFloat pageInset;
 @property (nonatomic) NIPagingScrollViewType type; // Default: NIPagingScrollViewHorizontal
 
 #pragma mark Visible Pages

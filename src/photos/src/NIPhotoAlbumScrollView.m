@@ -80,8 +80,7 @@
                                  originalPhotoDimensions: &originalPhotoDimensions];
 
   page.photoDimensions = originalPhotoDimensions;
-  // Only mark the view as loading if the center image is loading.
-  page.loading = (page.pageIndex == self.centerPageIndex) && isLoading;
+  page.loading = isLoading;
 
   if (nil == image) {
     page.zoomingIsEnabled = NO;
