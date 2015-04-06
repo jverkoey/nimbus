@@ -210,7 +210,7 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
 - (BOOL)isDisplayingPageForIndex:(NSInteger)pageIndex {
   BOOL foundPage = NO;
 
-  // There will never be more than 3 (5 with insets) visible pages in this array, so this lookup is
+  // There will never be more than a handful (3 without insets) of visible pages in this array, so this lookup is
   // effectively O(C) constant time.
   for (UIView <NIPagingScrollViewPage>* page in _visiblePages) {
     if (page.pageIndex == pageIndex) {
