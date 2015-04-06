@@ -420,6 +420,13 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
   [self layoutVisiblePages];
 }
 
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+  if ([self pointInside:point withEvent:event]) {
+    return _scrollView;
+  }
+  return nil;
+}
+
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
