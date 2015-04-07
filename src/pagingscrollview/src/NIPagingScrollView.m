@@ -251,7 +251,7 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
   if (_pageInset != 0) {
     CGSize boundsSize = _scrollView.bounds.size;
     CGSize frameSize = self.frame.size;
-    visibleRange = ceil(frameSize.width / (boundsSize.width + _pageMargin));
+    visibleRange = (NSInteger)ceil(frameSize.width / (boundsSize.width + _pageMargin));
   }
 
   NSInteger currentVisiblePageIndex = [self currentVisiblePageIndex];
