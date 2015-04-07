@@ -421,12 +421,13 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
 }
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+  UIView *view = [super hitTest:point withEvent:event];
   // We must forward hits for the scrollView or else the smaller frame when
   // it is inset will prevent touches outside the scrollView bounds.
-  if ([self pointInside:point withEvent:event]) {
+  if (view == self) {
     return _scrollView;
   }
-  return nil;
+  return view;
 }
 
 #pragma mark - UIScrollViewDelegate
