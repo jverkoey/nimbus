@@ -66,7 +66,11 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
   _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
   _scrollView.pagingEnabled = YES;
   _scrollView.scrollsToTop = NO;
+
+  // Allows the scroll view to show adjacent pages...
   _scrollView.clipsToBounds = NO;
+  // ...while still clipping contents to the bounds of the paging scroll view.
+  self.clipsToBounds = YES;
 
   _scrollView.autoresizingMask = UIViewAutoresizingFlexibleDimensions;
 
