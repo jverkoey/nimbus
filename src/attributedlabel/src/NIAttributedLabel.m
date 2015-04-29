@@ -106,25 +106,59 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
  * - The accessibilityContainer must be a UIView.
  * - The accessibilityFrame is recomputed every time from the frameInContainer
  *   and the accessibilityContainer.
+ *
+ * These differences cease to be as soon as the initial accessibility container
+ * is changed externally, which is internally tracked by isFrameInContainerValid.
  */
 @interface NIViewAccessibilityElement : UIAccessibilityElement
 
+// Designated initializer.
+- (instancetype)initWithAccessibilityContainer:(id)container frameInContainer:(CGRect)frameInContainer;
+
 // This frame is in the accessibilityContainer coordinates.
-@property (nonatomic) CGRect frameInContainer;
+@property (nonatomic, readonly) CGRect frameInContainer;
+
+@end
+
+@interface NIViewAccessibilityElement ()
+
+// Whether frameInContainer is valid, that is, the container is still the one
+// used to compute frameInContainer.
+@property (nonatomic) BOOL isFrameInContainerValid;
 
 @end
 
 @implementation NIViewAccessibilityElement
 
-- (instancetype)initWithAccessibilityContainer:(id)container {
+- (instancetype)initWithAccessibilityContainer:(id)container frameInContainer:(CGRect)frameInContainer {
   NIDASSERT([container isKindOfClass:[UIView class]]);
-  return [super initWithAccessibilityContainer:container];
+  if ((self = [super initWithAccessibilityContainer:container])) {
+    _frameInContainer = frameInContainer;
+    _isFrameInContainerValid = YES;
+  }
+  return self;
+}
+
+- (instancetype)initWithAccessibilityContainer:(id)container {
+  if ((self = [self initWithAccessibilityContainer:container frameInContainer:CGRectZero])) {
+    self.isFrameInContainerValid = NO;
+  }
+  return self;
+}
+
+- (void)setAccessibilityContainer:(id)accessibilityContainer {
+  self.isFrameInContainerValid = NO;
+  [super setAccessibilityContainer:accessibilityContainer];
 }
 
 - (CGRect)accessibilityFrame {
-  UIView* view = [self accessibilityContainer];
-  CGRect frame = [view convertRect:self.frameInContainer toView:nil];
-  return [view.window convertRect:frame toWindow:nil];
+  if (self.isFrameInContainerValid) {
+    UIView* view = [self accessibilityContainer];
+    NIDASSERT([view isKindOfClass:[UIView class]]);
+    CGRect frame = [view convertRect:self.frameInContainer toView:nil];
+    return [view.window convertRect:frame toWindow:nil];
+  }
+  return [super accessibilityFrame];
 }
 
 @end
@@ -1435,9 +1469,12 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 
     NSString* label = [self.mutableAttributedString.string substringWithRange:result.range];
     for (NSValue* rectValue in rectsForLink) {
-      NIViewAccessibilityElement* element = [[NIViewAccessibilityElement alloc] initWithAccessibilityContainer:self];
+      NIViewAccessibilityElement* element = [[NIViewAccessibilityElement alloc] initWithAccessibilityContainer:self frameInContainer:rectValue.CGRectValue];
       element.accessibilityLabel = label;
-      element.frameInContainer = rectValue.CGRectValue;
+      // Set the frame to fallback on if |element|'s accessibility container is changed externally.
+      CGRect rectValueInWindowCoordinates = [self convertRect:rectValue.CGRectValue toView:nil];
+      CGRect rectValueInScreenCoordinates = [self.window convertRect:rectValueInWindowCoordinates toWindow:nil];
+      element.accessibilityFrame = rectValueInScreenCoordinates;
       element.accessibilityTraits = UIAccessibilityTraitLink;
       [accessibleElements addObject:element];
     }
@@ -1445,9 +1482,12 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 
   // Add this label's text as the "bottom-most" accessibility element, i.e. the last element in the
   // array. This gives link priorities.
-  NIViewAccessibilityElement* element = [[NIViewAccessibilityElement alloc] initWithAccessibilityContainer:self];
+  NIViewAccessibilityElement* element = [[NIViewAccessibilityElement alloc] initWithAccessibilityContainer:self frameInContainer:self.bounds];
   element.accessibilityLabel = self.attributedText.string;
-  element.frameInContainer = self.bounds;
+  // Set the frame to fallback on if |element|'s accessibility container is changed externally.
+  CGRect boundsInWindowCoordinates = [self convertRect:self.bounds toView:nil];
+  CGRect boundsInScreenCoordinates = [self.window convertRect:boundsInWindowCoordinates toWindow:nil];
+  element.accessibilityFrame = boundsInScreenCoordinates;
   element.accessibilityTraits = UIAccessibilityTraitNone;
   [accessibleElements addObject:element];
 
