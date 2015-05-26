@@ -690,7 +690,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   if (self.autoDetectLinks) {
     [self detectLinks];
 
-    for (NSTextCheckingResult* result in self.detectedlinkLocations) {
+    for (NSTextCheckingResult* result in self.explicitLinkLocations) {
       if (NSLocationInRange(i, result.range)) {
         foundResult = result;
         break;
@@ -699,7 +699,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 
   if (nil == foundResult) {
-    for (NSTextCheckingResult* result in self.explicitLinkLocations) {
+    for (NSTextCheckingResult* result in self.detectedlinkLocations) {
       if (NSLocationInRange(i, result.range)) {
         foundResult = result;
         break;
