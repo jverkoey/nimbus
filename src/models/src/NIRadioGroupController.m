@@ -76,7 +76,7 @@
 #endif
 
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
   return UIInterfaceOrientationMaskAllButUpsideDown;
 }
 
