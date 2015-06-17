@@ -75,8 +75,11 @@
 }
 #endif
 
-
+#if defined(__IPHONE_9_0) && __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_9_0
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+#else
+- (NSUInteger)supportedInterfaceOrientations {
+#endif
   return UIInterfaceOrientationMaskAllButUpsideDown;
 }
 
