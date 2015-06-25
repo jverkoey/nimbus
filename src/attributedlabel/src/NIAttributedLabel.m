@@ -698,7 +698,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
     }
   }
 
-  if (nil == foundResult) {
+  if (nil == foundResult || _prioritizeExplicitLinks) {
     for (NSTextCheckingResult* result in self.explicitLinkLocations) {
       if (NSLocationInRange(i, result.range)) {
         foundResult = result;
