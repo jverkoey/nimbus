@@ -357,7 +357,7 @@
          [self _didFailToLoadWithError:error];
       }];
 
-      [requestOperation setDownloadProgressBlock:^(NSUInteger bytesRead, NSInteger totalBytesRead, NSInteger totalBytesExpectedToRead) {
+      [requestOperation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
           if ([self.delegate respondsToSelector:@selector(networkImageView:readBytes:totalBytes:)]) {
               [self.delegate networkImageView:self readBytes:totalBytesRead totalBytes:totalBytesExpectedToRead];
           }
