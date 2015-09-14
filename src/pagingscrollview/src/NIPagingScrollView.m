@@ -491,10 +491,12 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
 }
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
-  [self didAnimateToPage:_animatingToPageIndex];
+  if (_animatingToPageIndex >= 0) {
+    [self didAnimateToPage:_animatingToPageIndex];
 
-  if ([self.delegate respondsToSelector:_cmd]) {
-    [self.delegate scrollViewDidEndScrollingAnimation:scrollView];
+    if ([self.delegate respondsToSelector:_cmd]) {
+      [self.delegate scrollViewDidEndScrollingAnimation:scrollView];
+    }
   }
 }
 
