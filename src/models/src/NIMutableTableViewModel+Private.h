@@ -15,6 +15,7 @@
 //
 
 #import "NIMutableTableViewModel.h"
+#import "NITableViewModel+Private.h"
 
 @interface NIMutableTableViewModel (Private)
 
