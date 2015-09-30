@@ -75,8 +75,8 @@
 
   if (nil != listArray) {
     NITableViewModelSection* section = [NITableViewModelSection section];
-    section.rows = listArray;
-    self.sections = [NSArray arrayWithObject:section];
+    section.rows = [listArray mutableCopy];
+    self.sections = [NSMutableArray arrayWithObject:section];
   }
 }
 
