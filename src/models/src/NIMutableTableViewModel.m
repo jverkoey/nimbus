@@ -99,7 +99,7 @@
 
 - (NITableViewModelSection *)_appendSection {
   if (nil == self.sections) {
-    self.sections = [NSMutableArray array];
+    [self _setSectionsWithArray:[NSMutableArray array]];
   }
   NITableViewModelSection* section = nil;
   section = [[NITableViewModelSection alloc] init];
@@ -110,7 +110,7 @@
 
 - (NITableViewModelSection *)_insertSectionAtIndex:(NSUInteger)index {
   if (nil == self.sections) {
-    self.sections = [NSMutableArray array];
+    [self _setSectionsWithArray:[NSMutableArray array]];
   }
   NITableViewModelSection* section = nil;
   section = [[NITableViewModelSection alloc] init];
@@ -118,6 +118,14 @@
   NIDASSERT(index >= 0 && index <= self.sections.count);
   [self.sections insertObject:section atIndex:index];
   return section;
+}
+
+- (void)_setSectionsWithArray:(NSArray *)sectionsArray {
+  if ([sectionsArray isKindOfClass:[NSMutableArray class]]) {
+    self.sections = (NSMutableArray *)sectionsArray;
+  } else {
+    self.sections = [sectionsArray mutableCopy];
+  }
 }
 
 #pragma mark - UITableViewDataSource

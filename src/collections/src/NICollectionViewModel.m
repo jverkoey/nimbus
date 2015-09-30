@@ -59,7 +59,7 @@
 
 
 - (void)_resetCompiledData {
-  self.sections = nil;
+  [self _setSectionsWithArray:nil];
   self.sectionIndexTitles = nil;
   self.sectionPrefixToSectionIndex = nil;
 }
@@ -70,7 +70,7 @@
   if (nil != listArray) {
     NICollectionViewModelSection* section = [NICollectionViewModelSection section];
     section.rows = listArray;
-    self.sections = [NSArray arrayWithObject:section];
+    [self _setSectionsWithArray:@[ section ]];
   }
 }
 
@@ -132,7 +132,11 @@
   currentSectionRows = nil;
 
   // Update the compiled information for this data source.
-  self.sections = sections;
+  [self _setSectionsWithArray:sections];
+}
+
+- (void)_setSectionsWithArray:(NSArray *)sectionsArray {
+  self.sections = sectionsArray;
 }
 
 #pragma mark - UICollectionViewDataSource

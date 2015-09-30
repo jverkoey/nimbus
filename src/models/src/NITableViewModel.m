@@ -65,7 +65,7 @@
 
 
 - (void)_resetCompiledData {
-  self.sections = nil;
+  [self _setSectionsWithArray:nil];
   self.sectionIndexTitles = nil;
   self.sectionPrefixToSectionIndex = nil;
 }
@@ -76,7 +76,7 @@
   if (nil != listArray) {
     NITableViewModelSection* section = [NITableViewModelSection section];
     section.rows = [listArray mutableCopy];
-    self.sections = [NSMutableArray arrayWithObject:section];
+    [self _setSectionsWithArray:@[ section ]];
   }
 }
 
@@ -138,7 +138,7 @@
   currentSectionRows = nil;
 
   // Update the compiled information for this data source.
-  self.sections = sections;
+  [self _setSectionsWithArray:sections];
 }
 
 - (void)_compileSectionIndex {
@@ -220,6 +220,10 @@
 
   self.sectionIndexTitles = titles;
   self.sectionPrefixToSectionIndex = sectionPrefixToSectionIndex;
+}
+
+- (void)_setSectionsWithArray:(NSArray *)sectionsArray {
+  self.sections = sectionsArray;
 }
 
 #pragma mark - UITableViewDataSource
