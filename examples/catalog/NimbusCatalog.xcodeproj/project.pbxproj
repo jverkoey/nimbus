@@ -75,7 +75,6 @@
 		6693C206158A81D300950D42 /* NIError.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C1DE158A81D300950D42 /* NIError.m */; };
 		6693C207158A81D300950D42 /* NIFoundationMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C1E0158A81D300950D42 /* NIFoundationMethods.m */; };
 		6693C208158A81D300950D42 /* NIInMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C1E2158A81D300950D42 /* NIInMemoryCache.m */; };
-		6693C209158A81D300950D42 /* NINavigationAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C1E7158A81D300950D42 /* NINavigationAppearance.m */; };
 		6693C20A158A81D300950D42 /* NINetworkActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C1E9158A81D300950D42 /* NINetworkActivity.m */; };
 		6693C20B158A81D300950D42 /* NINonEmptyCollectionTesting.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C1EB158A81D300950D42 /* NINonEmptyCollectionTesting.m */; };
 		6693C20C158A81D300950D42 /* NINonRetainingCollections.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C1ED158A81D300950D42 /* NINonRetainingCollections.m */; };
@@ -266,8 +265,6 @@
 		6693C1D2158A80A000950D42 /* CatalogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatalogViewController.m; sourceTree = "<group>"; };
 		6693C1D5158A81D300950D42 /* NICommonMetrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICommonMetrics.h; path = ../../src/core/src/NICommonMetrics.h; sourceTree = "<group>"; };
 		6693C1D6158A81D300950D42 /* NICommonMetrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICommonMetrics.m; path = ../../src/core/src/NICommonMetrics.m; sourceTree = "<group>"; };
-		6693C1D7158A81D300950D42 /* NIDataStructures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIDataStructures.h; path = ../../src/core/src/NIDataStructures.h; sourceTree = "<group>"; };
-		6693C1D8158A81D300950D42 /* NIDataStructures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIDataStructures.m; path = ../../src/core/src/NIDataStructures.m; sourceTree = "<group>"; };
 		6693C1D9158A81D300950D42 /* NIDebuggingTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIDebuggingTools.h; path = ../../src/core/src/NIDebuggingTools.h; sourceTree = "<group>"; };
 		6693C1DA158A81D300950D42 /* NIDebuggingTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIDebuggingTools.m; path = ../../src/core/src/NIDebuggingTools.m; sourceTree = "<group>"; };
 		6693C1DB158A81D300950D42 /* NIDeviceOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIDeviceOrientation.h; path = ../../src/core/src/NIDeviceOrientation.h; sourceTree = "<group>"; };
@@ -280,8 +277,6 @@
 		6693C1E2158A81D300950D42 /* NIInMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIInMemoryCache.m; path = ../../src/core/src/NIInMemoryCache.m; sourceTree = "<group>"; };
 		6693C1E3158A81D300950D42 /* NimbusCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusCore.h; path = ../../src/core/src/NimbusCore.h; sourceTree = "<group>"; };
 		6693C1E4158A81D300950D42 /* NimbusCore+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NimbusCore+Additions.h"; path = "../../src/core/src/NimbusCore+Additions.h"; sourceTree = "<group>"; };
-		6693C1E6158A81D300950D42 /* NINavigationAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NINavigationAppearance.h; path = ../../src/core/src/NINavigationAppearance.h; sourceTree = "<group>"; };
-		6693C1E7158A81D300950D42 /* NINavigationAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINavigationAppearance.m; path = ../../src/core/src/NINavigationAppearance.m; sourceTree = "<group>"; };
 		6693C1E8158A81D300950D42 /* NINetworkActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NINetworkActivity.h; path = ../../src/core/src/NINetworkActivity.h; sourceTree = "<group>"; };
 		6693C1E9158A81D300950D42 /* NINetworkActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINetworkActivity.m; path = ../../src/core/src/NINetworkActivity.m; sourceTree = "<group>"; };
 		6693C1EA158A81D300950D42 /* NINonEmptyCollectionTesting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NINonEmptyCollectionTesting.h; path = ../../src/core/src/NINonEmptyCollectionTesting.h; sourceTree = "<group>"; };
@@ -668,8 +663,6 @@
 				668EA9C317206F640056C8C3 /* NIActions+Subclassing.h */,
 				6693C1D5158A81D300950D42 /* NICommonMetrics.h */,
 				6693C1D6158A81D300950D42 /* NICommonMetrics.m */,
-				6693C1D7158A81D300950D42 /* NIDataStructures.h */,
-				6693C1D8158A81D300950D42 /* NIDataStructures.m */,
 				6693C1D9158A81D300950D42 /* NIDebuggingTools.h */,
 				6693C1DA158A81D300950D42 /* NIDebuggingTools.m */,
 				6693C1DB158A81D300950D42 /* NIDeviceOrientation.h */,
@@ -682,8 +675,6 @@
 				6693C1E2158A81D300950D42 /* NIInMemoryCache.m */,
 				6693C1E3158A81D300950D42 /* NimbusCore.h */,
 				6693C1E4158A81D300950D42 /* NimbusCore+Additions.h */,
-				6693C1E6158A81D300950D42 /* NINavigationAppearance.h */,
-				6693C1E7158A81D300950D42 /* NINavigationAppearance.m */,
 				6693C1E8158A81D300950D42 /* NINetworkActivity.h */,
 				6693C1E9158A81D300950D42 /* NINetworkActivity.m */,
 				6693C1EA158A81D300950D42 /* NINonEmptyCollectionTesting.h */,
@@ -1038,7 +1029,6 @@
 				6693C206158A81D300950D42 /* NIError.m in Sources */,
 				6693C207158A81D300950D42 /* NIFoundationMethods.m in Sources */,
 				6693C208158A81D300950D42 /* NIInMemoryCache.m in Sources */,
-				6693C209158A81D300950D42 /* NINavigationAppearance.m in Sources */,
 				6693C20A158A81D300950D42 /* NINetworkActivity.m in Sources */,
 				6693C20B158A81D300950D42 /* NINonEmptyCollectionTesting.m in Sources */,
 				6693C20C158A81D300950D42 /* NINonRetainingCollections.m in Sources */,
