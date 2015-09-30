@@ -26,6 +26,7 @@
 - (void)_compileDataWithListArray:(NSArray *)listArray;
 - (void)_compileDataWithSectionedArray:(NSArray *)sectionedArray;
 - (void)_compileSectionIndex;
+- (void)_setSectionsWithArray:(NSArray *)sectionsArray;
 
 @end
 
