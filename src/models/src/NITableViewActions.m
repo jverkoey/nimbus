@@ -158,6 +158,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   NIDASSERT([tableView.dataSource conformsToProtocol:@protocol(NIActionsDataSource)]);
+
+  // On iOS 8 and below, UITableViewDelegate is marked "assign". This means that the delegate
+  // (i.e. self) is not retained before delegate methods (such as this one) are invoked.
+  // Therefore, if any of the actions ends up removing a reference to self, we may become
+  // dealloc'd before the end of this method invocation. So we create a strong reference to self
+  // to make sure all actions are carried out as expected.
+      NITableViewActions *strongSelf = self;
+
   if ([tableView.dataSource conformsToProtocol:@protocol(NIActionsDataSource)]) {
     id object = [(id<NIActionsDataSource>)tableView.dataSource objectAtIndexPath:indexPath];
 
@@ -167,10 +175,10 @@
       BOOL shouldDeselect = NO;
       if (action.tapAction) {
         // Tap actions can deselect the row if they return YES.
-        shouldDeselect = action.tapAction(object, self.target, indexPath);
+        shouldDeselect = action.tapAction(object, strongSelf.target, indexPath);
       }
-      if (action.tapSelector && [self.target respondsToSelector:action.tapSelector]) {
-        NSMethodSignature *methodSignature = [self.target methodSignatureForSelector:action.tapSelector];
+      if (action.tapSelector && [strongSelf.target respondsToSelector:action.tapSelector]) {
+        NSMethodSignature *methodSignature = [strongSelf.target methodSignatureForSelector:action.tapSelector];
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
         invocation.selector = action.tapSelector;
         if (methodSignature.numberOfArguments >= 3) {
@@ -179,7 +187,7 @@
         if (methodSignature.numberOfArguments >= 4) {
           [invocation setArgument:&indexPath atIndex:3];
         }
-        [invocation invokeWithTarget:self.target];
+        [invocation invokeWithTarget:strongSelf.target];
 
         NSUInteger length = invocation.methodSignature.methodReturnLength;
         if (length > 0) {
@@ -200,19 +208,19 @@
       }
 
       if (action.navigateAction) {
-        action.navigateAction(object, self.target, indexPath);
+        action.navigateAction(object, strongSelf.target, indexPath);
       }
-      if (action.navigateSelector && [self.target respondsToSelector:action.navigateSelector]) {
+      if (action.navigateSelector && [strongSelf.target respondsToSelector:action.navigateSelector]) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        [self.target performSelector:action.navigateSelector withObject:object withObject:indexPath];
+        [strongSelf.target performSelector:action.navigateSelector withObject:object withObject:indexPath];
 #pragma clang diagnostic pop
       }
     }
   }
 
   // Forward the invocation along.
-  for (id<UITableViewDelegate> delegate in self.forwardDelegates) {
+  for (id<UITableViewDelegate> delegate in strongSelf.forwardDelegates) {
     if ([delegate respondsToSelector:_cmd]) {
       [delegate tableView:tableView didSelectRowAtIndexPath:indexPath];
     }
