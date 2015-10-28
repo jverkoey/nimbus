@@ -165,6 +165,9 @@ _model.delegate = (id)[NICellFactory class];
 /** A nib that contains a table view cell to display this object's contents. */
 - (UINib *)cellNib;
 
+/** When call the tableView's heightForRowAtIndexPath method, we need get cell class and call NITableViewModelDelegate's heightForRowAtIndexPath */
+- (Class)cellNibClass;
+
 @end
 
 /**
