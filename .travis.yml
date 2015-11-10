@@ -21,4 +21,13 @@ script:
   - set -o pipefail
   - xcodebuild -version
   - xcodebuild -showsdks
+  - xcodebuild -project src/Nimbus.xcodeproj -scheme NimbusAttributedLabel -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty -c; 
   - xcodebuild -project src/Nimbus.xcodeproj -scheme NimbusCore -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty -c; 
+  - xcodebuild -project src/Nimbus.xcodeproj -scheme NimbusCss -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty -c; 
+  - xcodebuild -project src/Nimbus.xcodeproj -scheme NimbusInterapp -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty -c; 
+  - xcodebuild -project src/Nimbus.xcodeproj -scheme NimbusModels -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty -c; 
+  - xcodebuild -project src/Nimbus.xcodeproj -scheme NimbusOverview -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty -c; 
+  - xcodebuild -project src/Nimbus.xcodeproj -scheme NimbusPagingScrollView -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty -c; 
+  - xcodebuild -project src/Nimbus.xcodeproj -scheme NimbusPhotos -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty -c; 
+  - xcodebuild -project src/Nimbus.xcodeproj -scheme NimbusWebController -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty -c; 
+  
