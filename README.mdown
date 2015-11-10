@@ -1,5 +1,7 @@
 Nimbus is an iOS framework whose feature set grows only as fast as its documentation.
 
+[![Build Status](https://travis-ci.org/jverkoey/nimbus.svg)](https://travis-ci.org/jverkoey/nimbus)
+
 Getting Started
 ---------------
 
