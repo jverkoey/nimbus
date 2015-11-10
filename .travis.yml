@@ -1,5 +1,6 @@
 language: objective-c
 osx_image: xcode7.1
+xcode_project: src/Nimbus.xcodeproj
 sudo: false
 env:
   global:
@@ -15,12 +16,8 @@ env:
 before_install:
   - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
   - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
-  - cd Tests && pod install && cd $TRAVIS_BUILD_DIR
 script:
   - set -o pipefail
   - xcodebuild -version
   - xcodebuild -showsdks
-  - xcodebuild -workspace src/Nimbus.xcodeproj/project.xcworkspace -scheme NimbusCore -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO test | xcpretty -c; 
-  - if [ $POD_LINT == "YES" ]; then
-      pod lib lint --quick;
-    fi
+  - xcodebuild -workspace src/Nimbus.xcodeproj/project.xcworkspace -scheme NimbusCore -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty -c; 
