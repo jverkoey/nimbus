@@ -103,6 +103,8 @@ extern NSString* const NIAttributedLabelLinkAttributeName; // Value is an NSText
 
 @property (nonatomic, copy) NSString* tailTruncationString;
 
+@property (nonatomic) BOOL shouldSortLinksLast; // Sort the links in the text as the last elements in accessible elements. Default: NO
+
 - (void)setFont:(UIFont *)font            range:(NSRange)range;
 - (void)setStrokeColor:(UIColor *)color   range:(NSRange)range;
 - (void)setStrokeWidth:(CGFloat)width     range:(NSRange)range;
