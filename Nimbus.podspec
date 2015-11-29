@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Nimbus"
-  s.version      = "1.2.2"
+  s.version      = "1.3.0"
   s.summary      = "The iOS framework that grows only as fast as its documentation"
   s.description  = <<-DESC
   Nimbus is an iOS framework whose feature set grows only as fast as its documentation. By focusing
@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
   }
   s.social_media_url   = "http://twitter.com/NimbusKit"
   s.platform     = :ios, "7.0"
-  s.source       = { :git => "https://github.com/jverkoey/nimbus.git", :tag => "1.2.2" }
+  s.source       = { :git => "https://github.com/jverkoey/nimbus.git", :tag => s.version }
   s.requires_arc = true
 
   s.subspec 'AttributedLabel' do |ss|
