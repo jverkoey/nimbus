@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
     "Stephane Moore" => "stephane.moore@gmail.com"
   }
   s.social_media_url   = "http://twitter.com/NimbusKit"
-  s.platform     = :ios, "7.0"
+  s.platform     = :ios, "8.0"
   s.source       = { :git => "https://github.com/jverkoey/nimbus.git", :tag => s.version }
   s.requires_arc = true
 
