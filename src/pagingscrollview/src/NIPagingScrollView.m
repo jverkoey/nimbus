@@ -297,7 +297,13 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
 }
 
 - (UIView<NIPagingScrollViewPage> *)loadPageAtIndex:(NSInteger)pageIndex {
-  UIView<NIPagingScrollViewPage>* page = [self.dataSource pagingScrollView:self pageViewForIndex:pageIndex];
+  id<NIPagingScrollViewDataSource> dataSource = self.dataSource;
+  if (dataSource == nil) {
+    // If there's no data source, just return a nil page.
+    return nil;
+  }
+
+  UIView<NIPagingScrollViewPage> *page = [dataSource pagingScrollView:self pageViewForIndex:pageIndex];
 
   NIDASSERT([page isKindOfClass:[UIView class]]);
   NIDASSERT([page conformsToProtocol:@protocol(NIPagingScrollViewPage)]);
