@@ -87,6 +87,7 @@ extern NSString* const NIAttributedLabelLinkAttributeName; // Value is an NSText
 - (void)removeAllExplicitLinks; // Removes all links that were added by addLink:range:. Does not remove autodetected links.
 
 @property (nonatomic, strong) UIColor*      linkColor;                      // Default: self.tintColor (iOS 7) or [UIColor blueColor] (iOS 6)
+@property (nonatomic, strong) UIColor*      strikethroughColor;             // Default: foreground color.
 @property (nonatomic, strong) UIColor*      highlightedLinkBackgroundColor; // Default: [UIColor colorWithWhite:0.5 alpha:0.5
 @property (nonatomic)         BOOL          linksHaveUnderlines;            // Default: NO
 @property (nonatomic, copy)   NSDictionary* attributesForLinks;             // Default: nil
