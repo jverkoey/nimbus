@@ -1458,7 +1458,8 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 
   CGFloat descent = 0;
-  CGFloat typographicWidth = CTRunGetTypographicBounds(run, CFRangeMake(0,0), NULL, &descent, NULL);
+  CGFloat typographicWidth =
+      (CGFloat)CTRunGetTypographicBounds(run, CFRangeMake(0,0), NULL, &descent, NULL);
 
   CGFloat lineWidth = 1;
   if ((style & NSUnderlineStyleThick) == NSUnderlineStyleThick) {
@@ -1480,7 +1481,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 
   UIFont *font = CFDictionaryGetValue(attributes, kFontAttributeKey);
   font = font ?: self.font;
-  CGFloat strikeHeight = font.xHeight / 2.0 + (*firstGlyphPosition).y;
+  CGFloat strikeHeight = font.xHeight / 2.f + (*firstGlyphPosition).y;
   
   // Adjustment for multiline elements.
   CGPoint pt = CGContextGetTextPosition(ctx);
