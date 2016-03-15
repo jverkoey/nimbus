@@ -1469,7 +1469,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 
   CGContextSetLineWidth(ctx, lineWidth);
 
-
   CGContextBeginPath(ctx);
 
   UIColor *strikethroughColor = CFDictionaryGetValue(attributes, kStrikethroughColorAttributeKey);
