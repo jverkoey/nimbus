@@ -45,6 +45,10 @@ static NSString* const kEllipsesCharacter = @"\u2026";
 
 NSString* const NIAttributedLabelLinkAttributeName = @"NIAttributedLabel:Link";
 
+static const void *kFontAttributeKey = @"NSFont";
+static const void *kStrikethroughAttributeKey = @"NSStrikethrough";
+static const void *kStrikethroughColorAttributeKey = @"NSStrikethroughColorAttributeName";
+
 // For supporting images.
 CGFloat NIImageDelegateGetAscentCallback(void* refCon);
 CGFloat NIImageDelegateGetDescentCallback(void* refCon);
@@ -547,6 +551,14 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 - (void)setLinkColor:(UIColor *)linkColor {
   if (_linkColor != linkColor) {
     _linkColor = linkColor;
+
+    [self attributedTextDidChange];
+  }
+}
+
+- (void)setStrikethroughColor:(UIColor *)strikethroughColor {
+  if (_strikethroughColor != strikethroughColor) {
+    _strikethroughColor = strikethroughColor;
 
     [self attributedTextDidChange];
   }
@@ -1393,7 +1405,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
         CFRelease(truncationLine);
         CFRelease(truncationToken);
 
-        CTLineDraw(truncatedLine, ctx);
+        [self drawLine:truncatedLine context:ctx];
         CFRelease(truncatedLine);
 
         shouldDrawLine = NO;
@@ -1401,8 +1413,88 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
     }
 
     if (shouldDrawLine) {
-      CTLineDraw(line, ctx);
+      [self drawLine:line context:ctx];
     }
+  }
+}
+
+- (void)drawLine:(CTLineRef)line context:(CGContextRef)ctx {
+  // Process additional NSAttributes that are not supported by CT library such as strikethrough.
+  CFArrayRef runs = CTLineGetGlyphRuns(line);
+  for (NSInteger index = 0; index < CFArrayGetCount(runs); index++) {
+    CTRunRef run = CFArrayGetValueAtIndex(runs, index);
+    CTRunDraw(run, ctx, CFRangeMake(0, 0));
+    CFDictionaryRef attributes = CTRunGetAttributes(run);
+    if (attributes) {
+      if (CFDictionaryContainsKey(attributes, kStrikethroughAttributeKey)) {
+        [self drawStrikethroughOverGlyphRun:run attributes:attributes ctx:ctx];
+      }
+    }
+  }
+}
+
+/**
+ * Draws the strikethrough over the already drawn CTRunRef text. The strikethrough height is half
+ * of the x-height of the current font. This means that the line is drawn in the middle of the lower
+ * case 'x' char.
+ */
+- (void)drawStrikethroughOverGlyphRun:(CTRunRef)run
+                           attributes:(CFDictionaryRef)attributes
+                                  ctx:(CGContextRef)ctx {
+  CFNumberRef styleRef = CFDictionaryGetValue(attributes, kStrikethroughAttributeKey);
+  NSUnderlineStyle style = 0;
+  CFNumberGetValue(styleRef, kCFNumberSInt64Type, &style);
+  if (style == NSUnderlineStyleNone) {
+    return;
+  }
+  const CGPoint *firstGlyphPosition = NULL;
+  firstGlyphPosition = CTRunGetPositionsPtr(run);
+  CGPoint *positions = NULL;
+  if (firstGlyphPosition == NULL) {
+    CFIndex glyphCount = CTRunGetGlyphCount(run);
+    positions = calloc(glyphCount, sizeof(CGPoint));
+    CTRunGetPositions(run, CFRangeMake(0, 0), positions);
+    firstGlyphPosition = positions;
+  }
+
+  CGFloat descent = 0;
+  CGFloat typographicWidth = CTRunGetTypographicBounds(run, CFRangeMake(0,0), NULL, &descent, NULL);
+
+  CGFloat lineWidth = 1;
+  if ((style & NSUnderlineStyleThick) == NSUnderlineStyleThick) {
+    // NSUnderlineStyleThick is 0x09 and NSUnderlineStyleSingle is 0x01. According to the Apple
+    // documentation, they are supposed to be masks...but they are not acting like masks...
+    lineWidth *= 2;
+  }
+
+  CGContextSetLineWidth(ctx, lineWidth);
+
+  CGContextBeginPath(ctx);
+
+  UIColor *strikethroughColor = CFDictionaryGetValue(attributes, kStrikethroughColorAttributeKey);
+  if (strikethroughColor) {
+    CGContextSetStrokeColorWithColor(ctx, strikethroughColor.CGColor);
+  } else if (_strikethroughColor) {
+    CGContextSetStrokeColorWithColor(ctx, _strikethroughColor.CGColor);
+  }
+
+  UIFont *font = CFDictionaryGetValue(attributes, kFontAttributeKey);
+  font = font ?: self.font;
+  CGFloat strikeHeight = font.xHeight / 2.0 + (*firstGlyphPosition).y;
+  
+  // Adjustment for multiline elements.
+  CGPoint pt = CGContextGetTextPosition(ctx);
+  strikeHeight += pt.y;
+
+  // For lines composed of multiple runs, (*firstGlyphPosition).x identifies the start of the run
+  // within the line.
+  CGContextMoveToPoint(ctx, pt.x + (*firstGlyphPosition).x, strikeHeight);
+  CGContextAddLineToPoint(ctx,
+                          pt.x + (*firstGlyphPosition).x + typographicWidth,
+                          strikeHeight);
+  CGContextStrokePath(ctx);
+  if (positions != NULL) {
+    free(positions);
   }
 }
 
