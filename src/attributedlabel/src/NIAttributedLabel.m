@@ -1633,7 +1633,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   } else if (NSTextCheckingTypeAddress == self.actionSheetLink.resultType) {
     NSString* address = [self.mutableAttributedString.string substringWithRange:self.actionSheetLink.range];
     if (buttonIndex == 0) {
-      [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[@"http://maps.google.com/maps?q=" stringByAppendingString:address] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+      [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[@"https://maps.google.com/maps?q=" stringByAppendingString:address] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
 
     } else if (buttonIndex == 1) {
       [[UIPasteboard generalPasteboard] setString:address];
