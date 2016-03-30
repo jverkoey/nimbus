@@ -97,7 +97,7 @@
 
   } else if (NSTextCheckingTypeAddress == result.resultType) {
     // Open the Maps application or Safari if the maps application isn't installed.
-    url = [NSURL URLWithString:[@"http://maps.google.com/maps?q=" stringByAppendingString:[[result.addressComponents objectForKey:NSTextCheckingStreetKey] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+    url = [NSURL URLWithString:[@"https://maps.google.com/maps?q=" stringByAppendingString:[[result.addressComponents objectForKey:NSTextCheckingStreetKey] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
   }
 
   if (nil != url) {
