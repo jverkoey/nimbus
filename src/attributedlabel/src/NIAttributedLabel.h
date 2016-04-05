@@ -159,7 +159,7 @@ extern NSString* const NIAttributedLabelLinkAttributeName; // Value is an NSText
  * @returns YES if @c actionSheet should be displayed. NO if @c actionSheet should not be
  *               displayed.
  */
-- (BOOL)attributedLabel:(NIAttributedLabel *)attributedLabel shouldPresentActionSheet:(UIActionSheet *)actionSheet withTextCheckingResult:(NSTextCheckingResult *)result atPoint:(CGPoint)point;
+- (BOOL)attributedLabel:(NIAttributedLabel *)attributedLabel shouldPresentActionSheet:(UIActionSheet *)actionSheet withTextCheckingResult:(NSTextCheckingResult *)result atPoint:(CGPoint)point NS_DEPRECATED_IOS(2_0, 8_3);
 
 @end
 
