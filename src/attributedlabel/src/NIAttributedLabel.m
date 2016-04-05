@@ -1729,11 +1729,11 @@ CGFloat NIImageDelegateGetWidthCallback(void* refCon) {
 
 + (CTTextAlignment)alignmentFromUITextAlignment:(NSTextAlignment)alignment {
   switch (alignment) {
-    case NSTextAlignmentLeft: return kCTLeftTextAlignment;
-    case NSTextAlignmentCenter: return kCTCenterTextAlignment;
-    case NSTextAlignmentRight: return kCTRightTextAlignment;
-    case NSTextAlignmentJustified: return kCTJustifiedTextAlignment;
-    default: return kCTNaturalTextAlignment;
+    case NSTextAlignmentLeft: return kCTTextAlignmentLeft;
+    case NSTextAlignmentCenter: return kCTTextAlignmentCenter;
+    case NSTextAlignmentRight: return kCTTextAlignmentRight;
+    case NSTextAlignmentJustified: return kCTTextAlignmentJustified;
+    default: return kCTTextAlignmentNatural;
   }
 }
 
