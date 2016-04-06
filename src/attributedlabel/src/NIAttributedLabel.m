@@ -28,6 +28,23 @@
 #error "NIAttributedLabel requires iOS 6 or higher."
 #endif
 
+#define _NI_PUSH_SCOPED_DIAGNOSTICS_COMMAND(cmd) \
+  _Pragma ("clang diagnostic push") \
+  _Pragma (cmd)
+
+#define _NI_POP_DIAGNOSTICS() \
+  _Pragma ("clang diagnostic pop")
+
+#if defined(__IPHONE_8_3) && (__IPHONE_OS_VERSION_MIN_REQUIRED > __IPHONE_8_3)
+#define _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_PUSH() \
+  _NI_PUSH_SCOPED_DIAGNOSTICS_COMMAND("clang diagnostic ignored \"-Wdeprecated-declarations\"")
+#define _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP() \
+  _NI_POP_DIAGNOSTICS()
+#else
+#define _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_PUSH()
+#define _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
+#endif // defined(__IPHONE_8_3) && (__IPHONE_OS_VERSION_MIN_REQUIRED > __IPHONE_8_3)
+
 // The number of seconds to wait before executing a long press action on the tapped link.
 static const NSTimeInterval kLongPressTimeInterval = 0.5;
 
@@ -1032,6 +1049,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   [self setNeedsDisplay];
 }
 
+_NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_PUSH()
 - (UIActionSheet *)actionSheetForResult:(NSTextCheckingResult *)result {
   UIActionSheet* actionSheet =
   [[UIActionSheet alloc] initWithTitle:nil
@@ -1076,6 +1094,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 
   return actionSheet;
 }
+_NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
 
 - (void)_longPressTimerDidFire:(NSTimer *)timer {
   self.longPressTimer = nil;
@@ -1083,12 +1102,16 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   if (nil != self.touchedLink) {
     self.actionSheetLink = self.touchedLink;
 
+    _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_PUSH()
     UIActionSheet* actionSheet = [self actionSheetForResult:self.actionSheetLink];
+    _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
 
     BOOL shouldPresent = YES;
     if ([self.delegate respondsToSelector:@selector(attributedLabel:shouldPresentActionSheet:withTextCheckingResult:atPoint:)]) {
       // Give the delegate the opportunity to not show the action sheet or to present their own.
+      _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_PUSH()
       shouldPresent = [self.delegate attributedLabel:self shouldPresentActionSheet:actionSheet withTextCheckingResult:self.touchedLink atPoint:self.touchPoint];
+      _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
     }
 
     if (shouldPresent) {
@@ -1608,6 +1631,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 
 #pragma mark - UIActionSheetDelegate
 
+_NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_PUSH()
 - (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
   if (NSTextCheckingTypeLink == self.actionSheetLink.resultType) {
     if (buttonIndex == 0) {
@@ -1633,7 +1657,12 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   } else if (NSTextCheckingTypeAddress == self.actionSheetLink.resultType) {
     NSString* address = [self.mutableAttributedString.string substringWithRange:self.actionSheetLink.range];
     if (buttonIndex == 0) {
-      [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[@"http://maps.google.com/maps?q=" stringByAppendingString:address] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+      NSString *escapedAddress =
+          NIStringByAddingPercentEscapesForURLParameterString(address);
+      NSString *URLString =
+          [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@", escapedAddress];
+      NSURL *URL = [NSURL URLWithString:URLString];
+      [[UIApplication sharedApplication] openURL:URL];
 
     } else if (buttonIndex == 1) {
       [[UIPasteboard generalPasteboard] setString:address];
@@ -1650,11 +1679,14 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   self.actionSheetLink = nil;
   [self setNeedsDisplay];
 }
+_NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
 
+_NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_PUSH()
 - (void)actionSheetCancel:(UIActionSheet *)actionSheet {
   self.actionSheetLink = nil;
   [self setNeedsDisplay];
 }
+_NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
 
 #pragma mark - Inline Image Support
 
@@ -1729,11 +1761,11 @@ CGFloat NIImageDelegateGetWidthCallback(void* refCon) {
 
 + (CTTextAlignment)alignmentFromUITextAlignment:(NSTextAlignment)alignment {
   switch (alignment) {
-    case NSTextAlignmentLeft: return kCTLeftTextAlignment;
-    case NSTextAlignmentCenter: return kCTCenterTextAlignment;
-    case NSTextAlignmentRight: return kCTRightTextAlignment;
-    case NSTextAlignmentJustified: return kCTJustifiedTextAlignment;
-    default: return kCTNaturalTextAlignment;
+    case NSTextAlignmentLeft: return kCTTextAlignmentLeft;
+    case NSTextAlignmentCenter: return kCTTextAlignmentCenter;
+    case NSTextAlignmentRight: return kCTTextAlignmentRight;
+    case NSTextAlignmentJustified: return kCTTextAlignmentJustified;
+    default: return kCTTextAlignmentNatural;
   }
 }
 
