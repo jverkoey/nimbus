@@ -35,7 +35,7 @@
 #define _NI_POP_DIAGNOSTICS() \
   _Pragma ("clang diagnostic pop")
 
-#if defined(__IPHONE_8_3) && (__IPHONE_OS_VERSION_MIN_REQUIRED > __IPHONE_8_3)
+#if defined(__IPHONE_8_3) && (__IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_8_3)
 #define _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_PUSH() \
   _NI_PUSH_SCOPED_DIAGNOSTICS_COMMAND("clang diagnostic ignored \"-Wdeprecated-declarations\"")
 #define _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP() \
