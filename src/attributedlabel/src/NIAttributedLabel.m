@@ -1660,7 +1660,7 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_PUSH()
       NSString *escapedAddress =
           NIStringByAddingPercentEscapesForURLParameterString(address);
       NSString *URLString =
-          [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@", escapedAddress];
+          [NSString stringWithFormat:@"https://maps.google.com/maps?q=%@", escapedAddress];
       NSURL *URL = [NSURL URLWithString:URLString];
       [[UIApplication sharedApplication] openURL:URL];
 
