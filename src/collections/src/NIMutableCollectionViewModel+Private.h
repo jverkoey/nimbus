@@ -16,6 +16,7 @@
 
 
 #import "NIMutableCollectionViewModel.h"
+#import "NICollectionViewModel+Private.h"
 
 @interface NIMutableCollectionViewModel (Private)
 
