@@ -134,7 +134,7 @@ static NSString* const sGoogleMapsScheme = @"comgooglemaps:";
     NSURL* url = [NSURL URLWithString:[@"comgooglemaps://" stringByAppendingString:urlString]];
     return [[UIApplication sharedApplication] openURL:url];
   } else {
-    NSURL* url = [NSURL URLWithString:[@"http://maps.google.com/maps" stringByAppendingString:urlString]];
+    NSURL* url = [NSURL URLWithString:[@"https://maps.google.com/maps" stringByAppendingString:urlString]];
     return [NIInterapp openPreferredBrowserWithURL:url];
   }
 }
