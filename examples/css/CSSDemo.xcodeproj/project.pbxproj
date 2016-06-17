@@ -62,6 +62,7 @@
 		8BA77A4019468C32005ED95A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA77A3D19468C32005ED95A /* Default.png */; };
 		8BA77A4119468C32005ED95A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA77A3E19468C32005ED95A /* Default@2x.png */; };
 		8BA77A4219468C32005ED95A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA77A3F19468C32005ED95A /* Default-568h@2x.png */; };
+		938CC15D1D141F8500A0C206 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 938CC15C1D141F8500A0C206 /* MobileCoreServices.framework */; };
 		C743F6E416D1F4EB00A933B7 /* btn_blue_active.png in Resources */ = {isa = PBXBuildFile; fileRef = C743F6E016D1F4EB00A933B7 /* btn_blue_active.png */; };
 		C743F6E516D1F4EB00A933B7 /* btn_blue_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C743F6E116D1F4EB00A933B7 /* btn_blue_active@2x.png */; };
 		C743F6E616D1F4EB00A933B7 /* btn_blue_inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = C743F6E216D1F4EB00A933B7 /* btn_blue_inactive.png */; };
@@ -179,6 +180,7 @@
 		8BA77A3D19468C32005ED95A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		8BA77A3E19468C32005ED95A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		8BA77A3F19468C32005ED95A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		938CC15C1D141F8500A0C206 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		C743F6E016D1F4EB00A933B7 /* btn_blue_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_blue_active.png; path = resources/btn_blue_active.png; sourceTree = "<group>"; };
 		C743F6E116D1F4EB00A933B7 /* btn_blue_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_blue_active@2x.png"; path = "resources/btn_blue_active@2x.png"; sourceTree = "<group>"; };
 		C743F6E216D1F4EB00A933B7 /* btn_blue_inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_blue_inactive.png; path = resources/btn_blue_inactive.png; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				938CC15D1D141F8500A0C206 /* MobileCoreServices.framework in Frameworks */,
 				6601E34718B02F0E00E91A07 /* Security.framework in Frameworks */,
 				6601E34618B02F0700E91A07 /* SystemConfiguration.framework in Frameworks */,
 				66832D2514421450003E413C /* UIKit.framework in Frameworks */,
@@ -257,6 +260,7 @@
 		66832D2314421450003E413C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				938CC15C1D141F8500A0C206 /* MobileCoreServices.framework */,
 				6601E34518B02F0700E91A07 /* SystemConfiguration.framework */,
 				6601E34318B02EFB00E91A07 /* Security.framework */,
 				66832D2414421450003E413C /* UIKit.framework */,
@@ -470,7 +474,7 @@
 		66832D1714421450003E413C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0730;
 			};
 			buildConfigurationList = 66832D1A14421450003E413C /* Build configuration list for PBXProject "CSSDemo" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -607,8 +611,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -646,6 +652,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
@@ -670,6 +677,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CSSDemo/CSSDemo-Prefix.pch";
 				INFOPLIST_FILE = "CSSDemo/CSSDemo-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nimbus.css.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "06911D0B-8A67-4981-A7DE-12C7A0C08610";
 				WRAPPER_EXTENSION = app;
@@ -684,6 +692,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CSSDemo/CSSDemo-Prefix.pch";
 				INFOPLIST_FILE = "CSSDemo/CSSDemo-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nimbus.css.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "06911D0B-8A67-4981-A7DE-12C7A0C08610";
 				WRAPPER_EXTENSION = app;
