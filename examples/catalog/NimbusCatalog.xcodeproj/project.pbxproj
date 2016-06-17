@@ -142,6 +142,7 @@
 		66D2FDB81593D5D000B2BEFD /* ContentModesNetworkImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D2FDB71593D5D000B2BEFD /* ContentModesNetworkImageViewController.m */; };
 		66EBCC5118AAC7AE00A98C3C /* NIPagingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EBCC4D18AAC7AE00A98C3C /* NIPagingScrollView.m */; };
 		66EBCC5218AAC7AE00A98C3C /* NIPagingScrollViewPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EBCC5018AAC7AE00A98C3C /* NIPagingScrollViewPage.m */; };
+		938CC15B1D141D0900A0C206 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 938CC15A1D141D0900A0C206 /* MobileCoreServices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -412,6 +413,7 @@
 		66EBCC4E18AAC7AE00A98C3C /* NIPagingScrollView+Subclassing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NIPagingScrollView+Subclassing.h"; sourceTree = "<group>"; };
 		66EBCC4F18AAC7AE00A98C3C /* NIPagingScrollViewPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPagingScrollViewPage.h; sourceTree = "<group>"; };
 		66EBCC5018AAC7AE00A98C3C /* NIPagingScrollViewPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIPagingScrollViewPage.m; sourceTree = "<group>"; };
+		938CC15A1D141D0900A0C206 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -419,6 +421,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				938CC15B1D141D0900A0C206 /* MobileCoreServices.framework in Frameworks */,
 				6658C38D18A910860080B319 /* Security.framework in Frameworks */,
 				6658C38B18A910820080B319 /* SystemConfiguration.framework in Frameworks */,
 				66B941541592E5EF00AEA1D2 /* CoreLocation.framework in Frameworks */,
@@ -612,6 +615,7 @@
 		6693C0EE158A63E600950D42 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				938CC15A1D141D0900A0C206 /* MobileCoreServices.framework */,
 				6658C38C18A910860080B319 /* Security.framework */,
 				6658C38A18A910820080B319 /* SystemConfiguration.framework */,
 				66B941531592E5EF00AEA1D2 /* CoreLocation.framework */,
@@ -961,7 +965,7 @@
 		6693C0E2158A63E600950D42 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = Nimbus;
 			};
 			buildConfigurationList = 6693C0E5158A63E600950D42 /* Build configuration list for PBXProject "NimbusCatalog" */;
@@ -1151,6 +1155,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1198,6 +1203,7 @@
 				INFOPLIST_FILE = "Catalog/NimbusCatalog-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jeffverkoeyen.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Nimbus;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1211,6 +1217,7 @@
 				INFOPLIST_FILE = "Catalog/NimbusCatalog-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jeffverkoeyen.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Nimbus;
 				WRAPPER_EXTENSION = app;
 			};
