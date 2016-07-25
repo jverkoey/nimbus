@@ -46,6 +46,32 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
   return nil;
 }
 
+- (BOOL)isEqualToFormElement:(NIFormElement *)formElement {
+  if (!formElement) {
+    return NO;
+  }
+  
+  return (self.elementID == formElement.elementID);
+}
+
+#pragma mark - NSObject
+
+- (BOOL)isEqual:(id)object {
+  if (self == object) {
+    return YES;
+  }
+  
+  if (![object isKindOfClass:[self class]]) {
+    return NO;
+  }
+  
+  return [self isEqualToFormElement:object];
+}
+
+- (NSUInteger)hash {
+  return self.elementID;
+}
+
 @end
 
 

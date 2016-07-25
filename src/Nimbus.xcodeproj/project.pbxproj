@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D536C721D45FC5900E00CC8 /* NIFormElementTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D536C6F1D45FBB300E00CC8 /* NIFormElementTests.m */; };
 		443589C8155190B300757E50 /* UISearchBar+NIStyleable.h in Headers */ = {isa = PBXBuildFile; fileRef = 443589BF1551909D00757E50 /* UISearchBar+NIStyleable.h */; };
 		443589C9155190CA00757E50 /* UIToolbar+NIStyleable.h in Headers */ = {isa = PBXBuildFile; fileRef = 443589C11551909E00757E50 /* UIToolbar+NIStyleable.h */; };
 		443589CA1551914400757E50 /* UISearchBar+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = 443589C01551909D00757E50 /* UISearchBar+NIStyleable.m */; };
@@ -554,6 +555,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3D536C6F1D45FBB300E00CC8 /* NIFormElementTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIFormElementTests.m; sourceTree = "<group>"; };
 		443589BF1551909D00757E50 /* UISearchBar+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UISearchBar+NIStyleable.h"; path = "css/src/UISearchBar+NIStyleable.h"; sourceTree = SOURCE_ROOT; };
 		443589C01551909D00757E50 /* UISearchBar+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UISearchBar+NIStyleable.m"; path = "css/src/UISearchBar+NIStyleable.m"; sourceTree = SOURCE_ROOT; };
 		443589C11551909E00757E50 /* UIToolbar+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIToolbar+NIStyleable.h"; path = "css/src/UIToolbar+NIStyleable.h"; sourceTree = SOURCE_ROOT; };
@@ -1989,6 +1991,7 @@
 				66D2E54615D9503100281511 /* NIMutableTableViewModelTests.m */,
 				6672DAB415B87E4B00DFE81F /* NICellFactoryTests.m */,
 				D526CF4A18B826A600991F7A /* NICellCatalogTests.m */,
+				3D536C6F1D45FBB300E00CC8 /* NIFormElementTests.m */,
 			);
 			name = unittests;
 			path = models/unittests;
@@ -3246,6 +3249,7 @@
 				6623EB6D1402ECE400E0E61A /* NITableViewModelTests.m in Sources */,
 				6672DAB515B87E4B00DFE81F /* NICellFactoryTests.m in Sources */,
 				66D2E54715D9503100281511 /* NIMutableTableViewModelTests.m in Sources */,
+				3D536C721D45FC5900E00CC8 /* NIFormElementTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
