@@ -1198,11 +1198,11 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
       }
 
       NSDictionary *attributes = [attributedString attributesAtIndex:index effectiveRange:NULL];
-      CTFontRef font = (__bridge CTFontRef)[attributes valueForKey:(__bridge id)kCTFontAttributeName];
-
-      if (font != NULL) {
-        labelImage.fontAscent = CTFontGetAscent(font);
-        labelImage.fontDescent = CTFontGetDescent(font);
+      UIFont *font = attributes[NSFontAttributeName];
+      
+      if (font) {
+        labelImage.fontAscent = font.ascender;
+        labelImage.fontDescent = -font.descender;
       }
 
       CTRunDelegateRef delegate = CTRunDelegateCreate(&callbacks, (__bridge void *)labelImage);
@@ -1214,7 +1214,8 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
         unichar objectReplacementChar = 0xFFFC;
         NSString *objectReplacementString = [NSString stringWithCharacters:&objectReplacementChar length:1];
         NSMutableAttributedString* space = [[NSMutableAttributedString alloc] initWithString:objectReplacementString];
-
+        [space addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, space.length)];
+        
         CFRange range = CFRangeMake(0, 1);
         CFMutableAttributedStringRef spaceString = (__bridge_retained CFMutableAttributedStringRef)space;
         CFAttributedStringSetAttribute(spaceString, range, kCTRunDelegateAttributeName, delegate);
