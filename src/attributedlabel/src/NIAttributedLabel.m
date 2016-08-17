@@ -1192,11 +1192,13 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
       callbacks.getDescent = NIImageDelegateGetDescentCallback;
       callbacks.getWidth = NIImageDelegateGetWidthCallback;
 
-      NSInteger index = MAX(0, MIN(attributedString.length - 1, labelImage.index));
-
-      NSDictionary *attributes = [attributedString attributesAtIndex:index effectiveRange:NULL];
-      UIFont *font = attributes[NSFontAttributeName];
+      NSDictionary *attributes;
+      if (attributedString.length) {
+        NSInteger index = MAX(0, MIN(attributedString.length - 1, labelImage.index));
+        attributes = [attributedString attributesAtIndex:index effectiveRange:NULL];
+      }
       
+      UIFont *font = attributes[NSFontAttributeName];
       if (font) {
         labelImage.fontAscent = font.ascender;
         labelImage.fontDescent = -font.descender;
@@ -1211,7 +1213,9 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
         unichar objectReplacementChar = 0xFFFC;
         NSString *objectReplacementString = [NSString stringWithCharacters:&objectReplacementChar length:1];
         NSMutableAttributedString* space = [[NSMutableAttributedString alloc] initWithString:objectReplacementString];
-        [space addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, space.length)];
+        if (font) {
+          [space addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, space.length)];
+        }
         
         CFRange range = CFRangeMake(0, 1);
         CFMutableAttributedStringRef spaceString = (__bridge_retained CFMutableAttributedStringRef)space;
