@@ -1192,10 +1192,7 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
       callbacks.getDescent = NIImageDelegateGetDescentCallback;
       callbacks.getWidth = NIImageDelegateGetWidthCallback;
 
-      NSUInteger index = labelImage.index;
-      if (index >= attributedString.length) {
-        index = attributedString.length - 1;
-      }
+      NSInteger index = MAX(0, MIN(attributedString.length - 1, labelImage.index));
 
       NSDictionary *attributes = [attributedString attributesAtIndex:index effectiveRange:NULL];
       UIFont *font = attributes[NSFontAttributeName];
