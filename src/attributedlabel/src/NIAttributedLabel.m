@@ -1194,7 +1194,7 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
 
       NSDictionary *attributes = nil;
       if (attributedString.length) {
-        NSInteger index = MAX(0, MIN(attributedString.length - 1, labelImage.index));
+        NSInteger index = MAX((NSInteger)0, MIN((NSInteger)(attributedString.length - 1), labelImage.index));
         attributes = [attributedString attributesAtIndex:index effectiveRange:NULL];
       }
       
