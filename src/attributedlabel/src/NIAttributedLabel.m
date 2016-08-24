@@ -1192,7 +1192,7 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
       callbacks.getDescent = NIImageDelegateGetDescentCallback;
       callbacks.getWidth = NIImageDelegateGetWidthCallback;
 
-      NSDictionary *attributes;
+      NSDictionary *attributes = nil;
       if (attributedString.length) {
         NSInteger index = MAX(0, MIN(attributedString.length - 1, labelImage.index));
         attributes = [attributedString attributesAtIndex:index effectiveRange:NULL];
