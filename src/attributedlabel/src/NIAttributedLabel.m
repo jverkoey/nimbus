@@ -214,7 +214,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 
 @property (nonatomic) CTFrameRef textFrame; // CFType, manually managed lifetime, see setter.
 
-@property (nonatomic, assign) NSInteger linkDetectionGeneration;
+@property (nonatomic, assign) NSInteger linkDetectionRequestID;
 @property (nonatomic)         BOOL linksHaveBeenDetected;
 @property (nonatomic, copy)   NSArray*        detectedlinkLocations;
 @property (nonatomic, strong) NSMutableArray* explicitLinkLocations;  // Of NSTextCheckingResult.
@@ -390,7 +390,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
     // Clear the link caches.
     self.detectedlinkLocations = nil;
     self.linksHaveBeenDetected = NO;
-    self.linkDetectionGeneration++;
+    self.linkDetectionRequestID++;
     [self removeAllExplicitLinks];
 
     // Remove all images.
@@ -668,14 +668,14 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 }
 
 - (void)_deferLinkDetection {
-  self.linkDetectionGeneration++;
-  NSInteger linkDetectionGeneration = self.linkDetectionGeneration;
+  self.linkDetectionRequestID++;
+  const NSInteger linkDetectionRequestID = self.linkDetectionRequestID;
   NSString* string = [self.mutableAttributedString.string copy];
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     NSArray* matches = [self _matchesFromAttributedString:string];
 
     dispatch_async(dispatch_get_main_queue(), ^{
-      if (self.linkDetectionGeneration != linkDetectionGeneration) {
+      if (self.linkDetectionRequestID != linkDetectionRequestID) {
         return;
       }
       self.detectedlinkLocations = matches;
