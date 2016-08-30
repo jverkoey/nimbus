@@ -314,6 +314,15 @@
 		C7BBC70416DDC12800833DC9 /* NITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BBC6B816DDC0DB00833DC9 /* NITextField.m */; };
 		C7BBC71116DE66BD00833DC9 /* media-rulesets.css in Resources */ = {isa = PBXBuildFile; fileRef = C7BBC71016DE66BD00833DC9 /* media-rulesets.css */; };
 		D526CF4B18B826A600991F7A /* NICellCatalogTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D526CF4A18B826A600991F7A /* NICellCatalogTests.m */; };
+		D5BCE8AD1D7539A300B6715F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D02143E38F0003E413C /* CoreGraphics.framework */; };
+		D5BCE8AE1D7539A300B6715F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D00143E38E6003E413C /* UIKit.framework */; };
+		D5BCE8AF1D7539A300B6715F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4E85AA19462A5C005FDD25 /* XCTest.framework */; };
+		D5BCE8B01D7539A300B6715F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
+		D5BCE8B31D7539A300B6715F /* nimbus64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A03CB313E6EF1F00B514F3 /* nimbus64x64.png */; };
+		D5BCE8BB1D753A1500B6715F /* NimbusCollectionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D5BCE8B91D753A1100B6715F /* NimbusCollectionsTests.m */; };
+		D5BCE8BE1D753B9100B6715F /* libNimbusCollections.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66FC984A1703F9D7004E8FB8 /* libNimbusCollections.a */; };
+		D5BCE8C11D753BCE00B6715F /* libNimbusCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0913E6E85E00B514F3 /* libNimbusCore.a */; };
+		D5BCE8C41D762F1600B6715F /* libNimbusModels.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6661BBCC13F1A3BB00D14F92 /* libNimbusModels.a */; };
 		DB3A231913FD4B8E00614220 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		DB3A231D13FD4B8E00614220 /* libNimbusAttributedLabel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB3A230913FD4B8E00614220 /* libNimbusAttributedLabel.a */; };
 		DB3A233613FD4BE500614220 /* NIAttributedLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = DB3A233213FD4BE500614220 /* NIAttributedLabel.h */; };
@@ -515,6 +524,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = 66A03C0813E6E85E00B514F3;
 			remoteInfo = NimbusCore;
+		};
+		D5BCE8BC1D753A7600B6715F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66A03BFE13E6E84800B514F3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 66FC98491703F9D7004E8FB8;
+			remoteInfo = NimbusCollections;
+		};
+		D5BCE8BF1D753BCA00B6715F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66A03BFE13E6E84800B514F3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 66A03C0813E6E85E00B514F3;
+			remoteInfo = NimbusCore;
+		};
+		D5BCE8C21D762F1200B6715F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66A03BFE13E6E84800B514F3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6661BBCB13F1A3BB00D14F92;
+			remoteInfo = NimbusModels;
 		};
 		DB3A231B13FD4B8E00614220 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -896,6 +926,9 @@
 		C7BBC70216DDC0E700833DC9 /* libNimbusTextField.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusTextField.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7BBC71016DE66BD00833DC9 /* media-rulesets.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = "media-rulesets.css"; path = "css/unittests/media-rulesets.css"; sourceTree = SOURCE_ROOT; };
 		D526CF4A18B826A600991F7A /* NICellCatalogTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NICellCatalogTests.m; sourceTree = "<group>"; };
+		D5BCE8B71D7539A300B6715F /* NimbusCollectionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusCollectionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5BCE8B91D753A1100B6715F /* NimbusCollectionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NimbusCollectionsTests.m; path = unittests/NimbusCollectionsTests.m; sourceTree = "<group>"; };
+		D5BCE8C51D76359200B6715F /* NimbusCollectionsTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "NimbusCollectionsTests-Info.plist"; path = "unittests/NimbusCollectionsTests-Info.plist"; sourceTree = "<group>"; };
 		DB3A230913FD4B8E00614220 /* libNimbusAttributedLabel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusAttributedLabel.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB3A231613FD4B8E00614220 /* NimbusAttributedLabelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusAttributedLabelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB3A233213FD4BE500614220 /* NIAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIAttributedLabel.h; sourceTree = "<group>"; };
@@ -1147,6 +1180,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5BCE8AC1D7539A300B6715F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5BCE8C41D762F1600B6715F /* libNimbusModels.a in Frameworks */,
+				D5BCE8C11D753BCE00B6715F /* libNimbusCore.a in Frameworks */,
+				D5BCE8BE1D753B9100B6715F /* libNimbusCollections.a in Frameworks */,
+				D5BCE8AD1D7539A300B6715F /* CoreGraphics.framework in Frameworks */,
+				D5BCE8AE1D7539A300B6715F /* UIKit.framework in Frameworks */,
+				D5BCE8AF1D7539A300B6715F /* XCTest.framework in Frameworks */,
+				D5BCE8B01D7539A300B6715F /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1621,6 +1668,7 @@
 				66E1CDED159161EE004DA4A2 /* NimbusBadgeTests.xctest */,
 				C7BBC70216DDC0E700833DC9 /* libNimbusTextField.a */,
 				66FC984A1703F9D7004E8FB8 /* libNimbusCollections.a */,
+				D5BCE8B71D7539A300B6715F /* NimbusCollectionsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1911,6 +1959,7 @@
 			isa = PBXGroup;
 			children = (
 				66FC98591703F9F5004E8FB8 /* src */,
+				D5BCE8991D75397600B6715F /* unittests */,
 			);
 			name = NimbusCollections;
 			path = collections;
@@ -2020,6 +2069,15 @@
 			);
 			name = src;
 			path = textfield/src;
+			sourceTree = "<group>";
+		};
+		D5BCE8991D75397600B6715F /* unittests */ = {
+			isa = PBXGroup;
+			children = (
+				D5BCE8C51D76359200B6715F /* NimbusCollectionsTests-Info.plist */,
+				D5BCE8B91D753A1100B6715F /* NimbusCollectionsTests.m */,
+			);
+			name = unittests;
 			sourceTree = "<group>";
 		};
 		DB3A230B13FD4B8E00614220 /* NimbusAttributedLabel */ = {
@@ -2725,6 +2783,26 @@
 			productReference = C7BBC70216DDC0E700833DC9 /* libNimbusTextField.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		D5BCE89D1D7539A300B6715F /* NimbusCollectionsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5BCE8B41D7539A300B6715F /* Build configuration list for PBXNativeTarget "NimbusCollectionsTests" */;
+			buildPhases = (
+				D5BCE8A01D7539A300B6715F /* Sources */,
+				D5BCE8AC1D7539A300B6715F /* Frameworks */,
+				D5BCE8B21D7539A300B6715F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D5BCE8BD1D753A7600B6715F /* PBXTargetDependency */,
+				D5BCE8C01D753BCA00B6715F /* PBXTargetDependency */,
+				D5BCE8C31D762F1200B6715F /* PBXTargetDependency */,
+			);
+			name = NimbusCollectionsTests;
+			productName = NimbusCoreTests;
+			productReference = D5BCE8B71D7539A300B6715F /* NimbusCollectionsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		DB3A230813FD4B8E00614220 /* NimbusAttributedLabel */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DB3A232C13FD4B8F00614220 /* Build configuration list for PBXNativeTarget "NimbusAttributedLabel" */;
@@ -2839,6 +2917,7 @@
 				66E1CDDE159161ED004DA4A2 /* NimbusBadge */,
 				66E1CDEC159161EE004DA4A2 /* NimbusBadgeTests */,
 				66FC98491703F9D7004E8FB8 /* NimbusCollections */,
+				D5BCE89D1D7539A300B6715F /* NimbusCollectionsTests */,
 				66A03C0813E6E85E00B514F3 /* NimbusCore */,
 				66A03C1813E6E85E00B514F3 /* NimbusCoreTests */,
 				66C3A6A0143D61130048542F /* NimbusCss */,
@@ -2977,6 +3056,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5BCE8B21D7539A300B6715F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5BCE8B31D7539A300B6715F /* nimbus64x64.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3489,6 +3576,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D5BCE8A01D7539A300B6715F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5BCE8BB1D753A1500B6715F /* NimbusCollectionsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DB3A230513FD4B8E00614220 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3644,6 +3739,21 @@
 			isa = PBXTargetDependency;
 			target = 66A03C0813E6E85E00B514F3 /* NimbusCore */;
 			targetProxy = 8B94F87A194665DB00A63185 /* PBXContainerItemProxy */;
+		};
+		D5BCE8BD1D753A7600B6715F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 66FC98491703F9D7004E8FB8 /* NimbusCollections */;
+			targetProxy = D5BCE8BC1D753A7600B6715F /* PBXContainerItemProxy */;
+		};
+		D5BCE8C01D753BCA00B6715F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 66A03C0813E6E85E00B514F3 /* NimbusCore */;
+			targetProxy = D5BCE8BF1D753BCA00B6715F /* PBXContainerItemProxy */;
+		};
+		D5BCE8C31D762F1200B6715F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6661BBCB13F1A3BB00D14F92 /* NimbusModels */;
+			targetProxy = D5BCE8C21D762F1200B6715F /* PBXContainerItemProxy */;
 		};
 		DB3A231C13FD4B8E00614220 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -4224,6 +4334,30 @@
 			};
 			name = Release;
 		};
+		D5BCE8B51D7539A300B6715F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
+			buildSettings = {
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				INFOPLIST_FILE = "collections/unittests/NimbusCollectionsTests-Info.plist";
+				NIMBUS_FEATURE_NAME = collections;
+				NIMBUS_TARGET_NAME = NimbusCollections;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D5BCE8B61D7539A300B6715F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
+			buildSettings = {
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				INFOPLIST_FILE = "collections/unittests/NimbusCollectionsTests-Info.plist";
+				NIMBUS_FEATURE_NAME = collections;
+				NIMBUS_TARGET_NAME = NimbusCollections;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		DB3A232813FD4B8E00614220 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 66E8CED514D08B9F00600592 /* lib.xcconfig */;
@@ -4530,6 +4664,15 @@
 			buildConfigurations = (
 				C7BBC70016DDC0E700833DC9 /* Debug */,
 				C7BBC70116DDC0E700833DC9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D5BCE8B41D7539A300B6715F /* Build configuration list for PBXNativeTarget "NimbusCollectionsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5BCE8B51D7539A300B6715F /* Debug */,
+				D5BCE8B61D7539A300B6715F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
