@@ -214,7 +214,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 
 @property (nonatomic) CTFrameRef textFrame; // CFType, manually managed lifetime, see setter.
 
-@property (assign)            BOOL detectingLinks; // Atomic.
+@property (nonatomic, assign) NSInteger linkDetectionRequestID;
 @property (nonatomic)         BOOL linksHaveBeenDetected;
 @property (nonatomic, copy)   NSArray*        detectedlinkLocations;
 @property (nonatomic, strong) NSMutableArray* explicitLinkLocations;  // Of NSTextCheckingResult.
@@ -390,6 +390,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
     // Clear the link caches.
     self.detectedlinkLocations = nil;
     self.linksHaveBeenDetected = NO;
+    self.linkDetectionRequestID++;
     [self removeAllExplicitLinks];
 
     // Remove all images.
@@ -667,22 +668,22 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 }
 
 - (void)_deferLinkDetection {
-  if (!self.detectingLinks) {
-    self.detectingLinks = YES;
+  self.linkDetectionRequestID++;
+  const NSInteger linkDetectionRequestID = self.linkDetectionRequestID;
+  NSString* string = [self.mutableAttributedString.string copy];
+  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    NSArray* matches = [self _matchesFromAttributedString:string];
 
-    NSString* string = [self.mutableAttributedString.string copy];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-      NSArray* matches = [self _matchesFromAttributedString:string];
-      self.detectingLinks = NO;
+    dispatch_async(dispatch_get_main_queue(), ^{
+      if (self.linkDetectionRequestID != linkDetectionRequestID) {
+        return;
+      }
+      self.detectedlinkLocations = matches;
+      self.linksHaveBeenDetected = YES;
 
-      dispatch_async(dispatch_get_main_queue(), ^{
-        self.detectedlinkLocations = matches;
-        self.linksHaveBeenDetected = YES;
-
-        [self attributedTextDidChange];
-      });
+      [self attributedTextDidChange];
     });
-  }
+  });
 }
 
 // Use an NSDataDetector to find any implicit links in the text. The results are cached until
