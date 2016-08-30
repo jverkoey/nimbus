@@ -64,12 +64,17 @@
   self.sectionPrefixToSectionIndex = nil;
 }
 
+- (NICollectionViewModelSection *)_sectionFromListArray:(NSArray *)rows {
+  NICollectionViewModelSection* section = [NICollectionViewModelSection section];
+  section.rows = rows;
+  return section;
+}
+
 - (void)_compileDataWithListArray:(NSArray *)listArray {
   [self _resetCompiledData];
 
   if (nil != listArray) {
-    NICollectionViewModelSection* section = [NICollectionViewModelSection section];
-    section.rows = listArray;
+    NICollectionViewModelSection* section = [self _sectionFromListArray:listArray];
     [self _setSectionsWithArray:@[ section ]];
   }
 }

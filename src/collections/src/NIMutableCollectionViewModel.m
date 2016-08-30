@@ -129,6 +129,12 @@
   }
 }
 
+- (NICollectionViewModelSection *)_sectionFromListArray:(NSArray *)rows {
+  NICollectionViewModelSection* section = [NICollectionViewModelSection section];
+  section.rows = [rows isKindOfClass:[NSMutableArray class]] ? rows : [rows mutableCopy];
+  return section;
+}
+
 @end
 
 
