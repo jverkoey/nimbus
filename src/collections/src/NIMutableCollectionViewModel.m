@@ -139,7 +139,7 @@
   NIDASSERT([self.rows isKindOfClass:[NSMutableArray class]] || nil == self.rows);
 
   self.rows = nil == self.rows ? [NSMutableArray array] : self.rows;
-  return [self.rows mutableCopy];
+  return (NSMutableArray *)self.rows;
 }
 
 @end
