@@ -129,6 +129,12 @@
   }
 }
 
+- (NICollectionViewModelSection *)_sectionFromListArray:(NSArray *)rows {
+  NICollectionViewModelSection* section = [NICollectionViewModelSection section];
+  section.rows = [rows isKindOfClass:[NSMutableArray class]] ? rows : [rows mutableCopy];
+  return section;
+}
+
 @end
 
 
@@ -139,7 +145,7 @@
   NIDASSERT([self.rows isKindOfClass:[NSMutableArray class]] || nil == self.rows);
 
   self.rows = nil == self.rows ? [NSMutableArray array] : self.rows;
-  return [self.rows mutableCopy];
+  return (NSMutableArray *)self.rows;
 }
 
 @end

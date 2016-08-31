@@ -16,6 +16,16 @@
 
 #import <Foundation/Foundation.h>
 
+@interface NICollectionViewModelSection : NSObject
+
++ (id)section;
+
+@property (nonatomic, copy) NSString* headerTitle;
+@property (nonatomic, copy) NSString* footerTitle;
+@property (nonatomic, strong) NSArray* rows;
+
+@end
+
 @interface NICollectionViewModel()
 
 @property (nonatomic, strong) NSArray* sections; // Array of NICollectionViewModelSection
@@ -26,15 +36,6 @@
 - (void)_compileDataWithListArray:(NSArray *)listArray;
 - (void)_compileDataWithSectionedArray:(NSArray *)sectionedArray;
 - (void)_setSectionsWithArray:(NSArray *)sectionsArray;
-
-@end
-
-@interface NICollectionViewModelSection : NSObject
-
-+ (id)section;
-
-@property (nonatomic, copy) NSString* headerTitle;
-@property (nonatomic, copy) NSString* footerTitle;
-@property (nonatomic, strong) NSArray* rows;
+- (NICollectionViewModelSection *)_sectionFromListArray:(NSArray *)rows;
 
 @end
