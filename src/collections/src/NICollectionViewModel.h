@@ -42,7 +42,8 @@
  *
  * @ingroup CollectionViewModels
  */
-@interface NICollectionViewModel : NSObject <NIActionsDataSource, UICollectionViewDataSource>
+@interface NICollectionViewModel : NSObject <NIActionsDataSource, UICollectionViewDataSource,
+    NSFastEnumeration>
 
 #pragma mark Creating Collection View Models
 

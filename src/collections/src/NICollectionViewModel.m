@@ -176,6 +176,46 @@
   return nil;
 }
 
+#pragma mark - NSFastEnumeration
+
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(__unsafe_unretained id  _Nonnull *)buffer count:(NSUInteger)len {
+  // Named indexes into state->extra.
+  static const unsigned int kExtraSectionIndex = 0;
+  static const unsigned int kExtraItemIndex = 1;
+
+  // Initial setup is needed when state is zero.
+  if (state->state == 0) {
+    state->state = 1;
+    state->itemsPtr = buffer;
+    state->mutationsPtr = &_mutationCount;
+  }
+
+  NSArray<NICollectionViewModelSection *> *sections = self.sections;
+
+  NSUInteger dstIdx = 0;
+  unsigned long sectionIdx = state->extra[kExtraSectionIndex];
+  unsigned long itemIdx = state->extra[kExtraItemIndex];
+
+  NSUInteger numSections = sections.count;
+  for (; sectionIdx < numSections && dstIdx < len; sectionIdx++) {
+    NSArray *rows = sections[sectionIdx].rows;
+    NSUInteger numItems = rows.count;
+    for (; itemIdx < numItems && dstIdx < len; itemIdx++) {
+      buffer[dstIdx++] = rows[itemIdx];
+    }
+    if (itemIdx >= numItems) {
+      itemIdx = 0;
+    }
+  }
+
+  // Store the index values for continuing iteration on the next call.
+  state->extra[kExtraSectionIndex] = sectionIdx;
+  state->extra[kExtraItemIndex] = itemIdx;
+
+  // Return the number of items copied.
+  return dstIdx;
+}
+
 #pragma mark - Public
 
 

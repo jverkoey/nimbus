@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSArray* sections; // Array of NICollectionViewModelSection
 @property (nonatomic, strong) NSArray* sectionIndexTitles;
 @property (nonatomic, strong) NSDictionary* sectionPrefixToSectionIndex;
+@property (nonatomic) unsigned long mutationCount;
 
 - (void)_resetCompiledData;
 - (void)_compileDataWithListArray:(NSArray *)listArray;

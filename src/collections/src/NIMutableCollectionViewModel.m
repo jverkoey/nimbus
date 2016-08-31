@@ -35,6 +35,7 @@
 
 - (NSArray *)addObject:(id)object {
   NICollectionViewModelSection* section = self.sections.count == 0 ? [self _appendSection] : self.sections.lastObject;
+  self.mutationCount++;
   [section.mutableRows addObject:object];
   return [NSArray arrayWithObject:[NSIndexPath indexPathForRow:section.mutableRows.count - 1
                                                      inSection:self.sections.count - 1]];
@@ -43,6 +44,7 @@
 - (NSArray *)addObject:(id)object toSection:(NSUInteger)sectionIndex {
   NIDASSERT(sectionIndex >= 0 && sectionIndex < self.sections.count);
   NICollectionViewModelSection *section = [self.sections objectAtIndex:sectionIndex];
+  self.mutationCount++;
   [section.mutableRows addObject:object];
   return [NSArray arrayWithObject:[NSIndexPath indexPathForRow:section.mutableRows.count - 1
                                                      inSection:sectionIndex]];
@@ -59,6 +61,7 @@
 - (NSArray *)insertObject:(id)object atRow:(NSUInteger)row inSection:(NSUInteger)sectionIndex {
   NIDASSERT(sectionIndex >= 0 && sectionIndex < self.sections.count);
   NICollectionViewModelSection *section = [self.sections objectAtIndex:sectionIndex];
+  self.mutationCount++;
   [section.mutableRows insertObject:object atIndex:row];
   return [NSArray arrayWithObject:[NSIndexPath indexPathForRow:row inSection:sectionIndex]];
 }
@@ -73,6 +76,7 @@
   if (indexPath.row >= (NSInteger)section.mutableRows.count) {
     return nil;
   }
+  self.mutationCount++;
   [section.mutableRows removeObjectAtIndex:indexPath.row];
   return [NSArray arrayWithObject:indexPath];
 }
@@ -91,6 +95,7 @@
 
 - (NSIndexSet *)removeSectionAtIndex:(NSUInteger)index {
   NIDASSERT(index >= 0 && index < self.sections.count);
+  self.mutationCount++;
   [self.sections removeObjectAtIndex:index];
   return [NSIndexSet indexSetWithIndex:index];
 }
@@ -105,6 +110,7 @@
   NICollectionViewModelSection* section = nil;
   section = [[NICollectionViewModelSection alloc] init];
   section.rows = [NSMutableArray array];
+  self.mutationCount++;
   [self.sections addObject:section];
   return section;
 }
@@ -117,11 +123,13 @@
   section = [[NICollectionViewModelSection alloc] init];
   section.rows = [NSMutableArray array];
   NIDASSERT(index >= 0 && index <= self.sections.count);
+  self.mutationCount++;
   [self.sections insertObject:section atIndex:index];
   return section;
 }
 
 - (void)_setSectionsWithArray:(NSArray *)sectionsArray {
+  self.mutationCount++;
   if ([sectionsArray isKindOfClass:[NSMutableArray class]]) {
     self.sections = (NSMutableArray *)sectionsArray;
   } else {
