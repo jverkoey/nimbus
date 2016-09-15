@@ -36,6 +36,8 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
 
   NSMutableSet* _visiblePages;
 
+//  NSMutableDictionary* _RTLAppliedPages;
+
   // Animating to Pages
   NSInteger _animatingToPageIndex;
   BOOL _isKillingAnimation;
@@ -78,6 +80,16 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
 
   _scrollView.showsVerticalScrollIndicator = NO;
   _scrollView.showsHorizontalScrollIndicator = NO;
+
+  NSOperatingSystemVersion iOS9Version = {9, 0, 0};
+  NSProcessInfo *processInfo = [NSProcessInfo processInfo];
+  if ([processInfo respondsToSelector:@selector(isOperatingSystemAtLeastVersion:)] &&
+      [processInfo isOperatingSystemAtLeastVersion:iOS9Version] &&
+      [UIView
+           userInterfaceLayoutDirectionForSemanticContentAttribute:self.semanticContentAttribute] ==
+          UIUserInterfaceLayoutDirectionRightToLeft) {
+    [self setRTLEnabled:true];
+  }
 
   [self addSubview:_scrollView];
 }
@@ -326,6 +338,10 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
   // This will only be called once, before the page is shown.
   [self willDisplayPage:page atIndex:pageIndex];
 
+  if (_RTLEnabled) {
+    [self concatInvertXTransformation:page];
+  }
+
   [_scrollView addSubview:page];
   [_visiblePages addObject:page];
 }
@@ -333,12 +349,7 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
 - (void)recyclePageAtIndex:(NSInteger)pageIndex {
   for (UIView<NIPagingScrollViewPage>* page in [_visiblePages copy]) {
     if (page.pageIndex == pageIndex) {
-      [_viewRecycler recycleView:page];
-      [page removeFromSuperview];
-
-      [self didRecyclePage:page];
-
-      [_visiblePages removeObject:page];
+      [self dropPage:page];
     }
   }
 }
@@ -366,12 +377,7 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
   // iterating over it.
   for (UIView<NIPagingScrollViewPage>* page in [_visiblePages copy]) {
     if (!NSLocationInRange(page.pageIndex, rangeOfVisiblePages)) {
-      [_viewRecycler recycleView:page];
-      [page removeFromSuperview];
-
-      [self didRecyclePage:page];
-
-      [_visiblePages removeObject:page];
+      [self dropPage:page];
     }
   }
 
@@ -416,6 +422,26 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
       [page setFrame:pageFrame];
     }
   }
+}
+
+- (void)dropPage:(UIView<NIPagingScrollViewPage> *)page {
+  [_viewRecycler recycleView:page];
+  [page removeFromSuperview];
+
+  [self didRecyclePage:page];
+
+  [_visiblePages removeObject:page];
+
+  if (_RTLEnabled) {
+    [self concatInvertXTransformation:page];
+  }
+}
+
+- (void)concatInvertXTransformation:(UIView *)view {
+  CGAffineTransform currentTransform = view.transform;
+  CGAffineTransform finalTransf = CGAffineTransformConcat(currentTransform,
+                                                          CGAffineTransformMakeScale(-1, 1));
+  [view setTransform:finalTransf];
 }
 
 #pragma mark - UIView
@@ -752,6 +778,16 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
   if (_type != type) {
     _type = type;
     _scrollView.scrollsToTop = (type == NIPagingScrollViewVertical);
+  }
+}
+
+- (void)setRTLEnabled:(BOOL)RTLEnabled {
+  NSOperatingSystemVersion iOS9Version = {9, 0, 0};
+  NSProcessInfo *processInfo = [NSProcessInfo processInfo];
+  if (!([processInfo respondsToSelector:@selector(isOperatingSystemAtLeastVersion:)] &&
+      [processInfo isOperatingSystemAtLeastVersion:iOS9Version])) {
+    _RTLEnabled = RTLEnabled;
+    [self concatInvertXTransformation:_scrollView];
   }
 }
 
