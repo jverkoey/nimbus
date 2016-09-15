@@ -79,6 +79,16 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
   _scrollView.showsVerticalScrollIndicator = NO;
   _scrollView.showsHorizontalScrollIndicator = NO;
 
+  NSOperatingSystemVersion iOS9Version = {9, 0, 0};
+  NSProcessInfo *processInfo = [NSProcessInfo processInfo];
+  if ([processInfo respondsToSelector:@selector(isOperatingSystemAtLeastVersion:)] &&
+      [processInfo isOperatingSystemAtLeastVersion:iOS9Version] &&
+      [UIView
+           userInterfaceLayoutDirectionForSemanticContentAttribute:self.semanticContentAttribute] ==
+          UIUserInterfaceLayoutDirectionRightToLeft) {
+    [self setRTLEnabled:true];
+  }
+
   [self addSubview:_scrollView];
 }
 
@@ -304,6 +314,9 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
   }
 
   UIView<NIPagingScrollViewPage> *page = [dataSource pagingScrollView:self pageViewForIndex:pageIndex];
+  if (_RTLEnabled) {
+    [page setTransform:CGAffineTransformMakeScale(-1, 1)];
+  }
 
   NIDASSERT([page isKindOfClass:[UIView class]]);
   NIDASSERT([page conformsToProtocol:@protocol(NIPagingScrollViewPage)]);
@@ -753,6 +766,14 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
     _type = type;
     _scrollView.scrollsToTop = (type == NIPagingScrollViewVertical);
   }
+}
+
+- (void)setRTLEnabled:(BOOL)RTLEnabled {
+  if (RTLEnabled && !_RTLEnabled) {
+    [_scrollView setTransform:CGAffineTransformMakeScale(-1, 1)];
+  }
+  _RTLEnabled = RTLEnabled;
+  [self setNeedsLayout];
 }
 
 - (UIScrollView *)scrollView {
