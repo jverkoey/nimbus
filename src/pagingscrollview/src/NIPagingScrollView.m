@@ -780,13 +780,11 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
 }
 
 - (void)setRTLEnabled:(BOOL)RTLEnabled {
-  NSOperatingSystemVersion iOS9Version = {9, 0, 0};
-  NSProcessInfo *processInfo = [NSProcessInfo processInfo];
-  if (!([processInfo respondsToSelector:@selector(isOperatingSystemAtLeastVersion:)] &&
-        [processInfo isOperatingSystemAtLeastVersion:iOS9Version])) {
-    _RTLEnabled = RTLEnabled;
+  // Apply the transformation only if the state is changing.
+  if ((!_RTLEnabled && RTLEnabled) || (_RTLEnabled && !RTLEnabled)) {
     [self concatInvertXTransformation:_scrollView];
   }
+  _RTLEnabled = RTLEnabled;
 }
 
 - (UIScrollView *)scrollView {
