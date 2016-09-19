@@ -75,7 +75,7 @@ typedef enum {
 // of the view.
 @property (nonatomic) CGFloat pageInset;
 @property (nonatomic) NIPagingScrollViewType type; // Default: NIPagingScrollViewHorizontal
-// Controls layout for RTL. iOS versions 9 onwards internally manage this. 
+// Controls layout for RTL. iOS versions 9 onwards internally manage this.
 @property (nonatomic) BOOL RTLEnabled;
 
 #pragma mark Visible Pages

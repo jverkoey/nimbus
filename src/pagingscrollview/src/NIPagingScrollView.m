@@ -36,8 +36,6 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
 
   NSMutableSet* _visiblePages;
 
-//  NSMutableDictionary* _RTLAppliedPages;
-
   // Animating to Pages
   NSInteger _animatingToPageIndex;
   BOOL _isKillingAnimation;
@@ -785,7 +783,7 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
   NSOperatingSystemVersion iOS9Version = {9, 0, 0};
   NSProcessInfo *processInfo = [NSProcessInfo processInfo];
   if (!([processInfo respondsToSelector:@selector(isOperatingSystemAtLeastVersion:)] &&
-      [processInfo isOperatingSystemAtLeastVersion:iOS9Version])) {
+        [processInfo isOperatingSystemAtLeastVersion:iOS9Version])) {
     _RTLEnabled = RTLEnabled;
     [self concatInvertXTransformation:_scrollView];
   }
