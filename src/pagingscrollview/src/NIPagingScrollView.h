@@ -81,7 +81,8 @@ typedef enum {
 // RTL is achieved concatenating UIView transforms.
 // Warning: if you require the transform to not be touched or want to handle RTL yourself, please
 // set this to false.
-@property (nonatomic) BOOL RTLEnabled;
+@property (nonatomic) BOOL RTLEnabled
+    NS_DEPRECATED_IOS(2_0, 9_0, "Use the semanticContentAttribute property instead");
 
 #pragma mark Visible Pages
 

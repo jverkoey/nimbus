@@ -79,13 +79,12 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
   _scrollView.showsVerticalScrollIndicator = NO;
   _scrollView.showsHorizontalScrollIndicator = NO;
 
-  NSOperatingSystemVersion iOS9Version = {9, 0, 0};
-  NSProcessInfo *processInfo = [NSProcessInfo processInfo];
-  if ([processInfo respondsToSelector:@selector(isOperatingSystemAtLeastVersion:)] &&
-      [processInfo isOperatingSystemAtLeastVersion:iOS9Version] &&
+  if ([[UIView class]
+          respondsToSelector:@selector(userInterfaceLayoutDirectionForSemanticContentAttribute:)] &&
+      [self respondsToSelector:@selector(semanticContentAttribute)] &&
       [UIView
            userInterfaceLayoutDirectionForSemanticContentAttribute:self.semanticContentAttribute] ==
-          UIUserInterfaceLayoutDirectionRightToLeft) {
+           UIUserInterfaceLayoutDirectionRightToLeft) {
     [self setRTLEnabled:true];
   }
 
@@ -224,7 +223,7 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
 - (BOOL)isDisplayingPageForIndex:(NSInteger)pageIndex {
   BOOL foundPage = NO;
 
-  // There will never be more than a handful (3 without insets) of visible pages in this array, so this lookup is
+  // There will never be more than a handful (3 without insets) of visible pages in this array,q so this lookup is
   // effectively O(C) constant time.
   for (UIView <NIPagingScrollViewPage>* page in _visiblePages) {
     if (page.pageIndex == pageIndex) {
@@ -437,9 +436,9 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
 
 - (void)concatInvertXTransformation:(UIView *)view {
   CGAffineTransform currentTransform = view.transform;
-  CGAffineTransform finalTransf = CGAffineTransformConcat(currentTransform,
-                                                          CGAffineTransformMakeScale(-1, 1));
-  [view setTransform:finalTransf];
+  CGAffineTransform finalTransform = CGAffineTransformConcat(currentTransform,
+                                                             CGAffineTransformMakeScale(-1, 1));
+  [view setTransform:finalTransform];
 }
 
 #pragma mark - UIView
@@ -781,7 +780,7 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
 
 - (void)setRTLEnabled:(BOOL)RTLEnabled {
   // Apply the transformation only if the state is changing.
-  if ((!_RTLEnabled && RTLEnabled) || (_RTLEnabled && !RTLEnabled)) {
+  if (!_RTLEnabled != !RTLEnabled) {
     [self concatInvertXTransformation:_scrollView];
   }
   _RTLEnabled = RTLEnabled;
