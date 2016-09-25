@@ -190,7 +190,7 @@
     state->mutationsPtr = &_mutationCount;
   }
 
-  NSArray<NICollectionViewModelSection *> *sections = self.sections;
+  NSArray *sections = self.sections;
 
   // Destination index into the output buffer
   NSUInteger dstIdx = 0;
@@ -199,7 +199,7 @@
 
   NSUInteger numSections = sections.count;
   for (; sectionIdx < numSections && dstIdx < len; sectionIdx++) {
-    NSArray *rows = sections[sectionIdx].rows;
+    NSArray *rows = [sections[sectionIdx] rows];
     NSUInteger numItems = rows.count;
     for (; itemIdx < numItems && dstIdx < len; itemIdx++) {
       buffer[dstIdx++] = rows[itemIdx];
