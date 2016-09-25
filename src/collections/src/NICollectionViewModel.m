@@ -192,6 +192,7 @@
 
   NSArray<NICollectionViewModelSection *> *sections = self.sections;
 
+  // Destination index into the output buffer
   NSUInteger dstIdx = 0;
   unsigned long sectionIdx = state->extra[kExtraSectionIndex];
   unsigned long itemIdx = state->extra[kExtraItemIndex];
