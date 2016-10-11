@@ -80,12 +80,8 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
   _scrollView.showsHorizontalScrollIndicator = NO;
 
   if ([[UIView class]
-          respondsToSelector:@selector(userInterfaceLayoutDirectionForSemanticContentAttribute:)] &&
-      [self respondsToSelector:@selector(semanticContentAttribute)] &&
-      [UIView
-           userInterfaceLayoutDirectionForSemanticContentAttribute:self.semanticContentAttribute] ==
-           UIUserInterfaceLayoutDirectionRightToLeft) {
-    [self setRTLEnabled:true];
+          respondsToSelector:@selector(userInterfaceLayoutDirectionForSemanticContentAttribute:)] && [self respondsToSelector:@selector(semanticContentAttribute)] && [UIView userInterfaceLayoutDirectionForSemanticContentAttribute:self.semanticContentAttribute] == UIUserInterfaceLayoutDirectionRightToLeft) {
+    [self setRTLEnabled:YES];
   }
 
   [self addSubview:_scrollView];
@@ -346,7 +342,7 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
 - (void)recyclePageAtIndex:(NSInteger)pageIndex {
   for (UIView<NIPagingScrollViewPage>* page in [_visiblePages copy]) {
     if (page.pageIndex == pageIndex) {
-      [self dropPage:page];
+      [self recyclePage:page];
     }
   }
 }
@@ -374,7 +370,7 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
   // iterating over it.
   for (UIView<NIPagingScrollViewPage>* page in [_visiblePages copy]) {
     if (!NSLocationInRange(page.pageIndex, rangeOfVisiblePages)) {
-      [self dropPage:page];
+      [self recyclePage:page];
     }
   }
 
@@ -421,7 +417,7 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
   }
 }
 
-- (void)dropPage:(UIView<NIPagingScrollViewPage> *)page {
+- (void)recyclePage:(UIView<NIPagingScrollViewPage> *)page {
   [_viewRecycler recycleView:page];
   [page removeFromSuperview];
 

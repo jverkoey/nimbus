@@ -76,13 +76,13 @@ typedef enum {
 @property (nonatomic) CGFloat pageInset;
 @property (nonatomic) NIPagingScrollViewType type; // Default: NIPagingScrollViewHorizontal
 // Controls layout for RTL.
-// For iOS versions 9 and higher it uses semanticContentAttribute to determine the layout direction.
+// For iOS versions 9 and higher the initial value is determined based on the semanticContentAttribute property.
 // For previous iOS versions please set this to true for RTL languages to display correctly.
-// RTL is achieved concatenating UIView transforms.
+// RTL is achieved by concatenating UIView transforms.
 // Warning: if you require the transform to not be touched or want to handle RTL yourself, please
-// set this to false.
+// set this to NO.
 @property (nonatomic) BOOL RTLEnabled
-    NS_DEPRECATED_IOS(2_0, 9_0, "Use the semanticContentAttribute property instead");
+    NS_DEPRECATED_IOS(2_0, 9_0, "Use the semanticContentAttribute property instead.");
 
 #pragma mark Visible Pages
 
