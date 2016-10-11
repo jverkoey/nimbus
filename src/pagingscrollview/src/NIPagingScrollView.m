@@ -80,12 +80,8 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
   _scrollView.showsHorizontalScrollIndicator = NO;
 
   if ([[UIView class]
-          respondsToSelector:@selector(userInterfaceLayoutDirectionForSemanticContentAttribute:)] &&
-      [self respondsToSelector:@selector(semanticContentAttribute)] &&
-      [UIView
-           userInterfaceLayoutDirectionForSemanticContentAttribute:self.semanticContentAttribute] ==
-           UIUserInterfaceLayoutDirectionRightToLeft) {
-    [self setRTLEnabled:true];
+          respondsToSelector:@selector(userInterfaceLayoutDirectionForSemanticContentAttribute:)] && [self respondsToSelector:@selector(semanticContentAttribute)] && [UIView userInterfaceLayoutDirectionForSemanticContentAttribute:self.semanticContentAttribute] == UIUserInterfaceLayoutDirectionRightToLeft) {
+    [self setRTLEnabled:YES];
   }
 
   [self addSubview:_scrollView];
