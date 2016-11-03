@@ -95,6 +95,106 @@
   return [NSIndexSet indexSetWithIndex:index];
 }
 
+- (void)updateToMatchModel:(NICollectionViewModel *)other {
+  self.sections = [NSMutableArray arrayWithCapacity:other.sections.count];
+  for (NICollectionViewModelSection *section in other.sections) {
+    [self.sections addObject:[section mutableCopy]];
+  }
+  self.sectionIndexTitles = [other.sectionIndexTitles mutableCopy];
+  self.sectionPrefixToSectionIndex = [other.sectionPrefixToSectionIndex mutableCopy];
+}
+
+static NSIndexSet *IntersectIndexSets(NSIndexSet *set1, NSIndexSet *set2) {
+  NSMutableIndexSet *intersectSet = [NSMutableIndexSet indexSet];
+  [set1 enumerateIndexesUsingBlock:^(NSUInteger index, BOOL * _Nonnull stop) {
+    if ([set2 containsIndex:index]) {
+      [intersectSet addIndex:index];
+    }
+  }];
+  return intersectSet;
+}
+
+- (void)updateToMatchModel:(NICollectionViewModel *)other
+        withCollectionView:(UICollectionView *)collectionView {
+
+  // First compute the required set of collection view updates
+  NSMapTable<id, NSIndexPath *> *firstReverseMap = [self _reverseMap];
+  NSMapTable<id, NSIndexPath *> *secondReverseMap = [other _reverseMap];
+
+  NSMutableIndexSet *sectionsToDelete = [NSMutableIndexSet indexSet];
+  NSMutableIndexSet *sectionsToInsert = [NSMutableIndexSet indexSet];
+  NSMutableDictionary *sectionsToMove = [NSMutableDictionary dictionary];
+
+  // Detect section moves and deletions.
+  for (NSUInteger firstIndex = 0; firstIndex < self.sections.count; firstIndex++) {
+    NICollectionViewModelSection *firstSection = self.sections[firstIndex];
+    NSIndexPath *secondIndex = [secondReverseMap objectForKey:firstSection];
+    if (secondIndex) {
+      sectionsToMove[@(firstIndex)] = @(secondIndex.section);
+    } else {
+      [sectionsToDelete addIndex:firstIndex];
+    }
+  }
+
+  // Detect section insertions.
+  for (NSUInteger secondIndex = 0; secondIndex < other.sections.count; secondIndex++) {
+    NICollectionViewModelSection *secondSection = other.sections[secondIndex];
+    NSIndexPath *firstIndex = [firstReverseMap objectForKey:secondSection];
+    if (!firstIndex) {
+      [sectionsToInsert addIndex:secondIndex];
+    }
+  }
+
+  // Treat sections that are deleted then inserted as reloadable.
+  NSIndexSet *sectionsToReload = IntersectIndexSets(sectionsToDelete, sectionsToInsert);
+  [sectionsToDelete removeIndexes:sectionsToReload];
+  [sectionsToInsert removeIndexes:sectionsToReload];
+
+  NSMutableArray *pathsToDelete = [NSMutableArray array];
+  NSMutableArray *pathsToInsert = [NSMutableArray array];
+  NSMutableDictionary *pathsToMove = [NSMutableDictionary dictionary];
+
+  // Detect item moves and deletions.
+  [self enumerateItemsUsingBlock:^(id object, NSIndexPath *firstIndexPath, BOOL *stop) {
+    NSIndexPath *secondIndexPath = [secondReverseMap objectForKey:object];
+    if (secondIndexPath) {
+      pathsToMove[firstIndexPath] = secondIndexPath;
+    } else {
+      [pathsToDelete addObject:firstIndexPath];
+    }
+  }];
+
+  // Detect item insertions.
+  [other enumerateItemsUsingBlock:^(id object, NSIndexPath *secondIndexPath, BOOL *stop) {
+    NSIndexPath *firstIndexPath = [firstReverseMap objectForKey:object];
+    if (!firstIndexPath) {
+      [pathsToInsert addObject:secondIndexPath];
+    }
+  }];
+
+  // Update the current model to match the new model.
+  [self updateToMatchModel:other];
+
+  // Finally update the collection view.
+  [collectionView deleteSections:sectionsToDelete];
+  [collectionView insertSections:sectionsToInsert];
+  [collectionView reloadSections:sectionsToReload];
+  [sectionsToMove enumerateKeysAndObjectsUsingBlock:^(NSNumber *fromIndex,
+                                                      NSNumber *toIndex,
+                                                      BOOL *stop) {
+    [collectionView moveSection:fromIndex.unsignedIntegerValue
+                      toSection:toIndex.unsignedIntegerValue];
+  }];
+
+  [collectionView deleteItemsAtIndexPaths:pathsToDelete];
+  [collectionView insertItemsAtIndexPaths:pathsToInsert];
+  [pathsToMove enumerateKeysAndObjectsUsingBlock:^(NSIndexPath *fromIndexPath,
+                                                   NSIndexPath *toIndexPath,
+                                                   BOOL *stop) {
+    [collectionView moveItemAtIndexPath:fromIndexPath toIndexPath:toIndexPath];
+  }];
+}
+
 #pragma mark - Private
 
 
@@ -121,7 +221,7 @@
   return section;
 }
 
-- (void)_setSectionsWithArray:(NSArray *)sectionsArray {
+- (void)_setSectionsWithArray:(NSArray<NICollectionViewModelSection *> *)sectionsArray {
   if ([sectionsArray isKindOfClass:[NSMutableArray class]]) {
     self.sections = (NSMutableArray *)sectionsArray;
   } else {

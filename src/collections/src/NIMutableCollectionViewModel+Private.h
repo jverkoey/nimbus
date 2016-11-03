@@ -20,7 +20,7 @@
 
 @interface NIMutableCollectionViewModel (Private)
 
-@property (nonatomic, strong) NSMutableArray* sections; // Array of NICollectionViewModelSection
+@property (nonatomic, strong) NSMutableArray<NICollectionViewModelSection *> *sections;
 
 @end
 

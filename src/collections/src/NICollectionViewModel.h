@@ -42,7 +42,7 @@
  *
  * @ingroup CollectionViewModels
  */
-@interface NICollectionViewModel : NSObject <NIActionsDataSource, UICollectionViewDataSource>
+@interface NICollectionViewModel : NSObject <NIActionsDataSource, UICollectionViewDataSource, NSCopying>
 
 #pragma mark Creating Collection View Models
 
@@ -54,8 +54,12 @@
 
 #pragma mark Accessing Objects
 
+- (id)objectAtIndexPath:(NSIndexPath *)indexPath;
+
 // This method is not appropriate for performance critical codepaths.
 - (NSIndexPath *)indexPathForObject:(id)object;
+
+- (void)enumerateItemsUsingBlock:(void (^)(id item, NSIndexPath *indexPath, BOOL *stop))block;
 
 #pragma mark Creating Collection View Cells
 

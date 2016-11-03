@@ -24,6 +24,10 @@
 #error "Nimbus requires ARC support."
 #endif
 
+static BOOL BothNilOrEqual(id object1, id object2) {
+  return !(object1 || object2) || [object1 isEqual:object2];
+}
+
 @implementation NICollectionViewModel
 
 
@@ -140,7 +144,7 @@
   [self _setSectionsWithArray:sections];
 }
 
-- (void)_setSectionsWithArray:(NSArray *)sectionsArray {
+- (void)_setSectionsWithArray:(NSArray<NICollectionViewModelSection *> *)sectionsArray {
   self.sections = sectionsArray;
 }
 
@@ -181,6 +185,22 @@
   return nil;
 }
 
+- (NSMapTable<id, NSIndexPath *> *)_reverseMap {
+  NSArray<NICollectionViewModelSection *> *sections = self.sections;
+  NSMapTable<id, NSIndexPath *> * reverseMap = [NSMapTable strongToStrongObjectsMapTable];
+  for (NSUInteger sectionIndex = 0; sectionIndex < sections.count; sectionIndex++) {
+    NICollectionViewModelSection *section = sections[sectionIndex];
+    NSArray *items = section.rows;
+    [reverseMap setObject:[NSIndexPath indexPathWithIndex:sectionIndex] forKey:section];
+    for (NSUInteger itemIndex = 0; itemIndex < items.count; itemIndex ++) {
+      id item = items[itemIndex];
+      [reverseMap setObject:[NSIndexPath indexPathForItem:itemIndex inSection:sectionIndex]
+                     forKey:item];
+    }
+  }
+  return reverseMap;
+}
+
 #pragma mark - Public
 
 
@@ -212,7 +232,7 @@
     return nil;
   }
 
-  NSArray *sections = self.sections;
+  NSArray<NICollectionViewModelSection *> *sections = self.sections;
   for (NSUInteger sectionIndex = 0; sectionIndex < [sections count]; sectionIndex++) {
     NSArray* rows = [[sections objectAtIndex:sectionIndex] rows];
     for (NSUInteger rowIndex = 0; rowIndex < [rows count]; rowIndex++) {
@@ -223,6 +243,52 @@
   }
 
   return nil;
+}
+
+- (void)enumerateItemsUsingBlock:(void (^)(id, NSIndexPath *, BOOL *))block {
+
+  [self.sections enumerateObjectsUsingBlock:^(NICollectionViewModelSection *section,
+                                              NSUInteger sectionIdx,
+                                              BOOL *sectionStop) {
+    [section.rows enumerateObjectsUsingBlock:^(id rowObject,
+                                               NSUInteger itemIdx,
+                                               BOOL *itemsStop) {
+      NSIndexPath *indexPath = [NSIndexPath indexPathForItem:itemIdx inSection:sectionIdx];
+      block(rowObject, indexPath, itemsStop);
+      *sectionStop = *itemsStop;
+    }];
+  }];
+}
+
+- (BOOL)isEqual:(id)object {
+  NICollectionViewModel *other = (NICollectionViewModel *)object;
+  return [other isKindOfClass:[NICollectionViewModel class]] &&
+         BothNilOrEqual(self.delegate, other.delegate) &&
+         BothNilOrEqual(self.sections, other.sections) &&
+         BothNilOrEqual(self.sectionIndexTitles, other.sectionIndexTitles) &&
+         BothNilOrEqual(self.sectionPrefixToSectionIndex, other.sectionPrefixToSectionIndex);
+}
+
+- (NSUInteger)hash {
+  NSArray<NICollectionViewModelSection *>* sections = self.sections;
+  NSArray* sectionIndexTitles = self.sectionIndexTitles;
+  NSDictionary* sectionPrefixToSectionIndex = self.sectionPrefixToSectionIndex;
+
+  NSUInteger hash = 0;
+  hash ^= sections ? sections.hash : 0;
+  hash ^= sectionIndexTitles ? sectionIndexTitles.hash : 0;
+  hash ^= sectionPrefixToSectionIndex ? sectionPrefixToSectionIndex.hash : 0;
+
+  return hash;
+}
+
+- (id)copyWithZone:(NSZone *)zone {
+  NICollectionViewModel *copy = [[NICollectionViewModel alloc] init];
+  copy.delegate = self.delegate;
+  copy.sections = [self.sections copy];
+  copy.sectionIndexTitles = [self.sectionIndexTitles copy];
+  copy.sectionPrefixToSectionIndex = [self.sectionPrefixToSectionIndex copy];
+  return copy;
 }
 
 - (NSString *)description {
@@ -264,6 +330,43 @@
 
 + (id)section {
   return [[self alloc] init];
+}
+
+- (NICollectionViewModelSection *)mutableCopy {
+  NICollectionViewModelSection *mutableCopy = [[NICollectionViewModelSection alloc] init];
+  mutableCopy.headerTitle = self.headerTitle;
+  mutableCopy.footerTitle = self.footerTitle;
+  mutableCopy.rows = [self.rows mutableCopy];
+  return mutableCopy;
+}
+
+- (BOOL)isEqual:(id)object {
+  NICollectionViewModelSection *other = (NICollectionViewModelSection *)object;
+  return [other isKindOfClass:[NICollectionViewModelSection class]] &&
+         BothNilOrEqual(self.rows, other.rows) &&
+         BothNilOrEqual(self.headerTitle, other.headerTitle) &&
+         BothNilOrEqual(self.footerTitle, other.footerTitle);
+}
+
+- (NSUInteger)hash {
+  NSString *headerTitle = self.headerTitle;
+  NSString *footerTitle = self.footerTitle;
+  NSArray* rows = self.rows;
+
+  NSUInteger hash = 0;
+  hash ^= headerTitle ? headerTitle.hash : 0;
+  hash ^= footerTitle ? footerTitle.hash : 0;
+  hash ^= rows ? rows.hash : 0;
+
+  return hash;
+}
+
+- (id)copyWithZone:(NSZone *)zone {
+  NICollectionViewModelSection *copy = [[NICollectionViewModelSection alloc] init];
+  copy.headerTitle = self.headerTitle;
+  copy.footerTitle = self.footerTitle;
+  copy.rows = [self.rows copy];
+  return copy;
 }
 
 @end

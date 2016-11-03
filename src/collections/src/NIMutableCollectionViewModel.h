@@ -56,6 +56,10 @@
 - (NSIndexSet *)insertSectionWithTitle:(NSString *)title atIndex:(NSUInteger)index;
 - (NSIndexSet *)removeSectionAtIndex:(NSUInteger)index;
 
+- (void)updateToMatchModel:(NICollectionViewModel *)other;
+- (void)updateToMatchModel:(NICollectionViewModel *)other
+        withCollectionView:(UICollectionView *)collectionView;
+
 @end
 
 /** @name Modifying Objects */

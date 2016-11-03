@@ -16,7 +16,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NICollectionViewModelSection : NSObject
+@interface NICollectionViewModelSection : NSObject<NSCopying>
 
 + (id)section;
 
@@ -24,18 +24,21 @@
 @property (nonatomic, copy) NSString* footerTitle;
 @property (nonatomic, strong) NSArray* rows;
 
+- (NICollectionViewModelSection *)mutableCopy;
+
 @end
 
 @interface NICollectionViewModel()
 
-@property (nonatomic, strong) NSArray* sections; // Array of NICollectionViewModelSection
-@property (nonatomic, strong) NSArray* sectionIndexTitles;
-@property (nonatomic, strong) NSDictionary* sectionPrefixToSectionIndex;
+@property (nonatomic, strong) NSArray<NICollectionViewModelSection *> *sections;
+@property (nonatomic, strong) NSArray<NSString *> *sectionIndexTitles;
+@property (nonatomic, strong) NSDictionary<NSString *, NSNumber *> *sectionPrefixToSectionIndex;
 
 - (void)_resetCompiledData;
 - (void)_compileDataWithListArray:(NSArray *)listArray;
 - (void)_compileDataWithSectionedArray:(NSArray *)sectionedArray;
-- (void)_setSectionsWithArray:(NSArray *)sectionsArray;
+- (void)_setSectionsWithArray:(NSArray<NICollectionViewModelSection *> *)sectionsArray;
 - (NICollectionViewModelSection *)_sectionFromListArray:(NSArray *)rows;
+- (NSMapTable<id, NSIndexPath*> *)_reverseMap;
 
 @end
