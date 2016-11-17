@@ -46,6 +46,12 @@ typedef enum {
   NIVerticalTextAlignmentBottom,
 } NIVerticalTextAlignment;
 
+typedef NS_ENUM(NSInteger, NILinkOrdering) {
+  NILinkOrderingFirst = 0, // Sort the links in the text as the first accessible elements
+  NILinkOrderingOriginal, // Won't do any sorting of the links, they will appear in the order in which they occur in the original text
+  NILinkOrderingLast, // Sort the links in the text as the last accessible elements
+};
+
 extern NSString* const NIAttributedLabelLinkAttributeName; // Value is an NSTextCheckingResult.
 
 @protocol NIAttributedLabelDelegate;
@@ -104,7 +110,9 @@ extern NSString* const NIAttributedLabelLinkAttributeName; // Value is an NSText
 
 @property (nonatomic, copy) NSString* tailTruncationString;
 
-@property (nonatomic) BOOL shouldSortLinksLast; // Sort the links in the text as the last elements in accessible elements. Default: NO
+@property (nonatomic) BOOL shouldSortLinksLast DEPRECATED_MSG_ATTRIBUTE("Use linkOrdering instead. Besides sorting links as first or last accessible elements, we are introducing a new way which sorts links in their original order and breaks the text into fragments when necessary."); // Sort the links in the text as the last elements in accessible elements. Default: NO
+
+@property (nonatomic) NILinkOrdering linkOrdering; // Define how to sort links in the text. Default: NILinkOrderFirst
 
 - (void)setFont:(UIFont *)font            range:(NSRange)range;
 - (void)setStrokeColor:(UIColor *)color   range:(NSRange)range;

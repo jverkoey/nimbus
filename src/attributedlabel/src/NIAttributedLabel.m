@@ -127,59 +127,117 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
  * - The accessibilityContainer must be a UIView.
  * - The accessibilityFrame is recomputed every time from the frameInContainer
  *   and the accessibilityContainer.
+ * - The accessibilityPath and accessibilityActivationPoint (if applicable) are
+ *   recomputed every time from the pointsInContainer and the accessibilityContainer.
  *
  * These differences cease to be as soon as the initial accessibility container
- * is changed externally, which is internally tracked by isFrameInContainerValid.
+ * is changed externally, which is internally tracked by isContainerValid.
  */
 @interface NIViewAccessibilityElement : UIAccessibilityElement
 
-// Designated initializer.
+- (instancetype)initWithAccessibilityContainer:(id)container
+                              frameInContainer:(CGRect)frameInContainer
+                             pointsInContainer:(NSArray *)pointsInContainer;
+
 - (instancetype)initWithAccessibilityContainer:(id)container frameInContainer:(CGRect)frameInContainer;
 
 // This frame is in the accessibilityContainer coordinates.
 @property (nonatomic, readonly) CGRect frameInContainer;
 
+// The first element of the array is the accessibilityActivationPoint, the rest of the array is the
+// accessibilityPath.
+@property (nonatomic, readonly) NSArray *pointsInContainer; // of NSValue
+
 @end
 
 @interface NIViewAccessibilityElement ()
 
-// Whether frameInContainer is valid, that is, the container is still the one
-// used to compute frameInContainer.
-@property (nonatomic) BOOL isFrameInContainerValid;
+// Whether the computations done based on the container are still valid. That is, the container has
+// not been changed since the computations (see frameInContainer and pointsInContainer) were
+// performed.
+@property (nonatomic) BOOL isContainerDataValid;
 
 @end
 
 @implementation NIViewAccessibilityElement
 
-- (instancetype)initWithAccessibilityContainer:(id)container frameInContainer:(CGRect)frameInContainer {
+// The accessibilityFrame is always needed even if we have an accessibilityPath (accessibilityPath
+// will override accessibilityFrame when VoiceOver tries to highlight this element), because the
+// screen scrolls according to the frame (will scroll until the frame fully appears).
+- (instancetype)initWithAccessibilityContainer:(id)container
+                              frameInContainer:(CGRect)frameInContainer
+                             pointsInContainer:(NSArray *)pointsInContainer {
   NIDASSERT([container isKindOfClass:[UIView class]]);
   if ((self = [super initWithAccessibilityContainer:container])) {
     _frameInContainer = frameInContainer;
-    _isFrameInContainerValid = YES;
+    _pointsInContainer = pointsInContainer;
+    _isContainerDataValid = YES;
   }
   return self;
 }
 
+- (instancetype)initWithAccessibilityContainer:(id)container
+                              frameInContainer:(CGRect)frameInContainer {
+  return [self initWithAccessibilityContainer:container
+                             frameInContainer:frameInContainer
+                            pointsInContainer:nil];
+}
+
 - (instancetype)initWithAccessibilityContainer:(id)container {
-  if ((self = [self initWithAccessibilityContainer:container frameInContainer:CGRectZero])) {
-    self.isFrameInContainerValid = NO;
+  if (self = [self initWithAccessibilityContainer:container
+                                 frameInContainer:CGRectZero
+                                pointsInContainer:nil]) {
+    self.isContainerDataValid = NO;
   }
   return self;
 }
 
 - (void)setAccessibilityContainer:(id)accessibilityContainer {
-  self.isFrameInContainerValid = NO;
+  self.isContainerDataValid = NO;
   [super setAccessibilityContainer:accessibilityContainer];
 }
 
 - (CGRect)accessibilityFrame {
-  if (self.isFrameInContainerValid) {
-    UIView* view = [self accessibilityContainer];
-    NIDASSERT([view isKindOfClass:[UIView class]]);
-    CGRect frame = [view convertRect:self.frameInContainer toView:nil];
-    return [view.window convertRect:frame toWindow:nil];
+  if (self.isContainerDataValid) {
+    UIView* accessibilityContainerView = self.accessibilityContainer;
+    NIDASSERT([accessibilityContainerView isKindOfClass:[UIView class]]);
+    CGRect frame = [accessibilityContainerView convertRect:self.frameInContainer toView:nil];
+    return [accessibilityContainerView.window convertRect:frame toWindow:nil];
   }
-  return [super accessibilityFrame];
+  return super.accessibilityFrame;
+}
+
+- (UIBezierPath *)accessibilityPath {
+  if (self.isContainerDataValid && NIIsArrayWithObjects(self.pointsInContainer)) {
+    UIView *accessibilityContainerView = self.accessibilityContainer;
+    NIDASSERT([accessibilityContainerView isKindOfClass:[UIView class]]);
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    for (NSUInteger i = 1; i < _pointsInContainer.count; ++i) {
+      CGPoint p = [[_pointsInContainer objectAtIndex:i] CGPointValue];
+      p = [accessibilityContainerView convertPoint:p toView:nil];
+      p = [accessibilityContainerView.window convertPoint:p toWindow:nil];
+      if (path.empty) {
+        [path moveToPoint:p];
+      } else {
+        [path addLineToPoint:p];
+      }
+    }
+    [path closePath];
+    return path;
+  }
+  return super.accessibilityPath;
+}
+
+- (CGPoint)accessibilityActivationPoint {
+  if (self.isContainerDataValid && NIIsArrayWithObjects(self.pointsInContainer)) {
+    UIView *accessibilityContainerView = self.accessibilityContainer;
+    NIDASSERT([accessibilityContainerView isKindOfClass:[UIView class]]);
+    CGPoint point = [[_pointsInContainer firstObject] CGPointValue];
+    point = [accessibilityContainerView convertPoint:point toView:nil];
+    point = [accessibilityContainerView.window convertPoint:point toWindow:nil];
+    return point;
+  }
+  return super.accessibilityActivationPoint;
 }
 
 @end
@@ -910,7 +968,10 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   return isNearLink;
 }
 
-- (NSArray *)_rectsForLink:(NSTextCheckingResult *)link {
+// For a range of text, this method returns an NSArray of CGRectValue, each representing a part of
+// text in the same line.
+// The length of the array is the same as the number of lines this range covers.
+- (NSArray *)_rectsForRange:(NSRange)range {
   CFArrayRef lines = CTFrameGetLines(self.textFrame);
   if (nil == lines) {
     return nil;
@@ -922,22 +983,135 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   CGAffineTransform transform = [self _transformForCoreText];
   CGFloat verticalOffset = [self _verticalOffsetForBounds:self.bounds];
 
-  NSRange linkRange = link.range;
-
   NSMutableArray* rects = [NSMutableArray array];
   for (int i = 0; i < count; i++) {
     CTLineRef line = CFArrayGetValueAtIndex(lines, i);
 
-    CGRect linkRect = [self _rectForRange:linkRange inLine:line lineOrigin:lineOrigins[i]];
+    CGRect rect = [self _rectForRange:range inLine:line lineOrigin:lineOrigins[i]];
 
-    if (!CGRectIsEmpty(linkRect)) {
-      linkRect = CGRectApplyAffineTransform(linkRect, transform);
-      linkRect = CGRectOffset(linkRect, 0, verticalOffset);
-      [rects addObject:[NSValue valueWithCGRect:linkRect]];
+    if (!CGRectIsEmpty(rect)) {
+      rect = CGRectApplyAffineTransform(rect, transform);
+      rect = CGRectOffset(rect, 0, verticalOffset);
+      [rects addObject:[NSValue valueWithCGRect:rect]];
     }
   }
 
   return [rects copy];
+}
+
+// The bounds of a text fragment always look like a rectangle without a top-left corner (if the text
+// starts in the middle of the line) and without a bottom-right corner (if the text ends in the
+// middle of the line).
+//
+// Take the following as an example:
+// ***@******@
+// *  * ---- *
+// @**! ---- *
+// * ------- *
+// * -- !****@
+// * -- *    *
+// @****@*****
+//
+// Suppose the whole link (marked as '-' in the graph) goes over two lines. The boundary of the link
+// is the whole rectangle. And the two points marked as '!' are the top-left and bottom-right cut
+// points correspondingly.
+//
+// This method will calculate the 'real' boundary (aka. the accessibility path, points marked as '@'
+// and '!') in the clockwise order and return an array in which the first element is the activation
+// point and the rest is this accessibility path.
+- (NSArray *)pointsWithActivationPoint:(CGPoint)activationPoint
+                                  rect:(CGRect)rect
+                       topLeftCutPoint:(CGPoint)topLeftCutPoint
+                   bottomRightCutPoint:(CGPoint)bottomRightCutPoint {
+  CGPoint topLeft = rect.origin;
+  CGPoint topRight = CGPointMake(CGRectGetMaxX(rect), topLeft.y);
+  CGPoint bottomLeft = CGPointMake(topLeft.x, CGRectGetMaxY(rect));
+  CGPoint bottomRight = CGPointMake(topRight.x, bottomLeft.y);
+
+  NSMutableArray *array =
+      [NSMutableArray arrayWithObject:[NSValue valueWithCGPoint:activationPoint]];
+  if (CGPointEqualToPoint(topLeftCutPoint, topLeft)) {
+    [array addObject:[NSValue valueWithCGPoint:topLeft]];
+  } else {
+    [array addObject:[NSValue valueWithCGPoint:CGPointMake(topLeft.x, topLeftCutPoint.y)]];
+    [array addObject:[NSValue valueWithCGPoint:topLeftCutPoint]];
+    [array addObject:[NSValue valueWithCGPoint:CGPointMake(topLeftCutPoint.x, topLeft.y)]];
+  }
+  [array addObject:[NSValue valueWithCGPoint:topRight]];
+  if (CGPointEqualToPoint(bottomRightCutPoint, bottomRight)) {
+    [array addObject:[NSValue valueWithCGPoint:bottomRight]];
+  } else {
+    [array addObject:[NSValue valueWithCGPoint:CGPointMake(bottomRight.x, bottomRightCutPoint.y)]];
+    [array addObject:[NSValue valueWithCGPoint:bottomRightCutPoint]];
+    [array addObject:[NSValue valueWithCGPoint:CGPointMake(bottomRightCutPoint.x, bottomRight.y)]];
+  }
+  [array addObject:[NSValue valueWithCGPoint:bottomLeft]];
+
+  return array;
+}
+
+// Returns the smallest rectangle that contains all the rectangles in the array.
+- (CGRect)boundsForRects:(NSArray *)rects {
+  CGFloat minX = CGFLOAT_MAX, minY = CGFLOAT_MAX, maxX = -1, maxY = -1;
+  for (NSValue *value in rects) {
+    CGRect rect = [value CGRectValue];
+    minX = MIN(rect.origin.x, minX);
+    minY = MIN(rect.origin.y, minY);
+    maxX = MAX(rect.origin.x + rect.size.width, maxX);
+    maxY = MAX(rect.origin.y + rect.size.height, maxY);
+  }
+  return CGRectMake(minX, minY, maxX - minX, maxY - minY);
+}
+
+// Returns an accessibility element representing the text within this range. The leading and
+// trailing spaces and line terminators will be ignored.
+- (NIViewAccessibilityElement *)accessibilityElementForRange:(NSRange)range {
+  NSRegularExpression *regex;
+  NSTextCheckingResult *result;
+  // Ignore spaces and line terminators in the beginning and the end.
+  regex = [NSRegularExpression regularExpressionWithPattern:@"^[\\s]*" options:0 error:nil];
+  result = [regex firstMatchInString:self.mutableAttributedString.string options:0 range:range];
+  range.location += result.range.length;
+  range.length -= result.range.length;
+  regex = [NSRegularExpression regularExpressionWithPattern:@"[\\s]*$" options:0 error:nil];
+  result = [regex firstMatchInString:self.mutableAttributedString.string options:0 range:range];
+  range.length -= result.range.length;
+
+  NSArray *rects = [self _rectsForRange:range];
+  if (!NIIsArrayWithObjects(rects)) {
+    return nil;
+  }
+
+  CGRect bounds = [self boundsForRects:rects];
+  CGRect firstRect = [[rects firstObject] CGRectValue];
+  // The activation point can be any point in the area. Let's make it the center of the first small
+  // rect.
+  CGPoint activationPoint = CGPointMake(firstRect.origin.x + firstRect.size.width / 2,
+                                        firstRect.origin.y + firstRect.size.height / 2);
+  CGRect lastRect = [[rects lastObject] CGRectValue];
+  NSArray *pointsArray =
+      [self pointsWithActivationPoint:activationPoint
+                                 rect:bounds
+                      topLeftCutPoint:CGPointMake(firstRect.origin.x, CGRectGetMaxY(firstRect))
+                  bottomRightCutPoint:CGPointMake(CGRectGetMaxX(lastRect), lastRect.origin.y)];
+  NIViewAccessibilityElement *element =
+      [[NIViewAccessibilityElement alloc] initWithAccessibilityContainer:self
+                                                        frameInContainer:bounds
+                                                       pointsInContainer:pointsArray];
+  element.accessibilityLabel = [self.mutableAttributedString.string substringWithRange:range];
+  // Set the frame to fallback on if |element|'s accessibility container is changed externally.
+  CGRect rectValueInWindowCoordinates = [self convertRect:bounds toView:nil];
+  CGRect rectValueInScreenCoordinates =
+      [self.window convertRect:rectValueInWindowCoordinates toWindow:nil];
+  element.accessibilityFrame = rectValueInScreenCoordinates;
+  // Set the activation point to fallback on if |element|'s accessibility container is changed
+  // externally.
+  CGPoint pointValueInWindowCoordinates = [self convertPoint:activationPoint toView:nil];
+  CGPoint pointValueInScreenCoordinates =
+      [self.window convertPoint:pointValueInWindowCoordinates toWindow:nil];
+  element.accessibilityActivationPoint = pointValueInScreenCoordinates;
+
+  return element;
 }
 
 - (void)setTouchedLink:(NSTextCheckingResult *)touchedLink {
@@ -1573,43 +1747,78 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
     return _accessibleElements;
   }
 
-  NSMutableArray* accessibleElements = [NSMutableArray array];
+  NSMutableArray *accessibleElements = [NSMutableArray array];
 
   // NSArray arrayWithArray:self.detectedlinkLocations ensures that we're not working with a nil
   // array.
-  NSArray* allLinks = [[NSArray arrayWithArray:self.detectedlinkLocations]
-                       arrayByAddingObjectsFromArray:self.explicitLinkLocations];
+  NSArray *allLinks = [[NSArray arrayWithArray:self.detectedlinkLocations]
+      arrayByAddingObjectsFromArray:self.explicitLinkLocations];
 
-  for (NSTextCheckingResult* result in allLinks) {
-    NSArray* rectsForLink = [self _rectsForLink:result];
-    if (!NIIsArrayWithObjects(rectsForLink)) {
-      continue;
+  // TODO(kaikaiz): remove the first condition when shouldSortLinksLast is fully deprecated.
+  if (_shouldSortLinksLast || (_linkOrdering != NILinkOrderingOriginal)) {
+    for (NSTextCheckingResult *result in allLinks) {
+      NSArray *rectsForLink = [self _rectsForRange:result.range];
+      if (!NIIsArrayWithObjects(rectsForLink)) {
+        continue;
+      }
+
+      NSString *label = [self.mutableAttributedString.string substringWithRange:result.range];
+      for (NSValue *rectValue in rectsForLink) {
+        NIViewAccessibilityElement *element = [[NIViewAccessibilityElement alloc]
+            initWithAccessibilityContainer:self
+                          frameInContainer:rectValue.CGRectValue];
+        element.accessibilityLabel = label;
+        // Set the frame to fallback on if |element|'s accessibility container is changed
+        // externally.
+        CGRect rectValueInWindowCoordinates = [self convertRect:rectValue.CGRectValue toView:nil];
+        CGRect rectValueInScreenCoordinates =
+            [self.window convertRect:rectValueInWindowCoordinates toWindow:nil];
+        element.accessibilityFrame = rectValueInScreenCoordinates;
+        element.accessibilityTraits = UIAccessibilityTraitLink;
+        [accessibleElements addObject:element];
+      }
     }
 
-    NSString* label = [self.mutableAttributedString.string substringWithRange:result.range];
-    for (NSValue* rectValue in rectsForLink) {
-      NIViewAccessibilityElement* element = [[NIViewAccessibilityElement alloc] initWithAccessibilityContainer:self frameInContainer:rectValue.CGRectValue];
-      element.accessibilityLabel = label;
-      // Set the frame to fallback on if |element|'s accessibility container is changed externally.
-      CGRect rectValueInWindowCoordinates = [self convertRect:rectValue.CGRectValue toView:nil];
-      CGRect rectValueInScreenCoordinates = [self.window convertRect:rectValueInWindowCoordinates toWindow:nil];
-      element.accessibilityFrame = rectValueInScreenCoordinates;
-      element.accessibilityTraits = UIAccessibilityTraitLink;
+    NIViewAccessibilityElement *element =
+        [[NIViewAccessibilityElement alloc] initWithAccessibilityContainer:self
+                                                          frameInContainer:self.bounds];
+    element.accessibilityLabel = self.attributedText.string;
+    // Set the frame to fallback on if |element|'s accessibility container is changed externally.
+    CGRect boundsInWindowCoordinates = [self convertRect:self.bounds toView:nil];
+    CGRect boundsInScreenCoordinates =
+        [self.window convertRect:boundsInWindowCoordinates toWindow:nil];
+    element.accessibilityFrame = boundsInScreenCoordinates;
+    element.accessibilityTraits = UIAccessibilityTraitNone;
+    // TODO(kaikaiz): remove the first condition when shouldSortLinksLast is fully deprecated.
+    if (_shouldSortLinksLast || _linkOrdering == NILinkOrderingLast) {
+      [accessibleElements insertObject:element atIndex:0];
+    } else {
       [accessibleElements addObject:element];
     }
-  }
-
-  NIViewAccessibilityElement* element = [[NIViewAccessibilityElement alloc] initWithAccessibilityContainer:self frameInContainer:self.bounds];
-  element.accessibilityLabel = self.attributedText.string;
-  // Set the frame to fallback on if |element|'s accessibility container is changed externally.
-  CGRect boundsInWindowCoordinates = [self convertRect:self.bounds toView:nil];
-  CGRect boundsInScreenCoordinates = [self.window convertRect:boundsInWindowCoordinates toWindow:nil];
-  element.accessibilityFrame = boundsInScreenCoordinates;
-  element.accessibilityTraits = UIAccessibilityTraitNone;
-  if (_shouldSortLinksLast) {
-    [accessibleElements insertObject:element atIndex:0];
   } else {
-    [accessibleElements addObject:element];
+    NIViewAccessibilityElement *element = nil;
+    NSUInteger start = 0;
+    for (NSTextCheckingResult *result in allLinks) {
+      NSRange range = result.range;
+      element = [self accessibilityElementForRange:NSMakeRange(start, range.location - start)];
+      if (element) {
+        element.accessibilityTraits = UIAccessibilityTraitNone;
+        [accessibleElements addObject:element];
+      }
+      element = [self accessibilityElementForRange:range];
+      if (element) {
+        element.accessibilityTraits = UIAccessibilityTraitLink;
+        [accessibleElements addObject:element];
+      }
+      start = range.location + range.length;
+    }
+
+    element =
+        [self accessibilityElementForRange:NSMakeRange(start, self.attributedText.length - start)];
+    if (element) {
+      element.accessibilityTraits = UIAccessibilityTraitNone;
+      [accessibleElements addObject:element];
+    }
   }
 
   _accessibleElements = [accessibleElements copy];
