@@ -119,6 +119,8 @@ extern NSString* const NIAttributedLabelLinkAttributeName; // Value is an NSText
 
 - (void)invalidateAccessibleElements;
 
+- (NSTextCheckingResult *)linkAtPoint:(CGPoint)point;
+
 @property (nonatomic, weak) IBOutlet id<NIAttributedLabelDelegate> delegate;
 @end
 
