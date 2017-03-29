@@ -35,6 +35,19 @@ extern "C" {
  */
 CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedString, CGSize size, NSInteger numberOfLines);
 
+/**
+ * By default, the size calculation (sizeThatFits:) for a multiline string (w/ newline chars) with
+ * numberOfLines == 1 returns a height that would fit all lines instead of just the first line.
+ * The intent was to return a width that can fit the entire string in one line, but the
+ * implementation didn't account for presence of newline chars in the string.
+ *
+ * When enabled, it fixes such size calculation to return the size for just the first line as
+ * expected. This matches the UILabel size calculation behavior as well.
+ *
+ * This is disabled by default due to existing clients that may depend on the legacy behavior.
+ */
+void NIAttributedLabelEnableSingleLineSizeCalculationFix(void);
+
 #if defined __cplusplus
 };
 #endif
