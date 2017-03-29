@@ -66,7 +66,7 @@ static const void *kFontAttributeKey = @"NSFont";
 static const void *kStrikethroughAttributeKey = @"NSStrikethrough";
 static const void *kStrikethroughColorAttributeKey = @"NSStrikethroughColorAttributeName";
 
-static BOOL sEnableSingleLineSizeCalculationFix = false;
+static BOOL sEnableSingleLineSizeCalculationFix = NO;
 
 // For supporting images.
 CGFloat NIImageDelegateGetAscentCallback(void* refCon);
@@ -74,7 +74,7 @@ CGFloat NIImageDelegateGetDescentCallback(void* refCon);
 CGFloat NIImageDelegateGetWidthCallback(void* refCon);
 
 void NIAttributedLabelEnableSingleLineSizeCalculationFix(void) {
-  sEnableSingleLineSizeCalculationFix = true;
+  sEnableSingleLineSizeCalculationFix = YES;
 }
 
 CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedString, CGSize constraintSize, NSInteger numberOfLines) {
