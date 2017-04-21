@@ -66,10 +66,16 @@ static const void *kFontAttributeKey = @"NSFont";
 static const void *kStrikethroughAttributeKey = @"NSStrikethrough";
 static const void *kStrikethroughColorAttributeKey = @"NSStrikethroughColorAttributeName";
 
+static BOOL sEnableSingleLineSizeCalculationFix = NO;
+
 // For supporting images.
 CGFloat NIImageDelegateGetAscentCallback(void* refCon);
 CGFloat NIImageDelegateGetDescentCallback(void* refCon);
 CGFloat NIImageDelegateGetWidthCallback(void* refCon);
+
+void NIAttributedLabelEnableSingleLineSizeCalculationFix(void) {
+  sEnableSingleLineSizeCalculationFix = YES;
+}
 
 CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedString, CGSize constraintSize, NSInteger numberOfLines) {
   if (nil == attributedString) {
@@ -87,10 +93,12 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   // This logic adapted from @mattt's TTTAttributedLabel
   // https://github.com/mattt/TTTAttributedLabel
 
-  if (numberOfLines == 1) {
+  if (!sEnableSingleLineSizeCalculationFix && numberOfLines == 1) {
     constraintSize = CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX);
-
   } else if (numberOfLines > 0 && nil != framesetter) {
+    if (numberOfLines == 1) {
+      constraintSize = CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX);
+    }
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathAddRect(path, NULL, CGRectMake(0, 0, constraintSize.width, constraintSize.height));
     CTFrameRef frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);
