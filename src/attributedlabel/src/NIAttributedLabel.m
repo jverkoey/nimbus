@@ -1116,6 +1116,13 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
     _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
 
     BOOL shouldPresent = YES;
+    
+    NSString *scheme=self.touchedLink.URL.scheme;
+    if(!([scheme isEqualToString:@"http"] || [scheme isEqualToString:@"https"] || [scheme isEqualToString:@"ftp"])) {
+      //URL Scheme is not an Internet address, we must not show actionsheet
+      shouldPresent=NO;
+    }
+    
     if ([self.delegate respondsToSelector:@selector(attributedLabel:shouldPresentActionSheet:withTextCheckingResult:atPoint:)]) {
       // Give the delegate the opportunity to not show the action sheet or to present their own.
       _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_PUSH()
