@@ -11,3 +11,4 @@ Getting Started
 - See the [latest API diffs](http://docs.nimbuskit.info/group___version-9-3.html).
 - Read the [Three20 Migration Guide](http://docs.nimbuskit.info/group___three20-_migration-_guide.html).
 - Ask questions and get updates via the [Nimbus mailing list](http://groups.google.com/group/nimbusios).
+- Use the [Xamarin.iOS Bindings](https://github.com/theonlylawislove/MonoTouch.Nimbus) for usage in Xamarin Studio (formerly MonoTouch).
