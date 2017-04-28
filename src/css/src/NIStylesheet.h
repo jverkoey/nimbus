@@ -45,6 +45,9 @@ extern NSString* const NIStylesheetDidChangeNotification;
  *
  * Cached rulesets are released when a memory warning is received.
  */
+
+@class NIDOM;
+
 @interface NIStylesheet : NSObject {
 @private
   NSDictionary* _rawRulesets;
