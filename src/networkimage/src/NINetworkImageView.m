@@ -343,7 +343,7 @@
                                                       scaleOptions:self.scaleOptions];
 
         // Only keep this result if it's for the most recent request.
-        if ([blockCacheKey isEqualToString:operation.userInfo[@"cacheKey"]]) {
+        if ([blockCacheKey isEqualToString:(AFHTTPRequestOperation *)self.operation.userInfo[@"cacheKey"]]) {
           [self _didFinishLoadingWithImage:responseObject
                            cacheIdentifier:pathToNetworkImage
                                displaySize:displaySize
