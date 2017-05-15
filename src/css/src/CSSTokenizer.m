@@ -19,7 +19,7 @@
 // Turn off the clang analyzer for flex generated code as it reports several false positives.
 #ifndef __clang_analyzer__
 
-#include "CssTokens.h"
+#include "CSSTokens.h"
 
 #line 3 "lex.css.c"
 

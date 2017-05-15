@@ -258,7 +258,7 @@ _chameleonObserver = [[NIChameleonObserver alloc] initWithStylesheetCache:_style
 
 /**@}*/
 
-#import "NICSSRuleSet.h"
+#import "NICSSRuleset.h"
 #import "NICSSParser.h"
 #import "NIDOM.h"
 #import "NIStyleable.h"
