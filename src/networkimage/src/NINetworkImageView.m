@@ -354,6 +354,11 @@
         }
 
       } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         // We often cancel requests ourselves and AFNetworking will too if we request the same URL
+         // again before it's loaded.
+         if (error.code == NSURLErrorCancelled) {
+             return;
+         }
          [self _didFailToLoadWithError:error];
       }];
 
