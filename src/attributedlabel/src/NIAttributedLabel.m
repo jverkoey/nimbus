@@ -1071,19 +1071,12 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   return CGRectMake(minX, minY, maxX - minX, maxY - minY);
 }
 
-// Returns an accessibility element representing the text within this range. The leading and
-// trailing spaces and line terminators will be ignored.
+// Returns an accessibility element representing the text within this range, or nil if the element
+// cannot be initialised.
 - (NIViewAccessibilityElement *)accessibilityElementForRange:(NSRange)range {
-  NSRegularExpression *regex;
-  NSTextCheckingResult *result;
-  // Ignore spaces and line terminators in the beginning and the end.
-  regex = [NSRegularExpression regularExpressionWithPattern:@"^[\\s]*" options:0 error:nil];
-  result = [regex firstMatchInString:self.mutableAttributedString.string options:0 range:range];
-  range.location += result.range.length;
-  range.length -= result.range.length;
-  regex = [NSRegularExpression regularExpressionWithPattern:@"[\\s]*$" options:0 error:nil];
-  result = [regex firstMatchInString:self.mutableAttributedString.string options:0 range:range];
-  range.length -= result.range.length;
+  if (range.length == 0) {
+    return nil;
+  }
 
   NSArray *rects = [self _rectsForRange:range];
   if (!NIIsArrayWithObjects(rects)) {
