@@ -1644,7 +1644,7 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
                                   ctx:(CGContextRef)ctx {
   CFNumberRef styleRef = CFDictionaryGetValue(attributes, kStrikethroughAttributeKey);
   NSUnderlineStyle style = 0;
-  CFNumberGetValue(styleRef, kCFNumberSInt64Type, &style);
+  CFNumberGetValue(styleRef, kCFNumberNSIntegerType, &style);
   if (style == NSUnderlineStyleNone) {
     return;
   }
