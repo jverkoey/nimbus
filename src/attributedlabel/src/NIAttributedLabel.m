@@ -1410,7 +1410,7 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
     }
   }
 
-  if (self.isHighlighted) {
+  if (self.isHighlighted && self.highlightedTextColor) {
     [attributedString setTextColor:self.highlightedTextColor];
   }
 
