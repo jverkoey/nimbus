@@ -6,7 +6,7 @@ env:
   - LC_CTYPE=en_US.UTF-8
   - LANG=en_US.UTF-8
   matrix:
-    - DESTINATION="OS=10.3,name=iPhone 6s" SDK=iphonesimulator10.3
+    - DESTINATION="OS=10.3.1,name=iPhone 6s" SDK=iphonesimulator10.3
     - DESTINATION="OS=9.1,name=iPhone 6s" SDK=iphonesimulator10.3
     - DESTINATION="OS=9.0,name=iPhone 6 Plus" SDK=iphonesimulator10.3
     - DESTINATION="OS=8.4,name=iPhone 6" SDK=iphonesimulator10.3
