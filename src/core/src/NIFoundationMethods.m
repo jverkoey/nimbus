@@ -212,6 +212,39 @@ NSComparisonResult NICompareVersionStrings(NSString* string1, NSString* string2)
   return [oneAlpha compare:twoAlpha];
 }
 
+
+NSDictionary* NIQueryDictionaryFromString(NSString* string) {
+  NSCharacterSet* delimiterSet = [NSCharacterSet characterSetWithCharactersInString:@"&;"];
+  NSMutableDictionary* pairs = [NSMutableDictionary dictionary];
+  NSScanner* scanner = [[NSScanner alloc] initWithString:string];
+
+  while (![scanner isAtEnd]) {
+    NSString* pairString = nil;
+    [scanner scanUpToCharactersFromSet:delimiterSet intoString:&pairString];
+    [scanner scanCharactersFromSet:delimiterSet intoString:NULL];
+
+    NSArray* kvPair = [pairString componentsSeparatedByString:@"="];
+    if (kvPair.count == 1 || kvPair.count == 2) {
+      NSString* key = [kvPair[0] stringByRemovingPercentEncoding];
+
+      NSMutableArray* values = pairs[key];
+      if (nil == values) {
+        values = [NSMutableArray array];
+        pairs[key] = values;
+      }
+
+      if (kvPair.count == 1) {
+        [values addObject:[NSNull null]];
+
+      } else if (kvPair.count == 2) {
+        NSString* value = [kvPair[1] stringByRemovingPercentEncoding];
+        [values addObject:value];
+      }
+    }
+  }
+  return [pairs copy];
+}
+
 NSDictionary* NIQueryDictionaryFromStringUsingEncoding(NSString* string, NSStringEncoding encoding) {
   NSCharacterSet* delimiterSet = [NSCharacterSet characterSetWithCharactersInString:@"&;"];
   NSMutableDictionary* pairs = [NSMutableDictionary dictionary];

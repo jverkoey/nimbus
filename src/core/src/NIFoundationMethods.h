@@ -251,7 +251,12 @@ NSComparisonResult NICompareVersionStrings(NSString* string1, NSString* string2)
  * in the query. Otherwise each object in the array with be an NSString corresponding to a value
  * in the query for that parameter.
  */
-NSDictionary* NIQueryDictionaryFromStringUsingEncoding(NSString* string, NSStringEncoding encoding);
+NSDictionary* NIQueryDictionaryFromString(NSString* string);
+
+/**
+ * Deprecated method. Use NIQueryDictionaryFromString instead.
+ */
+NSDictionary* NIQueryDictionaryFromStringUsingEncoding(NSString* string, NSStringEncoding encoding) __NI_DEPRECATED_METHOD; // Use NIQueryDictionaryFromString instead.
 
 /**
  * Returns a string that has been escaped for use as a URL parameter.
