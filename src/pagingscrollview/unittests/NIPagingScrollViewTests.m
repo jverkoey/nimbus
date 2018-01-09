@@ -23,11 +23,17 @@
 @interface NIPagingScrollViewTests : XCTestCase
 @end
 
-
 @implementation NIPagingScrollViewTests
 
+/** Test that rotating with a zero frame does not throw exceptions. */
+- (void)testRotationWithZeroFrame {
+  NIPagingScrollView *pagingScrollView = [[NIPagingScrollView alloc] initWithFrame:CGRectZero];
+  UIInterfaceOrientation targetInterfaceOrientation = UIInterfaceOrientationPortrait;
+  XCTAssertNoThrow([pagingScrollView willRotateToInterfaceOrientation:targetInterfaceOrientation
+                                                             duration:0.25]);
+  XCTAssertNoThrow([pagingScrollView willAnimateRotationToInterfaceOrientation:targetInterfaceOrientation
+                                                                      duration:0.25]);
 
-- (void)testNothing {
 }
 
 @end

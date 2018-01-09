@@ -645,6 +645,12 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
   CGFloat offset = [self scrolledPageOffset];
   CGFloat pageScrollableDimension = [self pageScrollableDimension];
 
+  if (pageScrollableDimension == 0) {
+    _firstVisiblePageIndexBeforeRotation = 0;
+    _percentScrolledIntoFirstVisiblePage = 0.f;
+    return;
+  }
+
   if (offset >= 0) {
     _firstVisiblePageIndexBeforeRotation = (NSInteger)NICGFloatFloor(offset / pageScrollableDimension);
     _percentScrolledIntoFirstVisiblePage = ((offset

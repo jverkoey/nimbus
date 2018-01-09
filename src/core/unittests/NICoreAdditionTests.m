@@ -32,6 +32,79 @@
 
 #pragma mark - NSString Additions
 
+- (void)testNSString_queryContents {
+  NSDictionary* query;
+
+  query = NIQueryDictionaryFromString(@"");
+  XCTAssertTrue([query count] == 0, @"Query: %@", query);
+
+  query = NIQueryDictionaryFromString(@"q");
+  XCTAssertTrue([query[@"q"] isEqual:@[[NSNull null]]],
+                @"Query: %@", query);
+
+  query = NIQueryDictionaryFromString(@"q=");
+  XCTAssertTrue([query[@"q"] isEqual:@[@""]],
+                @"Query: %@", query);
+
+  query = NIQueryDictionaryFromString(@"q=three20");
+  XCTAssertTrue([query[@"q"] isEqual:@[@"three20"]],
+                @"Query: %@", query);
+
+  query = NIQueryDictionaryFromString(@"q=three20%20github");
+  XCTAssertTrue([query[@"q"] isEqual:@[@"three20 github"]],
+                @"Query: %@", query);
+
+  query = NIQueryDictionaryFromString(@"q=three20&hl=en");
+  XCTAssertTrue([query[@"q"] isEqual:@[@"three20"]],
+                @"Query: %@", query);
+  XCTAssertTrue([query[@"hl"] isEqual:@[@"en"]],
+                 @"Query: %@", query);
+
+  query = NIQueryDictionaryFromString(@"q=three20&hl=");
+  XCTAssertTrue([query[@"q"] isEqual:@[@"three20"]],
+                @"Query: %@", query);
+  XCTAssertTrue([query[@"hl"] isEqual:@[@""]],
+                @"Query: %@", query);
+
+  query = NIQueryDictionaryFromString(@"q=&&hl=");
+  XCTAssertTrue([query[@"q"] isEqual:@[@""]],
+                @"Query: %@", query);
+  XCTAssertTrue([query[@"hl"] isEqual:@[@""]],
+                @"Query: %@", query);
+
+  query = NIQueryDictionaryFromString(@"q=three20=repo&hl=en");
+  XCTAssertNil(query[@"q"], @"Query: %@", query);
+  XCTAssertTrue([query[@"hl"] isEqual:@[@"en"]],
+                @"Query: %@", query);
+
+  query = NIQueryDictionaryFromString(@"&&");
+  XCTAssertTrue([query count] == 0, @"Query: %@", query);
+
+  query = NIQueryDictionaryFromString(@"q=foo&q=three20");
+  NSArray* qArr = @[@"foo", @"three20"];
+  XCTAssertTrue([query[@"q"] isEqual:qArr], @"Query: %@", query);
+
+  query = NIQueryDictionaryFromString(@"q=foo&q=three20&hl=en");
+  qArr = @[@"foo", @"three20"];
+  XCTAssertTrue([query[@"q"] isEqual:qArr], @"Query: %@", query);
+  XCTAssertTrue([query[@"hl"] isEqual:@[@"en"]],
+                @"Query: %@", query);
+
+  query = NIQueryDictionaryFromString(@"q=foo&q=three20&hl=en&g");
+  qArr = @[@"foo", @"three20"];
+  XCTAssertTrue([query[@"q"] isEqual:qArr], @"Query: %@", query);
+  XCTAssertTrue([query[@"hl"] isEqual:@[@"en"]],
+                @"Query: %@", query);
+  XCTAssertTrue([query[@"g"] isEqual:@[[NSNull null]]],
+                @"Query: %@", query);
+
+  query = NIQueryDictionaryFromString(@"q&q=three20&hl=en&g");
+  qArr = @[[NSNull null], @"three20"];
+  XCTAssertTrue([query[@"q"] isEqual:qArr], @"Query: %@", query);
+  XCTAssertTrue([query[@"hl"] isEqual:@[@"en"]],
+                @"Query: %@", query);
+}
+
 - (void)testNSString_queryContentsUsingEncoding {
 	NSDictionary* query;
 
