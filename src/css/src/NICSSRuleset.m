@@ -966,11 +966,9 @@ RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UICont
   } else if ([unitValue hasSuffix:@"px"]) {
     returnUnits.type = CSS_PIXEL_UNIT;
     returnUnits.value = [NSDecimalNumber decimalNumberWithString: [unitValue substringToIndex:unitValue.length-1]].floatValue;
-  } else if ([unitValue isEqualToString:@"0"]) {
-    returnUnits.type = CSS_PIXEL_UNIT;
-    returnUnits.value = 0;
   } else {
-    NIDERROR(@"Unknown unit: %@", unitValue);
+      returnUnits.type = CSS_PIXEL_UNIT;
+      returnUnits.value = 0;
   }
   return returnUnits;
 }
