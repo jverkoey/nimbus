@@ -143,13 +143,3 @@
  * @returns An index set with a single index representing the index of the removed section.
  * @fn NIMutableCollectionViewModel::removeSectionAtIndex:
  */
-
-/** @name Updating the Section Index */
-
-/**
- * Updates the section index with the current section index settings.
- *
- * This method should be called after modifying the model if a section index is being used.
- *
- * @fn NIMutableCollectionViewModel::updateSectionIndex
- */
