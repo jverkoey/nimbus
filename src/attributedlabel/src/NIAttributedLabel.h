@@ -166,9 +166,26 @@ extern NSString* const NIAttributedLabelLinkAttributeName; // Value is an NSText
 - (void)attributedLabel:(NIAttributedLabel *)attributedLabel didSelectTextCheckingResult:(NSTextCheckingResult *)result atPoint:(CGPoint)point;
 
 /**
+ * Informs the receiver that a data detector result has been long pressed.
+ *
+ * If this method is implemented by the receiver then
+ * -attributedLabel:shouldPresentActionSheet:withTextCheckingResult:atPoint: will not be called
+ * and no action sheet will be presented when long pressing a data detector result.
+ *
+ * @param attributedLabel An attributed label informing the receiver of the selection.
+ * @param result The data detector result that was long pressed.
+ * @param point The point within @c attributedLabel where the result was long pressed.
+ */
+- (void)attributedLabel:(NIAttributedLabel *)attributedLabel didLongPressTextCheckingResult:(NSTextCheckingResult *)result atPoint:(CGPoint)point;
+
+/**
  * Asks the receiver whether an action sheet should be displayed at the given point.
  *
- * If this method is not implemented by the receiver then @c actionSheet will always be displayed.
+ * If -attributedLabel:didLongPressTextCheckingResult:atPoint: is implemented by the receiver, this
+ * delegate method will not be called and no action sheet will be displayed. If neither
+ * -attributedLabel:didLongPressTextCheckingResult:atPoint: nor
+ * -attributedLabel:shouldPresentActionSheet:withTextCheckingResult:atPoint: are implemented by the
+ * receiver, @c actionSheet will always be displayed.
  *
  * @c actionSheet will be populated with actions that match the data type that was selected. For
  * example, a link will have the actions "Open in Safari" and "Copy URL". A phone number will have
@@ -182,7 +199,7 @@ extern NSString* const NIAttributedLabelLinkAttributeName; // Value is an NSText
  * @returns YES if @c actionSheet should be displayed. NO if @c actionSheet should not be
  *               displayed.
  */
-- (BOOL)attributedLabel:(NIAttributedLabel *)attributedLabel shouldPresentActionSheet:(UIActionSheet *)actionSheet withTextCheckingResult:(NSTextCheckingResult *)result atPoint:(CGPoint)point NS_DEPRECATED_IOS(2_0, 8_3);
+- (BOOL)attributedLabel:(NIAttributedLabel *)attributedLabel shouldPresentActionSheet:(UIActionSheet *)actionSheet withTextCheckingResult:(NSTextCheckingResult *)result atPoint:(CGPoint)point NS_DEPRECATED_IOS(2_0, 8_3, "UIActionSheet is deprecated. Use -attributedLabel:didLongPressTextCheckingResult:atPoint: and UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead");
 
 @end
 
