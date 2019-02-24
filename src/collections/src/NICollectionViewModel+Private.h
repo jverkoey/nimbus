@@ -16,6 +16,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "NICollectionViewModel.h"
+
 @interface NICollectionViewModelSection : NSObject
 
 + (id)section;
