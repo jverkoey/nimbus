@@ -11,6 +11,7 @@
 		3616212C16812222002A9078 /* AlignmentAttributedLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3616212A16812222002A9078 /* AlignmentAttributedLabelViewController.m */; };
 		3616212D16812222002A9078 /* AlignmentAttributedLabelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3616212B16812222002A9078 /* AlignmentAttributedLabelViewController.xib */; };
 		44707C77159B06A700B83149 /* BasicInstantiationPagingScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44707C76159B06A000B83149 /* BasicInstantiationPagingScrollViewController.m */; };
+		5CAE32622222514F0055EC24 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CAE32612222514F0055EC24 /* MobileCoreServices.framework */; };
 		660C6F2915992B2500209EB3 /* BadgedLauncherButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 660C6F2815992B2500209EB3 /* BadgedLauncherButtonView.m */; };
 		6613335E15D3A66B00369333 /* SnapshotRotationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6613335D15D3A66B00369333 /* SnapshotRotationTableViewController.m */; };
 		6617AF2018A8138500037E75 /* NibCollectionModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6617AF1F18A8138500037E75 /* NibCollectionModelViewController.m */; };
@@ -151,6 +152,7 @@
 		3616212B16812222002A9078 /* AlignmentAttributedLabelViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlignmentAttributedLabelViewController.xib; sourceTree = "<group>"; };
 		44707C75159B06A000B83149 /* BasicInstantiationPagingScrollViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BasicInstantiationPagingScrollViewController.h; sourceTree = "<group>"; };
 		44707C76159B06A000B83149 /* BasicInstantiationPagingScrollViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BasicInstantiationPagingScrollViewController.m; sourceTree = "<group>"; };
+		5CAE32612222514F0055EC24 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		660C6F2715992B2500209EB3 /* BadgedLauncherButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BadgedLauncherButtonView.h; sourceTree = "<group>"; };
 		660C6F2815992B2500209EB3 /* BadgedLauncherButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BadgedLauncherButtonView.m; sourceTree = "<group>"; };
 		6613335C15D3A66B00369333 /* SnapshotRotationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnapshotRotationTableViewController.h; sourceTree = "<group>"; };
@@ -419,6 +421,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CAE32622222514F0055EC24 /* MobileCoreServices.framework in Frameworks */,
 				6658C38D18A910860080B319 /* Security.framework in Frameworks */,
 				6658C38B18A910820080B319 /* SystemConfiguration.framework in Frameworks */,
 				66B941541592E5EF00AEA1D2 /* CoreLocation.framework in Frameworks */,
@@ -612,6 +615,7 @@
 		6693C0EE158A63E600950D42 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5CAE32612222514F0055EC24 /* MobileCoreServices.framework */,
 				6658C38C18A910860080B319 /* Security.framework */,
 				6658C38A18A910820080B319 /* SystemConfiguration.framework */,
 				66B941531592E5EF00AEA1D2 /* CoreLocation.framework */,
