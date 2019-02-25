@@ -16,6 +16,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "NITableViewModel.h"
+
 @interface NITableViewModel()
 
 @property (nonatomic, strong) NSArray* sections; // Array of NITableViewModelSection
