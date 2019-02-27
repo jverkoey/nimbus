@@ -420,7 +420,7 @@ NSInteger NIBoundi(NSInteger value, NSInteger min, NSInteger max);
 /**@}*/
 
 #if defined __cplusplus
-};
+}
 #endif
 
 /**@}*/// End of Foundation Methods ///////////////////////////////////////////////////////////////

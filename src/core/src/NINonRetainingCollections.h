@@ -59,7 +59,7 @@ NSMutableDictionary* NICreateNonRetainingMutableDictionary(void);
 NSMutableSet* NICreateNonRetainingMutableSet(void);
 
 #if defined __cplusplus
-};
+}
 #endif
 
 /**@}*/// End of Non-Retaining Collections ////////////////////////////////////////////////////////

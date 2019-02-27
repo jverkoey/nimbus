@@ -49,7 +49,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 void NIAttributedLabelEnableSingleLineSizeCalculationFix(void);
 
 #if defined __cplusplus
-};
+}
 #endif
 
 // Vertical alignments for NIAttributedLabel.

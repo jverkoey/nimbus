@@ -52,7 +52,7 @@ BOOL NIIsSetWithObjects(id object);
 BOOL NIIsStringWithAnyText(id object);
 
 #if defined __cplusplus
-};
+}
 #endif
 
 /**@}*/// End of Non-Empty Collection Testing /////////////////////////////////////////////////////

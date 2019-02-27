@@ -140,7 +140,7 @@ extern "C" {
 NIActionBlock NIPushControllerAction(Class controllerClass);
 
 #if defined __cplusplus
-};
+}
 #endif
 
 /** The protocol for a data source that can be used with NIActions. */

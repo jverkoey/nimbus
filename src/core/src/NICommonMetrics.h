@@ -166,7 +166,7 @@ NSTimeInterval NIDeviceRotationDuration(BOOL isFlippingUpsideDown);
 UIEdgeInsets NICellContentPadding(void);
 
 #if defined __cplusplus
-};
+}
 #endif
 
 /**@}*/// End of Common Metrics ///////////////////////////////////////////////////////////////////
