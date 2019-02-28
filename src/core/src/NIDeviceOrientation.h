@@ -85,7 +85,7 @@ BOOL NIIsLandscapePhoneOrientation(UIInterfaceOrientation orientation);
 CGAffineTransform NIRotateTransformForOrientation(UIInterfaceOrientation orientation);
 
 #if defined __cplusplus
-};
+}
 #endif
 
 /**@}*/// End of Device Orientation ///////////////////////////////////////////////////////////////

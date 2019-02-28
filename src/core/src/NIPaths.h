@@ -63,7 +63,7 @@ NSString* NIPathForLibraryResource(NSString* relativePath);
 NSString* NIPathForCachesResource(NSString* relativePath);
 
 #if defined __cplusplus
-};
+}
 #endif
 
 /**@}*/// End of Paths ////////////////////////////////////////////////////////////////////////////

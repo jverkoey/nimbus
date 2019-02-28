@@ -88,5 +88,5 @@ void NIApplyTitleColorSelectorToButton(SEL selector, id target, UIButton* button
 /**@}*/// End of Button Utilities /////////////////////////////////////////////////////////////////
 
 #if defined __cplusplus
-};
+}
 #endif
