@@ -44,5 +44,5 @@ UIImage* NIStretchableImageFromImage(UIImage* image);
 /**@}*/// End of Image Utilities //////////////////////////////////////////////////////////////////
 
 #if defined __cplusplus
-};
+}
 #endif

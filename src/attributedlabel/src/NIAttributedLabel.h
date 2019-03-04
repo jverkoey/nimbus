@@ -49,7 +49,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 void NIAttributedLabelEnableSingleLineSizeCalculationFix(void);
 
 #if defined __cplusplus
-};
+}
 #endif
 
 // Vertical alignments for NIAttributedLabel.
@@ -407,7 +407,7 @@ extern NSString* const NIAttributedLabelLinkAttributeName; // Value is an NSText
  * @fn NIAttributedLabel::setTextColor:range:
  */
 
-/** 
+/**
  * Sets the font for text in a given range.
  *
  * @fn NIAttributedLabel::setFont:range:

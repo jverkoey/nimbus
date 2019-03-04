@@ -68,7 +68,7 @@ void NISwapInstanceMethods(Class cls, SEL originalSel, SEL newSel);
 void NISwapClassMethods(Class cls, SEL originalSel, SEL newSel);
 
 #if defined __cplusplus
-};
+}
 #endif
 
 /**@}*/// End of Runtime Class Modifications //////////////////////////////////////////////////////

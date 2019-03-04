@@ -50,7 +50,7 @@ extern "C" {
  * - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
  *                                          duration:(NSTimeInterval)duration {
  *   [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
- * 
+ *
  *   CGRect toolbarFrame = self.toolbar.frame;
  *   toolbarFrame.size.height = NIToolbarHeightForOrientation(toInterfaceOrientation);
  *   toolbarFrame.origin.y = self.view.bounds.size.height - toolbarFrame.size.height;
@@ -166,7 +166,7 @@ NSTimeInterval NIDeviceRotationDuration(BOOL isFlippingUpsideDown);
 UIEdgeInsets NICellContentPadding(void);
 
 #if defined __cplusplus
-};
+}
 #endif
 
 /**@}*/// End of Common Metrics ///////////////////////////////////////////////////////////////////

@@ -95,7 +95,7 @@ void NIDisableNetworkActivityDebugging(void);
 /**@}*/// End of For Debugging Only
 
 #if defined __cplusplus
-};
+}
 #endif
 
 /**@}*/// End of Network Activity /////////////////////////////////////////////////////////////////
