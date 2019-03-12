@@ -1755,8 +1755,20 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
   NSArray *allLinks = [[NSArray arrayWithArray:self.detectedlinkLocations]
       arrayByAddingObjectsFromArray:self.explicitLinkLocations];
 
+  // If the entire label is a single link, then we want to only end up with one accessibility
+  // element - not one UIAccessibilityTraitLink element for the link and another
+  // UIAccessibilityTraitNone element for the entire label.
+  BOOL entireLabelIsOneLink = NO;
+  if (allLinks.count == 1) {
+    NSTextCheckingResult *onlyLink = allLinks.firstObject;
+    NSRange entireLabelRange = NSMakeRange(0, self.mutableAttributedString.length);
+    if (NSEqualRanges(onlyLink.range, entireLabelRange)) {
+      entireLabelIsOneLink = YES;
+    }
+  }
+
   // TODO(kaikaiz): remove the first condition when shouldSortLinksLast is fully deprecated.
-  if (_shouldSortLinksLast || (_linkOrdering != NILinkOrderingOriginal)) {
+  if ((_shouldSortLinksLast || (_linkOrdering != NILinkOrderingOriginal)) && !entireLabelIsOneLink) {
     for (NSTextCheckingResult *result in allLinks) {
       NSArray *rectsForLink = [self _rectsForRange:result.range];
       if (!NIIsArrayWithObjects(rectsForLink)) {
