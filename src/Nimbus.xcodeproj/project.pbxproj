@@ -323,6 +323,7 @@
 		D5BCE8BE1D753B9100B6715F /* libNimbusCollections.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66FC984A1703F9D7004E8FB8 /* libNimbusCollections.a */; };
 		D5BCE8C11D753BCE00B6715F /* libNimbusCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0913E6E85E00B514F3 /* libNimbusCore.a */; };
 		D5BCE8C41D762F1600B6715F /* libNimbusModels.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6661BBCC13F1A3BB00D14F92 /* libNimbusModels.a */; };
+		D5E5929D221246140076B697 /* NIAttributedLabel+Testing.h in Headers */ = {isa = PBXBuildFile; fileRef = D5E59299221245200076B697 /* NIAttributedLabel+Testing.h */; };
 		DB3A231913FD4B8E00614220 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		DB3A231D13FD4B8E00614220 /* libNimbusAttributedLabel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB3A230913FD4B8E00614220 /* libNimbusAttributedLabel.a */; };
 		DB3A233613FD4BE500614220 /* NIAttributedLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = DB3A233213FD4BE500614220 /* NIAttributedLabel.h */; };
@@ -929,6 +930,7 @@
 		D5BCE8B71D7539A300B6715F /* NimbusCollectionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusCollectionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5BCE8B91D753A1100B6715F /* NimbusCollectionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NimbusCollectionsTests.m; path = unittests/NimbusCollectionsTests.m; sourceTree = "<group>"; };
 		D5BCE8C51D76359200B6715F /* NimbusCollectionsTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "NimbusCollectionsTests-Info.plist"; path = "unittests/NimbusCollectionsTests-Info.plist"; sourceTree = "<group>"; };
+		D5E59299221245200076B697 /* NIAttributedLabel+Testing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NIAttributedLabel+Testing.h"; sourceTree = "<group>"; };
 		DB3A230913FD4B8E00614220 /* libNimbusAttributedLabel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusAttributedLabel.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB3A231613FD4B8E00614220 /* NimbusAttributedLabelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusAttributedLabelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB3A233213FD4BE500614220 /* NIAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIAttributedLabel.h; sourceTree = "<group>"; };
@@ -2095,6 +2097,7 @@
 			children = (
 				DB3A233413FD4BE500614220 /* NimbusAttributedLabel.h */,
 				DB3A233213FD4BE500614220 /* NIAttributedLabel.h */,
+				D5E59299221245200076B697 /* NIAttributedLabel+Testing.h */,
 				DB3A233313FD4BE500614220 /* NIAttributedLabel.m */,
 				6693C2F3158BB8E900950D42 /* NSMutableAttributedString+NimbusAttributedLabel.h */,
 				6693C2F4158BB8E900950D42 /* NSMutableAttributedString+NimbusAttributedLabel.m */,
@@ -2324,6 +2327,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5E5929D221246140076B697 /* NIAttributedLabel+Testing.h in Headers */,
 				DB3A233613FD4BE500614220 /* NIAttributedLabel.h in Headers */,
 				DB3A233813FD4BE500614220 /* NimbusAttributedLabel.h in Headers */,
 			);
