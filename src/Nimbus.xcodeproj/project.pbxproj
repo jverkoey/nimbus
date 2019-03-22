@@ -313,6 +313,7 @@
 		C7BBC6FE16DDC0E700833DC9 /* NITextField.h in Headers */ = {isa = PBXBuildFile; fileRef = C7BBC6B716DDC0DB00833DC9 /* NITextField.h */; };
 		C7BBC70416DDC12800833DC9 /* NITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BBC6B816DDC0DB00833DC9 /* NITextField.m */; };
 		C7BBC71116DE66BD00833DC9 /* media-rulesets.css in Resources */ = {isa = PBXBuildFile; fileRef = C7BBC71016DE66BD00833DC9 /* media-rulesets.css */; };
+		CBA8691322446C730000937E /* NIVisuallyRepressibleObject.h in Headers */ = {isa = PBXBuildFile; fileRef = CBA8690F22446C570000937E /* NIVisuallyRepressibleObject.h */; };
 		D526CF4B18B826A600991F7A /* NICellCatalogTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D526CF4A18B826A600991F7A /* NICellCatalogTests.m */; };
 		D5BCE8AD1D7539A300B6715F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D02143E38F0003E413C /* CoreGraphics.framework */; };
 		D5BCE8AE1D7539A300B6715F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D00143E38E6003E413C /* UIKit.framework */; };
@@ -926,6 +927,7 @@
 		C7BBC6B816DDC0DB00833DC9 /* NITextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NITextField.m; sourceTree = "<group>"; };
 		C7BBC70216DDC0E700833DC9 /* libNimbusTextField.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusTextField.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7BBC71016DE66BD00833DC9 /* media-rulesets.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = "media-rulesets.css"; path = "css/unittests/media-rulesets.css"; sourceTree = SOURCE_ROOT; };
+		CBA8690F22446C570000937E /* NIVisuallyRepressibleObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NIVisuallyRepressibleObject.h; sourceTree = "<group>"; };
 		D526CF4A18B826A600991F7A /* NICellCatalogTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NICellCatalogTests.m; sourceTree = "<group>"; };
 		D5BCE8B71D7539A300B6715F /* NimbusCollectionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusCollectionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5BCE8B91D753A1100B6715F /* NimbusCollectionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NimbusCollectionsTests.m; path = unittests/NimbusCollectionsTests.m; sourceTree = "<group>"; };
@@ -2027,6 +2029,7 @@
 				667DD36A156D78980045ABBB /* NIRadioGroupController.m */,
 				66416179156B516E0018AC1C /* NITableViewActions.h */,
 				6641617A156B516E0018AC1C /* NITableViewActions.m */,
+				CBA8690F22446C570000937E /* NIVisuallyRepressibleObject.h */,
 			);
 			name = src;
 			path = models/src;
@@ -2176,6 +2179,7 @@
 				667DD36B156D78980045ABBB /* NIRadioGroupController.h in Headers */,
 				66B6710715AA820700FE4AE8 /* NICellBackgrounds.h in Headers */,
 				66D2E53F15D9432000281511 /* NIMutableTableViewModel.h in Headers */,
+				CBA8691322446C730000937E /* NIVisuallyRepressibleObject.h in Headers */,
 				66D2E54315D9438D00281511 /* NIMutableTableViewModel+Private.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
