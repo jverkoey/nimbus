@@ -2,6 +2,15 @@ Nimbus is an iOS framework whose feature set grows only as fast as its documenta
 
 [![Build Status](https://travis-ci.org/jverkoey/nimbus.svg)](https://travis-ci.org/jverkoey/nimbus)
 
+Support status
+--------------
+
+Nimbus is in a **supported maintenance mode**, meaning its feature set and public APIs will not change
+substantially over time but high priority bugs will be addressed.
+
+Nimbus is maintained and supported on a best-effort basis. Pull requests are welcome with the above in
+mind.
+
 Getting Started
 ---------------
 
