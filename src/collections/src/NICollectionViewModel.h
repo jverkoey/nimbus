@@ -28,6 +28,19 @@
 // Classes used when creating NICollectionViewModels.
 @class NICollectionViewModelFooter;  // Provides the information for a footer.
 
+/**
+ * A protocol that declares the interface for a non-mutable collection view model.
+ *
+ * A default implementation of this protocol is provided with the NICollectionViewModel class.
+ * If you want to customize the implementation of your collection view model while keeping the base
+ * interface the same, conform to this protocol and implement the declared methods at minimum.
+ *
+ * The model class that conforms to this protocol is intended to allow you to easily create a data
+ * source for a UICollectionView without having to implement the UICollectionViewDataSource methods
+ * in your controller.
+ *
+ * @ingroup CollectionViewModels
+ */
 @protocol NICollectionViewModel <NIActionsDataSource, UICollectionViewDataSource>
 
 #pragma mark Creating Collection View Models
@@ -49,10 +62,8 @@
 @end
 
 /**
- * A non-mutable collection view model that complies to the UICollectionViewDataSource protocol.
- *
- * This model allows you to easily create a data source for a UICollectionView without having to
- * implement the UICollectionViewDataSource methods in your controller.
+ * A non-mutable collection view model object that provides a lightweight implementation of
+ * the NICollectionViewModel protocol.
  *
  * This base class is non-mutable, much like an NSArray. You must initialize this model with
  * the contents when you create it.
@@ -63,6 +74,10 @@
  * @ingroup CollectionViewModels
  */
 @interface NICollectionViewModel : NSObject <NICollectionViewModel>
+
+// Redeclaring for property autosynthesis.
+@property (nonatomic, weak) id<NICollectionViewModelDelegate> delegate;
+
 @end
 
 /**
