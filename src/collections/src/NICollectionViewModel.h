@@ -41,7 +41,7 @@
  *
  * @ingroup CollectionViewModels
  */
-@protocol NICollectionViewModel <NIActionsDataSource, UICollectionViewDataSource>
+@protocol NICollectionViewModeling <NIActionsDataSource, UICollectionViewDataSource>
 
 #pragma mark Creating Collection View Models
 
@@ -63,7 +63,7 @@
 
 /**
  * A non-mutable collection view model object that provides a lightweight implementation of
- * the NICollectionViewModel protocol.
+ * the NICollectionViewModeling protocol.
  *
  * This base class is non-mutable, much like an NSArray. You must initialize this model with
  * the contents when you create it.
@@ -73,7 +73,7 @@
  *
  * @ingroup CollectionViewModels
  */
-@interface NICollectionViewModel : NSObject <NICollectionViewModel>
+@interface NICollectionViewModel : NSObject <NICollectionViewModeling>
 
 // Redeclaring for property autosynthesis.
 @property (nonatomic, weak) id<NICollectionViewModelDelegate> delegate;
@@ -93,7 +93,7 @@
  *
  * The implementation of this method will generally use object to customize the cell.
  */
-- (UICollectionViewCell *)collectionViewModel:(id<NICollectionViewModel>)collectionViewModel
+- (UICollectionViewCell *)collectionViewModel:(id<NICollectionViewModeling>)collectionViewModel
                         cellForCollectionView:(UICollectionView *)collectionView
                                   atIndexPath:(NSIndexPath *)indexPath
                                    withObject:(id)object;
@@ -106,7 +106,7 @@
  * The value of the kind property and indexPath are implementation-dependent
  * based on the type of UICollectionViewLayout being used.
  */
-- (UICollectionReusableView *)collectionViewModel:(id<NICollectionViewModel>)collectionViewModel
+- (UICollectionReusableView *)collectionViewModel:(id<NICollectionViewModeling>)collectionViewModel
                                    collectionView:(UICollectionView *)collectionView
                 viewForSupplementaryElementOfKind:(NSString *)kind
                                       atIndexPath:(NSIndexPath *)indexPath;

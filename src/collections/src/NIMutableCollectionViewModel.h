@@ -49,7 +49,7 @@
  *
  * @ingroup CollectionViewModels
  */
-@protocol NIMutableCollectionViewModel <NICollectionViewModel>
+@protocol NIMutableCollectionViewModeling <NICollectionViewModeling>
 
 - (NSArray *)addObject:(id)object;
 - (NSArray *)addObject:(id)object toSection:(NSUInteger)section;
@@ -65,11 +65,11 @@
 
 /**
  * A non-mutable collection view model object that provides a lightweight implementation of
- * the NIMutableCollectionViewModel protocol.
+ * the NIMutableCollectionViewModeling protocol.
  *
  * @ingroup CollectionViewModels
  */
-@interface NIMutableCollectionViewModel : NICollectionViewModel <NIMutableCollectionViewModel>
+@interface NIMutableCollectionViewModel : NICollectionViewModel <NIMutableCollectionViewModeling>
 @end
 
 /** @name Modifying Objects */
