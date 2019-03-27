@@ -28,6 +28,26 @@
 // Classes used when creating NICollectionViewModels.
 @class NICollectionViewModelFooter;  // Provides the information for a footer.
 
+@protocol NICollectionViewModel <NIActionsDataSource, UICollectionViewDataSource>
+
+#pragma mark Creating Collection View Models
+
+// Designated initializer.
+- (id)initWithDelegate:(id<NICollectionViewModelDelegate>)delegate;
+- (id)initWithListArray:(NSArray *)listArray delegate:(id<NICollectionViewModelDelegate>)delegate;
+// Each NSString in the array starts a new section. Any other object is a new row (with exception of certain model-specific objects).
+- (id)initWithSectionedArray:(NSArray *)sectionedArray delegate:(id<NICollectionViewModelDelegate>)delegate;
+
+#pragma mark Accessing Objects
+
+- (NSIndexPath *)indexPathForObject:(id)object;
+
+#pragma mark Creating Collection View Cells
+
+@property (nonatomic, weak) id<NICollectionViewModelDelegate> delegate;
+
+@end
+
 /**
  * A non-mutable collection view model that complies to the UICollectionViewDataSource protocol.
  *
@@ -42,25 +62,7 @@
  *
  * @ingroup CollectionViewModels
  */
-@interface NICollectionViewModel : NSObject <NIActionsDataSource, UICollectionViewDataSource>
-
-#pragma mark Creating Collection View Models
-
-// Designated initializer.
-- (id)initWithDelegate:(id<NICollectionViewModelDelegate>)delegate;
-- (id)initWithListArray:(NSArray *)listArray delegate:(id<NICollectionViewModelDelegate>)delegate;
-// Each NSString in the array starts a new section. Any other object is a new row (with exception of certain model-specific objects).
-- (id)initWithSectionedArray:(NSArray *)sectionedArray delegate:(id<NICollectionViewModelDelegate>)delegate;
-
-#pragma mark Accessing Objects
-
-// This method is not appropriate for performance critical codepaths.
-- (NSIndexPath *)indexPathForObject:(id)object;
-
-#pragma mark Creating Collection View Cells
-
-@property (nonatomic, weak) id<NICollectionViewModelDelegate> delegate;
-
+@interface NICollectionViewModel : NSObject <NICollectionViewModel>
 @end
 
 /**
@@ -76,7 +78,7 @@
  *
  * The implementation of this method will generally use object to customize the cell.
  */
-- (UICollectionViewCell *)collectionViewModel:(NICollectionViewModel *)collectionViewModel
+- (UICollectionViewCell *)collectionViewModel:(id<NICollectionViewModel>)collectionViewModel
                         cellForCollectionView:(UICollectionView *)collectionView
                                   atIndexPath:(NSIndexPath *)indexPath
                                    withObject:(id)object;
@@ -89,7 +91,7 @@
  * The value of the kind property and indexPath are implementation-dependent
  * based on the type of UICollectionViewLayout being used.
  */
-- (UICollectionReusableView *)collectionViewModel:(NICollectionViewModel *)collectionViewModel
+- (UICollectionReusableView *)collectionViewModel:(id<NICollectionViewModel>)collectionViewModel
                                    collectionView:(UICollectionView *)collectionView
                 viewForSupplementaryElementOfKind:(NSString *)kind
                                       atIndexPath:(NSIndexPath *)indexPath;

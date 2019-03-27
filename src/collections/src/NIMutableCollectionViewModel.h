@@ -16,6 +16,20 @@
 
 #import "NICollectionViewModel.h"
 
+@protocol NIMutableCollectionViewModel <NICollectionViewModel>
+
+- (NSArray *)addObject:(id)object;
+- (NSArray *)addObject:(id)object toSection:(NSUInteger)section;
+- (NSArray *)addObjectsFromArray:(NSArray *)array;
+- (NSArray *)insertObject:(id)object atRow:(NSUInteger)row inSection:(NSUInteger)section;
+- (NSArray *)removeObjectAtIndexPath:(NSIndexPath *)indexPath;
+
+- (NSIndexSet *)addSectionWithTitle:(NSString *)title;
+- (NSIndexSet *)insertSectionWithTitle:(NSString *)title atIndex:(NSUInteger)index;
+- (NSIndexSet *)removeSectionAtIndex:(NSUInteger)index;
+
+@end
+
 /**
  * The NIMutableCollectionViewModel class is a mutable collection view model.
  *
@@ -45,17 +59,6 @@
  * @ingroup TableViewModels
  */
 @interface NIMutableCollectionViewModel : NICollectionViewModel
-
-- (NSArray *)addObject:(id)object;
-- (NSArray *)addObject:(id)object toSection:(NSUInteger)section;
-- (NSArray *)addObjectsFromArray:(NSArray *)array;
-- (NSArray *)insertObject:(id)object atRow:(NSUInteger)row inSection:(NSUInteger)section;
-- (NSArray *)removeObjectAtIndexPath:(NSIndexPath *)indexPath;
-
-- (NSIndexSet *)addSectionWithTitle:(NSString *)title;
-- (NSIndexSet *)insertSectionWithTitle:(NSString *)title atIndex:(NSUInteger)index;
-- (NSIndexSet *)removeSectionAtIndex:(NSUInteger)index;
-
 @end
 
 /** @name Modifying Objects */
