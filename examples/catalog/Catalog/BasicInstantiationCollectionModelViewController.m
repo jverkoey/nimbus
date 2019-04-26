@@ -48,8 +48,7 @@
 @implementation BasicInstantiationCollectionModelViewController
 
 - (id)initWithCollectionViewLayout:(UICollectionViewLayout *)layout {
-  UICollectionViewFlowLayout* flowLayout = [[UICollectionViewFlowLayout alloc] init];
-  if ((self = [super initWithCollectionViewLayout:flowLayout])) {
+  if ((self = [super initWithCollectionViewLayout:layout])) {
     self.title = @"Basic Instantiation";
 
     // This controller uses the Nimbus collection view model. In loose terms, Nimbus models
@@ -95,7 +94,8 @@
 - (id)init {
   // UICollectionViewController doesn't implement its initializer chain as would be expected, so we
   // must forward init methods to -initWithCollectionViewLayout ourselves.
-  return [self initWithCollectionViewLayout:nil];
+  UICollectionViewFlowLayout* flowLayout = [[UICollectionViewFlowLayout alloc] init];
+  return [self initWithCollectionViewLayout:flowLayout];
 }
 
 - (void)viewDidLoad {
@@ -107,8 +107,8 @@
   self.collectionView.dataSource = _model;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-  return NIIsSupportedOrientation(toInterfaceOrientation);
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+  return NIIsPad() ? UIInterfaceOrientationMaskAll : UIInterfaceOrientationMaskAllButUpsideDown;
 }
 
 @end

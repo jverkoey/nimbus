@@ -29,6 +29,7 @@
 		6633C7EF158F08A40054D240 /* InterfaceBuilderAttributedLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6633C7EE158F08A40054D240 /* InterfaceBuilderAttributedLabelViewController.m */; };
 		6633C7F2158F08EA0054D240 /* AttributedLabelMashup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6633C7F1158F08EA0054D240 /* AttributedLabelMashup.xib */; };
 		6633D21F15DDBD4100A4B07E /* ImagesAttributedLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6633D21E15DDBD4100A4B07E /* ImagesAttributedLabelViewController.m */; };
+		664D94AF22731A1C00A2F6A5 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 664D94AE22731A1C00A2F6A5 /* Launch Screen.storyboard */; };
 		66559AFA15C8BE6800ED9047 /* ActionsTableModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66559AF915C8BE6800ED9047 /* ActionsTableModelViewController.m */; };
 		66559AFE15CC3F9B00ED9047 /* ModalRadioGroupTableModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66559AFD15CC3F9B00ED9047 /* ModalRadioGroupTableModelViewController.m */; };
 		6658C36B18A910650080B319 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6658C35918A910650080B319 /* AFHTTPRequestOperation.m */; };
@@ -185,6 +186,7 @@
 		6633C7F1158F08EA0054D240 /* AttributedLabelMashup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AttributedLabelMashup.xib; sourceTree = "<group>"; };
 		6633D21D15DDBD4100A4B07E /* ImagesAttributedLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesAttributedLabelViewController.h; sourceTree = "<group>"; };
 		6633D21E15DDBD4100A4B07E /* ImagesAttributedLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesAttributedLabelViewController.m; sourceTree = "<group>"; };
+		664D94AE22731A1C00A2F6A5 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		66559AF815C8BE6800ED9047 /* ActionsTableModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionsTableModelViewController.h; sourceTree = "<group>"; };
 		66559AF915C8BE6800ED9047 /* ActionsTableModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionsTableModelViewController.m; sourceTree = "<group>"; };
 		66559AFC15CC3F9B00ED9047 /* ModalRadioGroupTableModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalRadioGroupTableModelViewController.h; sourceTree = "<group>"; };
@@ -637,6 +639,7 @@
 				66B941551592EB4500AEA1D2 /* dilly.jpg */,
 				6693C0F7158A63E600950D42 /* NimbusCatalog-Info.plist */,
 				6693C0F8158A63E600950D42 /* InfoPlist.strings */,
+				664D94AE22731A1C00A2F6A5 /* Launch Screen.storyboard */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -965,7 +968,7 @@
 		6693C0E2158A63E600950D42 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = Nimbus;
 			};
 			buildConfigurationList = 6693C0E5158A63E600950D42 /* Build configuration list for PBXProject "NimbusCatalog" */;
@@ -996,6 +999,7 @@
 				6693C29B158A8E4000950D42 /* Icon-72.png in Resources */,
 				6693C29C158A8E4000950D42 /* Icon-Small-50.png in Resources */,
 				6693C29D158A8E4000950D42 /* Icon-Small.png in Resources */,
+				664D94AF22731A1C00A2F6A5 /* Launch Screen.storyboard in Resources */,
 				6693C29E158A8E4000950D42 /* Icon-Small@2x.png in Resources */,
 				6617AF2518A817D600037E75 /* CustomTextCell.xib in Resources */,
 				6693C29F158A8E4000950D42 /* Icon.png in Resources */,
@@ -1152,19 +1156,41 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1179,12 +1205,33 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
@@ -1202,6 +1249,7 @@
 				INFOPLIST_FILE = "Catalog/NimbusCatalog-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jeffverkoeyen.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Nimbus;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1215,6 +1263,7 @@
 				INFOPLIST_FILE = "Catalog/NimbusCatalog-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jeffverkoeyen.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Nimbus;
 				WRAPPER_EXTENSION = app;
 			};

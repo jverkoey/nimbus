@@ -253,10 +253,6 @@
                                | UIViewAutoresizingFlexibleHeight);
   self.webView.scalesPageToFit = YES;
 
-  if ([UIColor respondsToSelector:@selector(underPageBackgroundColor)]) {
-    self.webView.backgroundColor = [UIColor underPageBackgroundColor];
-  }
-
   [self.view addSubview:self.webView];
   [self.view addSubview:self.toolbar];
 
@@ -279,8 +275,8 @@
   [super viewWillDisappear:animated];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-  return NIIsSupportedOrientation(interfaceOrientation);
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+  return NIIsPad() ? UIInterfaceOrientationMaskAll : UIInterfaceOrientationMaskAllButUpsideDown;
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation

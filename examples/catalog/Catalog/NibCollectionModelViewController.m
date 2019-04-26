@@ -45,9 +45,7 @@
 @implementation NibCollectionModelViewController
 
 - (id)initWithCollectionViewLayout:(UICollectionViewLayout *)layout {
-  UICollectionViewFlowLayout* flowLayout = [[UICollectionViewFlowLayout alloc] init];
-  flowLayout.itemSize = CGSizeMake(200, 200);
-  if ((self = [super initWithCollectionViewLayout:flowLayout])) {
+  if ((self = [super initWithCollectionViewLayout:layout])) {
     self.title = @"Nibs";
 
     NSArray* collectionContents =
@@ -63,7 +61,9 @@
 }
 
 - (id)init {
-  return [self initWithCollectionViewLayout:nil];
+  UICollectionViewFlowLayout* flowLayout = [[UICollectionViewFlowLayout alloc] init];
+  flowLayout.itemSize = CGSizeMake(200, 200);
+  return [self initWithCollectionViewLayout:flowLayout];
 }
 
 - (void)viewDidLoad {
@@ -72,8 +72,8 @@
   self.collectionView.dataSource = _model;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-  return NIIsSupportedOrientation(toInterfaceOrientation);
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+  return NIIsPad() ? UIInterfaceOrientationMaskAll : UIInterfaceOrientationMaskAllButUpsideDown;
 }
 
 @end
