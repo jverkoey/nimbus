@@ -32,20 +32,20 @@
  *
  * If this method is not implemented, the default response is assumed to be NO.
  */
-- (BOOL)tableViewModel:(NIMutableTableViewModel *)tableViewModel
-         canEditObject:(id)object
-           atIndexPath:(NSIndexPath *)indexPath
-           inTableView:(UITableView *)tableView;
+- (BOOL)tableViewModel:(nonnull NIMutableTableViewModel *)tableViewModel
+         canEditObject:(nonnull id)object
+           atIndexPath:(nonnull NSIndexPath *)indexPath
+           inTableView:(nonnull UITableView *)tableView;
 
 /**
  * Asks the receiver whether the object at the given index path should be moveable.
  *
  * If this method is not implemented, the default response is assumed to be NO.
  */
-- (BOOL)tableViewModel:(NIMutableTableViewModel *)tableViewModel
-         canMoveObject:(id)object
-           atIndexPath:(NSIndexPath *)indexPath
-           inTableView:(UITableView *)tableView;
+- (BOOL)tableViewModel:(nonnull NIMutableTableViewModel *)tableViewModel
+         canMoveObject:(nonnull id)object
+           atIndexPath:(nonnull NSIndexPath *)indexPath
+           inTableView:(nonnull UITableView *)tableView;
 
 /**
  * Asks the receiver whether the given object should be moved.
@@ -54,11 +54,11 @@
  *
  * Returning NO will stop the model from handling the move logic.
  */
-- (BOOL)tableViewModel:(NIMutableTableViewModel *)tableViewModel
-      shouldMoveObject:(id)object
-           atIndexPath:(NSIndexPath *)indexPath
-           toIndexPath:(NSIndexPath *)toIndexPath
-           inTableView:(UITableView *)tableView;
+- (BOOL)tableViewModel:(nonnull NIMutableTableViewModel *)tableViewModel
+      shouldMoveObject:(nonnull id)object
+           atIndexPath:(nonnull NSIndexPath *)indexPath
+           toIndexPath:(nonnull NSIndexPath *)toIndexPath
+           inTableView:(nonnull UITableView *)tableView;
 
 /**
  * Asks the receiver what animation should be used when deleting the object at the given index path.
@@ -66,10 +66,10 @@
  * If this method is not implemented, the default response is assumed to be
  * UITableViewRowAnimationAutomatic.
  */
-- (UITableViewRowAnimation)tableViewModel:(NIMutableTableViewModel *)tableViewModel
-              deleteRowAnimationForObject:(id)object
-                              atIndexPath:(NSIndexPath *)indexPath
-                              inTableView:(UITableView *)tableView;
+- (UITableViewRowAnimation)tableViewModel:(nonnull NIMutableTableViewModel *)tableViewModel
+              deleteRowAnimationForObject:(nonnull id)object
+                              atIndexPath:(nonnull NSIndexPath *)indexPath
+                              inTableView:(nonnull UITableView *)tableView;
 
 /**
  * Asks the receiver whether the given object should be deleted.
@@ -86,10 +86,10 @@ NSArray *indexPaths = [self removeObjectAtIndexPath:indexPath];
 [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
 @endcode
  */
-- (BOOL)tableViewModel:(NIMutableTableViewModel *)tableViewModel
-    shouldDeleteObject:(id)object
-           atIndexPath:(NSIndexPath *)indexPath
-           inTableView:(UITableView *)tableView;
+- (BOOL)tableViewModel:(nonnull NIMutableTableViewModel *)tableViewModel
+    shouldDeleteObject:(nonnull id)object
+           atIndexPath:(nonnull NSIndexPath *)indexPath
+           inTableView:(nonnull UITableView *)tableView;
 
 @end
 
@@ -122,19 +122,19 @@ NSIndexSet* indexSet = [self.model addSectionWithTitle:@"New section"];
  */
 @interface NIMutableTableViewModel : NITableViewModel
 
-- (NSArray *)addObject:(id)object;
-- (NSArray *)addObject:(id)object toSection:(NSUInteger)section;
-- (NSArray *)addObjectsFromArray:(NSArray *)array;
-- (NSArray *)insertObject:(id)object atRow:(NSUInteger)row inSection:(NSUInteger)section;
-- (NSArray *)removeObjectAtIndexPath:(NSIndexPath *)indexPath;
+- (nonnull NSArray *)addObject:(nonnull id)object;
+- (nonnull NSArray *)addObject:(nonnull id)object toSection:(NSUInteger)section;
+- (nonnull NSArray *)addObjectsFromArray:(nonnull NSArray *)array;
+- (nonnull NSArray *)insertObject:(nonnull id)object atRow:(NSUInteger)row inSection:(NSUInteger)section;
+- (nonnull NSArray *)removeObjectAtIndexPath:(nonnull NSIndexPath *)indexPath;
 
-- (NSIndexSet *)addSectionWithTitle:(NSString *)title;
-- (NSIndexSet *)insertSectionWithTitle:(NSString *)title atIndex:(NSUInteger)index;
-- (NSIndexSet *)removeSectionAtIndex:(NSUInteger)index;
+- (nonnull NSIndexSet *)addSectionWithTitle:(nonnull NSString *)title;
+- (nonnull NSIndexSet *)insertSectionWithTitle:(nonnull NSString *)title atIndex:(NSUInteger)index;
+- (nonnull NSIndexSet *)removeSectionAtIndex:(NSUInteger)index;
 
 - (void)updateSectionIndex;
 
-@property (nonatomic, weak) id<NIMutableTableViewModelDelegate> delegate;
+@property (nonatomic, weak, nullable) id<NIMutableTableViewModelDelegate> delegate;
 
 @end
 
