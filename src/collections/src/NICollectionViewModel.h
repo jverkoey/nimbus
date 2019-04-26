@@ -75,6 +75,8 @@
  */
 @interface NICollectionViewModel : NSObject <NICollectionViewModeling>
 
+- (id)initWithDelegate:(id<NICollectionViewModelDelegate>)delegate NS_DESIGNATED_INITIALIZER;
+
 // Redeclaring for property autosynthesis.
 @property (nonatomic, weak) id<NICollectionViewModelDelegate> delegate;
 

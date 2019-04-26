@@ -55,7 +55,7 @@
   if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
     self.edgesForExtendedLayout = UIRectEdgeNone;
   }
-  self.view.backgroundColor = [UIColor underPageBackgroundColor];
+  self.view.backgroundColor = [UIColor whiteColor];
 
   // A NINetworkImageView is a subclass of UIImageView. We can provide an image to the initializer
   // and it will be displayed until the network image is loaded. In this example we won't set an

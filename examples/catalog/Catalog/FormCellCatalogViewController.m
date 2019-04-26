@@ -185,12 +185,12 @@ typedef enum {
   [self.tableView addGestureRecognizer:tap];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-  return NIIsSupportedOrientation(toInterfaceOrientation);
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+  return NIIsPad() ? UIInterfaceOrientationMaskAll : UIInterfaceOrientationMaskAllButUpsideDown;
 }
 
 - (void)segmentedControlWithImagesDidChangeValue:(UISegmentedControl *)segmentedControl {
-  NIDPRINT(@"Segmented control changed value to index %d", segmentedControl.selectedSegmentIndex);
+  NIDPRINT(@"Segmented control changed value to index %@", @(segmentedControl.selectedSegmentIndex));
 }
 
 - (void)datePickerDidChangeValue:(UIDatePicker *)picker {

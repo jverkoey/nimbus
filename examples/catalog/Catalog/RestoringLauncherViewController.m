@@ -94,7 +94,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
   }
 
-  self.view.backgroundColor = [UIColor underPageBackgroundColor];
+  self.view.backgroundColor = [UIColor whiteColor];
 
   self.launcherView.dataSource = self.model;
 }

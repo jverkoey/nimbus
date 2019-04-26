@@ -68,11 +68,12 @@
       NSString* text = object;
       [[UIColor blackColor] set];
       UIFont* titleFont = [UIFont boldSystemFontOfSize:16];
-      [text drawAtPoint:CGPointMake(10, 5) withFont:titleFont];
+      [text drawAtPoint:CGPointMake(10, 5) withAttributes:@{NSFontAttributeName: titleFont}];
 
       // Draw a static subtitle below the title.
       [[UIColor grayColor] set];
-      [@"Subtitle" drawAtPoint:CGPointMake(10, 5 + titleFont.lineHeight) withFont:[UIFont systemFontOfSize:12]];
+      [@"Subtitle" drawAtPoint:CGPointMake(10, 5 + titleFont.lineHeight)
+                withAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:12]}];
 
       // Draw the Nimbus application icon on the right edge of the cell.
       [image drawAtPoint:CGPointMake(CGRectGetMaxX(rect) - image.size.width - 10, 5)];
@@ -107,8 +108,8 @@
   self.tableView.dataSource = _model;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-  return NIIsSupportedOrientation(toInterfaceOrientation);
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+  return NIIsPad() ? UIInterfaceOrientationMaskAll : UIInterfaceOrientationMaskAllButUpsideDown;
 }
 
 @end
