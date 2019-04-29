@@ -122,7 +122,7 @@ typedef enum {
 + (nonnull id)footerWithTitle:(nonnull NSString *)title;
 - (nonnull id)initWithTitle:(nonnull NSString *)title;
 
-@property (nonatomic, copy, nonnull) NSString* title;
+@property (nonatomic, copy, nullable) NSString* title;
 
 @end
 
