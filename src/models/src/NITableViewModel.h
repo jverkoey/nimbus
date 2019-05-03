@@ -21,7 +21,7 @@
 #import "NIPreprocessorMacros.h" /* for weak */
 
 #if NS_BLOCKS_AVAILABLE
-typedef UITableViewCell * _Nonnull (^NITableViewModelCellForIndexPathBlock)(UITableView* _Nonnull tableView, NSIndexPath* _Nonnull indexPath, _Nonnull id object);
+typedef UITableViewCell * _Nonnull (^NITableViewModelCellForIndexPathBlock)(UITableView* _Nonnull tableView, NSIndexPath* _Nonnull indexPath, id _Nonnull object);
 #endif // #if NS_BLOCKS_AVAILABLE
 
 @protocol NITableViewModelDelegate;
