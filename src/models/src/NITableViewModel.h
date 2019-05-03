@@ -21,7 +21,7 @@
 #import "NIPreprocessorMacros.h" /* for weak */
 
 #if NS_BLOCKS_AVAILABLE
-typedef UITableViewCell* (^NITableViewModelCellForIndexPathBlock)(UITableView* tableView, NSIndexPath* indexPath, id object);
+typedef UITableViewCell * _Nonnull (^NITableViewModelCellForIndexPathBlock)(UITableView* _Nonnull tableView, NSIndexPath* _Nonnull indexPath, id _Nonnull object);
 #endif // #if NS_BLOCKS_AVAILABLE
 
 @protocol NITableViewModelDelegate;
@@ -54,15 +54,15 @@ typedef enum {
 #pragma mark Creating Table View Models
 
 // Designated initializer.
-- (id)initWithDelegate:(id<NITableViewModelDelegate>)delegate;
-- (id)initWithListArray:(NSArray *)sectionedArray delegate:(id<NITableViewModelDelegate>)delegate;
+- (nonnull id)initWithDelegate:(nonnull id<NITableViewModelDelegate>)delegate;
+- (nonnull id)initWithListArray:(nonnull NSArray *)sectionedArray delegate:(nonnull id<NITableViewModelDelegate>)delegate;
 // Each NSString in the array starts a new section. Any other object is a new row (with exception of certain model-specific objects).
-- (id)initWithSectionedArray:(NSArray *)sectionedArray delegate:(id<NITableViewModelDelegate>)delegate;
+- (nonnull id)initWithSectionedArray:(nonnull NSArray *)sectionedArray delegate:(nonnull id<NITableViewModelDelegate>)delegate;
 
 #pragma mark Accessing Objects
 
 // This method is not appropriate for performance critical codepaths.
-- (NSIndexPath *)indexPathForObject:(id)object;
+- (nullable NSIndexPath *)indexPathForObject:(nonnull id)object;
 
 #pragma mark Configuration
 
@@ -75,12 +75,12 @@ typedef enum {
 
 #pragma mark Creating Table View Cells
 
-@property (nonatomic, weak) id<NITableViewModelDelegate> delegate;
+@property (nonatomic, weak, nullable) id<NITableViewModelDelegate> delegate;
 
 #if NS_BLOCKS_AVAILABLE
 // If both the delegate and this block are provided, cells returned by this block will be used
 // and the delegate will not be called.
-@property (nonatomic, copy) NITableViewModelCellForIndexPathBlock createCellBlock;
+@property (nonatomic, copy, nullable) NITableViewModelCellForIndexPathBlock createCellBlock;
 #endif // #if NS_BLOCKS_AVAILABLE
 
 @end
@@ -99,10 +99,10 @@ typedef enum {
  *
  * The implementation of this method will generally use object to customize the cell.
  */
-- (UITableViewCell *)tableViewModel: (NITableViewModel *)tableViewModel
-                   cellForTableView: (UITableView *)tableView
-                        atIndexPath: (NSIndexPath *)indexPath
-                         withObject: (id)object;
+- (nonnull UITableViewCell *)tableViewModel: (nonnull NITableViewModel *)tableViewModel
+                           cellForTableView: (nonnull UITableView *)tableView
+                                atIndexPath: (nonnull NSIndexPath *)indexPath
+                                 withObject: (nonnull id)object;
 
 @end
 
@@ -119,10 +119,10 @@ typedef enum {
  */
 @interface NITableViewModelFooter : NSObject
 
-+ (id)footerWithTitle:(NSString *)title;
-- (id)initWithTitle:(NSString *)title;
++ (nonnull id)footerWithTitle:(nonnull NSString *)title;
+- (nonnull id)initWithTitle:(nonnull NSString *)title;
 
-@property (nonatomic, copy) NSString* title;
+@property (nonatomic, copy, nullable) NSString* title;
 
 @end
 
