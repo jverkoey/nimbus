@@ -54,10 +54,10 @@ typedef enum {
 #pragma mark Creating Table View Models
 
 // Designated initializer.
-- (nonnull id)initWithDelegate:(nonnull id<NITableViewModelDelegate>)delegate;
-- (nonnull id)initWithListArray:(nonnull NSArray *)sectionedArray delegate:(nonnull id<NITableViewModelDelegate>)delegate;
+- (nonnull id)initWithDelegate:(nullable id<NITableViewModelDelegate>)delegate NS_DESIGNATED_INITIALIZER;
+- (nonnull id)initWithListArray:(nonnull NSArray *)sectionedArray delegate:(nullable id<NITableViewModelDelegate>)delegate;
 // Each NSString in the array starts a new section. Any other object is a new row (with exception of certain model-specific objects).
-- (nonnull id)initWithSectionedArray:(nonnull NSArray *)sectionedArray delegate:(nonnull id<NITableViewModelDelegate>)delegate;
+- (nonnull id)initWithSectionedArray:(nonnull NSArray *)sectionedArray delegate:(nullable id<NITableViewModelDelegate>)delegate;
 
 #pragma mark Accessing Objects
 
