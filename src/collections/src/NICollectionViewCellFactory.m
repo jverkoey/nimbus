@@ -53,6 +53,13 @@
     identifier = [identifier stringByAppendingFormat:@".%@", NSStringFromClass([object class])];
   }
 
+  if ([object respondsToSelector:@selector(reuseIdentifierSuffix)]) {
+    NSString* suffix = [object reuseIdentifierSuffix];
+    if (suffix.length) {
+      identifier = [identifier stringByAppendingFormat:@".%@", suffix];
+    }
+  }
+
   [collectionView registerClass:collectionViewCellClass forCellWithReuseIdentifier:identifier];
 
   cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
@@ -72,6 +79,14 @@
   UICollectionViewCell* cell = nil;
 
   NSString* identifier = NSStringFromClass([object class]);
+
+  if ([object respondsToSelector:@selector(reuseIdentifierSuffix)]) {
+    NSString* suffix = [object reuseIdentifierSuffix];
+    if (suffix.length) {
+      identifier = [identifier stringByAppendingFormat:@".%@", suffix];
+    }
+  }
+
   [collectionView registerNib:collectionViewCellNib forCellWithReuseIdentifier:identifier];
 
   cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
