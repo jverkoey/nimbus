@@ -177,7 +177,12 @@ _model.delegate = (id)[NICollectionViewCellFactory class];
  */
 @protocol NICollectionViewCellReuseIdentifierExtension <NSObject>
 
-/** A unique reuse identifier suffix to append to the reuse identifier of the cell. */
+/**
+ * A unique reuse identifier suffix to append to the reuse identifier of the cell.
+ *
+ * @note Classes conforming to this protocol may return nil or the empty string to opt out of the
+ * suffix.
+ */
 - (NSString *)reuseIdentifierSuffix;
 
 @end
