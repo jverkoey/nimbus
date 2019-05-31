@@ -167,6 +167,27 @@ _model.delegate = (id)[NICollectionViewCellFactory class];
 @end
 
 /**
+ * A protocol that objects may conform to in order to provide a custom suffix to the reuse
+ * identifier of its cell.
+ *
+ * This is useful for objects that can support different configurations, such that cells updated
+ * with an instance of the object can be reused only for objects supporting the same configuration.
+ * This can be used as an optimization for objects that support dynamic configurations that would be
+ * inefficient to reset during -prepareForReuse.
+ */
+@protocol NICollectionViewCellReuseIdentifierExtension <NSObject>
+
+/**
+ * A unique reuse identifier suffix to append to the reuse identifier of the cell.
+ *
+ * @note Classes conforming to this protocol may return nil or the empty string to opt out of the
+ * suffix.
+ */
+- (NSString *)reuseIdentifierSuffix;
+
+@end
+
+/**
  * A light-weight implementation of the NICollectionViewCellObject protocol.
  *
  * Use this object in cases where you can't set up a hard binding between an object and a cell,
