@@ -59,7 +59,7 @@
 @property (nonatomic, copy) NSString* placeholderText;
 @property (nonatomic, copy) NSString* value;
 @property (nonatomic, assign) BOOL isPassword;
-@property (nonatomic, assign) id<UITextFieldDelegate> delegate;
+@property (nonatomic, weak) id<UITextFieldDelegate> delegate;
 
 @end
 
@@ -81,7 +81,7 @@
 
 @property (nonatomic, copy) NSString* labelText;
 @property (nonatomic, assign) BOOL value;
-@property (nonatomic, assign) id didChangeTarget;
+@property (nonatomic, weak) id didChangeTarget;
 @property (nonatomic, assign) SEL didChangeSelector;
 
 @end
