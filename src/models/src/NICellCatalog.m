@@ -161,7 +161,7 @@
 @interface NIDrawRectBlockView : UIView
 @property (nonatomic, copy) NICellDrawRectBlock block;
 @property (nonatomic, strong) id object;
-@property (nonatomic, assign) UITableViewCell* cell;
+@property (nonatomic, weak) UITableViewCell* cell;
 @end
 
 

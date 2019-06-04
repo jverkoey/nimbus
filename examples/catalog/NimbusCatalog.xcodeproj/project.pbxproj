@@ -976,6 +976,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 6693C0E0158A63E600950D42;
@@ -1251,6 +1252,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jeffverkoeyen.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Nimbus;
+				WARNING_CFLAGS = "-Wobjc-property-assign-on-object-type";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1265,6 +1267,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jeffverkoeyen.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Nimbus;
+				WARNING_CFLAGS = "-Wobjc-property-assign-on-object-type";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
