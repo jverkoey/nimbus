@@ -181,6 +181,32 @@
   return nil;
 }
 
+#pragma mark - UICollectionViewDataSourcePrefetching
+
+- (void)collectionView:(UICollectionView *)collectionView prefetchItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths {
+  if (@available(iOS 10.0, *)) {
+    NSMutableArray<id>* objects = [NSMutableArray array];
+    for (NSIndexPath* indexPath in indexPaths) {
+      id object = [self objectAtIndexPath:indexPaths];
+      [objects addObject:object];
+    }
+    
+    [self.delegate collectionViewModel:self collectionView:collectionView prefetchItemsAtIndexPaths:indexPaths withObjects:objects];
+  }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView cancelPrefetchingForItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths {
+  if (@available(iOS 10.0, *)) {
+    NSMutableArray<id>* objects = [NSMutableArray array];
+    for (NSIndexPath* indexPath in indexPaths) {
+      id object = [self objectAtIndexPath:indexPaths];
+      [objects addObject:object];
+    }
+  
+    [self.delegate collectionViewModel:self collectionView:collectionView cancelPrefetchingItemsAtIndexPaths:indexPaths withObjects:objects];
+  }
+}
+
 #pragma mark - Public
 
 

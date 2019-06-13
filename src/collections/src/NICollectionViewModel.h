@@ -41,7 +41,7 @@
  *
  * @ingroup CollectionViewModels
  */
-@protocol NICollectionViewModeling <NIActionsDataSource, UICollectionViewDataSource>
+@protocol NICollectionViewModeling <NIActionsDataSource, UICollectionViewDataSource, UICollectionViewDataSourcePrefetching>
 
 #pragma mark Creating Collection View Models
 
@@ -112,6 +112,22 @@
                                    collectionView:(UICollectionView *)collectionView
                 viewForSupplementaryElementOfKind:(NSString *)kind
                                       atIndexPath:(NSIndexPath *)indexPath;
+
+/**
+ * Prefetch one or more collection view cells at given index paths with given objects.
+ */
+- (void)collectionViewModel:(id<NICollectionViewModeling>)collectionViewModel
+               collectionView:(UICollectionView *)collectionView
+    prefetchItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths
+                  withObjects:(NSArray<id> *)objects NS_AVAILABLE_IOS(10_0);
+
+/**
+ * Cancel the running prefetching task for one or more collection view cells at given index paths with given objects.
+ */
+- (void)collectionViewModel:(id<NICollectionViewModeling>)collectionViewModel
+                        collectionView:(UICollectionView *)collectionView
+    cancelPrefetchingItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths
+                           withObjects:(NSArray<id> *)objects NS_AVAILABLE_IOS(10_0);
 
 @end
 
