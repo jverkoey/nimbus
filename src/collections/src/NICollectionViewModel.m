@@ -187,7 +187,7 @@
   if (@available(iOS 10.0, *)) {
     NSMutableArray<id>* objects = [NSMutableArray array];
     for (NSIndexPath* indexPath in indexPaths) {
-      id object = [self objectAtIndexPath:indexPaths];
+      id object = [self objectAtIndexPath:indexPath];
       [objects addObject:object];
     }
     
@@ -199,7 +199,7 @@
   if (@available(iOS 10.0, *)) {
     NSMutableArray<id>* objects = [NSMutableArray array];
     for (NSIndexPath* indexPath in indexPaths) {
-      id object = [self objectAtIndexPath:indexPaths];
+      id object = [self objectAtIndexPath:indexPath];
       [objects addObject:object];
     }
   
