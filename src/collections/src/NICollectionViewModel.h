@@ -43,14 +43,6 @@
  */
 @protocol NICollectionViewModeling <NIActionsDataSource, UICollectionViewDataSource, UICollectionViewDataSourcePrefetching>
 
-#pragma mark Creating Collection View Models
-
-// Designated initializer.
-- (id)initWithDelegate:(id<NICollectionViewModelDelegate>)delegate;
-- (id)initWithListArray:(NSArray *)listArray delegate:(id<NICollectionViewModelDelegate>)delegate;
-// Each NSString in the array starts a new section. Any other object is a new row (with exception of certain model-specific objects).
-- (id)initWithSectionedArray:(NSArray *)sectionedArray delegate:(id<NICollectionViewModelDelegate>)delegate;
-
 #pragma mark Accessing Objects
 
 - (NSIndexPath *)indexPathForObject:(id)object;
@@ -76,6 +68,11 @@
 @interface NICollectionViewModel : NSObject <NICollectionViewModeling>
 
 - (id)initWithDelegate:(id<NICollectionViewModelDelegate>)delegate NS_DESIGNATED_INITIALIZER;
+
+- (id)initWithListArray:(NSArray *)listArray delegate:(id<NICollectionViewModelDelegate>)delegate;
+
+// Each NSString in the array starts a new section. Any other object is a new row (with exception of certain model-specific objects).
+- (id)initWithSectionedArray:(NSArray *)sectionedArray delegate:(id<NICollectionViewModelDelegate>)delegate;
 
 // Redeclaring for property autosynthesis.
 @property (nonatomic, weak) id<NICollectionViewModelDelegate> delegate;
