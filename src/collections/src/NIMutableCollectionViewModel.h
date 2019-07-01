@@ -16,20 +16,15 @@
 
 #import "NICollectionViewModel.h"
 
-/**
- * A protocol that declares the interface for a mutable collection view model.
- *
- * A default implementation of this protocol is provided with the NIMutableCollectionViewModel
- * class. If you want to customize the implementation of your collection view model while keeping
- * the base interface the same, conform to this protocol and implement the declared methods at
- * minimum.
+ /**
+ * The NIMutableCollectionViewModel class is a mutable collection view model.
  *
  * When modifications are made to the model there are two ways to reflect the changes in the
  * collection view.
  *
  * - Call reloadData on the collection view. This is the most destructive way to update the
  *   collection view.
- * - Call insert/delete/reload methods on the collection view with the returned index path arrays.
+ * - Call insert/delete/reload methods on the collection view with the retuned index path arrays.
  *
  * The latter option is the recommended approach to adding new cells to a collection view. Each
  * method in the mutable collection view model returns a data structure that can be used to inform
@@ -47,9 +42,9 @@
  [self.collectionView insertSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
  @endcode
  *
- * @ingroup CollectionViewModels
+ * @ingroup TableViewModels
  */
-@protocol NIMutableCollectionViewModeling <NICollectionViewModeling>
+@interface NIMutableCollectionViewModel : NICollectionViewModel
 
 - (NSArray *)addObject:(id)object;
 - (NSArray *)addObject:(id)object toSection:(NSUInteger)section;
@@ -61,15 +56,6 @@
 - (NSIndexSet *)insertSectionWithTitle:(NSString *)title atIndex:(NSUInteger)index;
 - (NSIndexSet *)removeSectionAtIndex:(NSUInteger)index;
 
-@end
-
-/**
- * A non-mutable collection view model object that provides a lightweight implementation of
- * the NIMutableCollectionViewModeling protocol.
- *
- * @ingroup CollectionViewModels
- */
-@interface NIMutableCollectionViewModel : NICollectionViewModel <NIMutableCollectionViewModeling>
 @end
 
 /** @name Modifying Objects */
