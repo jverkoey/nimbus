@@ -24,52 +24,6 @@
 #error "Nimbus requires ARC support."
 #endif
 
-/**
- * A UIScrollView that centers the zooming view's frame as the user zooms.
- *
- * We must update the zooming view's frame within the scroll view's layoutSubviews,
- * thus why we've subclassed UIScrollView.
- */
-@interface NICenteringScrollView : UIScrollView
-@end
-
-
-@implementation NICenteringScrollView
-
-
-#pragma mark - UIView
-
-
-- (void)layoutSubviews {
-  [super layoutSubviews];
-
-  // Center the image as it becomes smaller than the size of the screen.
-
-  UIView* zoomingSubview = [self.delegate viewForZoomingInScrollView:self];
-  CGSize boundsSize = self.bounds.size;
-  CGRect frameToCenter = zoomingSubview.frame;
-  
-  // Center horizontally.
-  if (frameToCenter.size.width < boundsSize.width) {
-    frameToCenter.origin.x = NICGFloatFloor((boundsSize.width - frameToCenter.size.width) / 2);
-
-  } else {
-    frameToCenter.origin.x = 0;
-  }
-
-  // Center vertically.
-  if (frameToCenter.size.height < boundsSize.height) {
-    frameToCenter.origin.y = NICGFloatFloor((boundsSize.height - frameToCenter.size.height) / 2);
-
-  } else {
-    frameToCenter.origin.y = 0;
-  }
-
-  zoomingSubview.frame = frameToCenter;
-}
-
-@end
-
 @interface NIPhotoScrollView ()
 @property (nonatomic, assign) NIPhotoScrollViewPhotoSize photoSize;
 - (void)setMaxMinZoomScalesForCurrentBounds;
@@ -79,7 +33,7 @@
   // The photo view to be zoomed.
   UIImageView* _imageView;
   // The scroll view.
-  NICenteringScrollView* _scrollView;
+  UIScrollView* _scrollView;
   UIActivityIndicatorView* _loadingView;
 
   // Photo Information
@@ -103,7 +57,7 @@
     self.doubleTapToZoomIsEnabled = YES;
 
     // Autorelease so that we don't have to worry about releasing the subviews in dealloc.
-    _scrollView = [[NICenteringScrollView alloc] initWithFrame:self.bounds];
+    _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
     _scrollView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
                                     | UIViewAutoresizingFlexibleHeight);
 
@@ -147,6 +101,10 @@
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
   return _imageView;
+}
+
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView {
+  [self centerImageView];
 }
 
 #pragma mark - Gesture Recognizers
@@ -505,6 +463,38 @@
   [self restoreCenterPoint:restorePoint scale:restoreScale];
 
   [_scrollView setNeedsLayout];
+}
+
+#pragma mark Centering
+
+
+- (void)layoutSubviews {
+  [super layoutSubviews];
+  [self centerImageView];
+}
+
+- (void)centerImageView {
+  // Center the image as it becomes smaller than the size of the screen.
+  CGSize boundsSize = self.bounds.size;
+  CGRect frameToCenter = _imageView.frame;
+
+  // Center horizontally.
+  if (frameToCenter.size.width < boundsSize.width) {
+    frameToCenter.origin.x = NICGFloatFloor((boundsSize.width - frameToCenter.size.width) / 2);
+
+  } else {
+    frameToCenter.origin.x = 0;
+  }
+
+  // Center vertically.
+  if (frameToCenter.size.height < boundsSize.height) {
+    frameToCenter.origin.y = NICGFloatFloor((boundsSize.height - frameToCenter.size.height) / 2);
+
+  } else {
+    frameToCenter.origin.y = 0;
+  }
+
+  _imageView.frame = frameToCenter;
 }
 
 @end
