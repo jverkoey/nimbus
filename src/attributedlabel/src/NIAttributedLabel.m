@@ -1273,6 +1273,7 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_PUSH()
 }
 _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
 
+_NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_PUSH()
 - (void)_longPressTimerDidFire:(NSTimer *)timer {
   self.longPressTimer = nil;
 
@@ -1285,18 +1286,14 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
       // Adoption of the new long press delegate callback is treated as opting out of the action sheet altogether.
       [delegate attributedLabel:self didLongPressTextCheckingResult:self.touchedLink atPoint:self.touchPoint];
     } else {
-      _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_PUSH()
       // Create the action sheet to be shown.
       actionSheet = [self actionSheetForResult:self.actionSheetLink];
-      _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
 
       if ([delegate respondsToSelector:@selector(attributedLabel:shouldPresentActionSheet:withTextCheckingResult:atPoint:)]) {
         // Give the delegate the opportunity to not show the action sheet.
-        _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_PUSH()
         if (![delegate attributedLabel:self shouldPresentActionSheet:actionSheet withTextCheckingResult:self.touchedLink atPoint:self.touchPoint]) {
           actionSheet = nil;
         }
-        _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
       }
     }
 
@@ -1312,6 +1309,7 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
     }
   }
 }
+_NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
 
 - (void)_applyLinkStyleWithResults:(NSArray *)results toAttributedString:(NSMutableAttributedString *)attributedString {
   for (NSTextCheckingResult* result in results) {
