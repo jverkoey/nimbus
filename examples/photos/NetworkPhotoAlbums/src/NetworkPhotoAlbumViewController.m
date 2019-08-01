@@ -29,14 +29,14 @@
 @end
 #endif
 
+@interface NetworkPhotoAlbumViewController()
+@property (nonatomic,strong) AFHTTPSessionManager *httpSessionManager;
+@end
+
 @implementation NetworkPhotoAlbumViewController
 
-#ifdef DEBUG
-#endif
-
-
 - (void)shutdown_NetworkPhotoAlbumViewController {
-  [_queue cancelAllOperations];
+  [self.httpSessionManager invalidateSessionCancelingTasks:YES];
 
 #ifdef DEBUG
   [[NIOverview view] removePageView:self.highQualityPage];
@@ -76,17 +76,10 @@
   }
 
   NSURL* url = [NSURL URLWithString:source];
-  NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
-  request.timeoutInterval = 30;
   
   NSString* photoIndexKey = [self cacheKeyForPhotoIndex:photoIndex];
 
-  AFHTTPRequestOperation* readOp = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-  AFImageResponseSerializer* responseSerializer = [AFImageResponseSerializer serializer];
-  responseSerializer.imageScale = 1;
-  readOp.responseSerializer = responseSerializer;
-
-  [readOp setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, UIImage* image) {
+  [self.httpSessionManager GET:url.absoluteString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, UIImage* image) {
     // Store the image in the correct image cache.
     if (isThumbnail) {
       [_thumbnailImageCache storeObject: image
@@ -111,19 +104,8 @@
 
   } failure:nil];
 
-  // Set the operation priority level.
-
-  if (NIPhotoScrollViewPhotoSizeThumbnail == photoSize) {
-    // Thumbnail images should be lower priority than full-size images.
-    [readOp setQueuePriority:NSOperationQueuePriorityLow];
-
-  } else {
-    [readOp setQueuePriority:NSOperationQueuePriorityNormal];
-  }
-
   // Start the operation.
   [_activeRequests addObject:identifierKey];
-  [_queue addOperation:readOp];
 }
 
 #pragma mark - UIViewController
@@ -137,11 +119,14 @@
   _highQualityImageCache = [[NIImageMemoryCache alloc] init];
   _thumbnailImageCache = [[NIImageMemoryCache alloc] init];
 
+  self.httpSessionManager = [AFHTTPSessionManager manager];
+  AFImageResponseSerializer *serializer = [AFImageResponseSerializer serializer];
+  serializer.imageScale = 1;
+  self.httpSessionManager.responseSerializer = serializer;
+  self.httpSessionManager.operationQueue.maxConcurrentOperationCount = 5;
+
   [_highQualityImageCache setMaxNumberOfPixels:1024L*1024L*10L];
   [_thumbnailImageCache setMaxNumberOfPixelsUnderStress:1024L*1024L*3L];
-
-  _queue = [[NSOperationQueue alloc] init];
-  [_queue setMaxConcurrentOperationCount:5];
 
   // Set the default loading image.
   self.photoAlbumView.loadingImage = [UIImage imageWithContentsOfFile:

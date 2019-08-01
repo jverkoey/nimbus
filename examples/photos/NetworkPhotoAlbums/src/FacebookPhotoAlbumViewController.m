@@ -21,12 +21,18 @@
 #import "AFNetworking.h"
 
 
+@interface FacebookPhotoAlbumViewController ()
+@property (nonatomic,strong) AFHTTPSessionManager *albumHttpSessionManager;
+@end
+
 @implementation FacebookPhotoAlbumViewController
 
 
 - (id)initWith:(id)object {
   if ((self = [self initWithNibName:nil bundle:nil])) {
     self.facebookAlbumId = object;
+    self.albumHttpSessionManager = [AFHTTPSessionManager manager];
+    self.albumHttpSessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
   }
   return self;
 }
@@ -47,44 +53,53 @@
   }
 }
 
-- (void (^)(AFHTTPRequestOperation *operation, id JSON))blockForAlbumProcessing {
-  return ^(AFHTTPRequestOperation *operation, id object) {
-    NSArray* data = [object objectForKey:@"data"];
-    
+- (void)loadAlbumInformation {
+  NSString* albumURLPath = [NSString stringWithFormat:
+                            @"http://graph.facebook.com/%@/photos?limit=200",
+                            self.facebookAlbumId];
+
+  // Nimbus processors allow us to perform complex computations on a separate thread before
+  // returning the object to the main thread. This is useful here because we perform sorting
+  // operations and pruning on the results.
+  NSURL* url = [NSURL URLWithString:albumURLPath];
+
+  [self.albumHttpSessionManager GET:url.absoluteString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSArray* data = [responseObject objectForKey:@"data"];
+
     NSMutableArray* photoInformation = [NSMutableArray arrayWithCapacity:[data count]];
     for (NSDictionary* photo in data) {
       NSArray* images = [photo objectForKey:@"images"];
-      
+
       if ([images count] > 0) {
         // Sort the images in descending order by image size.
         NSArray* sortedImages =
         [images sortedArrayUsingDescriptors:
          [NSArray arrayWithObject:
           [[NSSortDescriptor alloc] initWithKey:@"width" ascending:NO]]];
-        
+
         // Gather the high-quality photo information.
         NSDictionary* originalImage = [sortedImages objectAtIndex:0];
         NSString* originalImageSource = [originalImage objectForKey:@"source"];
         NSInteger width = [[originalImage objectForKey:@"width"] intValue];
         NSInteger height = [[originalImage objectForKey:@"height"] intValue];
-        
+
         // We gather the highest-quality photo's dimensions so that we can size the thumbnails
         // correctly until the high-quality image is downloaded.
         CGSize dimensions = CGSizeMake(width, height);
-        
+
         NSInteger numberOfImages = [sortedImages count];
-        
+
         // 0 being the lowest quality. On larger screens we fetch larger thumbnails.
         NSInteger qualityLevel = (NIIsPad() || NIScreenScale() > 1) ? 1 : 0;
-        
+
         NSInteger thumbnailIndex = ((numberOfImages - 1)
                                     - MIN(qualityLevel, numberOfImages - 2));
-        
+
         NSString* thumbnailImageSource = nil;
         if (0 < thumbnailIndex) {
           thumbnailImageSource = [[sortedImages objectAtIndex:thumbnailIndex] objectForKey:@"source"];
         }
-        
+
         NSString* caption = [photo objectForKey:@"name"];
         NSDictionary* prunedPhotoInfo = [NSDictionary dictionaryWithObjectsAndKeys:
                                          originalImageSource, @"originalSource",
@@ -95,7 +110,7 @@
         [photoInformation addObject:prunedPhotoInfo];
       }
     }
-    
+
     _photoInformation = photoInformation;
 
     [self loadThumbnails];
@@ -103,28 +118,8 @@
     [self.photoScrubberView reloadData];
 
     [self refreshChromeState];
-  };
-}
+  } failure:nil];
 
-- (void)loadAlbumInformation {
-  NSString* albumURLPath = [NSString stringWithFormat:
-                            @"http://graph.facebook.com/%@/photos?limit=200",
-                            self.facebookAlbumId];
-
-  // Nimbus processors allow us to perform complex computations on a separate thread before
-  // returning the object to the main thread. This is useful here because we perform sorting
-  // operations and pruning on the results.
-  NSURL* url = [NSURL URLWithString:albumURLPath];
-  NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
-  
-  // Facebook albums are painfully slow to load if they have a lot of comments. Even more
-  // frustrating is that you can't ask *not* to receive the comments from the graph API.
-  request.timeoutInterval = 200;
-
-  AFHTTPRequestOperation* albumRequest = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-  albumRequest.responseSerializer = [AFJSONResponseSerializer serializer];
-  [albumRequest setCompletionBlockWithSuccess:[self blockForAlbumProcessing] failure:nil];
-  [self.queue addOperation:albumRequest];
 }
 
 #pragma mark - UIViewController
