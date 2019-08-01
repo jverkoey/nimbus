@@ -29,6 +29,7 @@
 
 @interface NINetworkImageView()
 @property (nonatomic, strong) NSOperation* operation;
+@property (nonatomic, strong) AFHTTPSessionManager *httpSessionManager;
 @end
 
 
@@ -44,6 +45,7 @@
     request.delegate = nil;
   }
   [self.operation cancel];
+  [self.httpSessionManager invalidateSessionCancelingTasks:YES];
 }
 
 - (void)dealloc {
@@ -158,6 +160,7 @@
   }
 
   self.operation = nil;
+  self.httpSessionManager = nil;
 
   if ([self.delegate respondsToSelector:@selector(networkImageView:didLoadImage:)]) {
     [self.delegate networkImageView:self didLoadImage:self.image];
@@ -168,6 +171,7 @@
 
 - (void)_didFailToLoadWithError:(NSError *)error {
   self.operation = nil;
+  self.httpSessionManager = nil;
 
   if ([self.delegate respondsToSelector:@selector(networkImageView:didFailWithError:)]) {
     [self.delegate networkImageView:self didFailWithError:error];
@@ -313,10 +317,6 @@
         contentMode = UIViewContentModeScaleToFill;
       }
 
-      NSURLRequest *request = [NSURLRequest requestWithURL:url];
-
-      AFHTTPRequestOperation* requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-
       NIImageResponseSerializer* serializer = [NIImageResponseSerializer serializer];
       // We handle image scaling ourselves in the image processing method, so we need to disable
       // AFNetworking from doing so as well.
@@ -326,47 +326,47 @@
       serializer.displaySize = displaySize;
       serializer.scaleOptions = self.scaleOptions;
       serializer.interpolationQuality = self.interpolationQuality;
-      requestOperation.responseSerializer = serializer;
 
       NSString* originalCacheKey = [self cacheKeyForCacheIdentifier:pathToNetworkImage
                                                           imageSize:displaySize
                                                            cropRect:cropRect
                                                         contentMode:contentMode
                                                        scaleOptions:self.scaleOptions];
-      requestOperation.userInfo = @{@"cacheKey":originalCacheKey};
 
-      [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSString* blockCacheKey = [self cacheKeyForCacheIdentifier:pathToNetworkImage
-                                                         imageSize:displaySize
-                                                          cropRect:cropRect
-                                                       contentMode:contentMode
-                                                      scaleOptions:self.scaleOptions];
-
-        // Only keep this result if it's for the most recent request.
-        if ([blockCacheKey isEqualToString:((AFHTTPRequestOperation *)self.operation).userInfo[@"cacheKey"]]) {
-          [self _didFinishLoadingWithImage:responseObject
-                           cacheIdentifier:pathToNetworkImage
-                               displaySize:displaySize
-                                  cropRect:cropRect
-                               contentMode:contentMode
-                              scaleOptions:self.scaleOptions
-                            expirationDate:[self expirationDate]];
-        }
-
-      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-         [self _didFailToLoadWithError:error];
-      }];
-
-      [requestOperation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
-          if ([self.delegate respondsToSelector:@selector(networkImageView:readBytes:totalBytes:)]) {
-              [self.delegate networkImageView:self readBytes:totalBytesRead totalBytes:totalBytesExpectedToRead];
+      self.httpSessionManager = [AFHTTPSessionManager manager];
+      self.httpSessionManager.responseSerializer = serializer;
+      [self.httpSessionManager GET:url.absoluteString
+        parameters:nil
+          progress:^(NSProgress * _Nonnull downloadProgress) {
+            if ([self.delegate respondsToSelector:@selector(networkImageView:readBytes:totalBytes:)]) {
+              [self.delegate networkImageView:self
+                                    readBytes:downloadProgress.completedUnitCount
+                                   totalBytes:downloadProgress.totalUnitCount];
+            }
           }
-      }];
+           success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+             NSString* blockCacheKey = [self cacheKeyForCacheIdentifier:pathToNetworkImage
+                                                              imageSize:displaySize
+                                                               cropRect:cropRect
+                                                            contentMode:contentMode
+                                                           scaleOptions:self.scaleOptions];
 
-      self.operation = requestOperation;
+             // Only keep this result if it's for the most recent request.
+             if ([blockCacheKey isEqualToString:originalCacheKey]) {
+               [self _didFinishLoadingWithImage:responseObject
+                                cacheIdentifier:pathToNetworkImage
+                                    displaySize:displaySize
+                                       cropRect:cropRect
+                                    contentMode:contentMode
+                                   scaleOptions:self.scaleOptions
+                                 expirationDate:[self expirationDate]];
+             }
+
+           } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             [self _didFailToLoadWithError:error];
+           }];
 
       [self _didStartLoading];
-      [self.networkOperationQueue addOperation:requestOperation];
     }
   }
 }
