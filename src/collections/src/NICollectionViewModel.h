@@ -45,11 +45,11 @@
 
 #pragma mark Accessing Objects
 
-- (NSIndexPath *)indexPathForObject:(id)object;
+- (nullable NSIndexPath *)indexPathForObject:(nonnull id)object;
 
 #pragma mark Creating Collection View Cells
 
-@property (nonatomic, weak) id<NICollectionViewModelDelegate> delegate;
+@property (nonatomic, weak, nullable) id<NICollectionViewModelDelegate> delegate;
 
 @end
 
@@ -67,15 +67,15 @@
  */
 @interface NICollectionViewModel : NSObject <NICollectionViewModeling>
 
-- (id)initWithDelegate:(id<NICollectionViewModelDelegate>)delegate NS_DESIGNATED_INITIALIZER;
+- (nonnull id)initWithDelegate:(nullable id<NICollectionViewModelDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 
-- (id)initWithListArray:(NSArray *)listArray delegate:(id<NICollectionViewModelDelegate>)delegate;
+- (nonnull id)initWithListArray:(nonnull NSArray *)listArray delegate:(nullable id<NICollectionViewModelDelegate>)delegate;
 
 // Each NSString in the array starts a new section. Any other object is a new row (with exception of certain model-specific objects).
-- (id)initWithSectionedArray:(NSArray *)sectionedArray delegate:(id<NICollectionViewModelDelegate>)delegate;
+- (nonnull id)initWithSectionedArray:(nonnull NSArray *)sectionedArray delegate:(nullable id<NICollectionViewModelDelegate>)delegate;
 
 // Redeclaring for property autosynthesis.
-@property (nonatomic, weak) id<NICollectionViewModelDelegate> delegate;
+@property (nonatomic, weak, nullable) id<NICollectionViewModelDelegate> delegate;
 
 @end
 
@@ -92,10 +92,10 @@
  *
  * The implementation of this method will generally use object to customize the cell.
  */
-- (UICollectionViewCell *)collectionViewModel:(id<NICollectionViewModeling>)collectionViewModel
-                        cellForCollectionView:(UICollectionView *)collectionView
-                                  atIndexPath:(NSIndexPath *)indexPath
-                                   withObject:(id)object;
+- (nonnull UICollectionViewCell *)collectionViewModel:(nonnull id<NICollectionViewModeling>)collectionViewModel
+                                cellForCollectionView:(nonnull UICollectionView *)collectionView
+                                          atIndexPath:(nonnull NSIndexPath *)indexPath
+                                           withObject:(nonnull id)object;
 
 @optional
 
@@ -105,26 +105,26 @@
  * The value of the kind property and indexPath are implementation-dependent
  * based on the type of UICollectionViewLayout being used.
  */
-- (UICollectionReusableView *)collectionViewModel:(id<NICollectionViewModeling>)collectionViewModel
-                                   collectionView:(UICollectionView *)collectionView
-                viewForSupplementaryElementOfKind:(NSString *)kind
-                                      atIndexPath:(NSIndexPath *)indexPath;
+- (nullable UICollectionReusableView *)collectionViewModel:(nonnull id<NICollectionViewModeling>)collectionViewModel
+                                            collectionView:(nonnull UICollectionView *)collectionView
+                         viewForSupplementaryElementOfKind:(nonnull NSString *)kind
+                                               atIndexPath:(nonnull NSIndexPath *)indexPath;
 
 /**
  * Prefetch one or more collection view cells at given index paths with given objects.
  */
-- (void)collectionViewModel:(id<NICollectionViewModeling>)collectionViewModel
-               collectionView:(UICollectionView *)collectionView
-    prefetchItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths
-                  withObjects:(NSArray<id> *)objects NS_AVAILABLE_IOS(10_0);
+- (void)collectionViewModel:(nonnull id<NICollectionViewModeling>)collectionViewModel
+               collectionView:(nonnull UICollectionView *)collectionView
+    prefetchItemsAtIndexPaths:(nonnull NSArray<NSIndexPath *> *)indexPaths
+                  withObjects:(nonnull NSArray<id> *)objects NS_AVAILABLE_IOS(10_0);
 
 /**
  * Cancel the running prefetching task for one or more collection view cells at given index paths with given objects.
  */
-- (void)collectionViewModel:(id<NICollectionViewModeling>)collectionViewModel
-                        collectionView:(UICollectionView *)collectionView
-    cancelPrefetchingItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths
-                           withObjects:(NSArray<id> *)objects NS_AVAILABLE_IOS(10_0);
+- (void)collectionViewModel:(nonnull id<NICollectionViewModeling>)collectionViewModel
+                        collectionView:(nonnull UICollectionView *)collectionView
+    cancelPrefetchingItemsAtIndexPaths:(nonnull NSArray<NSIndexPath *> *)indexPaths
+                           withObjects:(nonnull NSArray<id> *)objects NS_AVAILABLE_IOS(10_0);
 
 @end
 
@@ -141,10 +141,10 @@
  */
 @interface NICollectionViewModelFooter : NSObject
 
-+ (id)footerWithTitle:(NSString *)title;
-- (id)initWithTitle:(NSString *)title;
++ (nonnull id)footerWithTitle:(nonnull NSString *)title;
+- (nonnull id)initWithTitle:(nonnull NSString *)title;
 
-@property (nonatomic, copy) NSString* title;
+@property (nonatomic, copy, nonnull) NSString* title;
 
 @end
 
