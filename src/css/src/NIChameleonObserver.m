@@ -42,13 +42,14 @@ NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
 - (NSString *)pathFromPath:(NSString *)path;
 @property (nonatomic,strong) NSNetServiceBrowser *netBrowser;
 @property (nonatomic,strong) NSNetService *netService;
+@property (nonatomic,strong) AFHTTPSessionManager *httpSessionManager;
 @end
 
 @implementation NIChameleonObserver
 
 
 - (void)dealloc {
-  [_queue cancelAllOperations];
+  [self.httpSessionManager invalidateSessionCancelingTasks:YES];
 }
 
 - (id)initWithStylesheetCache:(NIStylesheetCache *)stylesheetCache host:(NSString *)host {
@@ -57,7 +58,7 @@ NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
     NIDASSERT(nil != stylesheetCache);
     _stylesheetCache = stylesheetCache;
     _stylesheetPaths = [[NSMutableArray alloc] init];
-    _queue = [[NSOperationQueue alloc] init];
+    _httpSessionManager = [AFHTTPSessionManager manager];
 
     if ([host hasSuffix:@"/"]) {
       _host = [host copy];
@@ -91,25 +92,22 @@ NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
 
 - (void)downloadStylesheetWithFilename:(NSString *)path {
   NSURL* url = [NSURL URLWithString:[_host stringByAppendingString:path]];
-  NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
 
-  AFHTTPRequestOperation* requestOp = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-
-  [requestOp setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+  [self.httpSessionManager GET:url.absoluteString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
     NSMutableArray* changedStylesheets = [NSMutableArray array];
-    NSArray* pathParts = [[operation.request.URL absoluteString] pathComponents];
+    NSArray* pathParts = [url.absoluteString pathComponents];
     NSString* resultPath = [[pathParts subarrayWithRange:NSMakeRange(2, [pathParts count] - 2)]
                             componentsJoinedByString:@"/"];
     NSString* rootPath = NIPathForDocumentsResource(nil);
     NSString* hashedPath = [self pathFromPath:resultPath];
     NSString* diskPath = [rootPath stringByAppendingPathComponent:hashedPath];
     [responseObject writeToFile:diskPath atomically:YES];
-    
+
     NIStylesheet* stylesheet = [_stylesheetCache stylesheetWithPath:resultPath loadFromDisk:NO];
     if ([stylesheet loadFromPath:resultPath pathPrefix:rootPath delegate:self]) {
       [changedStylesheets addObject:stylesheet];
     }
-    
+
     for (NSString* iteratingPath in _stylesheetPaths) {
       stylesheet = [_stylesheetCache stylesheetWithPath:iteratingPath loadFromDisk:NO];
       if ([stylesheet.dependencies containsObject:resultPath]) {
@@ -126,20 +124,14 @@ NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
                         object:changedStylesheet
                       userInfo:nil];
     }
-
-  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-  }];
-  [_queue addOperation:requestOp];
+  } failure:nil];
 }
 
 - (void)downloadStringsWithFilename:(NSString *)path {
   NSURL* url = [NSURL URLWithString:[_host stringByAppendingString:path]];
-  NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
-  
-  AFHTTPRequestOperation* requestOp = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-  
-  [requestOp setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-    NSArray* pathParts = [[operation.request.URL absoluteString] pathComponents];
+
+  [self.httpSessionManager GET:url.absoluteString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSArray* pathParts = [url.absoluteString pathComponents];
     NSString* resultPath = [[pathParts subarrayWithRange:NSMakeRange(2, [pathParts count] - 2)]
                             componentsJoinedByString:@"/"];
     NSString* rootPath = NIPathForDocumentsResource(nil);
@@ -151,34 +143,26 @@ NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
     [nc postNotificationName:NIStringsDidChangeNotification object:nil userInfo:@{
         NIStringsDidChangeFilePathKey: diskPath
      }];
-  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-  }];
-  [_queue addOperation:requestOp];
+  } failure:nil];
 }
 
 - (void)downloadJSONWithFilename:(NSString *)path {
-    NSURL* url = [NSURL URLWithString:[_host stringByAppendingString:path]];
-    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
-    
-    AFHTTPRequestOperation* requestOp = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    
-    [requestOp setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSArray* pathParts = [[operation.request.URL absoluteString] pathComponents];
-        NSString* resultPath = [[pathParts subarrayWithRange:NSMakeRange(2, [pathParts count] - 2)]
-                                componentsJoinedByString:@"/"];
-        NSString* rootPath = NIPathForDocumentsResource(nil);
-        NSString* hashedPath = [self pathFromPath:resultPath];
-        NSString* diskPath = [rootPath stringByAppendingPathComponent:hashedPath];
-        [responseObject writeToFile:diskPath atomically:YES];
-        
-        NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
-        [nc postNotificationName:NIJSONDidChangeNotification object:nil userInfo:@{
-            NIJSONDidChangeFilePathKey: diskPath,
-            NIJSONDidChangeNameKey: path
-         }];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    }];
-    [_queue addOperation:requestOp];
+  NSURL* url = [NSURL URLWithString:[_host stringByAppendingString:path]];
+
+  [self.httpSessionManager GET:url.absoluteString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSArray* pathParts = [url.absoluteString pathComponents];
+    NSString* resultPath = [[pathParts subarrayWithRange:NSMakeRange(2, [pathParts count] - 2)]
+                            componentsJoinedByString:@"/"];
+    NSString* rootPath = NIPathForDocumentsResource(nil);
+    NSString* hashedPath = [self pathFromPath:resultPath];
+    NSString* diskPath = [rootPath stringByAppendingPathComponent:hashedPath];
+    [responseObject writeToFile:diskPath atomically:YES];
+
+    NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+    [nc postNotificationName:NIJSONDidChangeNotification object:nil
+                    userInfo:@{NIJSONDidChangeFilePathKey: diskPath,
+                               NIJSONDidChangeNameKey: path}];
+  } failure:nil];
 }
 
 - (NSString *)pathFromPath:(NSString *)path {
@@ -203,9 +187,8 @@ NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
   NSURL* url = [NSURL URLWithString:[_host stringByAppendingString:@"watch"]];
   NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
   request.timeoutInterval = kTimeoutInterval;
-  AFHTTPRequestOperation* requestOp = [[AFHTTPRequestOperation alloc] initWithRequest:request];
 
-  [requestOp setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+  [self.httpSessionManager GET:url.absoluteString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
     NSString* stringData = [[NSString alloc] initWithData:responseObject
                                                  encoding:NSUTF8StringEncoding];
 
@@ -223,19 +206,16 @@ NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
     // Immediately start watching for more skin changes.
     _retryCount = 0;
     [self watchSkinChanges];
-
-  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+  } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     if (_retryCount < kMaxNumberOfRetries) {
       ++_retryCount;
-      
+
       dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kRetryInterval * NSEC_PER_MSEC));
       dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [self watchSkinChanges];
       });
     }
   }];
-
-  [_queue addOperation:requestOp];
 }
 
 -(void)enableBonjourDiscovery:(NSString *)serviceName

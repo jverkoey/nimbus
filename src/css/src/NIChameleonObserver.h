@@ -44,7 +44,6 @@ extern NSString* const NIJSONDidChangeNameKey;
 @private
   NIStylesheetCache* _stylesheetCache;
   NSMutableArray* _stylesheetPaths;
-  NSOperationQueue* _queue;
   NSString* _host;
   NSInteger _retryCount;
 }
