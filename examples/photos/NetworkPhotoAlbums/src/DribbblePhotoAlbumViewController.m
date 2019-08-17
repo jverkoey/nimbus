@@ -18,12 +18,18 @@
 #import "AFNetworking.h"
 
 
+@interface DribbblePhotoAlbumViewController ()
+@property (nonatomic,strong) AFHTTPSessionManager *albumHttpSessionManager;
+@end
+
 @implementation DribbblePhotoAlbumViewController
 
 
 - (id)initWith:(id)object {
   if ((self = [self initWithNibName:nil bundle:nil])) {
     self.apiPath = object;
+    self.albumHttpSessionManager = [AFHTTPSessionManager manager];
+    self.albumHttpSessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
   }
   return self;
 }
@@ -44,42 +50,6 @@
   }
 }
 
-- (void (^)(AFHTTPRequestOperation *operation, id JSON))blockForAlbumProcessing {
-  return ^(AFHTTPRequestOperation *operation, id object) {
-    NSArray* data = [object objectForKey:@"shots"];
-    
-    NSMutableArray* photoInformation = [NSMutableArray arrayWithCapacity:[data count]];
-    for (NSDictionary* photo in data) {
-      
-      // Gather the high-quality photo information.
-      NSString* originalImageSource = [photo objectForKey:@"image_url"];
-      NSInteger width = [[photo objectForKey:@"width"] intValue];
-      NSInteger height = [[photo objectForKey:@"height"] intValue];
-      
-      // We gather the highest-quality photo's dimensions so that we can size the thumbnails
-      // correctly until the high-quality image is downloaded.
-      CGSize dimensions = CGSizeMake(width, height);
-      
-      NSString* thumbnailImageSource = [photo objectForKey:@"image_teaser_url"];
-      
-      NSDictionary* prunedPhotoInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                                       originalImageSource, @"originalSource",
-                                       thumbnailImageSource, @"thumbnailSource",
-                                       [NSValue valueWithCGSize:dimensions], @"dimensions",
-                                       nil];
-      [photoInformation addObject:prunedPhotoInfo];
-    }
-    
-    _photoInformation = photoInformation;
-    
-    [self loadThumbnails];
-    [self.photoAlbumView reloadData];
-    [self.photoScrubberView reloadData];
-
-    [self refreshChromeState];
-  };
-}
-
 - (void)loadAlbumInformation {
   NSString* albumURLPath = [@"http://api.dribbble.com" stringByAppendingString:self.apiPath];
 
@@ -87,12 +57,42 @@
   // returning the object to the main thread. This is useful here because we perform sorting
   // operations and pruning on the results.
   NSURL* url = [NSURL URLWithString:albumURLPath];
-  NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
 
-  AFHTTPRequestOperation* albumRequest = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-  albumRequest.responseSerializer = [AFJSONResponseSerializer serializer];
-  [albumRequest setCompletionBlockWithSuccess:[self blockForAlbumProcessing] failure:nil];
-  [self.queue addOperation:albumRequest];
+  [self.albumHttpSessionManager GET:url.absoluteString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSArray* data = [responseObject objectForKey:@"shots"];
+
+    NSMutableArray* photoInformation = [NSMutableArray arrayWithCapacity:[data count]];
+    for (NSDictionary* photo in data) {
+
+      // Gather the high-quality photo information.
+      NSString* originalImageSource = [photo objectForKey:@"image_url"];
+      NSInteger width = [[photo objectForKey:@"width"] intValue];
+      NSInteger height = [[photo objectForKey:@"height"] intValue];
+
+      // We gather the highest-quality photo's dimensions so that we can size the thumbnails
+      // correctly until the high-quality image is downloaded.
+      CGSize dimensions = CGSizeMake(width, height);
+
+      NSString* thumbnailImageSource = [photo objectForKey:@"image_teaser_url"];
+
+      NSDictionary* prunedPhotoInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                                       originalImageSource, @"originalSource",
+                                       thumbnailImageSource, @"thumbnailSource",
+                                       [NSValue valueWithCGSize:dimensions], @"dimensions",
+                                       nil];
+      [photoInformation addObject:prunedPhotoInfo];
+    }
+
+    _photoInformation = photoInformation;
+
+    [self loadThumbnails];
+    [self.photoAlbumView reloadData];
+    [self.photoScrubberView reloadData];
+
+    [self refreshChromeState];
+  } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    NSLog(@"Hi");
+  }];
 }
 
 #pragma mark - UIViewController
