@@ -105,10 +105,10 @@
  * The value of the kind property and indexPath are implementation-dependent
  * based on the type of UICollectionViewLayout being used.
  */
-- (nullable UICollectionReusableView *)collectionViewModel:(nonnull id<NICollectionViewModeling>)collectionViewModel
-                                            collectionView:(nonnull UICollectionView *)collectionView
-                         viewForSupplementaryElementOfKind:(nonnull NSString *)kind
-                                               atIndexPath:(nonnull NSIndexPath *)indexPath;
+- (nonnull UICollectionReusableView *)collectionViewModel:(nonnull id<NICollectionViewModeling>)collectionViewModel
+                                           collectionView:(nonnull UICollectionView *)collectionView
+                        viewForSupplementaryElementOfKind:(nonnull NSString *)kind
+                                              atIndexPath:(nonnull NSIndexPath *)indexPath;
 
 /**
  * Prefetch one or more collection view cells at given index paths with given objects.
