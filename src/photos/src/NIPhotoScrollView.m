@@ -461,8 +461,6 @@
   self.frame = frame;
   [self setMaxMinZoomScalesForCurrentBounds];
   [self restoreCenterPoint:restorePoint scale:restoreScale];
-
-  [_scrollView setNeedsLayout];
 }
 
 #pragma mark Centering
