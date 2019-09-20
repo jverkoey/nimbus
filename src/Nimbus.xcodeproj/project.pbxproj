@@ -2887,15 +2887,16 @@
 		66A03BFE13E6E84800B514F3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "Jeff Verkoeyen";
 			};
 			buildConfigurationList = 66A03C0113E6E84800B514F3 /* Build configuration list for PBXProject "Nimbus" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 66A03BFC13E6E84800B514F3;
 			productRefGroup = 66A03C0A13E6E85E00B514F3 /* Products */;
@@ -3797,6 +3798,7 @@
 				INFOPLIST_FILE = "pagingscrollview/unittests/NimbusPagingScrollViewTests-Info.plist";
 				NIMBUS_FEATURE_NAME = pagingscrollview;
 				NIMBUS_TARGET_NAME = NimbusPagingScrollView;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nimbus.paginscrollview.unittests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -3808,6 +3810,7 @@
 				INFOPLIST_FILE = "pagingscrollview/unittests/NimbusPagingScrollViewTests-Info.plist";
 				NIMBUS_FEATURE_NAME = pagingscrollview;
 				NIMBUS_TARGET_NAME = NimbusPagingScrollView;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nimbus.paginscrollview.unittests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -3837,6 +3840,7 @@
 				INFOPLIST_FILE = "models/unittests/NimbusModelsTests-Info.plist";
 				NIMBUS_FEATURE_NAME = models;
 				NIMBUS_TARGET_NAME = NimbusModels;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nimbus.models.unittests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -3848,6 +3852,7 @@
 				INFOPLIST_FILE = "models/unittests/NimbusModelsTests-Info.plist";
 				NIMBUS_FEATURE_NAME = models;
 				NIMBUS_TARGET_NAME = NimbusModels;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nimbus.models.unittests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -3877,6 +3882,7 @@
 				INFOPLIST_FILE = "overview/unittests/NimbusOverviewTests-Info.plist";
 				NIMBUS_FEATURE_NAME = overview;
 				NIMBUS_TARGET_NAME = NimbusOverview;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nimbus.overview.unittests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -3888,6 +3894,7 @@
 				INFOPLIST_FILE = "overview/unittests/NimbusOverviewTests-Info.plist";
 				NIMBUS_FEATURE_NAME = overview;
 				NIMBUS_TARGET_NAME = NimbusOverview;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nimbus.overview.unittests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -3917,6 +3924,7 @@
 				INFOPLIST_FILE = "photos/unittests/NimbusPhotosTests-Info.plist";
 				NIMBUS_FEATURE_NAME = photos;
 				NIMBUS_TARGET_NAME = NimbusPhotos;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nimbus.photos.unittests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -3928,6 +3936,7 @@
 				INFOPLIST_FILE = "photos/unittests/NimbusPhotosTests-Info.plist";
 				NIMBUS_FEATURE_NAME = photos;
 				NIMBUS_TARGET_NAME = NimbusPhotos;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nimbus.photos.unittests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -3957,6 +3966,7 @@
 				INFOPLIST_FILE = "interapp/unittests/NimbusInterappTests-Info.plist";
 				NIMBUS_FEATURE_NAME = interapp;
 				NIMBUS_TARGET_NAME = NimbusInterapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nimbus.interapp.unittests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -3968,6 +3978,7 @@
 				INFOPLIST_FILE = "interapp/unittests/NimbusInterappTests-Info.plist";
 				NIMBUS_FEATURE_NAME = interapp;
 				NIMBUS_TARGET_NAME = NimbusInterapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nimbus.interapp.unittests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -3976,21 +3987,34 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Nimbus_Prefix.pch;
@@ -4022,12 +4046,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -4036,6 +4071,7 @@
 					"$(inherited)",
 					"$(SDKROOT)/Developer/Library/Frameworks",
 				);
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Nimbus_Prefix.pch;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -4089,6 +4125,7 @@
 				INFOPLIST_FILE = "core/unittests/NimbusCoreTests-Info.plist";
 				NIMBUS_FEATURE_NAME = core;
 				NIMBUS_TARGET_NAME = NimbusCore;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nimbus.core.unittests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -4101,6 +4138,7 @@
 				INFOPLIST_FILE = "core/unittests/NimbusCoreTests-Info.plist";
 				NIMBUS_FEATURE_NAME = core;
 				NIMBUS_TARGET_NAME = NimbusCore;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nimbus.core.unittests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -4130,6 +4168,7 @@
 				INFOPLIST_FILE = "launcher/unittests/NimbusLauncherTests-Info.plist";
 				NIMBUS_FEATURE_NAME = launcher;
 				NIMBUS_TARGET_NAME = NimbusLauncher;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nimbus.launcher.unittests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -4141,6 +4180,7 @@
 				INFOPLIST_FILE = "launcher/unittests/NimbusLauncherTests-Info.plist";
 				NIMBUS_FEATURE_NAME = launcher;
 				NIMBUS_TARGET_NAME = NimbusLauncher;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nimbus.launcher.unittests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -4170,6 +4210,7 @@
 				INFOPLIST_FILE = "networkimage/unittests/NimbusNetworkImageTests-Info.plist";
 				NIMBUS_FEATURE_NAME = networkimage;
 				NIMBUS_TARGET_NAME = NimbusNetworkImage;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nimbus.networkimage.unittests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -4181,6 +4222,7 @@
 				INFOPLIST_FILE = "networkimage/unittests/NimbusNetworkImageTests-Info.plist";
 				NIMBUS_FEATURE_NAME = networkimage;
 				NIMBUS_TARGET_NAME = NimbusNetworkImage;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nimbus.networkimage.unittests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -4210,6 +4252,7 @@
 				INFOPLIST_FILE = "networkcontrollers/unittests/NetworkControllersTests-Info.plist";
 				NIMBUS_FEATURE_NAME = networkcontrollers;
 				NIMBUS_TARGET_NAME = NimbusNetworkControllers;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nimbus.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -4221,6 +4264,7 @@
 				INFOPLIST_FILE = "networkcontrollers/unittests/NetworkControllersTests-Info.plist";
 				NIMBUS_FEATURE_NAME = networkcontrollers;
 				NIMBUS_TARGET_NAME = NimbusNetworkControllers;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nimbus.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -4253,6 +4297,7 @@
 				INFOPLIST_FILE = "css/unittests/NimbusCSSTests-Info.plist";
 				NIMBUS_FEATURE_NAME = css;
 				NIMBUS_TARGET_NAME = NimbusCss;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nimbus.css.unittests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -4264,6 +4309,7 @@
 				INFOPLIST_FILE = "css/unittests/NimbusCSSTests-Info.plist";
 				NIMBUS_FEATURE_NAME = css;
 				NIMBUS_TARGET_NAME = NimbusCss;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nimbus.css.unittests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -4290,6 +4336,7 @@
 				INFOPLIST_FILE = "badge/unittests/NimbusBadgeTests-Info.plist";
 				NIMBUS_FEATURE_NAME = badge;
 				NIMBUS_TARGET_NAME = NimbusBadge;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nimbus.badgetests.unittests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -4300,6 +4347,7 @@
 				INFOPLIST_FILE = "badge/unittests/NimbusBadgeTests-Info.plist";
 				NIMBUS_FEATURE_NAME = badge;
 				NIMBUS_TARGET_NAME = NimbusBadge;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nimbus.badgetests.unittests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -4346,6 +4394,7 @@
 				INFOPLIST_FILE = "collections/unittests/NimbusCollectionsTests-Info.plist";
 				NIMBUS_FEATURE_NAME = collections;
 				NIMBUS_TARGET_NAME = NimbusCollections;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nimbus.collections.unittests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -4358,6 +4407,7 @@
 				INFOPLIST_FILE = "collections/unittests/NimbusCollectionsTests-Info.plist";
 				NIMBUS_FEATURE_NAME = collections;
 				NIMBUS_TARGET_NAME = NimbusCollections;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nimbus.collections.unittests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -4389,6 +4439,7 @@
 				INFOPLIST_FILE = "attributedlabel/unittests/NimbusAttributedLabelTests-Info.plist";
 				NIMBUS_FEATURE_NAME = attributedlabel;
 				NIMBUS_TARGET_NAME = NimbusAttributedLabel;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nimbus.attributedlabel.unittests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -4400,6 +4451,7 @@
 				INFOPLIST_FILE = "attributedlabel/unittests/NimbusAttributedLabelTests-Info.plist";
 				NIMBUS_FEATURE_NAME = attributedlabel;
 				NIMBUS_TARGET_NAME = NimbusAttributedLabel;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nimbus.attributedlabel.unittests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -4429,6 +4481,7 @@
 				INFOPLIST_FILE = "webcontroller/unittests/NimbusWebControllerTests-Info.plist";
 				NIMBUS_FEATURE_NAME = webcontroller;
 				NIMBUS_TARGET_NAME = NimbusWebController;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nimbus.webcontroller.unittests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -4440,6 +4493,7 @@
 				INFOPLIST_FILE = "webcontroller/unittests/NimbusWebControllerTests-Info.plist";
 				NIMBUS_FEATURE_NAME = webcontroller;
 				NIMBUS_TARGET_NAME = NimbusWebController;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nimbus.webcontroller.unittests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

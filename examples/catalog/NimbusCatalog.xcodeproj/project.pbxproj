@@ -972,11 +972,11 @@
 			};
 			buildConfigurationList = 6693C0E5158A63E600950D42 /* Build configuration list for PBXProject "NimbusCatalog" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
+				Base,
 			);
 			mainGroup = 6693C0E0158A63E600950D42;
 			productRefGroup = 6693C0EC158A63E600950D42 /* Products */;
