@@ -51,7 +51,7 @@ Pod::Spec.new do |s|
     ss.source_files = 'src/css/src'
     ss.dependency 'Nimbus/Core'
     ss.dependency 'Nimbus/Textfield'
-    ss.dependency 'AFNetworking', '~> 2.6'
+    ss.dependency 'AFNetworking', '~> 3.0'
   end
 
   s.subspec 'Interapp' do |ss|
@@ -79,7 +79,7 @@ Pod::Spec.new do |s|
   s.subspec 'NetworkImage' do |ss|
     ss.source_files = 'src/networkimage/src'
     ss.dependency 'Nimbus/Core'
-    ss.dependency 'AFNetworking', '~> 2.6'
+    ss.dependency 'AFNetworking', '~> 3.0'
   end
 
   s.subspec 'Overview' do |ss|
