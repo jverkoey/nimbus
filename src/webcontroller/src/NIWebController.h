@@ -74,6 +74,7 @@
  *
  * @ingroup NimbusWebController
  */
+__deprecated_msg("No longer supported; please use WKWebView instead. This API will eventually be deleted.")
 @interface NIWebController : UIViewController <UIWebViewDelegate, UIActionSheetDelegate>
 
 // Designated initializer.
