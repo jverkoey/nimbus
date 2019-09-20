@@ -29,7 +29,7 @@
  * @param target The target that was attached to the NIActions instance.
  * @param indexPath The index path of the object.
  */
-typedef BOOL (^NIActionBlock)(id object, id target, NSIndexPath* indexPath);
+typedef BOOL (^NIActionBlock)(_Nonnull id object, _Nonnull id target, NSIndexPath* _Nonnull indexPath);
 
 /**
  * The attachable types of actions for NIAction.
@@ -92,34 +92,34 @@ NSArray *objects = @[
 @interface NIActions : NSObject
 
 // Designated initializer.
-- (id)initWithTarget:(id)target;
+- (nonnull id)initWithTarget:(nullable id)target;
 
 #pragma mark Mapping Objects
 
-- (id)attachToObject:(id<NSObject>)object tapBlock:(NIActionBlock)action;
-- (id)attachToObject:(id<NSObject>)object detailBlock:(NIActionBlock)action;
-- (id)attachToObject:(id<NSObject>)object navigationBlock:(NIActionBlock)action;
+- (nonnull id)attachToObject:(nonnull id<NSObject>)object tapBlock:(nonnull NIActionBlock)action;
+- (nonnull id)attachToObject:(nonnull id<NSObject>)object detailBlock:(nonnull NIActionBlock)action;
+- (nonnull id)attachToObject:(nonnull id<NSObject>)object navigationBlock:(nonnull NIActionBlock)action;
 
-- (id)attachToObject:(id<NSObject>)object tapSelector:(SEL)selector;
-- (id)attachToObject:(id<NSObject>)object detailSelector:(SEL)selector;
-- (id)attachToObject:(id<NSObject>)object navigationSelector:(SEL)selector;
+- (nonnull id)attachToObject:(nonnull id<NSObject>)object tapSelector:(nonnull SEL)selector;
+- (nonnull id)attachToObject:(nonnull id<NSObject>)object detailSelector:(nonnull SEL)selector;
+- (nonnull id)attachToObject:(nonnull id<NSObject>)object navigationSelector:(nonnull SEL)selector;
 
 #pragma mark Mapping Classes
 
-- (void)attachToClass:(Class)aClass tapBlock:(NIActionBlock)action;
-- (void)attachToClass:(Class)aClass detailBlock:(NIActionBlock)action;
-- (void)attachToClass:(Class)aClass navigationBlock:(NIActionBlock)action;
+- (void)attachToClass:(nonnull Class)aClass tapBlock:(nonnull NIActionBlock)action;
+- (void)attachToClass:(nonnull Class)aClass detailBlock:(nonnull NIActionBlock)action;
+- (void)attachToClass:(nonnull Class)aClass navigationBlock:(nonnull NIActionBlock)action;
 
-- (void)attachToClass:(Class)aClass tapSelector:(SEL)selector;
-- (void)attachToClass:(Class)aClass detailSelector:(SEL)selector;
-- (void)attachToClass:(Class)aClass navigationSelector:(SEL)selector;
+- (void)attachToClass:(nonnull Class)aClass tapSelector:(nonnull SEL)selector;
+- (void)attachToClass:(nonnull Class)aClass detailSelector:(nonnull SEL)selector;
+- (void)attachToClass:(nonnull Class)aClass navigationSelector:(nonnull SEL)selector;
 
 #pragma mark Object State
 
-- (BOOL)isObjectActionable:(id<NSObject>)object;
-- (NIActionType)attachedActionTypesForObject:(id<NSObject>)object;
+- (BOOL)isObjectActionable:(nonnull id<NSObject>)object;
+- (NIActionType)attachedActionTypesForObject:(nonnull id<NSObject>)object;
 
-+ (id)objectFromKeyClass:(Class)keyClass map:(NSMutableDictionary *)map;
++ (nullable id)objectFromKeyClass:(nonnull Class)keyClass map:(nonnull NSMutableDictionary *)map;
 
 @end
 
@@ -137,7 +137,7 @@ extern "C" {
  *
  * @param controllerClass The class of controller to instantiate.
  */
-NIActionBlock NIPushControllerAction(Class controllerClass);
+_Nonnull NIActionBlock NIPushControllerAction(_Nonnull Class controllerClass);
 
 #if defined __cplusplus
 }
@@ -151,7 +151,7 @@ NIActionBlock NIPushControllerAction(Class controllerClass);
  *
  * @param indexPath The index path of the requested object.
  */
-- (id)objectAtIndexPath:(NSIndexPath *)indexPath;
+- (nullable id)objectAtIndexPath:(nonnull NSIndexPath *)indexPath;
 
 @end
 
