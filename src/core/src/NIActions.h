@@ -29,7 +29,7 @@
  * @param target The target that was attached to the NIActions instance.
  * @param indexPath The index path of the object.
  */
-typedef BOOL (^NIActionBlock)(_Nonnull id object, _Nonnull id target, NSIndexPath* _Nonnull indexPath);
+typedef BOOL (^NIActionBlock)(_Nonnull id object, _Nullable id target, NSIndexPath* _Nonnull indexPath);
 
 /**
  * The attachable types of actions for NIAction.
