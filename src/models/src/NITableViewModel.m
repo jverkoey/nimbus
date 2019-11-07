@@ -89,14 +89,24 @@
   NSString* currentSectionFooterTitle = nil;
   NSMutableArray* currentSectionRows = nil;
 
+  BOOL hasAnySectionHeaders = NO;
   for (id object in sectionedArray) {
-    BOOL isSection = [object isKindOfClass:[NSString class]];
+    if ([object isKindOfClass:[NITableViewModelHeader class]]) {
+      hasAnySectionHeaders = YES;
+      break;
+    }
+  }
+
+  for (id object in sectionedArray) {
+    BOOL isSection = (hasAnySectionHeaders
+                      ? [object isKindOfClass:[NITableViewModelHeader class]]
+                      : [object isKindOfClass:[NSString class]]);
     BOOL isSectionFooter = [object isKindOfClass:[NITableViewModelFooter class]];
 
     NSString* nextSectionHeaderTitle = nil;
 
     if (isSection) {
-      nextSectionHeaderTitle = object;
+      nextSectionHeaderTitle = hasAnySectionHeaders ? [object title] : object;
 
     } else if (isSectionFooter) {
       NITableViewModelFooter* footer = object;
@@ -369,6 +379,20 @@
 
 @end
 
+@implementation NITableViewModelHeader
+
++ (instancetype)headerWithTitle:(NSString *)title {
+  return [[self alloc] initWithTitle:title];
+}
+
+- (instancetype)initWithTitle:(NSString *)title {
+  if ((self = [super init])) {
+    self.title = title;
+  }
+  return self;
+}
+
+@end
 
 @implementation NITableViewModelFooter
 

@@ -107,6 +107,26 @@ typedef enum {
 @end
 
 /**
+ * An object used in sectioned arrays to denote a section header title.
+ *
+ * Meant to be used in a sectioned array for NITableViewModel.
+ *
+ * <h3>Example</h3>
+ *
+ * @code
+ *  [NITableViewModelHeader headerWithTitle:@"Header"]
+ * @endcode
+ */
+@interface NITableViewModelHeader : NSObject
+
++ (nonnull instancetype)headerWithTitle:(nonnull NSString *)title;
+- (nonnull instancetype)initWithTitle:(nonnull NSString *)title;
+
+@property (nonatomic, copy, nullable) NSString* title;
+
+@end
+
+/**
  * An object used in sectioned arrays to denote a section footer title.
  *
  * Meant to be used in a sectioned array for NITableViewModel.
@@ -178,7 +198,29 @@ typedef enum {
  *  [NSDictionary dictionaryWithObject:@"Row 3" forKey:@"title"],
  *  [NITableViewModelFooter footerWithTitle:@"Footer"],
  *  nil];
- * [[NIStaticTableViewModel alloc] initWithSectionedArray:contents delegate:self];
+ * [[NITableViewModel alloc] initWithSectionedArray:contents delegate:self];
+ * @endcode
+ *
+ * <h3>Example using NITableViewModelHeader</h3>
+ *
+ * When a NITableViewModelHeader is present in the array then strings will no longer be
+ * treated as section headers; NITableViewModelHeader instances will be used as section
+ * headers instead. This enables strings to be used as simple objects in a sectioned
+ * array, similar to how they can be used in a list array.
+ *
+ * @code
+ * NSArray* contents =
+ * [NSArray arrayWithObjects:
+ *  [NITableViewModelHeader headerWithTitle:@"Section 1"],
+ *  @"Row 1",
+ *  @"Row 2",
+ *  [NITableViewModelHeader headerWithTitle:@"Section 2"],
+ *  // This section is empty.
+ *  [NITableViewModelHeader headerWithTitle:@"Section 3"],
+ *  @"Row 3",
+ *  [NITableViewModelFooter footerWithTitle:@"Footer"],
+ *  nil];
+ * [[NITableViewModel alloc] initWithSectionedArray:contents delegate:self];
  * @endcode
  *
  * @fn NITableViewModel::initWithSectionedArray:delegate:
