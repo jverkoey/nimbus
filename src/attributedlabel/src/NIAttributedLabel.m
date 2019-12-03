@@ -1563,6 +1563,9 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
 
   CFArrayRef lines = CTFrameGetLines(self.textFrame);
   NSInteger numberOfLines = [self numberOfDisplayedLines];
+  if (!numberOfLines) {
+    return;
+  }
 
   BOOL truncatesLastLine = (self.lineBreakMode == NSLineBreakByTruncatingTail);
   CGPoint lineOrigins[numberOfLines];
