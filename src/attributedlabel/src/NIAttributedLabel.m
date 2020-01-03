@@ -1346,7 +1346,7 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
 // style information.
 - (NSMutableAttributedString *)mutableAttributedStringWithAdditions {
   NSMutableAttributedString* attributedString = [self.mutableAttributedString mutableCopy];
-  
+
   // Set highlighted text color for the entire string first to avoid undesired style override e.g., link color.
   if (self.isHighlighted) {
     [attributedString setTextColor:self.highlightedTextColor];
