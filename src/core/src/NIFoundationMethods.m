@@ -313,11 +313,6 @@ CGFloat boundf(CGFloat value, CGFloat min, CGFloat max) {
   return NIBoundf(value, min, max);
 }
 
-// Deprecated.
-NSInteger boundi(NSInteger value, NSInteger min, NSInteger max) {
-  return NIBoundi(value, min, max);
-}
-
 CGFloat NIBoundf(CGFloat value, CGFloat min, CGFloat max) {
   if (max < min) {
     max = min;
