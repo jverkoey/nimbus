@@ -127,6 +127,16 @@ extern NSString* const NIAttributedLabelLinkAttributeName; // Value is an NSText
 
 @property (nonatomic) NILinkOrdering linkOrdering; // Define how to sort links in the text. Default: NILinkOrderFirst
 
+/**
+ * Configures if the label's accessibility elements should remember their last valid accessibility
+ * containers.
+ *
+ * When this property is set to @c YES, the label's accessibility elements will remember their last
+ * valid containers and use those containers if needed when computing accessibility properties like
+ * @c accessibilityFrame.
+ */
+@property(nonatomic) BOOL accessibleElementsRememberLastValidContainer;
+
 - (void)setFont:(UIFont *)font            range:(NSRange)range;
 - (void)setStrokeColor:(UIColor *)color   range:(NSRange)range;
 - (void)setStrokeWidth:(CGFloat)width     range:(NSRange)range;
