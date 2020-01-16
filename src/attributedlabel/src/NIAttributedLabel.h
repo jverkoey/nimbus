@@ -129,11 +129,24 @@ extern NSString* const NIAttributedLabelLinkAttributeName; // Value is an NSText
 
 /**
  * Configures if the label's accessibility elements should remember their last valid accessibility
- * containers.
+ * containers (Default: @c NO)
  *
- * When this property is set to @c YES, the label's accessibility elements will remember their last
- * valid containers and use those containers if needed when computing accessibility properties like
- * @c accessibilityFrame.
+ * An accessibility element in a @c NIAttributedLabel considers its accessibility container to be
+ * valid if it knows its frame inside the container. While an element has a valid container, it can
+ * dynamically compute its accessibility properties (e.g. @c accessibilityFrame) upon request to
+ * ensure such properties are correct even if the label's position on screen changes.
+ *
+ * UIKit sometimes spontaneously changes the accessibility containers of all accessibility elements
+ * in a @c NIAttributedLabel to another view. When this happens, the elements no longer know their
+ * frames inside the new container, so they must fall back to static accessibility properties that
+ * were computed on init. Those values only remain correct as long as their label's position on
+ * screen remains unchanged since they were computed. If the label is embedded inside a scroll view,
+ * those values will quickly become stale.
+ *
+ * Setting this property to @c YES allows @c NIAttributedLabel's accessibility elements to remember
+ * their last valid containers. When asked for their accessibility properties, if they no longer
+ * have a valid container, they will attempt to use their last valid containers for dynamic
+ * computations if possible before defaulting to fallback static values.
  */
 @property(nonatomic) BOOL accessibleElementsRememberLastValidContainer;
 
