@@ -157,9 +157,16 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 // accessibilityPath.
 @property (nonatomic, readonly) NSArray *pointsInContainer; // of NSValue
 
+/// If set to @c YES, this element remembers the last valid accessibility container when it receives
+/// a new one.
+@property(nonatomic) BOOL rememberLastValidContainer;
+
 @end
 
 @interface NIViewAccessibilityElement ()
+
+/// The last valid container (only set if @c rememberLastValidContainer is true).
+@property(nonatomic, weak) UIView *lastValidContainer;
 
 // Whether the computations done based on the container are still valid. That is, the container has
 // not been changed since the computations (see frameInContainer and pointsInContainer) were
@@ -201,15 +208,34 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   return self;
 }
 
+- (void)setRememberLastValidContainer:(BOOL)rememberLastValidContainer {
+  _rememberLastValidContainer = rememberLastValidContainer;
+  if (!rememberLastValidContainer) {
+    self.lastValidContainer = nil;
+  }
+}
+
 - (void)setAccessibilityContainer:(id)accessibilityContainer {
   self.isContainerDataValid = NO;
   [super setAccessibilityContainer:accessibilityContainer];
 }
 
-- (CGRect)accessibilityFrame {
+- (UIView *)validAccessibilityContainer {
+  UIView *accessibilityContainerView;
   if (self.isContainerDataValid) {
-    UIView* accessibilityContainerView = self.accessibilityContainer;
-    NIDASSERT([accessibilityContainerView isKindOfClass:[UIView class]]);
+    accessibilityContainerView = self.accessibilityContainer;
+  } else if (self.rememberLastValidContainer && self.lastValidContainer) {
+    accessibilityContainerView = self.lastValidContainer;
+  } else {
+    return nil;
+  }
+  NIDASSERT([accessibilityContainerView isKindOfClass:[UIView class]]);
+  return accessibilityContainerView;
+}
+
+- (CGRect)accessibilityFrame {
+  UIView *accessibilityContainerView = [self validAccessibilityContainer];
+  if (accessibilityContainerView) {
     CGRect frame = [accessibilityContainerView convertRect:self.frameInContainer toView:nil];
     return [accessibilityContainerView.window convertRect:frame toWindow:nil];
   }
@@ -217,9 +243,8 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 }
 
 - (UIBezierPath *)accessibilityPath {
-  if (self.isContainerDataValid && NIIsArrayWithObjects(self.pointsInContainer)) {
-    UIView *accessibilityContainerView = self.accessibilityContainer;
-    NIDASSERT([accessibilityContainerView isKindOfClass:[UIView class]]);
+  UIView *accessibilityContainerView = [self validAccessibilityContainer];
+  if (accessibilityContainerView && NIIsArrayWithObjects(self.pointsInContainer)) {
     UIBezierPath *path = [UIBezierPath bezierPath];
     for (NSUInteger i = 1; i < _pointsInContainer.count; ++i) {
       CGPoint p = [[_pointsInContainer objectAtIndex:i] CGPointValue];
@@ -238,9 +263,8 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 }
 
 - (CGPoint)accessibilityActivationPoint {
-  if (self.isContainerDataValid && NIIsArrayWithObjects(self.pointsInContainer)) {
-    UIView *accessibilityContainerView = self.accessibilityContainer;
-    NIDASSERT([accessibilityContainerView isKindOfClass:[UIView class]]);
+  UIView *accessibilityContainerView = [self validAccessibilityContainer];
+  if (accessibilityContainerView && NIIsArrayWithObjects(self.pointsInContainer)) {
     CGPoint point = [[_pointsInContainer firstObject] CGPointValue];
     point = [accessibilityContainerView convertPoint:point toView:nil];
     point = [accessibilityContainerView.window convertPoint:point toWindow:nil];
@@ -1801,6 +1825,7 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
             [self.window convertRect:rectValueInWindowCoordinates toWindow:nil];
         element.accessibilityFrame = rectValueInScreenCoordinates;
         element.accessibilityTraits = UIAccessibilityTraitLink;
+        element.rememberLastValidContainer = self.accessibleElementsRememberLastValidContainer;
         [accessibleElements addObject:element];
       }
     }
@@ -1815,6 +1840,7 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
         [self.window convertRect:boundsInWindowCoordinates toWindow:nil];
     element.accessibilityFrame = boundsInScreenCoordinates;
     element.accessibilityTraits = UIAccessibilityTraitNone;
+    element.rememberLastValidContainer = self.accessibleElementsRememberLastValidContainer;
     // TODO(kaikaiz): remove the first condition when shouldSortLinksLast is fully deprecated.
     if (_shouldSortLinksLast || _linkOrdering == NILinkOrderingLast) {
       [accessibleElements insertObject:element atIndex:0];
@@ -1829,11 +1855,13 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
       element = [self accessibilityElementForRange:NSMakeRange(start, range.location - start)];
       if (element) {
         element.accessibilityTraits = UIAccessibilityTraitNone;
+        element.rememberLastValidContainer = self.accessibleElementsRememberLastValidContainer;
         [accessibleElements addObject:element];
       }
       element = [self accessibilityElementForRange:range];
       if (element) {
         element.accessibilityTraits = UIAccessibilityTraitLink;
+        element.rememberLastValidContainer = self.accessibleElementsRememberLastValidContainer;
         [accessibleElements addObject:element];
       }
       start = range.location + range.length;
@@ -1843,12 +1871,27 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
         [self accessibilityElementForRange:NSMakeRange(start, self.attributedText.length - start)];
     if (element) {
       element.accessibilityTraits = UIAccessibilityTraitNone;
+      element.rememberLastValidContainer = self.accessibleElementsRememberLastValidContainer;
       [accessibleElements addObject:element];
     }
   }
 
   _accessibleElements = [accessibleElements copy];
   return _accessibleElements;
+}
+
+- (void)setAccessibleElementsRememberLastValidContainer:
+    (BOOL)accessibleElementsRememberLastValidContainer {
+  _accessibleElementsRememberLastValidContainer = accessibleElementsRememberLastValidContainer;
+  if (_accessibleElements != nil) {
+    [_accessibleElements enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+      if (![obj isKindOfClass:[NIViewAccessibilityElement class]]) {
+        return;
+      }
+      NIViewAccessibilityElement *element = (NIViewAccessibilityElement *)obj;
+      element.rememberLastValidContainer = accessibleElementsRememberLastValidContainer;
+    }];
+  }
 }
 
 - (BOOL)isAccessibilityElement {
