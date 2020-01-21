@@ -216,6 +216,9 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 }
 
 - (void)setAccessibilityContainer:(id)accessibilityContainer {
+  if (self.isContainerDataValid && self.rememberLastValidContainer) {
+    self.lastValidContainer = self.accessibilityContainer;
+  }
   self.isContainerDataValid = NO;
   [super setAccessibilityContainer:accessibilityContainer];
 }
