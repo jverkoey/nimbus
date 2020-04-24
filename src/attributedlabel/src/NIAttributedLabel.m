@@ -342,6 +342,8 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 - (void)dealloc {
   [_longPressTimer invalidate];
 
+  [self invalidateAccessibleElements];
+
   // The property is marked 'assign', but retain count for this CFType is managed here and via
   // the setter.
   if (NULL != _textFrame) {
