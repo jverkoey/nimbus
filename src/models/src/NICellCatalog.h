@@ -16,7 +16,7 @@
 
 #import "NICellFactory.h"
 
-typedef CGFloat (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* cell);
+typedef CGFloat (^NICellDrawRectBlock)(CGRect rect, _Nonnull id object, UITableViewCell* cell);
 
 /**
  * An object that will draw the contents of the cell using a provided block.
@@ -25,10 +25,10 @@ typedef CGFloat (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* 
  */
 @interface NIDrawRectBlockCellObject : NICellObject
 // Designated initializer.
-- (id)initWithBlock:(NICellDrawRectBlock)block object:(id)object;
-+ (id)objectWithBlock:(NICellDrawRectBlock)block object:(id)object;
-@property (nonatomic, copy) NICellDrawRectBlock block;
-@property (nonatomic, strong) id object;
+- (nonnull id)initWithBlock:(nonnull NICellDrawRectBlock)block object:(nonnull id)object;
++ (nonnull id)objectWithBlock:(nonnull NICellDrawRectBlock)block object:(nonnull id)object;
+@property (nonatomic, copy, nonnull) NICellDrawRectBlock block;
+@property (nonatomic, strong, nonnull) id object;
 @end
 
 /**
@@ -42,13 +42,13 @@ typedef CGFloat (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* 
  */
 @interface NITitleCellObject : NICellObject
 // Designated initializer.
-- (id)initWithTitle:(NSString *)title image:(UIImage *)image;
-- (id)initWithTitle:(NSString *)title;
-- (id)initWithTitle:(NSString *)title image:(UIImage *)image cellClass:(Class)cellClass userInfo:(id)userInfo;
-+ (id)objectWithTitle:(NSString *)title image:(UIImage *)image;
-+ (id)objectWithTitle:(NSString *)title;
-@property (nonatomic, copy) NSString* title;
-@property (nonatomic, strong) UIImage* image;
+- (nonnull id)initWithTitle:(nullable NSString *)title image:(nullable UIImage *)image;
+- (nonnull id)initWithTitle:(nullable NSString *)title;
+- (nonnull id)initWithTitle:(nullable NSString *)title image:(nullable UIImage *)image cellClass:(Class)cellClass userInfo:(nullable id)userInfo;
++ (nonnull id)objectWithTitle:(NSString *)title image:(nullable UIImage *)image;
++ (nonnull id)objectWithTitle:(NSString *)title;
+@property (nonatomic, copy, nullable) NSString* title;
+@property (nonatomic, strong, nullable) UIImage* image;
 @end
 
 /**
@@ -62,12 +62,12 @@ typedef CGFloat (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* 
  */
 @interface NISubtitleCellObject : NITitleCellObject
 // Designated initializer.
-- (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image;
-- (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle;
-- (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image cellClass:(Class)cellClass userInfo:(id)userInfo;
-+ (id)objectWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image;
-+ (id)objectWithTitle:(NSString *)title subtitle:(NSString *)subtitle;
-@property (nonatomic, copy) NSString* subtitle;
+- (nonnull id)initWithTitle:(nullable NSString *)title subtitle:(nullable NSString *)subtitle image:(nullable UIImage *)image;
+- (nonnull id)initWithTitle:(nullable NSString *)title subtitle:(nullable NSString *)subtitle;
+- (nonnull id)initWithTitle:(nullable NSString *)title subtitle:(nullable NSString *)subtitle image:(nullable UIImage *)image cellClass:(Class)cellClass userInfo:(nullable id)userInfo;
++ (nonnull id)objectWithTitle:(nullable NSString *)title subtitle:(nullable NSString *)subtitle image:(nullable UIImage *)image;
++ (nonnull id)objectWithTitle:(nullable NSString *)title subtitle:(nullable NSString *)subtitle;
+@property (nonatomic, copy, nullable) NSString* subtitle;
 @property (nonatomic, assign) UITableViewCellStyle cellStyle;
 @end
 
@@ -88,7 +88,7 @@ typedef CGFloat (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* 
  * @ingroup TableCellCatalog
  */
 @interface NIDrawRectBlockCell : UITableViewCell <NICell>
-@property (nonatomic, strong) UIView* blockView;
+@property (nonatomic, strong, nonnull) UIView* blockView;
 @end
 
 /**
