@@ -34,7 +34,7 @@ NSString* NIStringFromBytes(unsigned long long bytes);
  *
  * This class aims to simplify the interface for collecting device information. The low-level
  * mach APIs provide a host of valuable information but it's often in formats that aren't
- * particularly ready for presentation.
+ * ready for presentation.
  *
  * @attention When using this class on the simulator, the values returned will reflect
  *                 those of the computer within which you're running the simulator, not the
