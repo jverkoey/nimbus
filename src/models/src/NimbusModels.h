@@ -480,8 +480,6 @@ typedef enum {
 #import "NICellBackgrounds.h"
 #import "NICellCatalog.h"
 #import "NICellFactory.h"
-#import "NIRadioGroup.h"
-#import "NIRadioGroupController.h"
 #import "NITableViewActions.h"
 
 /**@}*/
