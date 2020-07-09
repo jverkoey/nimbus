@@ -61,7 +61,9 @@
   [self.view addSubview:self.tableView];
 
   self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:self.activityIndicatorStyle];
-  self.activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleMargins;
+  self.activityIndicator.autoresizingMask =
+      (UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin
+       | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin);
   [self.activityIndicator sizeToFit];
   self.activityIndicator.frame = NIFrameOfCenteredViewWithinView(self.activityIndicator, self.view);
   [self.view addSubview:self.activityIndicator];

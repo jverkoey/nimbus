@@ -659,9 +659,14 @@ RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UICont
       } else if ([value isEqualToString:@"height"]) {
         autoresizing |= UIViewAutoresizingFlexibleHeight;
       } else if ([value isEqualToString:@"all"]) {
-        autoresizing |= UIViewAutoresizingFlexibleDimensions | UIViewAutoresizingFlexibleMargins;
+        autoresizing |=
+            (UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth
+             | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin
+             | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin);
       } else if ([value isEqualToString:@"margins"]) {
-        autoresizing |= UIViewAutoresizingFlexibleMargins;
+        autoresizing |=
+            (UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin
+             | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin);
       } else if ([value isEqualToString:@"dimensions"]) {
         autoresizing |= UIViewAutoresizingFlexibleDimensions;
       }

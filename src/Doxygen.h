@@ -608,11 +608,6 @@
  * <tr><th>From</th><td class='Declaration' scope="row"><tt>typedef void (^NIErrorBlock)(NSError* error)</tt></td></tr> 
  * <tr><th>To</th><td class='Declaration' scope="row"><tt>typedef void (^NIErrorBlock)(NIOperation *operation, NSError* error)</tt></td></tr></table>@endhtmlonly
  *
- * <h3>NICommonMetrics.h</h3>
- *
- * - <span class="apiDiffAdded">Added</span> UIViewAutoresizingFlexibleMargins.
- * - <span class="apiDiffAdded">Added</span> UIViewAutoresizingFlexibleDimensions.
- *
  * <h3>NIDebuggingTools.h</h3>
  *
  * - <span class="apiDiffAdded">Added</span> NIDASSERT now breaks on the device as well.

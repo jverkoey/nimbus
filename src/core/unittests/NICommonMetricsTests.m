@@ -26,23 +26,6 @@
 
 @implementation NICommonMetricsTests
 
-
-- (void)testAutoresizingMasks {
-  XCTAssertTrue((UIViewAutoresizingFlexibleMargins & UIViewAutoresizingFlexibleLeftMargin),
-                @"Should have a flexible left margin.");
-  XCTAssertTrue((UIViewAutoresizingFlexibleMargins & UIViewAutoresizingFlexibleTopMargin),
-                @"Should have a flexible top margin.");
-  XCTAssertTrue((UIViewAutoresizingFlexibleMargins & UIViewAutoresizingFlexibleRightMargin),
-                @"Should have a flexible right margin.");
-  XCTAssertTrue((UIViewAutoresizingFlexibleMargins & UIViewAutoresizingFlexibleBottomMargin),
-                @"Should have a flexible bottom margin.");
-
-  XCTAssertTrue((UIViewAutoresizingFlexibleDimensions & UIViewAutoresizingFlexibleWidth),
-                @"Should have a flexible width.");
-  XCTAssertTrue((UIViewAutoresizingFlexibleDimensions & UIViewAutoresizingFlexibleHeight),
-                @"Should have a flexible height.");
-}
-
 - (void)testMetrics {
   // TODO (Jan 25, 2012): Test iPad logic as well.
   //STAssertEquals(NIToolbarHeightForOrientation(UIInterfaceOrientationPortrait), 44.f, @"Should match.");
