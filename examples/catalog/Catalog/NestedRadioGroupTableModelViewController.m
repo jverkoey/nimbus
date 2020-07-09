@@ -17,6 +17,7 @@
 #import "NestedRadioGroupTableModelViewController.h"
 
 #import "NimbusModels.h"
+#import "NIRadioGroup.h"
 #import "NimbusCore.h"
 
 //

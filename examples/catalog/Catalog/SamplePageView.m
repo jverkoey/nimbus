@@ -24,7 +24,7 @@
 - (id)initWithReuseIdentifier:(NSString *)reuseIdentifier {
   if ((self = [super initWithFrame:CGRectZero])) {
     _label = [[UILabel alloc] initWithFrame:self.bounds];
-    _label.autoresizingMask = UIViewAutoresizingFlexibleDimensions;
+    _label.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
     _label.font = [UIFont systemFontOfSize:26];
     _label.textAlignment = NSTextAlignmentCenter;
     _label.backgroundColor = [UIColor clearColor];

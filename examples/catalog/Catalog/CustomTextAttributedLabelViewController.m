@@ -96,7 +96,7 @@
   label.numberOfLines = 0;
   label.lineBreakMode = NSLineBreakByWordWrapping;
 
-  label.autoresizingMask = UIViewAutoresizingFlexibleDimensions;
+  label.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
   label.frame = CGRectInset(self.view.bounds, 20, 20);
 
   // When we assign the attributed text to the label it copies the attributed text object into the

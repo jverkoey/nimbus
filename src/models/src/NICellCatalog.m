@@ -192,7 +192,8 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 
     _blockView = [[NIDrawRectBlockView alloc] initWithFrame:self.contentView.bounds];
-    _blockView.autoresizingMask = UIViewAutoresizingFlexibleDimensions;
+    _blockView.autoresizingMask =
+        (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
     _blockView.contentMode = UIViewContentModeRedraw;
     [self.contentView addSubview:_blockView];
 

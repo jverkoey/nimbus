@@ -72,7 +72,8 @@ const CGFloat NIPagingScrollViewDefaultPageInset = 0;
   // ...while still clipping contents to the bounds of the paging scroll view.
   self.clipsToBounds = YES;
 
-  _scrollView.autoresizingMask = UIViewAutoresizingFlexibleDimensions;
+  _scrollView.autoresizingMask =
+      (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
 
   _scrollView.delegate = self;
 

@@ -63,28 +63,6 @@ extern "C" {
  * @{
  */
 
-#ifndef UIViewAutoresizingFlexibleMargins
-#define UIViewAutoresizingFlexibleMargins (UIViewAutoresizingFlexibleLeftMargin \
-                                           | UIViewAutoresizingFlexibleTopMargin \
-                                           | UIViewAutoresizingFlexibleRightMargin \
-                                           | UIViewAutoresizingFlexibleBottomMargin)
-#endif
-
-#ifndef UIViewAutoresizingFlexibleDimensions
-#define UIViewAutoresizingFlexibleDimensions (UIViewAutoresizingFlexibleWidth \
-                                              | UIViewAutoresizingFlexibleHeight)
-#endif
-
-#ifndef UIViewAutoresizingNavigationBar
-#define UIViewAutoresizingNavigationBar (UIViewAutoresizingFlexibleWidth \
-                                         | UIViewAutoresizingFlexibleBottomMargin)
-#endif
-
-#ifndef UIViewAutoresizingToolbar
-#define UIViewAutoresizingToolbar (UIViewAutoresizingFlexibleWidth \
-                                   | UIViewAutoresizingFlexibleTopMargin)
-#endif
-
 /**
  * The recommended number of points for a minimum tappable area.
  *

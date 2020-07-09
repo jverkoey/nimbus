@@ -17,6 +17,8 @@
 #import "FormCellCatalogViewController.h"
 
 #import "NimbusModels.h"
+#import "NIFormCellCatalog.h"
+#import "NIRadioGroup.h"
 #import "NimbusCore.h"
 
 //

@@ -67,7 +67,8 @@ static NSString* const kPageReuseIdentifier = @"SamplePageIdentifier";
   // This is the only change from the BasicInstantiation example.
   self.pagingScrollView.type = NIPagingScrollViewVertical;
 
-  self.pagingScrollView.autoresizingMask = UIViewAutoresizingFlexibleDimensions;
+  self.pagingScrollView.autoresizingMask =
+      (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
   self.pagingScrollView.dataSource = self;
   [self.view addSubview:self.pagingScrollView];
   [self.pagingScrollView reloadData];

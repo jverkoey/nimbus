@@ -33,7 +33,8 @@
   [super loadView];
 
   self.launcherView = [[NILauncherView alloc] initWithFrame:self.view.bounds];
-  self.launcherView.autoresizingMask = UIViewAutoresizingFlexibleDimensions;
+  self.launcherView.autoresizingMask =
+      (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
   self.launcherView.dataSource = self;
   self.launcherView.delegate = self;
 

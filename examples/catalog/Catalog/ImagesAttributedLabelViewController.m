@@ -60,7 +60,7 @@
   // When we assign the text we do not include any markup for the images.
   label.text = @"This is Nimbus:He's a red panda.\nThis is a star:";
 
-  label.autoresizingMask = UIViewAutoresizingFlexibleDimensions;
+  label.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
   label.lineBreakMode = NSLineBreakByWordWrapping;
   label.numberOfLines = 0;
   label.font = [UIFont systemFontOfSize:20];
