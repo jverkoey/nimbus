@@ -17,6 +17,7 @@
 #import "ModalRadioGroupTableModelViewController.h"
 
 #import "NimbusModels.h"
+#import "NIRadioGroup.h"
 #import "NimbusCore.h"
 
 //

@@ -1059,7 +1059,8 @@ static NIViewInspectionView *visibleInspectionView = nil;
   UIView *rootView = [self rootView];
   [rootView endEditing:YES];
   inspectionView_ = [[NIViewInspectionView alloc] initWithFrame:rootView.bounds];
-  inspectionView_.autoresizingMask = UIViewAutoresizingFlexibleDimensions;
+  inspectionView_.autoresizingMask =
+      (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
   [rootView addSubview:inspectionView_];
   visibleInspectionView = inspectionView_;
 }

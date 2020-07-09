@@ -64,7 +64,9 @@
     _loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     [_loadingView sizeToFit];
     _loadingView.frame = NIFrameOfCenteredViewWithinView(_loadingView, self);
-    _loadingView.autoresizingMask = UIViewAutoresizingFlexibleMargins;
+    _loadingView.autoresizingMask =
+        (UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin
+         | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin);
 
     // We implement viewForZoomingInScrollView: and return the image view for zooming.
     _scrollView.delegate = self;

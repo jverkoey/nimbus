@@ -144,7 +144,8 @@
   // in loadView, except we're adding the table view to self.view rather than assigning it to
   // self.view.
   self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-  self.tableView.autoresizingMask = UIViewAutoresizingFlexibleDimensions;
+  self.tableView.autoresizingMask =
+      (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
   [self.view addSubview:self.tableView];
 
   self.tableView.delegate = [self.actions forwardingTo:self];

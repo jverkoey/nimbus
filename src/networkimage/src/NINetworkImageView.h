@@ -18,6 +18,7 @@
 #import <UIKit/UIKit.h>
 
 #import "NIInMemoryCache.h"
+#import "NIOperations.h"
 #import "NimbusCore.h"
 
 @protocol NINetworkImageViewDelegate;

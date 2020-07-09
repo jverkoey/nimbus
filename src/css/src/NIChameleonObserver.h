@@ -17,6 +17,7 @@
 #import <Foundation/Foundation.h>
 
 #import "NimbusCore.h"
+#import "NIOperations.h"
 #import "NICSSParser.h"
 
 @class NIStylesheet;
