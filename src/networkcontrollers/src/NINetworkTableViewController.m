@@ -55,7 +55,8 @@
   [super loadView];
 
   self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:self.tableViewStyle];
-  self.tableView.autoresizingMask = UIViewAutoresizingFlexibleDimensions;
+  self.tableView.autoresizingMask =
+      (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
   self.tableView.delegate = self;
   self.tableView.dataSource = self;
   [self.view addSubview:self.tableView];

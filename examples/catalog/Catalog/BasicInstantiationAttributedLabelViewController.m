@@ -28,7 +28,6 @@
 // You will find the following Nimbus features used:
 //
 // [core]
-// UIViewAutoresizingFlexibleDimensions
 // RGBCOLOR
 // RGBACOLOR
 //
@@ -76,9 +75,6 @@
   // additional CoreText properties.
   label.text = @"An explorer's tale";
 
-  // UIViewAutoresizingFlexibleDimensions is a Nimbus autoresizing mask that causes the view to
-  // grow and shrink with its super view. When we want a view to fill its super view this is
-  // generally the mask that we'll use.
   label.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
 
   // These are standard UILabel styles. We can set these whenever we like and the attributed label

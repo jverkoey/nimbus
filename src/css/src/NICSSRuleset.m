@@ -668,7 +668,7 @@ RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UICont
             (UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin
              | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin);
       } else if ([value isEqualToString:@"dimensions"]) {
-        autoresizing |= UIViewAutoresizingFlexibleDimensions;
+        autoresizing |= UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
       }
     }
     _autoresizing = autoresizing;
