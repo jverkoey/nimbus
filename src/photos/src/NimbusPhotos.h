@@ -115,8 +115,6 @@
 #import "NIPhotoScrollView.h"
 #import "NIPhotoScrollViewDelegate.h"
 #import "NIPhotoScrollViewPhotoSize.h"
-#import "NIPhotoScrubberView.h"
-#import "NIToolbarPhotoViewController.h"
 
 #import "NimbusPagingScrollView.h"
 #import "NimbusCore.h"
