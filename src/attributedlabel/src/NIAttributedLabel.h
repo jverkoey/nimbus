@@ -102,6 +102,18 @@ extern NSString* const NIAttributedLabelLinkAttributeName; // Value is an NSText
 @property (nonatomic) NSTextCheckingType  dataDetectorTypes;  // Default: NSTextCheckingTypeLink
 @property (nonatomic) BOOL                deferLinkDetection; // Default: NO
 
+/**
+ * Determines whether each link's accessibilityLabel will be determined by the label's text.
+ * Defaults to YES.
+ *
+ * If enabled, each link will dynamically determine its accessibilityLabel based on the text to
+ * which the link is attached.
+ *
+ * If disabled, each link will be set to either self.accessibilityLabel or
+ * self.accessibilityAttributedLabel.
+ */
+@property(nonatomic) BOOL shouldCalculateAccessibilityLabelPerLink;
+
 - (void)addLink:(NSURL *)urlLink range:(NSRange)range;
 - (void)removeAllExplicitLinks; // Removes all links that were added by addLink:range:. Does not remove autodetected links.
 

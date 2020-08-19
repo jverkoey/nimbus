@@ -400,6 +400,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   self.linkColor = NIIsTintColorGloballySupported() ? self.tintColor : [UIColor blueColor];
   self.dataDetectorTypes = NSTextCheckingTypeLink;
   self.highlightedLinkBackgroundColor = [UIColor colorWithWhite:0.5f alpha:0.5f];
+  self.shouldCalculateAccessibilityLabelPerLink = YES;
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -1129,7 +1130,9 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
       [[NIViewAccessibilityElement alloc] initWithAccessibilityContainer:self
                                                         frameInContainer:bounds
                                                        pointsInContainer:pointsArray];
-  element.accessibilityLabel = [self.mutableAttributedString.string substringWithRange:range];
+  NSString *accessibilityLabel = [self.mutableAttributedString.string substringWithRange:range];
+  [self updateAccessibilityLabelOnElement:element withAccessibilityLabel:accessibilityLabel];
+
   // Set the frame to fallback on if |element|'s accessibility container is changed externally.
   CGRect rectValueInWindowCoordinates = [self convertRect:bounds toView:nil];
   CGRect rectValueInScreenCoordinates =
@@ -1785,6 +1788,19 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
   self.accessibleElements = nil;
 }
 
+- (void)updateAccessibilityLabelOnElement:(NIViewAccessibilityElement *)element
+                   withAccessibilityLabel:(NSString *)accessibilityLabel {
+  if (_shouldCalculateAccessibilityLabelPerLink) {
+    element.accessibilityLabel = accessibilityLabel;
+    return;
+  }
+
+  if (@available(iOS 11, *)) {
+    element.accessibilityAttributedLabel = self.accessibilityAttributedLabel;
+  }
+  element.accessibilityLabel = self.accessibilityLabel;
+}
+
 - (NSArray *)accessibleElements {
   if (nil != _accessibleElements) {
     return _accessibleElements;
@@ -1822,7 +1838,8 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
         NIViewAccessibilityElement *element = [[NIViewAccessibilityElement alloc]
             initWithAccessibilityContainer:self
                           frameInContainer:rectValue.CGRectValue];
-        element.accessibilityLabel = label;
+        [self updateAccessibilityLabelOnElement:element withAccessibilityLabel:label];
+
         // Set the frame to fallback on if |element|'s accessibility container is changed
         // externally.
         CGRect rectValueInWindowCoordinates = [self convertRect:rectValue.CGRectValue toView:nil];
@@ -1838,7 +1855,9 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
     NIViewAccessibilityElement *element =
         [[NIViewAccessibilityElement alloc] initWithAccessibilityContainer:self
                                                           frameInContainer:self.bounds];
-    element.accessibilityLabel = self.attributedText.string;
+    [self updateAccessibilityLabelOnElement:element
+                     withAccessibilityLabel:self.attributedText.string];
+
     // Set the frame to fallback on if |element|'s accessibility container is changed externally.
     CGRect boundsInWindowCoordinates = [self convertRect:self.bounds toView:nil];
     CGRect boundsInScreenCoordinates =
