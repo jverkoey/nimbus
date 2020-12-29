@@ -39,7 +39,8 @@ extern "C" {
  * stretching images that have gradients. For example, an image with a vertical gradient
  * can be stretched horizontally, but will look odd if stretched vertically.
  */
-UIImage* NIStretchableImageFromImage(UIImage* image);
+UIImage* NIStretchableImageFromImage(UIImage* image)
+    API_UNAVAILABLE(tvos, watchos);
 
 /**@}*/// End of Image Utilities //////////////////////////////////////////////////////////////////
 

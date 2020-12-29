@@ -55,7 +55,8 @@ extern "C" {
  *
  *      Always returns YES.
  */
-BOOL NIIsSupportedOrientation(UIInterfaceOrientation orientation);
+BOOL NIIsSupportedOrientation(UIInterfaceOrientation orientation)
+    API_UNAVAILABLE(tvos, watchos);
 
 /**
  * Returns the application's current interface orientation.
@@ -64,7 +65,8 @@ BOOL NIIsSupportedOrientation(UIInterfaceOrientation orientation);
  *
  * @returns The current interface orientation.
  */
-UIInterfaceOrientation NIInterfaceOrientation(void) NI_EXTENSION_UNAVAILABLE_IOS("");
+UIInterfaceOrientation NIInterfaceOrientation(void) NI_EXTENSION_UNAVAILABLE_IOS("")
+    API_UNAVAILABLE(tvos, watchos);
 
 /**
  * Returns YES if the device is a phone and the orientation is landscape.
@@ -74,7 +76,8 @@ UIInterfaceOrientation NIInterfaceOrientation(void) NI_EXTENSION_UNAVAILABLE_IOS
  *
  * @returns YES if the device is a phone and orientation is landscape.
  */
-BOOL NIIsLandscapePhoneOrientation(UIInterfaceOrientation orientation);
+BOOL NIIsLandscapePhoneOrientation(UIInterfaceOrientation orientation)
+    API_UNAVAILABLE(tvos, watchos);
 
 /**
  * Creates an affine transform for the given device orientation.
@@ -82,7 +85,8 @@ BOOL NIIsLandscapePhoneOrientation(UIInterfaceOrientation orientation);
  * This is useful for creating a transformation matrix for a view that has been added
  * directly to the window and doesn't automatically have its transformation modified.
  */
-CGAffineTransform NIRotateTransformForOrientation(UIInterfaceOrientation orientation);
+CGAffineTransform NIRotateTransformForOrientation(UIInterfaceOrientation orientation)
+    API_UNAVAILABLE(tvos, watchos);
 
 #if defined __cplusplus
 }

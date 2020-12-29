@@ -43,6 +43,7 @@
  * You must call this object's rotation methods from your controller in order for the rotation
  * object to implement the rotation animations correctly.
  */
+API_UNAVAILABLE(tvos, watchos)
 @interface NISnapshotRotation : NSObject
 
 // Designated initializer.
@@ -71,6 +72,7 @@
  * The assigned delegate only needs to implement containerViewForSnapshotRotation: and
  * rotatingViewForSnapshotRotation:.
  */
+API_UNAVAILABLE(tvos, watchos)
 @interface NITableViewSnapshotRotation : NISnapshotRotation
 @end
 
@@ -78,6 +80,7 @@
  * The methods declared by the NISnapshotRotation protocol allow the adopting delegate to respond to
  * messages from the NISnapshotRotation class and thus implement snapshot rotations.
  */
+API_UNAVAILABLE(tvos, watchos)
 @protocol NISnapshotRotationDelegate <NSObject>
 @required
 

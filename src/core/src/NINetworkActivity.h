@@ -43,7 +43,8 @@ extern "C" {
  *
  * This method is threadsafe.
  */
-void NINetworkActivityTaskDidStart(void) NI_EXTENSION_UNAVAILABLE_IOS("");
+void NINetworkActivityTaskDidStart(void) NI_EXTENSION_UNAVAILABLE_IOS("")
+    API_UNAVAILABLE(tvos, watchos);
 
 /**
  * Decrement the number of active network tasks.
@@ -52,7 +53,7 @@ void NINetworkActivityTaskDidStart(void) NI_EXTENSION_UNAVAILABLE_IOS("");
  *
  * This method is threadsafe.
  */
-void NINetworkActivityTaskDidFinish(void);
+void NINetworkActivityTaskDidFinish(void) API_UNAVAILABLE(tvos, watchos);
 
 /**
  * @name For Debugging Only
@@ -78,7 +79,7 @@ void NINetworkActivityTaskDidFinish(void);
  *
  * If debugging was previously enabled, this does nothing.
  */
-void NIEnableNetworkActivityDebugging(void);
+void NIEnableNetworkActivityDebugging(void) API_UNAVAILABLE(tvos, watchos);
 
 /**
  * Disable network activity debugging.
@@ -90,7 +91,7 @@ void NIEnableNetworkActivityDebugging(void);
  *
  * If debugging wasn't previously enabled, this does nothing.
  */
-void NIDisableNetworkActivityDebugging(void);
+void NIDisableNetworkActivityDebugging(void) API_UNAVAILABLE(tvos, watchos);
 
 /**@}*/// End of For Debugging Only
 

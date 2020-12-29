@@ -68,7 +68,8 @@ extern "C" {
  *
  * Value: 44
  */
-CGFloat NIMinimumTapDimension(void);
+CGFloat NIMinimumTapDimension(void)
+    API_UNAVAILABLE(tvos, watchos);
 
 /**
  * Fetch the height of a toolbar in a given orientation.
@@ -79,7 +80,8 @@ CGFloat NIMinimumTapDimension(void);
  *
  * On the iPad: always 44
  */
-CGFloat NIToolbarHeightForOrientation(UIInterfaceOrientation orientation);
+CGFloat NIToolbarHeightForOrientation(UIInterfaceOrientation orientation)
+    API_UNAVAILABLE(tvos, watchos);
 
 /**
  * The animation curve used when changing the status bar's visibility.
@@ -89,7 +91,8 @@ CGFloat NIToolbarHeightForOrientation(UIInterfaceOrientation orientation);
  *
  * Value: UIViewAnimationCurveEaseIn
  */
-UIViewAnimationCurve NIStatusBarAnimationCurve(void);
+UIViewAnimationCurve NIStatusBarAnimationCurve(void)
+    API_UNAVAILABLE(tvos, watchos);
 
 /**
  * The animation duration used when changing the status bar's visibility.
@@ -99,7 +102,8 @@ UIViewAnimationCurve NIStatusBarAnimationCurve(void);
  *
  * Value: 0.3 seconds
  */
-NSTimeInterval NIStatusBarAnimationDuration(void);
+NSTimeInterval NIStatusBarAnimationDuration(void)
+    API_UNAVAILABLE(tvos, watchos);
 
 /**
  * The animation curve used when the status bar's bounds change (when a call is received,
@@ -107,7 +111,8 @@ NSTimeInterval NIStatusBarAnimationDuration(void);
  *
  * Value: UIViewAnimationCurveEaseInOut
  */
-UIViewAnimationCurve NIStatusBarBoundsChangeAnimationCurve(void);
+UIViewAnimationCurve NIStatusBarBoundsChangeAnimationCurve(void)
+    API_UNAVAILABLE(tvos, watchos);
 
 /**
  * The animation duration used when the status bar's bounds change (when a call is received,
@@ -115,7 +120,8 @@ UIViewAnimationCurve NIStatusBarBoundsChangeAnimationCurve(void);
  *
  * Value: 0.35 seconds
  */
-NSTimeInterval NIStatusBarBoundsChangeAnimationDuration(void);
+NSTimeInterval NIStatusBarBoundsChangeAnimationDuration(void)
+    API_UNAVAILABLE(tvos, watchos);
 
 /**
  * Get the status bar's current height.
@@ -124,7 +130,8 @@ NSTimeInterval NIStatusBarBoundsChangeAnimationDuration(void);
  *
  * This is generally 20 when the status bar is its normal height.
  */
-CGFloat NIStatusBarHeight(void) NI_EXTENSION_UNAVAILABLE_IOS("");
+CGFloat NIStatusBarHeight(void) NI_EXTENSION_UNAVAILABLE_IOS("")
+    API_UNAVAILABLE(tvos, watchos);
 
 /**
  * The animation duration when the device is rotating to a new orientation.
@@ -134,14 +141,16 @@ CGFloat NIStatusBarHeight(void) NI_EXTENSION_UNAVAILABLE_IOS("");
  *
  * @param isFlippingUpsideDown YES if the device is being flipped upside down.
  */
-NSTimeInterval NIDeviceRotationDuration(BOOL isFlippingUpsideDown);
+NSTimeInterval NIDeviceRotationDuration(BOOL isFlippingUpsideDown)
+    API_UNAVAILABLE(tvos, watchos);
 
 /**
  * The padding around a standard cell in a table view.
  *
  * Value: 10 pixels on all sides.
  */
-UIEdgeInsets NICellContentPadding(void);
+UIEdgeInsets NICellContentPadding(void)
+    API_UNAVAILABLE(tvos, watchos);
 
 #if defined __cplusplus
 }

@@ -35,6 +35,7 @@ static pthread_mutex_t  gMutex = PTHREAD_MUTEX_INITIALIZER;
 static const NSTimeInterval kDelayBeforeDisablingActivity = 0.1;
 static NSTimer* gScheduledDelayTimer = nil;
 
+API_UNAVAILABLE(tvos, watchos)
 @interface NINetworkActivity : NSObject
 @end
 
