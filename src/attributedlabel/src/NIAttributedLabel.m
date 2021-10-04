@@ -1795,9 +1795,7 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
     return;
   }
 
-  if (@available(iOS 11, *)) {
-    element.accessibilityAttributedLabel = self.accessibilityAttributedLabel;
-  }
+  element.accessibilityAttributedLabel = self.accessibilityAttributedLabel;
   element.accessibilityLabel = self.accessibilityLabel;
 }
 
