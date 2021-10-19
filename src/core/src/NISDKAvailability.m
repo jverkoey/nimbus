@@ -16,7 +16,7 @@
 // limitations under the License.
 //
 
-#import "NimbusCore.h"
+#import "NISDKAvailability.h"
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "Nimbus requires ARC support."
