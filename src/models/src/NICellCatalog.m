@@ -204,17 +204,23 @@
   return self;
 }
 
-- (BOOL)shouldUpdateCellWithObject:(NIDrawRectBlockCellObject *)object {
+- (BOOL)shouldUpdateCellWithObject:(id)object {
+  NSAssert([object isKindOfClass:[NIDrawRectBlockCellObject class]],
+           @"object must be NIDrawRectBlockCellObject");
+  NIDrawRectBlockCellObject *blockCell = (NIDrawRectBlockCellObject *)object;
   NIDrawRectBlockView* blockView = (NIDrawRectBlockView *)self.blockView;
-  blockView.block = object.block;
-  blockView.object = object.object;
+  blockView.block = blockCell.block;
+  blockView.object = blockCell.object;
   blockView.cell = self;
   [blockView setNeedsDisplay];
   return YES;
 }
 
-+ (CGFloat)heightForObject:(NIDrawRectBlockCellObject *)object atIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView {
-  return object.block(tableView.bounds, object.object, nil);
++ (CGFloat)heightForObject:(id)object atIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView {
+  NSAssert([object isKindOfClass:[NIDrawRectBlockCellObject class]],
+           @"object must be NIDrawRectBlockCellObject");
+  NIDrawRectBlockCellObject *blockCell = (NIDrawRectBlockCellObject *)object;
+  return blockCell.block(tableView.bounds, blockCell.object, nil);
 }
 
 @end
