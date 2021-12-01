@@ -707,6 +707,14 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
+- (void)setAttributesForTailTruncationString:(NSDictionary *)attributesForTailTruncationString {
+  if (_attributesForTailTruncationString != attributesForTailTruncationString) {
+    _attributesForTailTruncationString = attributesForTailTruncationString;
+
+    [self attributedTextDidChange];
+  }
+}
+
 - (void)setAttributesForLinks:(NSDictionary *)attributesForLinks {
   if (_attributesForLinks != attributesForLinks) {
     _attributesForLinks = attributesForLinks;
@@ -1419,7 +1427,7 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
         NSInteger index = MAX((NSInteger)0, MIN((NSInteger)(attributedString.length - 1), labelImage.index));
         attributes = [attributedString attributesAtIndex:index effectiveRange:NULL];
       }
-      
+
       UIFont *font = attributes[NSFontAttributeName];
       if (font) {
         labelImage.fontAscent = font.ascender;
@@ -1438,7 +1446,7 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
         if (font) {
           [space addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, space.length)];
         }
-        
+
         CFRange range = CFRangeMake(0, 1);
         CFMutableAttributedStringRef spaceString = (__bridge_retained CFMutableAttributedStringRef)space;
         CFAttributedStringSetAttribute(spaceString, range, kCTRunDelegateAttributeName, delegate);
@@ -1622,12 +1630,17 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
 
         NSAttributedString* tokenAttributedString;
         {
+          NSMutableDictionary *mutableTokenAttributes = [NSMutableDictionary new];
           NSDictionary *tokenAttributes = [attributedString attributesAtIndex:truncationAttributePosition
                                                                effectiveRange:NULL];
+          [mutableTokenAttributes addEntriesFromDictionary:tokenAttributes];
+          [mutableTokenAttributes addEntriesFromDictionary:_attributesForTailTruncationString];
           NSString* tokenString = ((nil == self.tailTruncationString)
                                    ? kEllipsesCharacter
                                    : self.tailTruncationString);
-          tokenAttributedString = [[NSAttributedString alloc] initWithString:tokenString attributes:tokenAttributes];
+          tokenAttributedString =
+              [[NSAttributedString alloc] initWithString:tokenString
+                                              attributes:mutableTokenAttributes];
         }
 
         CTLineRef truncationToken = CTLineCreateWithAttributedString((__bridge CFAttributedStringRef)tokenAttributedString);
@@ -1728,7 +1741,7 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
   UIFont *font = CFDictionaryGetValue(attributes, kFontAttributeKey);
   font = font ?: self.font;
   CGFloat strikeHeight = font.xHeight / 2.f + (*firstGlyphPosition).y;
-  
+
   // Adjustment for multiline elements.
   CGPoint pt = CGContextGetTextPosition(ctx);
   strikeHeight += pt.y;

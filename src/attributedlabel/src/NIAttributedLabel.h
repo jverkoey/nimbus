@@ -122,6 +122,7 @@ extern NSString* const NIAttributedLabelLinkAttributeName; // Value is an NSText
 @property (nonatomic, strong) UIColor*      highlightedLinkBackgroundColor; // Default: [UIColor colorWithWhite:0.5 alpha:0.5
 @property (nonatomic)         BOOL          linksHaveUnderlines;            // Default: NO
 @property (nonatomic, copy)   NSDictionary* attributesForLinks;             // Default: nil
+@property (nonatomic, copy)   NSDictionary* attributesForTailTruncationString;  // Default: nil
 @property (nonatomic, copy)   NSDictionary* attributesForHighlightedLink;   // Default: nil
 @property (nonatomic)         CGFloat       lineHeight;
 
