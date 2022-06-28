@@ -18,6 +18,8 @@
 
 #import <Foundation/Foundation.h>
 
+API_DEPRECATED_BEGIN("Avoid swizzling unless absolutely needed.", ios(12, API_TO_BE_DEPRECATED))
+
 #if defined __cplusplus
 extern "C" {
 #endif
@@ -72,3 +74,5 @@ void NISwapClassMethods(Class cls, SEL originalSel, SEL newSel);
 #endif
 
 /**@}*/// End of Runtime Class Modifications //////////////////////////////////////////////////////
+
+API_DEPRECATED_END

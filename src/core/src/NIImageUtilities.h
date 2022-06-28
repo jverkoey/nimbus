@@ -17,6 +17,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+API_DEPRECATED_BEGIN("Use UIImage APIs instead.", ios(12, API_TO_BE_DEPRECATED))
+
 #if defined __cplusplus
 extern "C" {
 #endif
@@ -47,3 +49,5 @@ UIImage* NIStretchableImageFromImage(UIImage* image)
 #if defined __cplusplus
 }
 #endif
+
+API_DEPRECATED_END

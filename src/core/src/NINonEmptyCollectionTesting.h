@@ -18,6 +18,8 @@
 
 #import <Foundation/Foundation.h>
 
+API_DEPRECATED_BEGIN("Use standard Foundation APIs instead.", ios(12, API_TO_BE_DEPRECATED))
+
 #if defined __cplusplus
 extern "C" {
 #endif
@@ -56,3 +58,5 @@ BOOL NIIsStringWithAnyText(id object);
 #endif
 
 /**@}*/// End of Non-Empty Collection Testing /////////////////////////////////////////////////////
+
+API_DEPRECATED_END

@@ -21,6 +21,8 @@
 
 #import "NIPreprocessorMacros.h"
 
+API_DEPRECATED_BEGIN("Use trait collections instead.", ios(12, API_TO_BE_DEPRECATED))
+
 #if defined __cplusplus
 extern "C" {
 #endif
@@ -94,3 +96,4 @@ CGAffineTransform NIRotateTransformForOrientation(UIInterfaceOrientation orienta
 
 /**@}*/// End of Device Orientation ///////////////////////////////////////////////////////////////
 
+API_DEPRECATED_END

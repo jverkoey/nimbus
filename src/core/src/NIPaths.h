@@ -18,6 +18,8 @@
 
 #import <Foundation/Foundation.h>
 
+API_DEPRECATED_BEGIN("Use standard Foundation APIs instead.", ios(12, API_TO_BE_DEPRECATED))
+
 #if defined __cplusplus
 extern "C" {
 #endif
@@ -67,3 +69,5 @@ NSString* NIPathForCachesResource(NSString* relativePath);
 #endif
 
 /**@}*/// End of Paths ////////////////////////////////////////////////////////////////////////////
+
+API_DEPRECATED_END

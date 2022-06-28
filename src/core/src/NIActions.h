@@ -16,6 +16,9 @@
 
 #import <Foundation/Foundation.h>
 
+API_DEPRECATED_BEGIN("Follow go/material-ios-lists for list guidance instead.",
+                     ios(12, API_TO_BE_DEPRECATED))
+
 /**
  * For attaching actions to objects.
  *
@@ -420,3 +423,5 @@ NIActionBlock NIPushControllerAction(Class controllerClass);
  */
 
 /**@}*/// End of Actions //////////////////////////////////////////////////////////////////////////
+
+API_DEPRECATED_END

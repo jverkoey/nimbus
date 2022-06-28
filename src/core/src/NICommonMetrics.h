@@ -19,6 +19,8 @@
 
 #import "NIPreprocessorMacros.h"
 
+API_DEPRECATED_BEGIN("Use equivalent UIKit APIs instead.", ios(12, API_TO_BE_DEPRECATED))
+
 #if defined __cplusplus
 extern "C" {
 #endif
@@ -157,3 +159,5 @@ UIEdgeInsets NICellContentPadding(void)
 #endif
 
 /**@}*/// End of Common Metrics ///////////////////////////////////////////////////////////////////
+
+API_DEPRECATED_END

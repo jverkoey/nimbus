@@ -18,6 +18,9 @@
 
 #import "NICollectionViewModel.h"
 
+API_DEPRECATED_BEGIN("Follow go/material-ios-lists for list guidance instead.",
+                     ios(12, API_TO_BE_DEPRECATED))
+
 @interface NICollectionViewModelSection : NSObject
 
 + (id)section;
@@ -41,3 +44,5 @@
 - (NICollectionViewModelSection *)_sectionFromListArray:(NSArray *)rows;
 
 @end
+
+API_DEPRECATED_END

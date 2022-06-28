@@ -20,6 +20,9 @@
 #import "NIActions.h"  /* for NIActionsDataSource */
 #import "NIPreprocessorMacros.h" /* for weak */
 
+API_DEPRECATED_BEGIN("Follow go/material-ios-lists for list guidance instead.",
+                     ios(12, API_TO_BE_DEPRECATED))
+
 @protocol NICollectionViewModelDelegate;
 
 
@@ -234,3 +237,5 @@
  *
  * @fn NICollectionViewModel::delegate
  */
+
+API_DEPRECATED_END

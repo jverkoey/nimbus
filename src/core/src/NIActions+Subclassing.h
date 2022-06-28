@@ -16,6 +16,9 @@
 
 #import "NIActions.h"
 
+API_DEPRECATED_BEGIN("Follow go/material-ios-lists for list guidance instead.",
+                     ios(12, API_TO_BE_DEPRECATED))
+
 @interface NIObjectActions : NSObject
 
 @property (nonatomic, copy) NIActionBlock tapAction;
@@ -35,3 +38,5 @@
 - (NIObjectActions *)actionForObjectOrClassOfObject:(id<NSObject>)object;
 
 @end
+
+API_DEPRECATED_END
