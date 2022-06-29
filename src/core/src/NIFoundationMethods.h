@@ -19,6 +19,8 @@
 
 #import "NIPreprocessorMacros.h"
 
+API_DEPRECATED_BEGIN("Use standard Foundation APIs instead.", ios(12, API_TO_BE_DEPRECATED))
+
 #if defined __cplusplus
 extern "C" {
 #endif
@@ -420,3 +422,5 @@ NSInteger NIBoundi(NSInteger value, NSInteger min, NSInteger max);
 #endif
 
 /**@}*/// End of Foundation Methods ///////////////////////////////////////////////////////////////
+
+API_DEPRECATED_END
