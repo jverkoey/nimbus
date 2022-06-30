@@ -16,6 +16,9 @@
 
 #import "NITableViewModel.h"
 
+API_DEPRECATED_BEGIN("Follow go/material-ios-lists for list guidance instead.",
+                     ios(12, API_TO_BE_DEPRECATED))
+
 @class NIMutableTableViewModel;
 
 /**
@@ -233,3 +236,5 @@ NSIndexSet* indexSet = [self.model addSectionWithTitle:@"New section"];
  *
  * @fn NIMutableTableViewModel::updateSectionIndex
  */
+
+API_DEPRECATED_END

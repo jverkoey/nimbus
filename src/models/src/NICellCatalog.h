@@ -16,6 +16,9 @@
 
 #import "NICellFactory.h"
 
+API_DEPRECATED_BEGIN("Follow go/material-ios-lists for list guidance instead.",
+                     ios(12, API_TO_BE_DEPRECATED))
+
 typedef CGFloat (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* cell);
 
 /**
@@ -47,8 +50,8 @@ typedef CGFloat (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* 
 - (id)initWithTitle:(NSString *)title image:(UIImage *)image cellClass:(Class)cellClass userInfo:(id)userInfo;
 + (id)objectWithTitle:(NSString *)title image:(UIImage *)image;
 + (id)objectWithTitle:(NSString *)title;
-@property (nonatomic, copy) NSString* title;
-@property (nonatomic, strong) UIImage* image;
+@property(nonatomic, copy) NSString *title;
+@property(nonatomic, strong) UIImage *image;
 @end
 
 /**
@@ -170,3 +173,5 @@ typedef CGFloat (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* 
  *
  * @fn NISubtitleCellObject::cellStyle
  */
+
+API_DEPRECATED_END

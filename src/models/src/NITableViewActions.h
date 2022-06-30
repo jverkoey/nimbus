@@ -19,6 +19,9 @@
 
 #import "NimbusCore.h"
 
+API_DEPRECATED_BEGIN("Follow go/material-ios-lists for list guidance instead.",
+                     ios(12, API_TO_BE_DEPRECATED))
+
 /**
  * The NITableViewActions class provides an interface for attaching actions to objects from a
  * NIActionsDataSource.
@@ -125,3 +128,5 @@ self.tableView.delegate = [self.actions forwardingTo:self.tableView.delegate];
  *
  * @fn NITableViewActions::tableViewCellSelectionStyle
  */
+
+API_DEPRECATED_END

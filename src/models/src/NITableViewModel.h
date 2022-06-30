@@ -20,6 +20,9 @@
 #import "NIActions.h"  /* for NIActionsDataSource */
 #import "NIPreprocessorMacros.h" /* for weak */
 
+API_DEPRECATED_BEGIN("Follow go/material-ios-lists for list guidance instead.",
+                     ios(12, API_TO_BE_DEPRECATED))
+
 #if NS_BLOCKS_AVAILABLE
 typedef UITableViewCell * _Nonnull (^NITableViewModelCellForIndexPathBlock)(UITableView* _Nonnull tableView, NSIndexPath* _Nonnull indexPath, id _Nonnull object);
 #endif // #if NS_BLOCKS_AVAILABLE
@@ -303,3 +306,5 @@ typedef enum {
  */
 
 #endif // #if NS_BLOCKS_AVAILABLE
+
+API_DEPRECATED_END

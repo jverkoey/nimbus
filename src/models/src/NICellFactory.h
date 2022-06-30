@@ -19,6 +19,9 @@
 
 #import "NITableViewModel.h"
 
+API_DEPRECATED_BEGIN("Follow go/material-ios-lists for list guidance instead.",
+                     ios(12, API_TO_BE_DEPRECATED))
+
 /**
  * A simple factory for creating table view cells from objects.
  *
@@ -256,3 +259,5 @@ _model.delegate = (id)[NICellFactory class];
  *
  * @fn NICellObject::userInfo
  */
+
+API_DEPRECATED_END

@@ -16,6 +16,9 @@
 
 #import "NICellFactory.h"
 
+API_DEPRECATED_BEGIN("Follow go/material-ios-lists for list guidance instead.",
+                     ios(12, API_TO_BE_DEPRECATED))
+
 // Private classes for use in Nimbus.
 @interface NICellObject ()
 
@@ -23,3 +26,5 @@
 @property(nonatomic, assign) Class cellClass;
 
 @end
+
+API_DEPRECATED_END

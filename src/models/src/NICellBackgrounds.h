@@ -19,6 +19,9 @@
 
 #import "NIPreprocessorMacros.h" /* for weak */
 
+API_DEPRECATED_BEGIN("Follow go/material-ios-lists for list guidance instead.",
+                     ios(12, API_TO_BE_DEPRECATED))
+
 /**
  * The NIGroupedCellAppearance protocol provides support for each cell to adjust their appearance.
  *
@@ -129,3 +132,5 @@ typedef enum {
  *      @returns A tag for an image that matches the given parameters.
  *      @fn NIGroupedCellBackground::backgroundTagForFirst:last:drawDivider:
 */
+
+API_DEPRECATED_END

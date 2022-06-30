@@ -17,6 +17,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+API_DEPRECATED_BEGIN("This feature is no longer applicable and should be removed from usage.",
+                     ios(12, API_TO_BE_DEPRECATED))
 /**
  * An object designed to easily implement snapshot rotation.
  *
@@ -225,3 +227,5 @@ UIImageView* NISnapshotViewOfViewWithTransparency(UIView* view);
  *
  * @fn NISnapshotRotation::didRotateFromInterfaceOrientation:
  */
+
+API_DEPRECATED_END

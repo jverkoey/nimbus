@@ -17,6 +17,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+API_DEPRECATED_BEGIN("Use standard UITableView or UICollectionView APIs instead.",
+                     ios(12, API_TO_BE_DEPRECATED))
+
 /**
  * For recycling views in scroll views.
  *
@@ -162,3 +165,5 @@ if (nil == view) {
  *
  * @fn NIRecyclableView::reuseIdentifier
  */
+
+API_DEPRECATED_END

@@ -17,6 +17,9 @@
 #import "NIMutableTableViewModel.h"
 #import "NITableViewModel+Private.h"
 
+API_DEPRECATED_BEGIN("Follow go/material-ios-lists for list guidance instead.",
+                     ios(12, API_TO_BE_DEPRECATED))
+
 @interface NIMutableTableViewModel (Private)
 
 @property (nonatomic, strong) NSMutableArray* sections; // Array of NITableViewModelSection
@@ -30,3 +33,5 @@
 - (NSMutableArray *)mutableRows;
 
 @end
+
+API_DEPRECATED_END
