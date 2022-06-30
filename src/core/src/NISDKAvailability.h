@@ -21,6 +21,8 @@
 
 #import "NIPreprocessorMacros.h"
 
+API_DEPRECATED_BEGIN("Use standard Foundation APIs instead.", ios(12, API_TO_BE_DEPRECATED))
+
 /**
  * For checking SDK feature availibility.
  *
@@ -255,3 +257,5 @@ Class NIUITapGestureRecognizerClass(void) __NI_DEPRECATED_METHOD;
 
 
 /**@}*/// End of SDK Availability /////////////////////////////////////////////////////////////////
+
+API_DEPRECATED_END
