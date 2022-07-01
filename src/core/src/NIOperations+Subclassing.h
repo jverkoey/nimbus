@@ -15,6 +15,10 @@
 //
 #import "NIOperations.h"
 
+API_DEPRECATED_BEGIN("Use NSOperation instead.", ios(12, API_TO_BE_DEPRECATED))
+
 @interface NIOperation()
 @property (strong) NSError* lastError;
 @end
+
+API_DEPRECATED_END

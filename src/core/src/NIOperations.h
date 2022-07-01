@@ -19,6 +19,8 @@
 
 #import "NIPreprocessorMacros.h" /* for weak */
 
+API_DEPRECATED_BEGIN("Use NSOperation instead.", ios(12, API_TO_BE_DEPRECATED))
+
 @class NIOperation;
 
 typedef void (^NIOperationBlock)(NIOperation* operation);
@@ -207,3 +209,5 @@ typedef void (^NIOperationDidFailBlock)(NIOperation* operation, NSError* error);
  *
  * @fn NIOperation::willFinish
  */
+
+API_DEPRECATED_END
