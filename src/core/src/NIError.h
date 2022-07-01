@@ -17,6 +17,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+API_DEPRECATED_BEGIN("Use NSError instead.", ios(12, API_TO_BE_DEPRECATED))
 /**
  * For defining various error types used throughout the Nimbus framework.
  *
@@ -52,3 +53,5 @@ typedef enum {
  *
  * @enum NINimbusErrorDomainCode
  */
+
+API_DEPRECATED_END

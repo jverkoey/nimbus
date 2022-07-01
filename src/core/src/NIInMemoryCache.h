@@ -18,6 +18,8 @@
 
 #import "NIPreprocessorMacros.h"
 
+API_DEPRECATED_BEGIN("Use NSCache instead.", ios(12, API_TO_BE_DEPRECATED))
+
 /**
  * For storing and accessing objects in memory.
  *
@@ -314,3 +316,5 @@
  *               to reduceMemoryUsage.
  * @fn NIImageMemoryCache::maxNumberOfPixelsUnderStress
  */
+
+API_DEPRECATED_END

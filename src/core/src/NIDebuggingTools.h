@@ -18,6 +18,7 @@
 
 #import <Foundation/Foundation.h>
 
+API_DEPRECATED_BEGIN("Use Foundation APIs instead.", ios(12, API_TO_BE_DEPRECATED))
 /**
  * For inspecting code and writing to logs in debug builds.
  *
@@ -190,3 +191,5 @@ xx, ##__VA_ARGS__)
 #define NIDINFO(xx, ...)  NIDCONDITIONLOG((NILOGLEVEL_INFO <= NIMaxLogLevel), xx, ##__VA_ARGS__)
 
 /**@}*/// End of Debugging Tools //////////////////////////////////////////////////////////////////
+
+API_DEPRECATED_END
