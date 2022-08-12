@@ -146,6 +146,7 @@
   if ([object isKindOfClass:[NITitleCellObject class]]) {
     NITitleCellObject* titleObject = object;
     self.textLabel.text = titleObject.title;
+    self.textLabel.accessibilityTraits = titleObject.accessibilityTraits;
     self.imageView.image = titleObject.image;
   }
   if ([object isKindOfClass:[NISubtitleCellObject class]]) {
