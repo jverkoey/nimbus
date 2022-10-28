@@ -54,22 +54,22 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "NIActions.h"
-#import "NIButtonUtilities.h"
-#import "NICommonMetrics.h"
-#import "NIDebuggingTools.h"
-#import "NIDeviceOrientation.h"
-#import "NIError.h"
-#import "NIFoundationMethods.h"
-#import "NIImageUtilities.h"
-#import "NIInMemoryCache.h"
-#import "NINetworkActivity.h"
-#import "NINonEmptyCollectionTesting.h"
-#import "NINonRetainingCollections.h"
-#import "NIPaths.h"
-#import "NIPreprocessorMacros.h"
-#import "NIRuntimeClassModifications.h"
-#import "NISDKAvailability.h"
-#import "NISnapshotRotation.h"
-#import "NIState.h"
-#import "NIViewRecycler.h"
+#import "NIActions.h"  // IWYU pragma: export
+#import "NIButtonUtilities.h"  // IWYU pragma: export
+#import "NICommonMetrics.h"  // IWYU pragma: export
+#import "NIDebuggingTools.h"  // IWYU pragma: export
+#import "NIDeviceOrientation.h"  // IWYU pragma: export
+#import "NIError.h"  // IWYU pragma: export
+#import "NIFoundationMethods.h"  // IWYU pragma: export
+#import "NIImageUtilities.h"  // IWYU pragma: export
+#import "NIInMemoryCache.h"  // IWYU pragma: export
+#import "NINetworkActivity.h"  // IWYU pragma: export
+#import "NINonEmptyCollectionTesting.h"  // IWYU pragma: export
+#import "NINonRetainingCollections.h"  // IWYU pragma: export
+#import "NIPaths.h"  // IWYU pragma: export
+#import "NIPreprocessorMacros.h"  // IWYU pragma: export
+#import "NIRuntimeClassModifications.h"  // IWYU pragma: export
+#import "NISDKAvailability.h"  // IWYU pragma: export
+#import "NISnapshotRotation.h"  // IWYU pragma: export
+#import "NIState.h"  // IWYU pragma: export
+#import "NIViewRecycler.h"  // IWYU pragma: export
