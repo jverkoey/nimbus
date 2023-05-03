@@ -1042,7 +1042,67 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
       [rects addObject:[NSValue valueWithCGRect:rect]];
     }
   }
+  return [rects copy];
+}
 
+- (NSArray *)_multilineRectsForRange:(NSRange)range {
+  CFArrayRef lines = CTFrameGetLines(self.textFrame);
+  if (nil == lines) {
+    return nil;
+  }
+  CFIndex count = CFArrayGetCount(lines);
+  CGPoint lineOrigins[count];
+  CTFrameGetLineOrigins(self.textFrame, CFRangeMake(0, 0), lineOrigins);
+
+  NSMutableArray *rects = [[NSMutableArray alloc] initWithCapacity:count];
+
+  NSRange runningRange = NSMakeRange(0,0);
+  CGRect runningRect = CGRectZero;
+
+  for (CFIndex lineIndex = 0; lineIndex < count; lineIndex++) {
+    CTLineRef line = CFArrayGetValueAtIndex(lines, lineIndex);
+    CGAffineTransform transform = [self _transformForCoreText];
+    CGFloat verticalOffset = [self _verticalOffsetForBounds:self.bounds];
+
+    CFArrayRef runs = CTLineGetGlyphRuns(line);
+    CFIndex runCount = CFArrayGetCount(runs);
+    for (CFIndex runIndex = 0; runIndex < runCount; runIndex++) {
+      CTRunRef run = CFArrayGetValueAtIndex(runs, runIndex);
+
+      CFRange stringRunRange = CTRunGetStringRange(run);
+      NSRange lineRunRange = NSMakeRange(stringRunRange.location, stringRunRange.length);
+      NSRange intersectedRunRange = NSIntersectionRange(lineRunRange, range);
+
+      if (intersectedRunRange.length == 0) {
+        // This run is not attributed since this run does not intersect the range, add the rect for
+        // runningRange to rects and clear runningRange.
+        if (runningRange.length > 0) {
+          [rects addObject:[NSValue valueWithCGRect:runningRect]];
+          runningRange = NSMakeRange(0,0);
+          runningRect = CGRectZero;
+        }
+        continue;
+      }
+      // Run must be attributed: update the attributed runningRange.
+      CGRect intersectedRect = [self _rectForRange:intersectedRunRange
+                                            inLine:line
+                                        lineOrigin:lineOrigins[lineIndex]];
+      intersectedRect = CGRectApplyAffineTransform(intersectedRect, transform);
+      intersectedRect = CGRectOffset(intersectedRect, 0, verticalOffset);
+      if (runningRange.length == 0) {
+        runningRange = intersectedRunRange;
+        runningRect = intersectedRect;
+      } else {
+        runningRange = NSUnionRange(runningRange, intersectedRunRange);
+        runningRect = CGRectUnion(runningRect, intersectedRect);
+      }
+    }
+  }
+
+  // Add any cached runningRange to the rects.
+  if (runningRange.length > 0) {
+    [rects addObject:[NSValue valueWithCGRect:runningRect]];
+  }
   return [rects copy];
 }
 
@@ -1839,7 +1899,9 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
   // TODO(kaikaiz): remove the first condition when shouldSortLinksLast is fully deprecated.
   if ((_shouldSortLinksLast || (_linkOrdering != NILinkOrderingOriginal)) && !entireLabelIsOneLink) {
     for (NSTextCheckingResult *result in allLinks) {
-      NSArray *rectsForLink = [self _rectsForRange:result.range];
+      NSArray *rectsForLink = _shouldMergeMultilineLinks
+                                  ? [self _multilineRectsForRange:result.range]
+                                  : [self _rectsForRange:result.range];
       if (!NIIsArrayWithObjects(rectsForLink)) {
         continue;
       }

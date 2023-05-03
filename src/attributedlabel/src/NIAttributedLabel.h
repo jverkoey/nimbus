@@ -89,7 +89,10 @@ extern NSString* const NIAttributedLabelLinkAttributeName; // Value is an NSText
  *   the correct dimensions of the attributed label before setting the frame.
  *
  * NIAttributedLabel implements the UIAccessibilityContainer methods to expose each link as an
- * accessibility item.
+ * accessibility item. A note on performance, @c NIAttributedLabel generates these elements with an O(l*a)
+ * complexity where l is the number of links in the text and a is the number of segments of differently
+ * attributed text. Text arrangements where l~a have a complexity approaching O(a^2), while cases where
+ * l<<a have a complexity that approaches O(a).
  *
  * @ingroup NimbusAttributedLabel
  */
@@ -139,6 +142,7 @@ extern NSString* const NIAttributedLabelLinkAttributeName; // Value is an NSText
 @property (nonatomic) BOOL shouldSortLinksLast DEPRECATED_MSG_ATTRIBUTE("Use linkOrdering instead. Besides sorting links as first or last accessible elements, we are introducing a new way which sorts links in their original order and breaks the text into fragments when necessary."); // Sort the links in the text as the last elements in accessible elements. Default: NO
 
 @property (nonatomic) NILinkOrdering linkOrdering; // Define how to sort links in the text. Default: NILinkOrderFirst
+@property(nonatomic) BOOL shouldMergeMultilineLinks;
 
 /**
  * Configures if the label's accessibility elements should remember their last valid accessibility
