@@ -124,44 +124,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   return CGSizeMake(NICGFloatCeil(newSize.width), NICGFloatCeil(newSize.height));
 }
 
-/**
- * @internal
- *
- * The NIViewAccessibilityElement class encapsulates information about an item
- * that should be accessible to users with disabilities, but isn't accessible
- * by default and might be used in animations.
- *
- * Differences between UIAccessibilityElement and NIViewAccessibilityElement:
- *
- * - The accessibilityContainer must be a UIView.
- * - The accessibilityFrame is recomputed every time from the frameInContainer
- *   and the accessibilityContainer.
- * - The accessibilityPath and accessibilityActivationPoint (if applicable) are
- *   recomputed every time from the pointsInContainer and the accessibilityContainer.
- *
- * These differences cease to be as soon as the initial accessibility container
- * is changed externally, which is internally tracked by isContainerValid.
- */
-@interface NIViewAccessibilityElement : UIAccessibilityElement
-
-- (instancetype)initWithAccessibilityContainer:(id)container
-                              frameInContainer:(CGRect)frameInContainer
-                             pointsInContainer:(NSArray *)pointsInContainer;
-
-- (instancetype)initWithAccessibilityContainer:(id)container frameInContainer:(CGRect)frameInContainer;
-
-// This frame is in the accessibilityContainer coordinates.
-@property (nonatomic, readonly) CGRect frameInContainer;
-
-// The first element of the array is the accessibilityActivationPoint, the rest of the array is the
-// accessibilityPath.
-@property (nonatomic, readonly) NSArray *pointsInContainer; // of NSValue
-
-/// If set to @c YES, this element remembers the last valid accessibility container when it receives
-/// a new one.
-@property(nonatomic) BOOL rememberLastValidContainer;
-
-@end
 
 @interface NIViewAccessibilityElement ()
 
@@ -1201,6 +1163,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
     return nil;
   }
 
+  // Calculate multiline link bounds using boundsForRects.
   CGRect bounds = [self boundsForRects:rects];
   CGRect firstRect = [[rects firstObject] CGRectValue];
   // The activation point can be any point in the area. Let's make it the center of the first small
