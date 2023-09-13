@@ -139,12 +139,13 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 // touch points when merging multiline links into a single NIViewAccessibilityElement.
 // When the first link contains either the first or the last word in the sentence and the second
 // link spills between more than one line, the NIViewAccessibilityElement
-// frames have the same top left point, which is used as the touch point. This causes an
+// frames have the same top left point, which can be used as the touch point. This causes an
 // issue where NIAttributedLabel can't determine which accessibilityElement a touchPoint
 // originated from, meaning that one of the  two links can't register events.
-// We solve this by using the center point of the frame, which is ensured to be unique
-// (only for links in the same text) as multiline element frames would have unique y-coordinates.
-@property (nonatomic) BOOL shouldCenterActivationPoint;
+// We solve this by using the bottom left of the frame, which is ensured to be unique
+// (only for links in the same text) as multiline element frames would have unique y-coordinates,
+// and is also ensured to contain the text to maintain tap-functionality.
+@property(nonatomic) BOOL shouldCalculateUniqueActivationPoint;
 
 @end
 
@@ -177,7 +178,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
                                  frameInContainer:CGRectZero
                                 pointsInContainer:nil]) {
     self.isContainerDataValid = NO;
-    self.shouldCenterActivationPoint = NO;
   }
   return self;
 }
@@ -221,7 +221,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 
 - (UIBezierPath *)accessibilityPath {
   UIView *accessibilityContainerView = [self validAccessibilityContainer];
-  if (accessibilityContainerView && NIIsArrayWithObjects(self.pointsInContainer)) {
+  if (accessibilityContainerView && NIIsArrayWithObjects(_pointsInContainer)) {
     UIBezierPath *path = [UIBezierPath bezierPath];
     for (NSUInteger i = 1; i < _pointsInContainer.count; ++i) {
       CGPoint p = [[_pointsInContainer objectAtIndex:i] CGPointValue];
@@ -241,18 +241,17 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 
 - (CGPoint)accessibilityActivationPoint {
   UIView *accessibilityContainerView = [self validAccessibilityContainer];
-  if (accessibilityContainerView && NIIsArrayWithObjects(self.pointsInContainer)) {
+  if (_shouldCalculateUniqueActivationPoint) {
+    // Since links cannot overlap, use the bottom left point since it is guaranteed
+    // to not overlap and also guaranteed to contain the selected link.
+    CGPoint point = CGPointMake(_frameInContainer.origin.x,
+                                _frameInContainer.origin.y + _frameInContainer.size.height);
+    point = [accessibilityContainerView convertPoint:point toView:nil];
+    return [accessibilityContainerView.window convertPoint:point toWindow:nil];
+  } else if (accessibilityContainerView && NIIsArrayWithObjects(_pointsInContainer)) {
     CGPoint point = [[_pointsInContainer firstObject] CGPointValue];
     point = [accessibilityContainerView convertPoint:point toView:nil];
-    point = [accessibilityContainerView.window convertPoint:point toWindow:nil];
-    return point;
-  }
-  if (_shouldCenterActivationPoint) {
-    // Since links cannot overlap, using the center of the start and end points
-    // of the explicit link location ensures unique touch points from events.
-    CGPoint startPoint = [[_pointsInContainer firstObject] CGPointValue];
-    CGPoint endPoint = [[_pointsInContainer lastObject] CGPointValue];
-    return CGPointMake((startPoint.x+endPoint.x)/2.0, (startPoint.y+endPoint.y)/2.0);
+    return [accessibilityContainerView.window convertPoint:point toWindow:nil];
   }
   return super.accessibilityActivationPoint;
 }
@@ -1166,11 +1165,14 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   // Calculate multiline link bounds using boundsForRects.
   CGRect bounds = [self boundsForRects:rects];
   CGRect firstRect = [[rects firstObject] CGRectValue];
-  // The activation point can be any point in the area. Let's make it the center of the first small
-  // rect.
-  CGPoint activationPoint = CGPointMake(firstRect.origin.x + firstRect.size.width / 2,
-                                        firstRect.origin.y + firstRect.size.height / 2);
   CGRect lastRect = [[rects lastObject] CGRectValue];
+  // If we are not merging multiline links then the activation point can be any point in the
+  // element, let's use the center of the text's 'frame'. If we are merging multiline links then the
+  // activation point can be either the bottom left or top right point, let's use the bottom left
+  // point for consistency with NIViewAccessibilityElement.
+  CGPoint activationPoint = _shouldMergeMultilineLinks
+                                ? CGPointMake(CGRectGetMinX(lastRect), CGRectGetMaxY(lastRect))
+                                : CGPointMake(CGRectGetMidX(firstRect), CGRectGetMidY(firstRect));
   NSArray *pointsArray =
       [self pointsWithActivationPoint:activationPoint
                                  rect:bounds
@@ -1868,7 +1870,7 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
 
   // If the entire label is a single link, then we want to only end up with one accessibility
   // element - not one UIAccessibilityTraitLink element for the link and another
-  // UIAccessibilityTraitNone element for the entire label.
+  // UIAccessibilityTraitStaticText/UIAccessibilityTraitNone element for the entire label.
   BOOL entireLabelIsOneLink = NO;
   if (allLinks.count == 1) {
     NSTextCheckingResult *onlyLink = allLinks.firstObject;
@@ -1893,14 +1895,14 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
         NIViewAccessibilityElement *element = [[NIViewAccessibilityElement alloc]
             initWithAccessibilityContainer:self
                           frameInContainer:rectValue.CGRectValue];
-        element.shouldCenterActivationPoint = _shouldMergeMultilineLinks;
+        element.shouldCalculateUniqueActivationPoint = _shouldMergeMultilineLinks;
         [self updateAccessibilityLabelOnElement:element withAccessibilityLabel:label];
 
         // Set the frame to fallback on if |element|'s accessibility container is changed
         // externally.
         CGRect rectValueInWindowCoordinates = [self convertRect:rectValue.CGRectValue toView:nil];
-        CGRect rectValueInScreenCoordinates =
-            [self.window convertRect:rectValueInWindowCoordinates toWindow:nil];
+        CGRect rectValueInScreenCoordinates = [self.window convertRect:rectValueInWindowCoordinates
+                                                              toWindow:nil];
         element.accessibilityFrame = rectValueInScreenCoordinates;
         element.accessibilityTraits = UIAccessibilityTraitLink;
         element.rememberLastValidContainer = self.accessibleElementsRememberLastValidContainer;
@@ -1911,6 +1913,7 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
     NIViewAccessibilityElement *element =
         [[NIViewAccessibilityElement alloc] initWithAccessibilityContainer:self
                                                           frameInContainer:self.bounds];
+    element.shouldCalculateUniqueActivationPoint = _shouldMergeMultilineLinks;
     [self updateAccessibilityLabelOnElement:element
                      withAccessibilityLabel:self.attributedText.string];
 
@@ -1919,7 +1922,8 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
     CGRect boundsInScreenCoordinates =
         [self.window convertRect:boundsInWindowCoordinates toWindow:nil];
     element.accessibilityFrame = boundsInScreenCoordinates;
-    element.accessibilityTraits = UIAccessibilityTraitNone;
+    element.accessibilityTraits =
+        _shouldMergeMultilineLinks ? UIAccessibilityTraitStaticText : UIAccessibilityTraitNone;
     element.rememberLastValidContainer = self.accessibleElementsRememberLastValidContainer;
     // TODO(kaikaiz): remove the first condition when shouldSortLinksLast is fully deprecated.
     if (_shouldSortLinksLast || _linkOrdering == NILinkOrderingLast) {
@@ -1934,12 +1938,16 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
       NSRange range = result.range;
       element = [self accessibilityElementForRange:NSMakeRange(start, range.location - start)];
       if (element) {
-        element.accessibilityTraits = UIAccessibilityTraitNone;
+        element.accessibilityTraits =
+            _shouldMergeMultilineLinks ? UIAccessibilityTraitStaticText : UIAccessibilityTraitNone;
         element.rememberLastValidContainer = self.accessibleElementsRememberLastValidContainer;
         [accessibleElements addObject:element];
       }
       element = [self accessibilityElementForRange:range];
       if (element) {
+        // Move the accessibilityActivationPoint from the center of the first frame to the
+        // bottom left of the last frame so it is externally calculable.
+        element.shouldCalculateUniqueActivationPoint = _shouldMergeMultilineLinks;
         element.accessibilityTraits = UIAccessibilityTraitLink;
         element.rememberLastValidContainer = self.accessibleElementsRememberLastValidContainer;
         [accessibleElements addObject:element];
@@ -1950,7 +1958,8 @@ _NI_UIACTIONSHEET_DEPRECATION_SUPPRESSION_POP()
     element =
         [self accessibilityElementForRange:NSMakeRange(start, self.attributedText.length - start)];
     if (element) {
-      element.accessibilityTraits = UIAccessibilityTraitNone;
+      element.accessibilityTraits =
+          _shouldMergeMultilineLinks ? UIAccessibilityTraitStaticText : UIAccessibilityTraitNone;
       element.rememberLastValidContainer = self.accessibleElementsRememberLastValidContainer;
       [accessibleElements addObject:element];
     }
