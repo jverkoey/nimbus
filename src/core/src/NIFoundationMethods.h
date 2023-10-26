@@ -18,6 +18,7 @@
 #import <UIKit/UIKit.h>
 
 #import "NIPreprocessorMacros.h"
+#import "NISDKAvailability.h"
 
 API_DEPRECATED_BEGIN("Use standard Foundation APIs instead.", ios(12, API_TO_BE_DEPRECATED))
 
@@ -125,7 +126,7 @@ CGRect NIFrameOfCenteredViewWithinView(UIView* viewToCenter, UIView* containerVi
  * Returns the size of the string with given UILabel properties.
  */
 CGSize NISizeOfStringWithLabelProperties(NSString *string, CGSize constrainedToSize, UIFont *font, NSLineBreakMode lineBreakMode, NSInteger numberOfLines)
-    API_UNAVAILABLE(tvos, watchos);
+    API_UNAVAILABLE(tvos, watchos) NI_UNAVAILABLE_VISIONOS;
 
 /**@}*/
 

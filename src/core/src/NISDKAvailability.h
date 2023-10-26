@@ -16,6 +16,7 @@
 // limitations under the License.
 //
 
+#import <Availability.h>
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
@@ -180,11 +181,27 @@ extern "C" {
 #endif
 
 /**
+  On SDKs that support visionOS, this attribute will mark the annotated API as
+  unavailable.
+
+  This annotation can be stacked with an existing API_UNAVAILABLE macro if needed, e.g.:
+
+  ```
+  NI_UNAVAILABLE_VISIONOS API_UNAVAILABLE(macos)
+  ```
+*/
+#ifdef __API_UNAVAILABLE_PLATFORM_visionos
+#define NI_UNAVAILABLE_VISIONOS API_UNAVAILABLE(visionos)
+#else
+#define NI_UNAVAILABLE_VISIONOS
+#endif
+
+/**
  * Checks whether the device the app is currently running on is an iPad or not.
  *
  * @returns YES if the device is an iPad.
  */
-BOOL NIIsPad(void);
+BOOL NIIsPad(void) NI_UNAVAILABLE_VISIONOS;
 
 /**
  * Checks whether the device the app is currently running on is an
@@ -192,7 +209,7 @@ BOOL NIIsPad(void);
  *
  * @returns YES if the device is an iPhone or iPod touch.
  */
-BOOL NIIsPhone(void);
+BOOL NIIsPhone(void) NI_UNAVAILABLE_VISIONOS;
 
 /**
  * Checks whether the device supports tint colors on all UIViews.
@@ -216,12 +233,12 @@ BOOL NIDeviceOSVersionIsAtLeast(double versionNumber);
 /**
  * Fetch the screen's scale.
  */
-CGFloat NIScreenScale(void);
+CGFloat NIScreenScale(void) NI_UNAVAILABLE_VISIONOS;
 
 /**
  * Returns YES if the screen is a retina display, NO otherwise.
  */
-BOOL NIIsRetina(void);
+BOOL NIIsRetina(void) NI_UNAVAILABLE_VISIONOS;
 
 /**
  * This method is now deprecated. Use [UIPopoverController class] instead.
