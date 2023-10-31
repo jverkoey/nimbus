@@ -23,21 +23,21 @@ API_DEPRECATED_BEGIN("🕘 Schedule time to migrate. "
 
 @interface NIObjectActions : NSObject
 
-@property (nonatomic, copy) NIActionBlock tapAction;
-@property (nonatomic, copy) NIActionBlock detailAction;
-@property (nonatomic, copy) NIActionBlock navigateAction;
+@property (nonatomic, copy, nullable) NIActionBlock tapAction;
+@property (nonatomic, copy, nullable) NIActionBlock detailAction;
+@property (nonatomic, copy, nullable) NIActionBlock navigateAction;
 
-@property (nonatomic) SEL tapSelector;
-@property (nonatomic) SEL detailSelector;
-@property (nonatomic) SEL navigateSelector;
+@property (nonatomic, nullable) SEL tapSelector;
+@property (nonatomic, nullable) SEL detailSelector;
+@property (nonatomic, nullable) SEL navigateSelector;
 
 @end
 
 @interface NIActions ()
 
-@property (nonatomic, weak) id target;
+@property (nonatomic, weak, nullable) id target;
 
-- (NIObjectActions *)actionForObjectOrClassOfObject:(id<NSObject>)object;
+- (nullable NIObjectActions *)actionForObjectOrClassOfObject:(nonnull id<NSObject>)object;
 
 @end
 
